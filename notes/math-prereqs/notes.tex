@@ -1,0 +1,25 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\usepackage{amsmath}
+
+\usepackage{hyperref}
+
+\usepackage[
+    backend=biber,
+    style=numeric,
+    url=true
+]{biblatex}
+\addbibresource{../references/references.bib}
+
+\begin{document}
+
+Test reference \cite{notes-prereq}
+
+\printbibliography
+
+\end{document}
