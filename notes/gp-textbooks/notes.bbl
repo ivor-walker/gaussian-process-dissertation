@@ -19,7 +19,7 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
-    \entry{notes-prereq}{misc}{}{}
+    \entry{notes-gp}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=4d8847a191ffacc67576a5d134b3492c}{%
            family={Walker},
@@ -39,13 +39,13 @@
       \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Notes on mathematical prerequisites}
+      \field{title}{Notes on Gaussian process textbooks}
       \field{year}{2025}
       \verb{urlraw}
-      \verb https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/math-prereqs/notes.pdf
+      \verb https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/gp-textbooks/notes.pdf
       \endverb
       \verb{url}
-      \verb https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/math-prereqs/notes.pdf
+      \verb https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/gp-textbooks/notes.pdf
       \endverb
     \endentry
   \enddatalist
