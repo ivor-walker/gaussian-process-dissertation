@@ -19,33 +19,49 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
-    \entry{notes-gp}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=4d8847a191ffacc67576a5d134b3492c}{%
-           family={Walker},
+    \entry{gp-ml}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=58d90ed7b7348c7a5a9b4a2a8f46df7b}{%
+           family={Rasmussen},
+           familyi={R\bibinitperiod},
+           given={Carl\bibnamedelima Edward},
+           giveni={C\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=d34fdfcbfcb5412397b946351370db22}{%
+           family={Williams},
            familyi={W\bibinitperiod},
-           given={I},
-           giveni={I\bibinitperiod}}}%
+           given={Christopher\bibnamedelimb K.\bibnamedelimi I.},
+           giveni={C\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
       }
-      \strng{namehash}{4d8847a191ffacc67576a5d134b3492c}
-      \strng{fullhash}{4d8847a191ffacc67576a5d134b3492c}
-      \strng{fullhashraw}{4d8847a191ffacc67576a5d134b3492c}
-      \strng{bibnamehash}{4d8847a191ffacc67576a5d134b3492c}
-      \strng{authorbibnamehash}{4d8847a191ffacc67576a5d134b3492c}
-      \strng{authornamehash}{4d8847a191ffacc67576a5d134b3492c}
-      \strng{authorfullhash}{4d8847a191ffacc67576a5d134b3492c}
-      \strng{authorfullhashraw}{4d8847a191ffacc67576a5d134b3492c}
-      \field{sortinit}{W}
-      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \list{publisher}{1}{%
+        {The MIT Press}%
+      }
+      \strng{namehash}{f0ccf4a09a3a6a91719405724e3ae5da}
+      \strng{fullhash}{f0ccf4a09a3a6a91719405724e3ae5da}
+      \strng{fullhashraw}{f0ccf4a09a3a6a91719405724e3ae5da}
+      \strng{bibnamehash}{f0ccf4a09a3a6a91719405724e3ae5da}
+      \strng{authorbibnamehash}{f0ccf4a09a3a6a91719405724e3ae5da}
+      \strng{authornamehash}{f0ccf4a09a3a6a91719405724e3ae5da}
+      \strng{authorfullhash}{f0ccf4a09a3a6a91719405724e3ae5da}
+      \strng{authorfullhashraw}{f0ccf4a09a3a6a91719405724e3ae5da}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Notes on Gaussian process textbooks}
-      \field{year}{2025}
+      \field{isbn}{9780262256834}
+      \field{month}{11}
+      \field{title}{Gaussian Processes for Machine Learning}
+      \field{year}{2005}
+      \verb{doi}
+      \verb 10.7551/mitpress/3206.001.0001
+      \endverb
+      \verb{eprint}
+      \verb https://direct.mit.edu/book-pdf/2514321/book\_9780262256834.pdf
+      \endverb
       \verb{urlraw}
-      \verb https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/gp-textbooks/notes.pdf
+      \verb https://doi.org/10.7551/mitpress/3206.001.0001
       \endverb
       \verb{url}
-      \verb https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/gp-textbooks/notes.pdf
+      \verb https://doi.org/10.7551/mitpress/3206.001.0001
       \endverb
     \endentry
   \enddatalist

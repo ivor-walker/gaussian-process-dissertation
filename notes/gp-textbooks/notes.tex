@@ -6,6 +6,7 @@
 \geometry{a4paper, margin=1in}
 
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 \usepackage{hyperref}
 
@@ -18,7 +19,322 @@
 
 \begin{document}
 
-Test reference \cite{notes-gp}
+\section{Regression (\cite{gp-ml} Chapter 2)}
+
+\subsection{Weight-space view}
+
+\subsubsection{Bayesian linear model}
+\begin{itemize}
+    \item We're trying to learn the distribution $p(y|X,W)$
+    \begin{itemize}
+        \item $X$ is the input data, $W$ is the model parameters, $y$ is the output
+        \item $p(y|X,W)$ is the conditional distribution of $y$ after everything we know about $X$ and $W$, distribution of errors
+    \end{itemize}
+    \item Standard linear model: $f(X) = X^T W, y = f(X) + \epsilon$ with our Gaussian noise $\epsilon \sim \mathcal{N}(0, \sigma^2_nI)$, which produces $p(y|X,W) = \mathcal{N}(y|f(X), \sigma^2_n)$
+    \item Bayesian linear model: firstly, specify the linear prior distribution $p(W)$ over the weights $p(W) \sim \mathcal{N}(0, \Sigma_p)$
+    \begin{itemize}
+        \item A prior $p(W)$ expresses our beliefs about the parameters before we see the data
+        \item Linear model specifies that our weights follow a zero mean Gaussian prior with a covariance matric $\Sigma_p$
+    \end{itemize}
+    \item Then, we update our beliefs about the weights after seeing the data, using Bayes' theorem
+\begin{equation}
+    \text{posterior} = \frac{\text{likelihood} \times \text{prior}}{\text{marginal likelihood}}
+\end{equation}
+\begin{equation}
+    p(W|X, y) = \frac{p(y|X,W)p(W)}{p(y|X)}
+\end{equation}
+    \begin{itemize}
+        \item $p(y|X,W)$ is the density of the residuals after applying our priors $p(W)$ to the data $X,W$ under our assumed noise model $\epsilon$
+        \item $p(W)$ is the prior distribution of the weights
+        \item $p(y|X)$ is the marginal likelihood, which is the probability of the data given the model
+\begin{equation}
+    p(y|X) = \int p(y|X,W)p(W)dW
+\end{equation}
+        \item $p(y|X)$ is the normalising constant, ensures the posterior distribution integrates to 1
+        \item $p(W|x, y)$ is the distribution of the weights given the data - combines the likelihood and the prior, representing everything we know about the parameters
+    \end{itemize}
+    \item To understand how our posterior varies with our weights, we can write terms that only depend on weights (i.e. likelihood and prior, not marginal likelihood)
+\begin{equation}
+    p(W|X, y) \propto p(y|X,W)p(W)
+\end{equation}
+     \begin{itemize}
+         \item We will adopt the same idea throughout: if a term doesn't depend on weights, we simply remove it
+     \end{itemize}
+\end{itemize}
+
+\subsubsection{Deriving our posterior}
+\begin{itemize}
+     \item Given our linear model $f(X) = X^TW$ and our Gaussian noise $\epsilon$, we can write $p(Y|X,W)$ as the distribution of errors for each data point $i$
+ \begin{equation}
+     p(y|X,W) = \prod_{i=1}^N \mathcal{N}(y_i|X^TW, \sigma^2_n)
+ \end{equation}
+     \item We can find $p(y|X,W)$ by multiplying the Gaussian density $-\frac{1}{2\sigma^2_n}$ and the squared errors from our model $||y -X^TW||^2$, so our final likelihood becomes
+ \begin{equation}
+     p(y|X,W) = exp\left(-\frac{1}{2\sigma^2_n}||y -X^TW||^2\right)
+ \end{equation}
+     \item Given that our $p(W)$ is a zero mean Gaussian prior with covariance $\Sigma_p$, we can substitute this into the Gaussian density function
+ \begin{equation}
+     p(W) = \frac{1}{[\sqrt{\sigma_p}]\sqrt{2\pi}} exp\left(-\frac{1}{2}\frac{([W]-[0])}{[\Sigma_p]}\right)
+ \end{equation}
+     \item The first term of this $p(W)$ is another normalising constant, so rewriting the fraction in the exponent as a negative exponential gives us
+ \begin{equation}
+     p(W) \propto exp\left(-\frac{1}{2}W^T\Sigma_p^{-1}W\right)
+ \end{equation}
+     \item Putting both expressions for $p(y|X,W)$ and $p(W)$ together, we can write the posterior as
+ \begin{equation}
+     p(W|X,y) \propto exp\left(-\frac{1}{2\sigma^2_n}||y -X^TW||^2\right)exp\left(-\frac{1}{2}W^T\Sigma_p^{-1}W\right)
+ \end{equation}
+     \item To simplify, first we can expand $||y - X^TW||^2$ to $y^Ty - 2y^TXW + W^TX^TXW$, and substitute this expanded expression to get
+ \begin{equation}
+     p(W|X,y) \propto exp\left(-\frac{1}{2\sigma^2_n}(y^Ty - 2y^TXW + W^TX^TXW)\right)exp\left(-\frac{1}{2}W^T\Sigma_p^{-1}W\right)
+ \end{equation}
+     \item Then, we put both exponentials together (by adding their powers)
+ \begin{equation}
+     p(W|X,y) \propto exp\left(\frac{1}{\sigma^2_n}(y^Ty - 2y^TXW + W^TX^TXW) + \left(-\frac{1}{2}W^T\Sigma_p^{-1}W\right)\right)
+ \end{equation}
+     \item We can rearrange the inside term to be a quadratic, linear and constant term in $W$:
+ \begin{equation}
+     p(W|X,y) \propto exp\left(\frac{1}{2}W^T\left(\frac{1}{\sigma^2_n}X^TX + \Sigma_p^{-1}\right)W - \left(\frac{1}{\sigma^2_n}y^TX\right)W + \frac{1}{2}y^Ty\right)
+ \end{equation}
+     \item We can ignore the constant final term, and introduce $A = \Sigma_p^{-1} + \frac{1}{\sigma^2_n}X^TX$ and $b = \frac{1}{\sigma^2_n}y^TX$ to get
+ \begin{equation}
+     p(W|X,y) \propto exp\left(-\frac{1}{2}W^TAW + b^TW\right)
+ \end{equation}
+\end{itemize}
+
+\subsubsection{Deriving the properties of the posterior by completing the square}
+\begin{itemize}
+     \item Now we have a simplified form of the posterior density, we need to get it into a Gaussian form to recover the properties of the posterior distribution
+    \item Firstly, we can bring all terms inside the exponential to a single term
+\begin{equation}
+    -\frac{1}{2}W^TAW + b^TW = \frac{1}{2}\left(-W^TAW + 2b^TW\right)
+\end{equation}
+    \item We can "complete the square" on this term $W^TAW - 2b^TW$ to rewrite it in a form that is easier to interpret
+\begin{equation}
+    W^TAW - 2b^TW = (W - A^{-1}b)^TA(W - A^{-1}b) - b^TA^{-1}b
+\end{equation}
+    \item Substituting this back into our posterior density gives us
+\begin{equation}
+    p(W|X,y) \propto exp\left(-\frac{1}{2}\left((W - A^{-1}b)^TA(W - A^{-1}b) - b^TA^{-1}b\right)\right)
+\end{equation}
+    \item If we look at our Gaussian density: 
+\begin{equation}
+    N(W | \mu, \Sigma) = \frac{1}{\sqrt{(2\pi)^d |\Sigma|}} exp\left(-\frac{1}{2}(W - \mu)^T\Sigma^{-1}(W - \mu)\right)
+\end{equation}
+    \item We can see that our expression lines up with the RHS Gaussian "kernel" term $exp\left(-\frac{1}{2}(W - \mu)^T\Sigma^{-1}(W - \mu)\right)$, where $\mu = A^{-1}b$ and $\Sigma^{-1} = A$ thus $\Sigma = A^{-1}$
+    \item So we can write our posterior density in Gaussian form
+\begin{equation}
+    p(W|X,y) \sim N(A^{-1}b, A^{-1})
+\end{equation}
+\end{itemize}
+
+\subsubsection{Gaussian posteriors and ridge regression}
+\begin{itemize}
+    \item For Gaussian posteriors, our mean $A^{-1}b$ is also its mode, called the maximum a posteriori (MAP) estimate of W
+        \begin{itemize}
+            \item Due to symmetries in linear model and posterior, not the case in general
+        \end{itemize}
+    \item In non-Bayesian settings the MAP point is the MLE estimation
+    \item $B$ is dependent on $\sigma_n^2$, $y$ and $X$ - all known
+    \item $A$ is dependent on $\sigma_n^2$, $X$ and $\Sigma_p$ - all known except $\Sigma_p$
+    \item Our weight variance $\Sigma_p$ under the Bayesian linear model is "isotropic", meaning it is the same in all directions
+\begin{equation}
+    \Sigma_p = \tau^2 I
+\end{equation}
+    \begin{itemize}
+        \item $I$ is our $D \times D$ correlation matrix, here we assume independence so our correlation matrix is an "identity matrix" (each diagonal element is 1 and all off-diagonal elements are 0)
+        \item $\tau^2$ is a scalar variance term, chosen as a prior
+    \end{itemize}
+    \item We can substitute our new isotropic prior $\Sigma_p$ into $A$ to get
+\begin{equation} 
+    A = \Sigma_p^{-1} + \frac{1}{\sigma^2_n}X^TX = \left[{\tau^2}I\right]^{-1} + \frac{1}{\sigma^2_n}X^TX =  \frac{1}{\tau^2}I + \frac{1}{\sigma^2_n}X^TX = \frac{1}{\sigma_n^2}\left(X^TX + \frac{\sigma_n^2}{\tau^2}I\right)
+\end{equation} 
+    \item Now we have full expressions for $A$ and $B$, we can substitute them into our MAP estimation for W to get
+\begin{equation} 
+    W_{\text{MAP}} = A^{-1}b = \left[\frac{1}{\sigma_n^2}(X^TX + \frac{\sigma_n^2}{\tau^2}I\right]^{-1} \cdot \left[\frac{1}{\sigma_n^2}y^TX\right] \\
+\end{equation}
+    \item We can compute the LHS inversion of $A$
+\begin{equation}
+    A^{-1} = \frac{\sigma_n^2}{X^TX + \frac{\sigma_n^2}{\tau^2}I} = \sigma_n^2\left(X^TX + \frac{\sigma_n^2}{\tau^2}I\right)^{-1}
+\end{equation}
+    \item Substituting this back into $W_\text{MAP}$ cancels out the $\sigma_n^2$ term in A with the $\frac{1}{\sigma_n^2}$ term in B, giving us
+\begin{equation}
+    W_{\text{MAP}} = \sigma_n^2\left(X^TX + \frac{\sigma_n^2}{\tau^2}I\right)^{-1} \cdot \frac{1}{\sigma_n^2}y^TX = \left(X^TX + \frac{\sigma_n^2}{\tau^2}I\right)^{-1} \cdot y^TX
+\end{equation}
+    \item The solution to ridge regression is very similar
+\begin{equation}
+    W_{\text{ridge}} = \left(X^TX + \lambda I\right)^{-1}X^Ty
+\end{equation}
+    \item In ridge regression, $\lambda$ is a regularisation parameter that controls the amount of shrinkage which is usually selected to maximise likelihood/minimise error
+    \item MAP estimation in Bayesian linear regression with isotropic priors is equivalent to ridge regression with a regularisation parameter $\lambda = \frac{\sigma_n^2}{\tau^2}$
+        \begin{itemize}
+            \item The higher our $\lambda$, the more biased our model is towards the prior, and the more we shrink our weights towards zero and the prior has more influence
+            \item A lower $\tau$ causes a higher $\lambda$ - smaller weight variances around zero means lower weights because of higher confidence in priors
+            \item A higher $\sigma_n$ also causes a higher $\lambda$ - larger noise variances means lower weights because of lower confidence in weights forces deference to the prior
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Deriving the predictive distribution}
+\begin{itemize}
+    \item Ultimately, our goal is to approximate a data-generating function $f_*$ (or a new observation $y_*$) that produced a new $X_*$ given training data $X$ and $y$ and weights $W$ from the same $f_*$  
+    \item In non-Bayesian frameworks, we make predictions by choosing a single parameter value $W$ to maximise the likelihood of the data, which is our MLE estimate
+    \item In a Bayesian framework, we average over all possible parameter values weighted by their posterior probability $p(W|X,y)$, e.g. for a linear model $\hat{W} = \mathbb{E}_{p(W|X,y)}[W] = W_\text{MAP} = A^{-1}b$
+    \item In this framework, we can make comments about our uncertainty of $W$ by forming a "predictive distribution" $p(f_*|X_*,X,y)$
+\begin{equation}
+    p(f_*|X_*,X,y) = \int p(f_*|X_*,W) \cdot p(W | X,y)dW
+\end{equation}
+    \begin{itemize}
+        \item $p(f_*|X_*,W)$ is what we think the function looks like after producing a prediction using $X_*$ and perfect knowledge of $W$
+        \item $p(W|X,y)$ is the posterior distribution of the weights given the training data, e.g. minimised for $W_\text{MAP}$
+        \item $p(f_*|X_*,W) \cdot p(W|X,y)$ is the joint distribution of our predictions and our posterior weights, which gets us the conditional distribution $p(f_*,W|X_*,X,y)$ by definition of conditional probability
+        \item $p(f_*,W|X_*,X,y)$ relies on our perfect knowledge of $W$, which we don't have, so we integrate over all possible $W$ to get the predictive distribution $p(f_*|X_*,X,y)$
+    \end{itemize}
+    \item We already know $p(W|X,y)$
+\begin{equation}
+    p(W|X,y) \propto exp\left(\frac{1}{2}(-W^TAW + 2b^TW)\right)
+\end{equation}
+    \item $p(f_*|X_*,W)$ is our errors, which we assume to be distributed normally and independently with our $I$ identity matrix:
+\begin{equation}
+    p(f_* | X_*, W) = \mathcal{N}(f_* | W^TX_*, \sigma^2_nI)
+\end{equation}
+    \item Plugging these into our Gaussian density and ignoring the LHS normalisation term yields
+\begin{equation}
+    p(f_*|X_*,w) \propto exp\left(-\frac{1}{2}\frac{1}{\sigma^2_n}(f_* - W^TX_*)^2\right)
+\end{equation}
+    \item We can multiply $P(f_*|X_*,W)$ and $p(W|X,y)$ to get our conditional $p(f_*, W|X_*,X,y)$, and add the exponents to simplify
+\begin{equation}
+    p(f_*,W|X_*,X,y) \propto exp\left(\frac{1}{2}(-W^TAW + 2b^TW) + \left(-\frac{1}{2}\frac{1}{\sigma^2_n}(f_* - W^TX_*)^2\right)\right)
+\end{equation}
+    \item We can further combine these with a single factor of $\frac{1}{2}$ to get
+\begin{equation}
+    p(f_*,W|X_*,X,y) \propto exp\left(-\frac{1}{2}\left(W^TAW - 2b^TW + \frac{1}{\sigma^2_n}(f_* - W^TX_*)^2\right)\right)
+\end{equation}
+    \item Expanding the squared term gives us
+\begin{equation}
+    p(f_*,W|X_*,X,y) \propto exp\left(-\frac{1}{2}\left(W^TAW - 2b^TW + \frac{1}{\sigma^2_n}(f_*^2 - 2f_*W^TX_* + W^TX_*X_*^TX_*)\right)\right)
+\end{equation}
+    \item Similar to our posterior, we can rearrange this to be a quadratic, linear and constant term in $W$
+\begin{equation}
+    p(f_*,W|X_*,X,y) \propto exp\left(-\frac{1}{2}\left(W^T\left(A + \frac{1}{\sigma^2_n}X_*X_*^T\right)W - 2\left(b + \frac{1}{\sigma^2_n}f_*X_*\right)^TW + \frac{1}{\sigma_n^2}f_*^2\right)\right)
+\end{equation}
+    \item By defining $A_* = A + \frac{1}{\sigma^2_n}X_*X_*^T$ and $b_* = b + \frac{1}{\sigma^2_n}f_*X_*$, we can rewrite this as
+\begin{equation}
+    p(f_*,W|X_*,X,y) \propto exp\left(-\frac{1}{2}\left(W^TA_*W - 2b_*^TW + \frac{1}{\sigma_n^2}f_*^2\right)\right)
+\end{equation}
+    \item We have to integrate this wrt $W$ to get our predictive distribution $p(f_*|X_*,X,y)$
+\begin{equation}
+    p(f_*|X_*,X,y) = \int p(f_*,W|X_*,X,y)dW \propto \int exp\left(-\frac{1}{2}\left(W^TA_*W - 2b_*^TW + \frac{1}{\sigma_n^2}f_*^2\right)\right)dW
+\end{equation}
+    \item We can factor out the $\frac{1}{\sigma_n^2}f_*^2$ term from the integral, as it does not depend on $W$ so remains the same since $\int exp(X) dX = exp(X)$ 
+\begin{equation}
+    = exp\left(-\frac{1}{2}\frac{1}{\sigma_n^2}f_*^2\right) \times \int exp\left(-\frac{1}{2}\left(W^TA_*W - 2b_*^TW\right)\right) dW
+\end{equation}
+    \item The RHS term is a multivariate Gaussian integral (beyond your paygrade) which evaluates to:
+\begin{equation}
+    \int exp\left(-\frac{1}{2} \left( W^TA_*W - 2b_*^TW \right) \right) dW = \frac{(2\pi)^{D/2}} {\sqrt{|A_*|}} exp\left( \frac{1}{2} b_*^TA_*^{-1}b_* \right)
+\end{equation}
+    \item Substituting this back into our predictive distribution gets us
+\begin{equation}
+    p(f_*|X_*,X,y) \propto exp\left(-\frac{1}{2}\frac{1}{\sigma_n^2}f_*^2\right) + \frac{(2\pi)^{D/2}}{\sqrt{|A_*|}} \cdot exp\left(\frac{1}{2}b_*^TA_*^{-1}b_*\right)  
+\end{equation}
+    \begin{itemize}
+        \item Note that no part of our expression is now dependent on W
+    \end{itemize}
+    \item Now we need an expression of everything that changes $f_*$
+    \item Absorb the second term, since it does not depend on $f_*$ into the proportionality constant, and combining the remaining exponential terms by adding their powers gives us
+\begin{equation}
+    p(f_*|X_*,X,y) \propto \exp\left(-\frac{1}{2}\frac{1}{\sigma_n^2}f_*^2 + \frac{1}{2}b_*^TA_*^{-1}b_*\right)
+\end{equation}
+    \item Similar to deriving properties from our posterior, we can rearrange this expression, complete the square and derive the properties of our predictive distribution
+\begin{equation}
+    p(f_*|X_*,W) \sim N(X_*^TA^{-1}b, \sigma_n^2 + X_*^TA^{-1}X_*)
+\end{equation}
+    \item Predictive variance is quadratic form of test input with $A^{-1}$, showing that predictive uncertainties grow with size of $X_*$
+
+\end{itemize}
+
+\subsubsection{Projections of inputs into feature space}
+\begin{itemize}
+    \item Bayesian linear models suffer from limited expressiveness due to the linearity of the model
+    \item To address this, we can project our inputs into a higher dimensional feature space and apply linear model in this space
+    \item e.g. a scalar $x$ could be projected into the space of powers of $x$: $\phi(x) = [1, x, x^2, \ldots, x^d]^T$ for a polynomial basis expansion of degree $d$
+    \item How to choose $\phi(x)$? Gaussian process formalism allows us to answer this question, but for now assume $\phi(x)$ is a given
+    \item $\phi(X)$ maps a D-dimensional input vector $X$ into an $N$ dimensional feature space
+    \item So our full model looks like:
+\begin{equation}
+    f(X) = \phi(X)^T W
+\end{equation}
+%   \item $\phi(x)$ must be independent of $W$ so that we can learn $W$ from the data
+    \item And our predictive distribution becomes
+\begin{equation}
+    p(f_*|X_*,X,y) = N(\phi(X_*)^TA_{\phi}^{-1}b_{\phi} , \sigma_n^2 + \phi(X_*)^TA_{\phi}^{-1}\phi(X_*))
+\end{equation}
+    \begin{itemize}
+        \item $A_{\phi} = \Sigma_p^{-1} + \frac{1}{\sigma^2_n}\phi(X)^T\phi(X)$
+        \item $b_{\phi} = \frac{1}{\sigma^2_n}\phi(X)^Ty$
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Avoiding inversion of $A_{\phi}$}
+\begin{itemize}
+    \item This formulation of our predictive distribution inverts the $N \times N$ matrix $A_{\phi}$ to get the expected value and variance
+    \item Inverting matrices is $O(N^3)$ - not feasible for large $N$ - so we need to restate our predictive distribution in a form that avoids this inversion
+    \item We can use the Sherman-Morrison identity (beyond your paygrade) to get an expression for $A_{\phi}^{-1}$ directly, where $K =\phi(X)^T\Sigma_p\phi(X)$
+\begin{equation}
+    A_{\phi}^{-1} = \Sigma_p - \Sigma_p\phi(X)(K+\sigma_n^2I)^{-1}\phi(X)^T\Sigma_p
+\end{equation}
+    \item For the mean, we can use the Sherman-Morrison identity again to get an expression for $A_{\phi}^{-1}\phi(X)$
+\begin{equation}
+    A_{\phi}^{-1}\phi(X) = \sigma_n^2\Sigma_p\phi(X)(K+\sigma_n^2I)^{-1}
+\end{equation}
+    \item Substitute this into our predictive distribution mean
+\begin{equation}
+    \mathbb{E}_{p(f_*|X_*,X,y)}[f_*] = \phi(X_*)^T \cdot A_\phi^{-1} \cdot \left[\frac{1}{\sigma_n^2}\phi(X)^Ty\right]
+\end{equation}
+    \item Factoring out $\sigma_n^2$
+\begin{equation}
+    = \phi(X_*)^T \cdot \sigma_n^{-2}(A_\phi^{-1}\phi(X))y
+\end{equation}
+    \item $\sigma_n^-2$ and $\sigma_n^2$ cancel out, leaving us with
+\begin{equation}
+    \mathbb{E}_{p(f_*|X_*,X,y)}[f_*] = \phi(X_*)^T \cdot \Sigma_p\phi(X)(K+\sigma_n^2I)^{-1}y
+\end{equation}
+% non-woodbridge approach
+%    \item To simplify the mean, we can first try for an expression of $A_{\phi}^{-1}\phi(X)$
+%\begin{equation}
+%    A_{\phi}^{-1}\phi(X) = \Sigma_p\phi(X) - \Sigma_p\phi(X)(K+\sigma_n^2I)^{-1} \cdot \phi(X)^T\Sigma_p\phi(X)
+%\end{equation}
+%    \item Notice that the third term is the definition of $K$
+%\begin{equation}
+%    A_{\phi}^{-1}\phi(X) = \Sigma_p\phi(X) - \Sigma_p\phi(X)(K+\sigma_n^2I)^{-1}K
+%\end{equation}
+%    \item Focusing on this simplified third term
+%\begin{equation}
+%    (K + \sigma_n^2I)^{-1}K = (K + \sigma_n^2I)^{-1}(K + \sigma_n^2I - \sigma_n^2I)
+%\end{equation}
+%    \item Expanding by multiplying $(K + \sigma_n^2I)^{-1}$ by $K + \sigma_n^2I$ and $-\sigma_n^2I$, and some tedious algebra
+%\begin{equation}
+%    = (K + \sigma_n^2I)^{-1}(K + \sigma_n^2I) - (K + \sigma_n^2I)^{-1}\sigma_n^2I = I - \sigma_n^2(K + \sigma_n^2I)^{-1}
+%\end{equation}
+%    \item Substituting this back into our expression for $A_{\phi}^{-1}\phi(X)$
+%\begin{equation}
+%    A_{\phi}^{-1}\phi(X) = \Sigma_p\phi(X) - \Sigma_p\phi(X)\left[I - \sigma_n^2(K + \sigma_n^2I)^{-1}\right] 
+%\end{equation}
+%    \item Our two $\Sigma_p\phi(X)$ terms cancel out
+%\begin{equation}
+%    
+
+%    \item For mean, since $b_{*\phi}$ depends on $f_*$
+%\begin{equation}
+%    \text{Var}_{p(f_*|X_*,X,y)}[f_*] = \sigma_n^2 + \phi(X_*)^T \cdot \frac{1}{\sigma_n^2}\phi(X_*)^TA_{\phi}^{-1}\phi(X)^Ty \cdot \phi(X_*)
+%\end{equation}
+%    \item For both mean and variance, 
+%    \item Substituting $A_{*\phi}$, $b_{*\phi}$ and $b_{\phi}$ into $p(f_*|X_*,X,y)$ gets a predictive distribution mean $\mathbb{E}_{p(f_*|X_*,X,y)}[f_*]$ 
+%\begin{equation}
+%    \mathbb{E}_{p(f_*|X_*,X,y)}[f_*] = \phi(X_*)^T \cdot \frac{1}{\sigma_n^2}\phi(X_*)^TA_{\phi}^{-1}\phi(X)^Ty \cdot \frac{1}{\sigma_n^2}\phi(X)^Ty + \frac{1}{\sigma_n^2}f_*\phi(X_*)
+%\end{equation}
+
+\end{itemize}
 
 \printbibliography
 
