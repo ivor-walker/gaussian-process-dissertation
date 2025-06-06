@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  5 JUN 2025 18:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  6 JUN 2025 23:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -708,25 +708,31 @@ u-tion of $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 X[]\OT1/cmr/m/n/
 
 [11]
 
-[12] (./notes.aux)
+[12]
+
+[13]
+
+[14]
+
+[15] (./notes.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 43D04FF5C761C2031CF95969F15653BD;1322.
+(rerunfilecheck)             Checksum: 13199284144D855E44DD5113C7A37DF4;1985.
 Package logreq Info: Writing requests to 'notes.run.xml'.
 \openout1 = `notes.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 17064 strings out of 473190
- 294334 string characters out of 5719979
+ 17105 strings out of 473190
+ 294856 string characters out of 5719979
  1131861 words of memory out of 5000000
- 40086 multiletter control sequences out of 15000+600000
+ 40092 multiletter control sequences out of 15000+600000
  566154 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,81p,690b,1389s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,9n,81p,690b,1299s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/202
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-d
@@ -742,10 +748,10 @@ ype1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmtt12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfon
 ts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/s
 frm1200.pfb>
-Output written on notes.pdf (12 pages, 206433 bytes).
+Output written on notes.pdf (15 pages, 221750 bytes).
 PDF statistics:
- 263 PDF objects out of 1000 (max. 8388607)
- 214 compressed objects within 3 object streams
- 87 named destinations out of 1000 (max. 500000)
- 57 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 321 PDF objects out of 1000 (max. 8388607)
+ 269 compressed objects within 3 object streams
+ 122 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

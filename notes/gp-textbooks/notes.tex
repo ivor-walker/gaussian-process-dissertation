@@ -432,11 +432,12 @@
 \end{equation}
     \item We will use a squared exponential (SE) covariance function, also known as the radial basis function (RBF) or Gaussian kernel
 \begin{equation}
-    k(f(X), f(X')) = \exp\left(-\frac{1}{2}||X - X'||^2\right)
+    k(f(X), f(X')) = \exp\left(-\frac{1}{2}\frac{|X - X'|^2}{\mathcal{L}^2}\right)
 \end{equation}
     \begin{itemize}
         \item Covariance between outputs $f(X)$ and $f(X')$ is written as a function of inputs $X$ and $X'$ only (kernel trick)
         \item For SE, covariance is almost unity between outputs whose inputs are close together, and decays exponentially as inputs get further apart
+        \item $\mathcal{L}$ is a length scale parameter that controls the rate of decay of the covariance function
     \end{itemize}
     \item It can be shown that SE corresponds to a Bayesian linear regression model with infinite basis functions
         \begin{itemize}
@@ -453,7 +454,7 @@
         \begin{itemize}
             \item Each output $f(X_{\theta*1})$ in our $f(X_{*1})$ vector is a random variable with mean $0$ and covariance with each other $K_{\theta\theta'} = k(X_{\theta*}, X_{\theta'*})$ 
         \end{itemize}
-    \item There exists some function $g(X_{*1})$ for our subsets such that $f(X_{*1}) = g(X_{*1})$
+    \item There exists some random function $g(X_{*1})$ for our subsets such that $f(X_{*1}) = g(X_{*1})$
     \begin{itemize}
         \item We only know the value of $g(X_{*1})$ at the points $X_{*1}$, so $g(X_{*1}) = {X_{*1} : f(X_{*1})}$
         \item Because $g(X)$ entirely consists of random points, we can think of $g(X_{*1})$ as a random function
@@ -462,6 +463,179 @@
 \item Thanks to consistency, if we marginalised out our subset from the entire distribution $f(X_*)$, we would recover the subset distribution $N(0, K_*(X_{*1}, X_{*1}))$ that describes our random function $g(X_{*1})$
     \item Therefore, the specification of the covariance function imples that our GP can also be seen as a distribution of o, where each sample produces a random function $g(X_*)$ that passes through the points $f(X_{*1})$
 \end{itemize}
+
+
+\subsubsection{Predictive distributions with noise-free observations}
+
+\paragraph{Prior distribution over functions}
+\begin{itemize}
+    \item We are trying to get the best function $f$ that describes our training data $f(X)$ and test data $f(X_*)$
+    \item Initially we consider the simple special case where the observations are noise free, i.e. we know $f(X)$ is the $y$ we observe
+    \item Therefore, our training data $f(X)$ and test data $f(X_*)$ are jointly distributed according to the prior
+\begin{equation}
+    \begin{pmatrix}
+        f(X) \\ f(X_*)
+    \end{pmatrix} \sim N\left(
+    \begin{pmatrix}
+        0 \\ 0
+    \end{pmatrix},
+    \begin{pmatrix}
+        K(X,X) & K(X,X_*) \\ K(X_*,X) & K(X_*,X_*)
+    \end{pmatrix}
+    \right)
+\end{equation}
+\end{itemize}
+
+\paragraph{Posterior distribution over functions}
+\begin{itemize}
+    \item We are not interested in drawing random functions from the prior, but incorporating the knowledge that the training data provides about the function
+    \item To get the posterior distribution over functions given the training data, we can condition the joint prior distribution on the training data
+    \item Intuitively, like generating random functions $g$ and rejecting those that don't pass through the training data (but computationally impossible like this)
+    \item Probabilistically, we need to condition our joint Gaussian prior distribution on the observations, or produce an expression for $p(f(X_*)|X_*, X, f(X))$
+    \item We can substitute our prior and our data we're conditioning it on into the Gaussian multivariate conditioning identity:
+\begin{equation}
+    \begin{aligned}
+        p(f(X_*)|X_*, X, f(X)) \sim N( \\
+        [0] + [K(X_*,X)][K(X,X)]^{-1}([f(X)] - [0]), \\
+        [K(X*,X*)] - [K(X_*,X)][K(X,X)]^{-1}[K(X,X_*)] \\
+        )
+    \end{aligned}
+\end{equation}
+    \begin{itemize}
+        \item Note that although we condition on $X_*$, $X$, and $f(X)$, we only substitute $f(X)$
+        \item $X_*$ and $X$ are known constants, but $f(X)$ is random because it is a sample from the prior
+        \item We also swap $f(X_*)$ and $f(X)$ in our prior to match the conditioning identity, such that our input vector into the conditioning identity is $(f(X_*), f(X))^T$
+    \end{itemize}
+    \item Simplifying the last term in the mean we get our final expression for the posterior distribution
+\begin{equation}
+    \begin{aligned}
+        p(f(X_*)|X_*, X, f(X)) \sim N( \\
+        K(X,X_*)K(X,X)^{-1}f(X), \\
+        K(X_*,X_*) - K(X_*,X)K(X,X)^{-1}K(X,X_*) \\
+        )
+    \end{aligned}
+\end{equation}
+\end{itemize}
+
+
+\subsubsection{Predictive distributions with noisy observations}
+
+\paragraph{Noisy observations prior}
+\begin{itemize}
+    \item It is typical for more realistic situations to not have the observation $f(X)$ directly as our training data, but have $y = f(X) + \epsilon$, where $\epsilon$ is a noise term
+    \item Linear model assumes $\epsilon$ is additive, independent and identically distributed
+\begin{equation}
+    \text{Cov}(y_p, y_q) = K(X_p, X_q) + \sigma^2_n\delta_{pq}
+\end{equation}
+    \begin{itemize}
+        \item $\delta_{pq}$ is the Kronecker delta, which returns 1 if indices ($p$, $q$) are equal and 0 otherwise
+        \item $\sigma^2_n$ is the noise variance, which is a constant for all observations
+        \item Note that the subscript $n$ in $\sigma^2_n$ is not the number of observations, but a reminder it's noise and not part of the prior
+    \end{itemize}
+    \item More generally,
+\begin{equation}
+    \text{Cov}(Y) = k(X,X) + \sigma^2_nI
+\end{equation}
+    \begin{itemize}
+        \item $\sigma^2_nI$ is the noise multiplied by the correlation matrix $I$, which under independence is our identity matrix
+    \end{itemize}
+    \item This gives us this prior
+\begin{equation}
+    \begin{pmatrix}
+        Y \\ f(X_*)
+    \end{pmatrix} \sim N\left(
+    \begin{pmatrix}
+        0 \\ 0
+    \end{pmatrix},
+    \begin{pmatrix}
+        K(X,X) + \sigma^2_nI & K(X,X_*) \\ K(X_*,X) & K(X_*,X_*)
+    \end{pmatrix}
+    \right)
+\end{equation}
+\end{itemize}
+
+\paragraph{Noisy observations posterior}
+\begin{itemize}
+    \item As before, we can form a predictive distribution using the Gaussian multivariate conditioning identity
+\begin{equation}
+    \begin{aligned}
+        p(f(X_*)|X_*, X, Y) \sim N( \\
+        K(X_*,X)[K(X,X) + \sigma^2_nI]^{-1}Y, \\
+        K(X_*,X_*) - K(X_*,X)[K(X,X) + \sigma^2_nI]^{-1}K(X,X_*) \\
+        )
+    \end{aligned}
+\end{equation}
+    \item Note that substituting $K(X,X') = \phi(X)^T\Sigma_p\phi(X')$ in gives us the exact same result in the weight-space view's final predictive distribution in the alternative formulation using the Sherman-Morrison identity
+    \item Note that our mean is solely in terms of $Y$ and our covariance function, so it can be seen as as a linear predictor
+    \item Alternatively, we can write it as a linear combination of $n$ kernel function evaluations at the training data points $X_i$ by defining $\alpha_i = K(X_i, X_i) + \sigma_n^2I)^{-1}Y_i$
+\begin{equation}
+    \mathbb{E}_{p(f(X_*)|X_*,X,Y)}[f(X_*)] = \sum_{i=1}^n \alpha_i k(X_*, X_i)
+\end{equation}
+    \item Representer theorem - we can express the posterior mean as these linear combinations despite our GP being represented as a (possibly infinite) number of basis functions
+    \begin{itemize}
+        \item Our prior defines a joint Gaussian distribution over all $y$ variables, one for each point in the index set $\mathcal{X}$, which could be infinite
+        \item Since we are conditioning our prior on a finite number of $X_i$, we only care about the distribution of the $n$ training points and the $1$ test point we are predicting for
+        \item This is the block of the joint covariance matrix we extract by marginalising
+    \end{itemize}
+    \item Note that our variance is independent of the targets $y$, only our inputs $X$ and $X_*$
+    \item Our variance is two terms: our prior covariance $K(X_*,X_*)$, a term representing the information the observations give us about the function
+    \item We can compute the predictive distribution of $Y_*$ by adding the noise term $\sigma^2_nI$ to the variance
+\end{itemize}
+
+\paragraph{Marginal likelihood}
+\begin{itemize}
+    \item We need some measure of how well our GP fits the data, which we can get by computing the marginal likelihood $p(Y|X)$
+\begin{equation}
+    p(Y|X) = \int p(Y|f,X)p(f|X) df
+\end{equation}
+    \item $p(f|X)$ is our prior distribution $\sim N(0, K)$
+    \begin{itemize}
+        \item Our mean will always be the same under our prior, but our $K(X,X')$ tells us how "wiggly" our function is
+        \item The closer our $p(f|X)$ distribution is to the true complexity of the function, the higher our marginal likelihood
+        \item e.g. for SE, if our data is close together $|X - X'|$ is small then our covariance $k(X,X')$ on our function distribution prior is large, so we get a high variety of functions and thus a higher probability of sampling a more complex function
+        \item If we specify a lower $\mathcal{L}$, we can "artificially" get a high $k(X,X')$ 
+        \item So if we supply some new data $k(X_*, X_*')$ that is far away from each other and would require a more complex function, its density in this prior smooth distribution will be low, so we get a low $p(f|X_*)$
+    \end{itemize}
+    \item $p(y|f,X)$ is our familar predictive distribution $p(y|f,X) \sim N(f, \sigma^2_nI)$, and represents how good a fit our function $f$ is to the training data labels $y$ and inputs $X$
+    \item We can express $p(Y|X)$ as a Gaussian integral over the joint distribution of $f$ and $Y$, which yields this PDF of the marginal likelihood
+\begin{equation}
+    log p(Y|X) = -\frac{1}{2}Y^T(K + \sigma^2_nI)^{-1}Y - \frac{1}{2}log|K + \sigma^2_nI| - \frac{n}{2}log(2\pi)
+\end{equation}
+    \item Alternatively, $y = f(X) + \epsilon$, where we assume $\epsilon \sim N(0, \sigma^2_nI)$
+    \item Since these are both Gaussian, we can simply add their means and variances to get $p(Y|X) = N(0, K + \sigma^2_nI)$
+    \item This itself is a Gaussian that we can plug into our Gaussian PDF to get the same result
+\end{itemize}
+
+\paragraph{Practical algorithm}
+\begin{enumerate}
+    \item Take in inputs $X$, outputs $y$, covariance function $k$, noise level $\sigma^2_n$, and test input $X_*$
+    \item Invert our $[K(X,X) + \sigma^2_nI]$ matrix needed for mean variance using Cholesky decomposition
+    \begin{enumerate}
+        \item $L = \text{cholesky}(K(X,X) + \sigma_n^2I)$
+    \end{enumerate}
+    \item Prepare the mean of our predictive distribution in linear combination form by computing the $\alpha$ vector
+    \begin{enumerate}
+        \item $alpha = L^T \backslash (L \backslash y)$
+    \end{enumerate}
+    \item Actually compute the mean
+    \begin{enumerate}
+        \item $mu = K(X_*, X)^T \cdot alpha$
+    \end{enumerate}
+    \item Prepare to compute variance by computing $v$, the form in which $L$ is used in the variance
+    \begin{enumerate}
+        \item $v = L \backslash K(X_*, X)^T$
+    \end{enumerate}
+    \item Compute the variance
+    \begin{enumerate}
+        \item $var = K(X_*, X_*) - v^T v$
+    \end{enumerate}
+    \item Compute the log marginal likelihood 
+    \begin{enumerate}
+        \item $\text{log} p(Y|X) = -\frac{1}{2}y^T \cdot alpha - \frac{1}{2}log|K(X,X) + \sigma^2_nI| - \frac{n}{2}log(2\pi)$
+    \end{enumerate}
+    \item Return the mean $mu$, variance $var$, and log marginal likelihood
+\end{enumerate}
+
 
 \printbibliography
 
