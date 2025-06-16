@@ -19,6 +19,179 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
+    \entry{multi-task}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=a4d8371b21f692e779e63efce1a7d37c}{%
+           family={Bonilla},
+           familyi={B\bibinitperiod},
+           given={Edwin\bibnamedelima V},
+           giveni={E\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=68b68152d90f985c5c8583f26d960774}{%
+           family={Chai},
+           familyi={C\bibinitperiod},
+           given={Kian},
+           giveni={K\bibinitperiod}}}%
+        {{hash=6dedcea44b2da1415e95ac8a84fef83e}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=ff02bff194bb6f49f602c40fc811cfb9}{%
+           family={Platt},
+           familyi={P\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0ffc3f404f0baef79d60dfb5034ff37a}{%
+           family={Koller},
+           familyi={K\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0c73d830a66b0ad6defa1ca64e93b608}{%
+           family={Singer},
+           familyi={S\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=8ec404ca5b03be9dcf48f55fe949af78}{%
+           family={Roweis},
+           familyi={R\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Curran Associates, Inc.}%
+      }
+      \strng{namehash}{9bdd5f80c09a1578638adad6f9ab7ff2}
+      \strng{fullhash}{9bdd5f80c09a1578638adad6f9ab7ff2}
+      \strng{fullhashraw}{9bdd5f80c09a1578638adad6f9ab7ff2}
+      \strng{bibnamehash}{9bdd5f80c09a1578638adad6f9ab7ff2}
+      \strng{authorbibnamehash}{9bdd5f80c09a1578638adad6f9ab7ff2}
+      \strng{authornamehash}{9bdd5f80c09a1578638adad6f9ab7ff2}
+      \strng{authorfullhash}{9bdd5f80c09a1578638adad6f9ab7ff2}
+      \strng{authorfullhashraw}{9bdd5f80c09a1578638adad6f9ab7ff2}
+      \strng{editorbibnamehash}{5246c71ebe304e32befb42f3a15eb060}
+      \strng{editornamehash}{5246c71ebe304e32befb42f3a15eb060}
+      \strng{editorfullhash}{4108c3f67d0ea47e418b33b93d03233e}
+      \strng{editorfullhashraw}{4108c3f67d0ea47e418b33b93d03233e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems}
+      \field{title}{Multi-task Gaussian Process Prediction}
+      \field{volume}{20}
+      \field{year}{2007}
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2007/file/66368270ffd51418ec58bd793f2d9b1b-Paper.pdf
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2007/file/66368270ffd51418ec58bd793f2d9b1b-Paper.pdf
+      \endverb
+    \endentry
+    \entry{materials}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=530207c1a19adb4374b5f03e42877fa7}{%
+           family={Deringer},
+           familyi={D\bibinitperiod},
+           given={Volker\bibnamedelima L},
+           giveni={V\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=59a4f3b5aaad7a270890b1d01422b0e3}{%
+           family={Bartók},
+           familyi={B\bibinitperiod},
+           given={Albert\bibnamedelima P},
+           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=c853d5219697d5dd997a65dfb98de747}{%
+           family={Bernstein},
+           familyi={B\bibinitperiod},
+           given={Noam},
+           giveni={N\bibinitperiod}}}%
+        {{hash=7b659a472fa0ce8543291bcad04f9e05}{%
+           family={Wilkins},
+           familyi={W\bibinitperiod},
+           given={David\bibnamedelima M},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=272d29becb51e394d5ce737ecaf4c653}{%
+           family={Ceriotti},
+           familyi={C\bibinitperiod},
+           given={Michele},
+           giveni={M\bibinitperiod}}}%
+        {{hash=aef6628a7e1ad935b99d3d3cf7e63e20}{%
+           family={Csányi},
+           familyi={C\bibinitperiod},
+           given={Gábor},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACS Publications}%
+      }
+      \strng{namehash}{cfd47afd3454238627cf6f2577d40034}
+      \strng{fullhash}{7e29e02a2e8c58f82997a49230a4ac46}
+      \strng{fullhashraw}{7e29e02a2e8c58f82997a49230a4ac46}
+      \strng{bibnamehash}{cfd47afd3454238627cf6f2577d40034}
+      \strng{authorbibnamehash}{cfd47afd3454238627cf6f2577d40034}
+      \strng{authornamehash}{cfd47afd3454238627cf6f2577d40034}
+      \strng{authorfullhash}{7e29e02a2e8c58f82997a49230a4ac46}
+      \strng{authorfullhashraw}{7e29e02a2e8c58f82997a49230a4ac46}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Chemical Reviews}
+      \field{number}{16}
+      \field{title}{Gaussian process regression for materials and molecules}
+      \field{volume}{121}
+      \field{year}{2021}
+      \field{pages}{10073\bibrangedash 10141}
+      \range{pages}{69}
+    \endentry
+    \entry{big-data}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=254bd446dd0cc7de3ce1a6598912798e}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Haitao},
+           giveni={H\bibinitperiod}}}%
+        {{hash=3da15e59c78ba32cb39f54b427a8b8bc}{%
+           family={Ong},
+           familyi={O\bibinitperiod},
+           given={Yew-Soon},
+           giveni={Y\bibinithyphendelim S\bibinitperiod}}}%
+        {{hash=0c9dbe77e4fa24fe9d553cfc94e5dadf}{%
+           family={Shen},
+           familyi={S\bibinitperiod},
+           given={Xiaobo},
+           giveni={X\bibinitperiod}}}%
+        {{hash=c75d31462b261e5c21d1421d64679934}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Jianfei},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{cf385b91506a7c80342926ca9cf0fa12}
+      \strng{fullhash}{7526e5572776e3a41e98a82f29c89ab8}
+      \strng{fullhashraw}{7526e5572776e3a41e98a82f29c89ab8}
+      \strng{bibnamehash}{cf385b91506a7c80342926ca9cf0fa12}
+      \strng{authorbibnamehash}{cf385b91506a7c80342926ca9cf0fa12}
+      \strng{authornamehash}{cf385b91506a7c80342926ca9cf0fa12}
+      \strng{authorfullhash}{7526e5572776e3a41e98a82f29c89ab8}
+      \strng{authorfullhashraw}{7526e5572776e3a41e98a82f29c89ab8}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Neural Networks and Learning Systems}
+      \field{number}{11}
+      \field{title}{When Gaussian Process Meets Big Data: A Review of Scalable GPs}
+      \field{volume}{31}
+      \field{year}{2020}
+      \field{pages}{4405\bibrangedash 4423}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1109/TNNLS.2019.2957109
+      \endverb
+      \keyw{Kernel;Scalability;Sparse representation;Complexity theory;Computational modeling;Ground penetrating radar;Predictive models;Big data;Gaussian process regression (GPR);local approximations;scalability;sparse approximations}
+    \endentry
     \entry{gp-ml}{book}{}{}
       \name{author}{2}{}{%
         {{hash=58d90ed7b7348c7a5a9b4a2a8f46df7b}{%
@@ -64,7 +237,194 @@
       \verb https://doi.org/10.7551/mitpress/3206.001.0001
       \endverb
     \endentry
+    \entry{cosmography}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=15d1719906395271ba38136118e86c3e}{%
+           family={Shafieloo},
+           familyi={S\bibinitperiod},
+           given={Arman},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a83c2d7c7b483363216ac72dfc73a055}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Alex\bibnamedelima G.},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=cca5e429f691337f2eae5e627fcce624}{%
+           family={Linder},
+           familyi={L\bibinitperiod},
+           given={Eric\bibnamedelima V.},
+           giveni={E\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{79985bb4dd4664d873e9ab07e292460d}
+      \strng{fullhash}{79985bb4dd4664d873e9ab07e292460d}
+      \strng{fullhashraw}{79985bb4dd4664d873e9ab07e292460d}
+      \strng{bibnamehash}{79985bb4dd4664d873e9ab07e292460d}
+      \strng{authorbibnamehash}{79985bb4dd4664d873e9ab07e292460d}
+      \strng{authornamehash}{79985bb4dd4664d873e9ab07e292460d}
+      \strng{authorfullhash}{79985bb4dd4664d873e9ab07e292460d}
+      \strng{authorfullhashraw}{79985bb4dd4664d873e9ab07e292460d}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{12}
+      \field{journaltitle}{Phys. Rev. D}
+      \field{month}{6}
+      \field{title}{Gaussian process cosmography}
+      \field{volume}{85}
+      \field{year}{2012}
+      \field{pages}{123530}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevD.85.123530
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevD.85.123530
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevD.85.123530
+      \endverb
+    \endentry
+    \entry{vgp}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=831126fd259babc16b5bd86bbc5f0098}{%
+           family={Tran},
+           familyi={T\bibinitperiod},
+           given={Dustin},
+           giveni={D\bibinitperiod}}}%
+        {{hash=bb5c273638bcd68f168fefeca29f69c1}{%
+           family={Ranganath},
+           familyi={R\bibinitperiod},
+           given={Rajesh},
+           giveni={R\bibinitperiod}}}%
+        {{hash=108998f0d44d4dce8ccb93e4d78cd5c6}{%
+           family={Blei},
+           familyi={B\bibinitperiod},
+           given={David\bibnamedelima M},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{cd301e89a90b159cd85599fa6a1adfa1}
+      \strng{fullhash}{cd301e89a90b159cd85599fa6a1adfa1}
+      \strng{fullhashraw}{cd301e89a90b159cd85599fa6a1adfa1}
+      \strng{bibnamehash}{cd301e89a90b159cd85599fa6a1adfa1}
+      \strng{authorbibnamehash}{cd301e89a90b159cd85599fa6a1adfa1}
+      \strng{authornamehash}{cd301e89a90b159cd85599fa6a1adfa1}
+      \strng{authorfullhash}{cd301e89a90b159cd85599fa6a1adfa1}
+      \strng{authorfullhashraw}{cd301e89a90b159cd85599fa6a1adfa1}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1511.06499}
+      \field{title}{The variational Gaussian process}
+      \field{year}{2015}
+    \endentry
+    \entry{deriving-kernels}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=b06c5730edff94b151e7e0d81439cbdf}{%
+           family={Wilson},
+           familyi={W\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a2c56063d6cc3fae5dcf9c4c4a154d7b}{%
+           family={Adams},
+           familyi={A\bibinitperiod},
+           given={Ryan},
+           giveni={R\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=d98b5fd15360757d9d9f94eec243d6cb}{%
+           family={Dasgupta},
+           familyi={D\bibinitperiod},
+           given={Sanjoy},
+           giveni={S\bibinitperiod}}}%
+        {{hash=09a4af5c985fc9a46727803f19cd8272}{%
+           family={McAllester},
+           familyi={M\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Atlanta, Georgia, USA}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{326dc690624a77f405f42da75a65e61b}
+      \strng{fullhash}{326dc690624a77f405f42da75a65e61b}
+      \strng{fullhashraw}{326dc690624a77f405f42da75a65e61b}
+      \strng{bibnamehash}{326dc690624a77f405f42da75a65e61b}
+      \strng{authorbibnamehash}{326dc690624a77f405f42da75a65e61b}
+      \strng{authornamehash}{326dc690624a77f405f42da75a65e61b}
+      \strng{authorfullhash}{326dc690624a77f405f42da75a65e61b}
+      \strng{authorfullhashraw}{326dc690624a77f405f42da75a65e61b}
+      \strng{editorbibnamehash}{fae3c8d6c9aa902c16e025fabcad714c}
+      \strng{editornamehash}{fae3c8d6c9aa902c16e025fabcad714c}
+      \strng{editorfullhash}{fae3c8d6c9aa902c16e025fabcad714c}
+      \strng{editorfullhashraw}{fae3c8d6c9aa902c16e025fabcad714c}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Gaussian processes are rich distributions over functions, which provide a Bayesian nonparametric approach to smoothing and interpolation. We introduce simple closed form kernels that can be used with Gaussian processes to discover patterns and enable extrapolation. These kernels are derived by modelling a spectral density – the Fourier transform of a kernel – with a Gaussian mixture. The proposed kernels support a broad class of stationary covariances, but Gaussian process inference remains simple and analytic. We demonstrate the proposed kernels by discovering patterns and performing long range extrapolation on synthetic examples, as well as atmospheric CO2 trends and airline passenger data. We also show that it is possible to reconstruct several popular standard covariances within our framework.}
+      \field{booktitle}{Proceedings of the 30th International Conference on Machine Learning}
+      \field{month}{17--19 Jun}
+      \field{number}{3}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{Gaussian Process Kernels for Pattern Discovery and Extrapolation}
+      \field{volume}{28}
+      \field{year}{2013}
+      \field{pages}{1067\bibrangedash 1075}
+      \range{pages}{9}
+      \verb{file}
+      \verb http://proceedings.mlr.press/v28/wilson13.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v28/wilson13.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v28/wilson13.html
+      \endverb
+    \endentry
+    \entry{gprn}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=f58290185dfd014024f7abaf3fc0d0f2}{%
+           family={Wilson},
+           familyi={W\bibinitperiod},
+           given={Andrew\bibnamedelima Gordon},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=0d952b6856683465023a5e8481333c05}{%
+           family={Knowles},
+           familyi={K\bibinitperiod},
+           given={David\bibnamedelima A},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=bf5cf30deddddad00a6341ad7a414445}{%
+           family={Ghahramani},
+           familyi={G\bibinitperiod},
+           given={Zoubin},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{b7f822e8c94828270f217b25986581aa}
+      \strng{fullhash}{b7f822e8c94828270f217b25986581aa}
+      \strng{fullhashraw}{b7f822e8c94828270f217b25986581aa}
+      \strng{bibnamehash}{b7f822e8c94828270f217b25986581aa}
+      \strng{authorbibnamehash}{b7f822e8c94828270f217b25986581aa}
+      \strng{authornamehash}{b7f822e8c94828270f217b25986581aa}
+      \strng{authorfullhash}{b7f822e8c94828270f217b25986581aa}
+      \strng{authorfullhashraw}{b7f822e8c94828270f217b25986581aa}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1110.4411}
+      \field{title}{Gaussian process regression networks}
+      \field{year}{2011}
+    \endentry
   \enddatalist
+  \missing{emulators}
 \endrefsection
 \endinput
 

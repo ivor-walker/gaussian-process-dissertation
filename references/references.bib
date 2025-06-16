@@ -19,7 +19,7 @@
 	language  = "en"
 }
 
-@book{ml-gaussian-process,
+@book{gp-ml,
     author = {Rasmussen, Carl Edward and Williams, Christopher K. I.},
     title = {Gaussian Processes for Machine Learning},
     publisher = {The MIT Press},
@@ -31,7 +31,7 @@
     eprint = {https://direct.mit.edu/book-pdf/2514321/book\_9780262256834.pdf},
 }
 
-@book{dynamic-systems-gaussian-process,
+@book{gp-dynamic-systems,
 	title     = "Modelling and control of dynamic systems using Gaussian process models",
 	author    = "Kocijan, J",
 	publisher = "Springer International Publishing",
@@ -64,17 +64,135 @@
 	address   = "San Diego, CA"
 }
 
-@misc{notes-gp,
-	title = "Notes on Gaussian process textbooks",
+@misc{notes,
+	title = "Notes",
 	author = "Walker, I",
 	year = 2025,
-	url = {https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/gp-textbooks/notes.pdf}
+	url = {https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/notes.pdf}
 }
 
-@misc{notes-prereq,
-	title = "Notes on mathematical prerequisites",
-	author = "Walker, I",
-	year = 2025,
-	url = {https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/math-prereqs/notes.pdf}
+@ARTICLE{big-data,
+  author={Liu, Haitao and Ong, Yew-Soon and Shen, Xiaobo and Cai, Jianfei},
+  journal={IEEE Transactions on Neural Networks and Learning Systems}, 
+  title={When Gaussian Process Meets Big Data: A Review of Scalable GPs}, 
+  year={2020},
+  volume={31},
+  number={11},
+  pages={4405-4423},
+  keywords={Kernel;Scalability;Sparse representation;Complexity theory;Computational modeling;Ground penetrating radar;Predictive models;Big data;Gaussian process regression (GPR);local approximations;scalability;sparse approximations},
+  doi={10.1109/TNNLS.2019.2957109}
 }
 
+@article{materials,
+  title={Gaussian process regression for materials and molecules},
+  author={Deringer, Volker L and Bart{\'o}k, Albert P and Bernstein, Noam and Wilkins, David M and Ceriotti, Michele and Cs{\'a}nyi, G{\'a}bor},
+  journal={Chemical Reviews},
+  volume={121},
+  number={16},
+  pages={10073--10141},
+  year={2021},
+  publisher={ACS Publications}
+}
+
+@article{cosmography,
+  title = {Gaussian process cosmography},
+  author = {Shafieloo, Arman and Kim, Alex G. and Linder, Eric V.},
+  journal = {Phys. Rev. D},
+  volume = {85},
+  issue = {12},
+  pages = {123530},
+  numpages = {9},
+  year = {2012},
+  month = {Jun},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevD.85.123530},
+  url = {https://link.aps.org/doi/10.1103/PhysRevD.85.123530}
+}
+
+@article{vgp,
+  title={The variational Gaussian process},
+  author={Tran, Dustin and Ranganath, Rajesh and Blei, David M},
+  journal={arXiv preprint arXiv:1511.06499},
+  year={2015}
+}
+
+@article{gprn,
+  title={Gaussian process regression networks},
+  author={Wilson, Andrew Gordon and Knowles, David A and Ghahramani, Zoubin},
+  journal={arXiv preprint arXiv:1110.4411},
+  year={2011}
+}
+
+@article{emulators,
+  title={Diagnostics for Gaussian process emulators},
+  author={Bastos, Leonardo S and O’hagan, Anthony},
+  journal={Technometrics},
+  volume={51},
+  number={4},
+  pages={425--438},
+  year={2009},
+  publisher={Taylor \& Francis}
+}
+
+@inproceedings{freeform,
+ author = {Bonilla, Edwin V and Chai, Kian and Williams, Christopher},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {J. Platt and D. Koller and Y. Singer and S. Roweis},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {Multi-task Gaussian Process Prediction},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2007/file/66368270ffd51418ec58bd793f2d9b1b-Paper.pdf},
+ volume = {20},
+ year = {2007}
+}
+
+
+@InProceedings{deriving-kernels,
+  title = 	 {Gaussian Process Kernels for Pattern Discovery and Extrapolation},
+  author = 	 {Wilson, Andrew and Adams, Ryan},
+  booktitle = 	 {Proceedings of the 30th International Conference on Machine Learning},
+  pages = 	 {1067--1075},
+  year = 	 {2013},
+  editor = 	 {Dasgupta, Sanjoy and McAllester, David},
+  volume = 	 {28},
+  number =       {3},
+  series = 	 {Proceedings of Machine Learning Research},
+  address = 	 {Atlanta, Georgia, USA},
+  month = 	 {17--19 Jun},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v28/wilson13.pdf},
+  url = 	 {https://proceedings.mlr.press/v28/wilson13.html},
+  abstract = 	 {Gaussian processes are rich distributions over functions, which provide a Bayesian nonparametric approach to smoothing and interpolation.  We introduce simple closed form kernels that can be used with Gaussian processes to discover patterns and enable extrapolation.  These kernels are derived by modelling a spectral density – the Fourier transform of a kernel – with a Gaussian mixture.  The proposed kernels support a broad class of stationary covariances, but Gaussian process inference remains simple and analytic.  We demonstrate the proposed kernels by discovering patterns and performing long range extrapolation on synthetic examples, as well as atmospheric CO2 trends and airline passenger data.  We also show that it is possible to reconstruct several popular standard covariances within our framework.}
+}
+
+@inproceedings{hierarchical-kernels,
+ author = {Schwaighofer, Anton and Tresp, Volker and Yu, Kai},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {L. Saul and Y. Weiss and L. Bottou},
+ pages = {},
+ publisher = {MIT Press},
+ title = {Learning Gaussian Process Kernels via Hierarchical Bayes},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2004/file/453fadbd8a1a3af50a9df4df899537b5-Paper.pdf},
+ volume = {17},
+ year = {2004}
+}
+
+@inproceedings{multi-kernels,
+  title={Multi-kernel Gaussian processes},
+  author={Melkumyan, Arman and Ramos, Fabio},
+  booktitle={IJCAI Proceedings-International Joint Conference on Artificial Intelligence},
+  volume={22},
+  number={1},
+  pages={1408},
+  year={2011}
+}
+
+@article{learning-kernels,
+  title={Learning “best” kernels from data in Gaussian process regression. With application to aerodynamics},
+  author={Akian, J-L and Bonnet, Luc and Owhadi, Houman and Savin, {\'E}ric},
+  journal={Journal of Computational Physics},
+  volume={470},
+  pages={111595},
+  year={2022},
+  publisher={Elsevier}
+}

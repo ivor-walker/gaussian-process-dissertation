@@ -10,7 +10,7 @@
 
 \usepackage{hyperref}
 
-% For paragraphs
+% For subparagraphs
 \usepackage{titlesec}
 \setcounter{secnumdepth}{5}
 
@@ -19,23 +19,34 @@
     style=numeric,
     url=true
 ]{biblatex}
-\addbibresource{../../references/references.bib}
+\addbibresource{../references/references.bib}
 
 \begin{document}
 
 
 
 
-\section{Regression (\cite{gp-ml} Chapter 2)}
+
+\section{Planning}
+This project concerns the Gaussian process. The student will be required to understand the Gaussian process model and the different applications where it is employed, in relation to statistical modelling and machine learning, by reading relevant textbooks and publications. Then, using simulated and real data, different correlation functions will be explored and compared. Other aspects of the Gaussian process (GP) will be explored. Computational efficiency, for instance, as using the GP typically requires the inversion of large matrices, or identifiability issues when the GP is used to model the residuals after a linear model is fitted.
 
 
 
-\subsection{Weight-space view}
 
 
-\subsubsection{Standard linear model}
+\section{Chapter 1: Defining the Gaussian process}
 
-\paragraph{Standard and Bayesian model definitions}
+
+
+
+\subsection{Regression (\cite{gp-ml} Chapter 2)}
+
+
+
+\subsubsection{Weight-space view}
+
+
+\paragraph{Bayesian linear model definition}
 \begin{itemize}
     \item We're trying to learn the distribution $p(y|X,W)$
     \begin{itemize}
@@ -65,6 +76,13 @@
         \item $p(y|X)$ is the normalising constant, ensures the posterior distribution integrates to 1
         \item $p(W|x, y)$ is the distribution of the weights given the data - combines the likelihood and the prior, representing everything we know about the parameters
     \end{itemize}
+\end{itemize}
+
+
+\paragraph{Posterior distribution}
+
+\subparagraph{Deriving our posterior}
+\begin{itemize}
     \item To understand how our posterior varies with our weights, we can write terms that only depend on weights (i.e. likelihood and prior, not marginal likelihood)
 \begin{equation}
     p(W|X, y) \propto p(y|X,W)p(W)
@@ -72,11 +90,8 @@
      \begin{itemize}
          \item We will adopt the same idea throughout: if a term doesn't depend on weights, we simply remove it
      \end{itemize}
-\end{itemize}
 
-\paragraph{Deriving our posterior}
-\begin{itemize}
-     \item Given our linear model $f(X) = X^TW$ and our Gaussian noise $\epsilon$, we can write $p(Y|X,W)$ as the distribution of errors for each data point $i$
+    \item Given our linear model $f(X) = X^TW$ and our Gaussian noise $\epsilon$, we can write $p(Y|X,W)$ as the distribution of errors for each data point $i$
  \begin{equation}
      p(y|X,W) = \prod_{i=1}^N \mathcal{N}(y_i|X^TW, \sigma^2_n)
  \end{equation}
@@ -114,7 +129,7 @@
  \end{equation}
 \end{itemize}
 
-\paragraph{Deriving the properties of the posterior by completing the square}
+\subparagraph{Deriving the properties of the posterior by completing the square}
 \begin{itemize}
      \item Now we have a simplified form of the posterior density, we need to get it into a Gaussian form to recover the properties of the posterior distribution
     \item Firstly, we can bring all terms inside the exponential to a single term
@@ -140,7 +155,7 @@
 \end{equation}
 \end{itemize}
 
-\paragraph{Gaussian posteriors and ridge regression}
+\subparagraph{Gaussian posteriors and ridge regression}
 \begin{itemize}
     \item For Gaussian posteriors, our mean $A^{-1}b$ is also its mode, called the maximum a posteriori (MAP) estimate of W
         \begin{itemize}
@@ -186,7 +201,10 @@
         \end{itemize}
 \end{itemize}
 
-\paragraph{Deriving the predictive distribution}
+
+\paragraph{Predictive distribution}
+
+\subparagraph{Deriving the predictive distribution}
 \begin{itemize}
     \item Ultimately, our goal is to approximate a data-generating function $f_*$ (or a new observation $y_*$) that produced a new $X_*$ given training data $X$ and $y$ and weights $W$ from the same $f_*$  
     \item In non-Bayesian frameworks, we make predictions by choosing a single parameter value $W$ to maximise the likelihood of the data, which is our MLE estimate
@@ -266,7 +284,7 @@
 \end{itemize}
 
 
-\subsubsection{Projections of inputs into feature space}
+\paragraph{Projections of inputs into feature space}
 \begin{itemize}
     \item Bayesian linear models suffer from limited expressiveness due to the linearity of the model
     \item To address this, we can project our inputs into a higher dimensional feature space and apply linear model in this space
@@ -289,9 +307,9 @@
 \end{itemize}
 
 
-\subsubsection{Computational issues}
+\paragraph{Computational issues}
 
-\paragraph{Avoiding inversion of $A_{\phi}$}
+\subparagraph{Avoiding inversion of $A_{\phi}$}
 \begin{itemize}
     \item This formulation of our predictive distribution inverts the $N \times N$ matrix $A_{\phi}$, where $N$ is dimension of feature space, to get the expected value and variance
     \item Inverting matrices is $O(N^3)$ - not feasible for large $N$ - so we need to restate our predictive distribution in a form that avoids this inversion
@@ -347,7 +365,7 @@
     \item Geometrically, note that $n$ datapoints can span at most $n$ dimensions in the feature space - if $N > n$, the data forms a subspace of the feature space
 \end{itemize}
 
-\paragraph{Kernels and the kernel trick}
+\subparagraph{Kernels and the kernel trick}
 \begin{itemize}
     \item In the alternative formulation, note that $\phi$ is always in the same general form but different combinations of $\phi(X)$ and $\phi(X_*)$, which generalises to $\phi(X)^T\Sigma_p\phi(X')$ where $X$ and $X'$ are either in training $\phi(X)$ or test $\phi(X_*)$ data
     \begin{itemize}
@@ -384,12 +402,12 @@
 
 
 
-\subsection{Function-space view}
+\subsubsection{Function-space view}
 
 
-\subsubsection{Gaussian processes (GP)}
+\paragraph{Gaussian processes (GP)}
 
-\paragraph{Definition}
+\subparagraph{Definition}
 \begin{itemize}
     \item A GP is a collection of random variables, any finite number of which have a joint Gaussian distribution
     \item GPs describe a distribution over functions, where each function is a sample from the GP
@@ -405,7 +423,7 @@
     \item The covariance function specifies the covariance between pairs of random variables
 \end{itemize}
 
-\paragraph{Consistency requirement}
+\subparagraph{Consistency requirement}
 \begin{itemize}
     \item This definition implies a consistency requirement that means that examining a larger set does not change the distribution of a smaller set
         \begin{itemize}
@@ -421,7 +439,7 @@
         \end{itemize}
 \end{itemize}
 
-\paragraph{Bayesian linear regression as a GP}
+\subparagraph{Bayesian linear regression as a GP}
 \begin{itemize}
     \item We can view Bayesian linear regression model $f(X) = \phi(X)^W$ with prior $W \sim N(0, \Sigma_P)$ as a GP 
 \begin{equation}
@@ -432,12 +450,12 @@
 \end{equation}
     \item We will use a squared exponential (SE) covariance function, also known as the radial basis function (RBF) or Gaussian kernel
 \begin{equation}
-    k(f(X), f(X')) = \exp\left(-\frac{1}{2}\frac{|X - X'|^2}{\mathcal{L}^2}\right)
+    k(f(X), f(X')) = \exp\left(-\frac{1}{2}\frac{|X - X'|^2}{l^2}\right)
 \end{equation}
     \begin{itemize}
         \item Covariance between outputs $f(X)$ and $f(X')$ is written as a function of inputs $X$ and $X'$ only (kernel trick)
         \item For SE, covariance is almost unity between outputs whose inputs are close together, and decays exponentially as inputs get further apart
-        \item $\mathcal{L}$ is a length scale parameter that controls the rate of decay of the covariance function
+        \item $l$ is a length scale parameter that controls the rate of decay of the covariance function
     \end{itemize}
     \item It can be shown that SE corresponds to a Bayesian linear regression model with infinite basis functions
         \begin{itemize}
@@ -447,7 +465,7 @@
     \item Because SE is infinitely differentiable, it produces smooth functions
 \end{itemize}
 
-\paragraph{Function evaluations to a random function}
+\subparagraph{Function evaluations to a random function}
 \begin{itemize}
     \item We can choose a subset of five inputs $X_{*1}$ from our test data $X_*$ and apply a GP to get five outputs $f(X_{*1})$
     \item $f(X_{*1})$ can be described as a multivariate Gaussian distribution,e.g. in the Bayesian linear model $f(X_{*1}) \sim N(0, k(X_{*1}, X_{*1}))$ 
@@ -465,9 +483,9 @@
 \end{itemize}
 
 
-\subsubsection{Predictive distributions with noise-free observations}
+\paragraph{Predictive distributions with noise-free observations}
 
-\paragraph{Prior distribution over functions}
+\subparagraph{Prior distribution over functions}
 \begin{itemize}
     \item We are trying to get the best function $f$ that describes our training data $f(X)$ and test data $f(X_*)$
     \item Initially we consider the simple special case where the observations are noise free, i.e. we know $f(X)$ is the $y$ we observe
@@ -486,7 +504,7 @@
 \end{equation}
 \end{itemize}
 
-\paragraph{Posterior distribution over functions}
+\subparagraph{Posterior distribution over functions}
 \begin{itemize}
     \item We are not interested in drawing random functions from the prior, but incorporating the knowledge that the training data provides about the function
     \item To get the posterior distribution over functions given the training data, we can condition the joint prior distribution on the training data
@@ -518,9 +536,9 @@
 \end{itemize}
 
 
-\subsubsection{Predictive distributions with noisy observations}
+\paragraph{Predictive distributions with noisy observations}
 
-\paragraph{Noisy observations prior}
+\subparagraph{Noisy observations prior}
 \begin{itemize}
     \item It is typical for more realistic situations to not have the observation $f(X)$ directly as our training data, but have $y = f(X) + \epsilon$, where $\epsilon$ is a noise term
     \item Linear model assumes $\epsilon$ is additive, independent and identically distributed
@@ -554,7 +572,7 @@
 \end{equation}
 \end{itemize}
 
-\paragraph{Noisy observations posterior}
+\subparagraph{Noisy observations posterior}
 \begin{itemize}
     \item As before, we can form a predictive distribution using the Gaussian multivariate conditioning identity
 \begin{equation}
@@ -582,6 +600,7 @@
     \item We can compute the predictive distribution of $Y_*$ by adding the noise term $\sigma^2_nI$ to the variance
 \end{itemize}
 
+
 \paragraph{Marginal likelihood}
 \begin{itemize}
     \item We need some measure of how well our GP fits the data, which we can get by computing the marginal likelihood $p(Y|X)$
@@ -593,7 +612,7 @@
         \item Our mean will always be the same under our prior, but our $K(X,X')$ tells us how "wiggly" our function is
         \item The closer our $p(f|X)$ distribution is to the true complexity of the function, the higher our marginal likelihood
         \item e.g. for SE, if our data is close together $|X - X'|$ is small then our covariance $k(X,X')$ on our function distribution prior is large, so we get a high variety of functions and thus a higher probability of sampling a more complex function
-        \item If we specify a lower $\mathcal{L}$, we can "artificially" get a high $k(X,X')$ 
+        \item If we specify a lower $l$, we can "artificially" get a high $k(X,X')$ 
         \item So if we supply some new data $k(X_*, X_*')$ that is far away from each other and would require a more complex function, its density in this prior smooth distribution will be low, so we get a low $p(f|X_*)$
     \end{itemize}
     \item $p(y|f,X)$ is our familar predictive distribution $p(y|f,X) \sim N(f, \sigma^2_nI)$, and represents how good a fit our function $f$ is to the training data labels $y$ and inputs $X$
@@ -606,35 +625,231 @@
     \item This itself is a Gaussian that we can plug into our Gaussian PDF to get the same result
 \end{itemize}
 
+
 \paragraph{Practical algorithm}
 \begin{enumerate}
     \item Take in inputs $X$, outputs $y$, covariance function $k$, noise level $\sigma^2_n$, and test input $X_*$
-    \item Invert our $[K(X,X) + \sigma^2_nI]$ matrix needed for mean variance using Cholesky decomposition
-    \begin{enumerate}
-        \item $L = \text{cholesky}(K(X,X) + \sigma_n^2I)$
-    \end{enumerate}
-    \item Prepare the mean of our predictive distribution in linear combination form by computing the $\alpha$ vector
-    \begin{enumerate}
-        \item $alpha = L^T \backslash (L \backslash y)$
-    \end{enumerate}
-    \item Actually compute the mean
-    \begin{enumerate}
-        \item $mu = K(X_*, X)^T \cdot alpha$
-    \end{enumerate}
-    \item Prepare to compute variance by computing $v$, the form in which $L$ is used in the variance
-    \begin{enumerate}
-        \item $v = L \backslash K(X_*, X)^T$
-    \end{enumerate}
-    \item Compute the variance
-    \begin{enumerate}
-        \item $var = K(X_*, X_*) - v^T v$
-    \end{enumerate}
-    \item Compute the log marginal likelihood 
-    \begin{enumerate}
-        \item $\text{log} p(Y|X) = -\frac{1}{2}y^T \cdot alpha - \frac{1}{2}log|K(X,X) + \sigma^2_nI| - \frac{n}{2}log(2\pi)$
-    \end{enumerate}
+    \item $L = \text{cholesky}(K(X,X) + \sigma_n^2I)$
+    \begin{itemize}
+        \item Invert our $[K(X,X) + \sigma^2_nI]$ matrix needed for mean variance using Cholesky decomposition
+    \end{itemize}
+    \item $alpha = L^T \backslash (L \backslash y)$
+    \begin{itemize}
+        \item Prepare the mean of our predictive distribution in linear combination form by computing the $\alpha$ vector
+    \end{itemize}
+    \item $mu = K(X_*, X)^T \cdot alpha$
+    \begin{itemize}
+        \item Actually compute the mean
+    \end{itemize}
+    \item $v = L \backslash K(X_*, X)^T$
+    \begin{itemize}
+        \item Prepare to compute variance by computing $v$, the form in which $L$ is used in the variance
+    \end{itemize}
+    \item $var = K(X_*, X_*) - v^T v$
+    \begin{itemize}
+        \item Compute the variance
+    \end{itemize}
+    \item $\text{log} p(Y|X) = -\frac{1}{2}y^T \cdot alpha - \frac{1}{2}log|K(X,X) + \sigma^2_nI| - \frac{n}{2}log(2\pi)$
+    \begin{itemize}
+        \item Compute the log marginal likelihood 
+    \end{itemize}
     \item Return the mean $mu$, variance $var$, and log marginal likelihood
 \end{enumerate}
+
+
+
+% \subsubsection{Varying the hyperparameters}
+% \begin{itemize}
+%     \item Our covariance functions has some hyperparameters, e.g. the full form of SE in one dimension contains some free parameters 
+% \begin{equation}
+%     k_y(x,x') = \sigma^2_f \exp\left(-\frac{1}{2}\frac{|x - x'|^2}{l^2}\right) + \sigma^2_n\delta_{x,x'}
+% \end{equation}
+%     \begin{itemize}
+%         \item Note that our covariance function is for $k_y$ as it is for the noisy targets $y$, not the function $f$
+%         \item $\sigma^2_f$ is the signal variance, which controls the overall scale of the function
+%         \item $\sigma^2_n$ is the noise variance, which controls the amount of noise in the observations
+%         \item $l$ is the length scale, which controls how quickly the covariance decays with distance
+%         \item $\delta_{X,X'}$ is the Kronecker delta which enforces independence of noise
+%     \end{itemize}
+% \end{itemize}
+
+
+
+\subsubsection{Smoothing, weight functions, and equivelant kernels}
+\begin{itemize}
+    \item Gaussian process regression aims to reconstruct underlying signal $f$ by removing contaminating noise $\epsilon$ 
+    \item To do this, it effectively computes a average of the noisy observations $y$, weighted by what we know about the training data $k(X, X')^T(K(X,X) + \sigma^2_nI)^{-1}$
+    \item Because the expected value can be represented as a linear combination, we can say the Gaussian process is a linear smoother
+    \item 
+\end{itemize}
+
+
+
+
+
+\section{Chapter 2: Exploring Correlation Functions}
+
+
+
+
+\subsection{Covariance functions, chapter 4 \cite{gp-ml}}
+
+
+
+
+\subsection{Deriving kernels \cite{deriving-kernels}}
+
+
+
+
+\subsection{Learning best kernel from data \cite{choosing-kernels}}
+
+
+
+\subsection{Additive covariance kernels for high-dimensional learning \cite{additive-kernels}}
+
+
+
+
+\subsection{Hierarchical Bayesian covariance function for hierarchical modelling \cite{hierarchical-kernels}}
+
+
+
+
+\subsection{Free-form covariance matrix for multi-task learning \cite{freeform-kernels}}
+
+
+
+
+\subsection{Combining different kernels for multi-task learning \cite{multi-kernels}}
+
+
+
+
+
+\section{Chapter 3: Extensions of the Gaussian Process}
+
+
+
+
+\subsection{Gaussian process regression networks \cite{gprn}}
+
+
+
+
+\subsection{Variational Gaussian process \cite{vgp}}
+
+
+
+
+
+\section{Chapter 4: Computational Issues}
+
+
+
+
+\subsection{Big data issues \cite{big-data}}
+
+
+
+\subsubsection{Motivation}
+
+
+
+\subsubsection{Global approximations}
+
+
+\paragraph{Subset-of-data}
+
+
+\paragraph{Sparse kernels}
+
+
+\paragraph{Sparse approximations}
+
+\subparagraph{Prior approximation}
+
+\subparagraph{Posterior approximation}
+
+\subparagraph{Structured sparse approximation}
+
+
+
+\subsubsection{Local approximations}
+
+
+\paragraph{Naive-local-experts}
+
+
+\paragraph{Mixture-of-experts}
+
+
+\paragraph{Product-of-experts}
+
+
+
+\subsubsection{Improvements}
+
+
+\paragraph{Scalability}
+
+
+\paragraph{Capability}
+
+
+
+\subsubsection{Extensions}
+
+
+\paragraph{Scalable manifold GP}
+
+
+\paragraph{Scalable deep GP}
+
+
+\paragraph{Scalable online GP}
+
+
+\paragraph{Scalable multi-task GP}
+
+
+\paragraph{Scalable recurrent GP}
+
+
+\paragraph{Scalable GP classification}
+
+
+
+
+
+\section{Chapter 5: Applying a Gaussian process to TODO}
+
+
+
+
+\subsection{Materials science \cite{materials}}
+
+
+
+
+\subsection{Cosmography \cite{cosmography}}
+
+
+
+
+\subsection{Statistical emulators \cite{emulators}}
+
+
+
+
+\subsection{Signals processing \cite{signals-processing}}
+
+
+
+
+
+
+
 
 
 \printbibliography

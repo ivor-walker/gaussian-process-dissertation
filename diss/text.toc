@@ -1,0 +1,37 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Defining the Gaussian Process}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Weight-space view}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Standard linear model}{3}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Posterior distribution}{3}{subsubsection.2.1.2}%
+\contentsline {paragraph}{\numberline {2.1.2.1}Deriving our posterior}{3}{paragraph.2.1.2.1}%
+\contentsline {paragraph}{\numberline {2.1.2.2}Deriving the properties of the posterior by completing the square}{4}{paragraph.2.1.2.2}%
+\contentsline {paragraph}{\numberline {2.1.2.3}Gaussian posteriors and ridge regression}{5}{paragraph.2.1.2.3}%
+\contentsline {subsubsection}{\numberline {2.1.3}Predictive distribution}{5}{subsubsection.2.1.3}%
+\contentsline {paragraph}{\numberline {2.1.3.1}Deriving the predictive distribution}{5}{paragraph.2.1.3.1}%
+\contentsline {subsubsection}{\numberline {2.1.4}Projections of inputs into feature space}{6}{subsubsection.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.1.5}Computational issues}{7}{subsubsection.2.1.5}%
+\contentsline {paragraph}{\numberline {2.1.5.1}Avoiding inversion of $A_{\phi }$}{7}{paragraph.2.1.5.1}%
+\contentsline {paragraph}{\numberline {2.1.5.2}Kernels and the kernel trick}{7}{paragraph.2.1.5.2}%
+\contentsline {subsection}{\numberline {2.2}Function-space view}{8}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Gaussian processes (GP)}{8}{subsubsection.2.2.1}%
+\contentsline {paragraph}{\numberline {2.2.1.1}Definition}{8}{paragraph.2.2.1.1}%
+\contentsline {paragraph}{\numberline {2.2.1.2}Consistency requirement}{8}{paragraph.2.2.1.2}%
+\contentsline {paragraph}{\numberline {2.2.1.3}Bayesian linear regression as a GP}{8}{paragraph.2.2.1.3}%
+\contentsline {paragraph}{\numberline {2.2.1.4}Function evaluations to a random function}{8}{paragraph.2.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.2.2}Predictive distributions with noise-free observations}{9}{subsubsection.2.2.2}%
+\contentsline {paragraph}{\numberline {2.2.2.1}Prior distribution over functions}{9}{paragraph.2.2.2.1}%
+\contentsline {paragraph}{\numberline {2.2.2.2}Posterior distribution over functions}{9}{paragraph.2.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Predictive distributions with noisy observations}{9}{subsubsection.2.2.3}%
+\contentsline {paragraph}{\numberline {2.2.3.1}Noisy observations prior}{9}{paragraph.2.2.3.1}%
+\contentsline {paragraph}{\numberline {2.2.3.2}Noisy observations posterior}{9}{paragraph.2.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.2.4}Marginal likelihood}{10}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Practical algorithm}{10}{subsubsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.3}Varying the hyperparameters}{10}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Smoothing and equivelant kernels}{11}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}GP as a linear smoother}{11}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Reformulating as an equivelant kernel}{11}{subsubsection.2.4.2}%
+\contentsline {section}{\numberline {3}Correlation Functions}{11}{section.3}%
+\contentsline {section}{\numberline {4}Computational Issues}{11}{section.4}%
+\contentsline {section}{\numberline {5}Extensions to the Gaussian Process}{11}{section.5}%
+\contentsline {section}{\numberline {6}Applying the Gaussian Process to TODO}{11}{section.6}%
+\contentsline {section}{\numberline {7}Conclusion}{11}{section.7}%

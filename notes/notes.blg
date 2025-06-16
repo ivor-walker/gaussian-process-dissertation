@@ -1,15 +1,19 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
-[0] Config.pm:311> INFO - Logfile is 'notes.blg'
-[166] biber-MSWIN64:340> INFO - === 
-[241] Biber.pm:420> INFO - Reading 'notes.bcf'
-[421] Biber.pm:994> INFO - Found 1 citekeys in bib section 0
-[461] Biber.pm:4463> INFO - Processing section 0
-[497] Biber.pm:4654> INFO - Looking for bibtex file '../../references/references.bib' for section 0
-[660] bibtex.pm:1713> INFO - LaTeX decoding ...
-[707] bibtex.pm:1519> INFO - Found BibTeX data source '../../references/references.bib'
-[974] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[975] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[975] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[975] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
-[1083] bbl.pm:676> INFO - Writing 'notes.bbl' with encoding 'UTF-8'
-[1086] bbl.pm:779> INFO - Output to notes.bbl
+[1] Config.pm:311> INFO - Logfile is 'notes.blg'
+[217] biber-MSWIN64:340> INFO - === 
+[323] Biber.pm:420> INFO - Reading 'notes.bcf'
+[653] Biber.pm:994> INFO - Found 9 citekeys in bib section 0
+[684] Biber.pm:4463> INFO - Processing section 0
+[718] Biber.pm:4654> INFO - Looking for bibtex file '../references/references.bib' for section 0
+[951] bibtex.pm:1713> INFO - LaTeX decoding ...
+[1023] bibtex.pm:1519> INFO - Found BibTeX data source '../references/references.bib'
+[1302] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1302] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1303] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[1303] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
+[1340] bbl.pm:676> INFO - Writing 'notes.bbl' with encoding 'UTF-8'
+[1360] bbl.pm:779> INFO - Output to notes.bbl
+[1361] Biber.pm:131> WARN - legacy month field '17--19 Jun' in entry 'deriving-kernels' is not an integer - this will probably not sort properly.
+[1362] Biber.pm:131> WARN - legacy month field 'Jun' in entry 'cosmography' is not an integer - this will probably not sort properly.
+[1362] Biber.pm:131> WARN - I didn't find a database entry for 'emulators' (section 0)
+[1362] Biber.pm:133> INFO - WARNINGS: 3
