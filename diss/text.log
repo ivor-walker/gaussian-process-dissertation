@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  14 JUN 2025 19:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  16 JUN 2025 23:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -606,13 +606,13 @@ Package biblatex Info: ... file 'text.bbl' found.
  (./text.bbl)
 Package biblatex Info: Reference section=0 on input line 24.
 Package biblatex Info: Reference segment=0 on input line 24.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
 
 
 (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
 
 
 (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -629,6 +629,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 [2]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 54.
+
+
+
 [3]
 
 [4]
@@ -639,64 +644,153 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 [7]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 401.
+
+
+
 [8]
 
 [9]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 581.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 591.
+
+
+
 [10{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
-LaTeX Warning: Empty bibliography on input line 696.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 638.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 642.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 654.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 657.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 660.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 663.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 666.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 669.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 676.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 679.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 685.
 
 
 
-[11] (./text.aux)
+[11]
+
+[12]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 740.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 743.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 746.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 749.
+
+
+Overfull \hbox (88.11728pt too wide) in paragraph at lines 759--759
+[]\OT1/cmr/m/n/10 Collin Er-ick-son. \OT1/cmr/m/it/10 GauPro: Gaus-sian Pro-ces
+s Fit-ting\OT1/cmr/m/n/10 . R pack-age ver-sion 0.2.15.9000, com-mit 6c7a7a8055
+506229b6d02650aca9664a84f640f8.
+ []
+
+
+Overfull \hbox (6.10786pt too wide) in paragraph at lines 759--759
+\OT1/cmr/m/sc/10 url\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 https : / / proceedin
+gs . neurips . cc / paper _ files / paper / 2004 / file / 453fadbd8a1a3af50a9df
+4df899537b5 -[]
+ []
+
+
+Overfull \hbox (34.32355pt too wide) in paragraph at lines 759--759
+[]\OT1/cmr/m/n/10 Dustin Tran, Ra-jesh Ran-ganath, and David M Blei. ``The vari
+-a-tional Gaus-sian pro-cess''. In: \OT1/cmr/m/it/10 arXiv preprint arXiv:1511.
+06499
+ []
+
+
+
+[13] (./text.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `text.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `text.out':
-(rerunfilecheck)             Before: 77052E36F2890FE0DC82AE868C63DA5F;4000
-(rerunfilecheck)             After:  79EF0C4FD3A3A2B2BB70546E21E0F6BE;4536.
+Package rerunfilecheck Info: File `text.out' has not changed.
+(rerunfilecheck)             Checksum: 2554215DAC5F8C5E31F392B962D21A00;10294.
 Package logreq Info: Writing requests to 'text.run.xml'.
 \openout1 = `text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16884 strings out of 473190
- 290657 string characters out of 5719979
- 1134845 words of memory out of 5000000
- 39916 multiletter control sequences out of 15000+600000
- 567035 words of font info for 68 fonts, out of 8000000 for 9000
+ 17250 strings out of 473190
+ 299243 string characters out of 5719979
+ 1135771 words of memory out of 5000000
+ 40222 multiletter control sequences out of 15000+600000
+ 567850 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,81p,965b,803s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,9n,81p,965b,1304s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12
-.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/t
-exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/
-symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm
-1000.pfb>
-Output written on text.pdf (11 pages, 237801 bytes).
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2025/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:
+/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2
+025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
+0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
+/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
+live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on text.pdf (13 pages, 300962 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
- 274 compressed objects within 3 object streams
- 75 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 572 PDF objects out of 1000 (max. 8388607)
+ 513 compressed objects within 6 object streams
+ 132 named destinations out of 1000 (max. 500000)
+ 369 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -2372,6 +2372,25 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">../references/references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
+    <bcf:citekey order="20" intorder="1">gp-ml</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">gp-ml</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">gp-ml</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">gp-ml</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">gp-ml</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">gaupro</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">deriving-kernels</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">choosing-kernels</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">additive-kernels</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">hierarchical-kernels</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">freeform-kernels</bcf:citekey>
+    <bcf:citekey order="31" intorder="1">multi-kernels</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">gprn</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">vgp</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">big-data</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">materials</bcf:citekey>
+    <bcf:citekey order="36" intorder="1">cosmography</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">emulators</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">signals-processing</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
