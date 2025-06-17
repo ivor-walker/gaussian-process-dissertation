@@ -472,14 +472,14 @@ We can substitute $p(W)$ and our conditioning $X$ into the Gaussian multivariate
 Note that although we condition on $X_*$, $X$, and $f(X)$, we only substitute $f(X)$ because $X_*$ and $X$ are known constants, but $f(X)$ is random because it is a sample from the prior. We also swap $f(X_*)$ and $f(X)$ in our prior to match the conditioning identity, such that our input vector into the conditioning identity is $(f(X_*), f(X))^T$
     
 Simplifying the last term in the mean, we get our final expression for the posterior distribution:
-\begin{equation*}
+\begin{equation} \label{eq:conditioning}
     \begin{aligned}
         p(f(X_*)|X_*, X, f(X)) \sim N( \\
         K(X,X_*)K(X,X)^{-1}f(X), \\
         K(X_*,X_*) - K(X_*,X)K(X,X)^{-1}K(X,X_*) \\
         )
     \end{aligned}
-\end{equation*}
+\end{equation}
 
 
 \subsubsection{Predictive distributions with noisy observations}
@@ -590,32 +590,26 @@ $\sigma^2_f$ is the signal variance, which controls the overall scale of the fun
 
 \subsection{Smoothing and equivelant kernels \cite{gp-ml}}
 
-\subsubsection{GP as a linear predictor and smoother}
-The mean of our predictive distribution can be represented as a "linear predictor", or as a linear combination of $X$ and our covariance function:
+\subsubsection{Linear predictor}
+The representer theorem states that we can represent the solution of kernel-based methods (in our case, the predictive distribution mean) in finite-dimensional space, even if properties of our method mean we have an infinite-dimensional feature space. For example, using SE as our $k(X, X')$ we could obtain an infinite number of basis functions, so our data could be projected into an infinite dimensional space. Any other function than the mean drawn from our predictive distribution would have to be in infinite-dimension space. However, our mean is dependent on our $n$-length training labels $y$ so can only be represented in an $n$-dimensional space. Therefore, mean of our predictive distribution can be represented as a "linear predictor", or as a linear combination of $X$ and our covariance function:
 \begin{equation} \label{eq:gp_linear_predictor}
     \begin{aligned}
-        \alpha_i = K(X_i, X_i) + \sigma_n^2I)^{-1}Y_i \\
+        \alpha_i = K(X_i, X_i) + \sigma_n^2I)^{-1}f(X)_i \\
         \mathbb{E}_{p(f(X_*)|X_*,X,Y)}[f(X_*)] = \sum_{i=1}^n \alpha_i k(X_*, X_i)
     \end{aligned}
 \end{equation}
-Here, $\alpha$ is a "linear smoother" because it is a linear combination of $y$ and our covariance function. 
+Here, $\alpha$ is a "linear smoother" because it is a linear combination of $y$ and our covariance function.
 
-Our $K$ could be an infinite number of basis functions (e.g. SE), so our data could be projected into an infinite dimensional space. However, we are conditioning our prior on a finite number of $X_i$, we only care about the distribution of the $n$ training points and the $1$ test point we are predicting for. These $n+1$ points constitutes the block of the joint covariance matrix we extract by marginalising out the other points.
-TODO representer theorem
-% This is the Representer Theorem - we can express the posterior mean as these linear combinations despite our GP being represented as a (possibly infinite) number of basis functions.
-
-TODO make this make sense
-
-We can rewrite \ref{eq:gp_linear_predictor} (generalised out of 1D) such that our mean function is a "linear smoother" in terms of $y$, instead of a linear predictor: 
+\subsubsection{Linear smoother}
+We can rewrite \ref{eq:gp_linear_predictor} (generalised out of 1D) such that our mean function is a "linear smoother" in terms of $y$ instead of a linear predictor: 
 \begin{equation} \label{eq:gp_linear_smoother}
     \begin{aligned}
-        H(X_*) = (K + \sigma^2_nI)^{-1}K(X_*,X_*) \\
-        \mathbb{E}_{p(f(X_*)|X_*,X,Y)}[f(X_*)] = H(X_*, X_*)^T Y
+        H(X_*) = (K(X, + \sigma^2_nI)^{-1}K(X_*,X_*) \\
+        \mathbb{E}_{y_*|X_*,X,y)}[f(X_*)] = H(X_*)^T Y
     \end{aligned}
 \end{equation}
-This vector of functions $H(X_*, X_*)$ is called a weight function. 
+This vector of functions $H(X_*)$ is called a weight function. 
 
-\subsubsection{Reformulating as an equivelant kernel}
 Understanding the form of $H(X_*)$ in \ref{eq:gp_linear_smoother} is difficult because of the first term $(K(X, X) + \sigma_n^2I)^-1$: it renders $H(X_*)$ dependent on $X$ and $X_*$, and it requires the inversion of $K(X, X) + \sigma^2_nI$. Instead, we can reformulate $E_{p(f(X_*)|X_*,X,Y)}[f(X_*)]$ as an "equivelant kernel", which uses a kernel smoother (also known as the Nadaraya-Watson estimator) to remove the dependence on $X$. Firstly, we centre $x_i$ on $X_*$ and use that as the input to the kernel function:
 \begin{equation*}
     k_i = k(|x_i - x_{*i}|/l)
@@ -631,8 +625,10 @@ Then, our predictive distribution mean becomes TODO:
 where $w_i = k_i / \sum_{j=1}^n k_j$ is a TODO.
 
 
+\subsubsection{Explicit basis functions}
+TODO
 
-\section{Exploring Correlation Functions}
+\section{Exploring Covariance Functions}
 
 
 \subsection{Covariance functions, chapter 4 \cite{gp-ml}}

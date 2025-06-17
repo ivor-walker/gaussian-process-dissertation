@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  16 JUN 2025 23:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  17 JUN 2025 23:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -665,47 +665,47 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [10{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 634.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 642.
+(hyperref)                removing `\cite' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 654.
+(hyperref)                removing `\cite' on input line 653.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 657.
+(hyperref)                removing `\cite' on input line 656.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 660.
+(hyperref)                removing `\cite' on input line 659.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 663.
+(hyperref)                removing `\cite' on input line 662.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 666.
+(hyperref)                removing `\cite' on input line 665.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 669.
+(hyperref)                removing `\cite' on input line 672.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 676.
+(hyperref)                removing `\cite' on input line 675.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 679.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 685.
+(hyperref)                removing `\cite' on input line 681.
 
 
 
@@ -714,36 +714,36 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 740.
+(hyperref)                removing `\cite' on input line 736.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 743.
+(hyperref)                removing `\cite' on input line 739.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 746.
+(hyperref)                removing `\cite' on input line 742.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 749.
+(hyperref)                removing `\cite' on input line 745.
 
 
-Overfull \hbox (88.11728pt too wide) in paragraph at lines 759--759
+Overfull \hbox (88.11728pt too wide) in paragraph at lines 755--755
 []\OT1/cmr/m/n/10 Collin Er-ick-son. \OT1/cmr/m/it/10 GauPro: Gaus-sian Pro-ces
 s Fit-ting\OT1/cmr/m/n/10 . R pack-age ver-sion 0.2.15.9000, com-mit 6c7a7a8055
 506229b6d02650aca9664a84f640f8.
  []
 
 
-Overfull \hbox (6.10786pt too wide) in paragraph at lines 759--759
+Overfull \hbox (6.10786pt too wide) in paragraph at lines 755--755
 \OT1/cmr/m/sc/10 url\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 https : / / proceedin
 gs . neurips . cc / paper _ files / paper / 2004 / file / 453fadbd8a1a3af50a9df
 4df899537b5 -[]
  []
 
 
-Overfull \hbox (34.32355pt too wide) in paragraph at lines 759--759
+Overfull \hbox (34.32355pt too wide) in paragraph at lines 755--755
 []\OT1/cmr/m/n/10 Dustin Tran, Ra-jesh Ran-ganath, and David M Blei. ``The vari
 -a-tional Gaus-sian pro-cess''. In: \OT1/cmr/m/it/10 arXiv preprint arXiv:1511.
 06499
@@ -757,16 +757,16 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `text.out' has not changed.
-(rerunfilecheck)             Checksum: 2554215DAC5F8C5E31F392B962D21A00;10294.
+(rerunfilecheck)             Checksum: 16D84583203BBC7CCCE0F23842BA2479;10244.
 Package logreq Info: Writing requests to 'text.run.xml'.
 \openout1 = `text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 17250 strings out of 473190
- 299243 string characters out of 5719979
- 1135771 words of memory out of 5000000
- 40222 multiletter control sequences out of 15000+600000
+ 17254 strings out of 473190
+ 299311 string characters out of 5719979
+ 1135791 words of memory out of 5000000
+ 40224 multiletter control sequences out of 15000+600000
  567850 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,9n,81p,965b,1304s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -787,10 +787,10 @@ s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
 /texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on text.pdf (13 pages, 300962 bytes).
+Output written on text.pdf (13 pages, 300687 bytes).
 PDF statistics:
- 572 PDF objects out of 1000 (max. 8388607)
- 513 compressed objects within 6 object streams
- 132 named destinations out of 1000 (max. 500000)
- 369 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 579 PDF objects out of 1000 (max. 8388607)
+ 520 compressed objects within 6 object streams
+ 134 named destinations out of 1000 (max. 500000)
+ 377 words of extra memory for PDF output out of 10000 (max. 10000000)
 

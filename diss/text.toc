@@ -28,9 +28,10 @@
 \contentsline {subsubsection}{\numberline {2.2.5}Algorithm for predictive distribution}{10}{subsubsection.2.2.5}%
 \contentsline {subsection}{\numberline {2.3}Varying the hyperparameters \blx@tocontentsinit {0}\cite {gp-ml}}{10}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Smoothing and equivelant kernels \blx@tocontentsinit {0}\cite {gp-ml}}{11}{subsection.2.4}%
-\contentsline {subsubsection}{\numberline {2.4.1}GP as a linear predictor and smoother}{11}{subsubsection.2.4.1}%
-\contentsline {subsubsection}{\numberline {2.4.2}Reformulating as an equivelant kernel}{11}{subsubsection.2.4.2}%
-\contentsline {section}{\numberline {3}Exploring Correlation Functions}{11}{section.3}%
+\contentsline {subsubsection}{\numberline {2.4.1}Linear predictor}{11}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Linear smoother}{11}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Explicit basis functions}{11}{subsubsection.2.4.3}%
+\contentsline {section}{\numberline {3}Exploring Covariance Functions}{11}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Covariance functions, chapter 4 \blx@tocontentsinit {0}\cite {gp-ml}}{11}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Simulations of different kernels \blx@tocontentsinit {0}\cite {gaupro}}{11}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Continuous}{11}{subsubsection.3.2.1}%
