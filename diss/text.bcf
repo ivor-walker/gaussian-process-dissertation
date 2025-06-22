@@ -2387,10 +2387,12 @@
     <bcf:citekey order="32" intorder="1">gprn</bcf:citekey>
     <bcf:citekey order="33" intorder="1">vgp</bcf:citekey>
     <bcf:citekey order="34" intorder="1">big-data</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">materials</bcf:citekey>
-    <bcf:citekey order="36" intorder="1">cosmography</bcf:citekey>
-    <bcf:citekey order="37" intorder="1">emulators</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">signals-processing</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">random-subsampling</bcf:citekey>
+    <bcf:citekey order="36" intorder="1">matching-pursuit</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">materials</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">cosmography</bcf:citekey>
+    <bcf:citekey order="39" intorder="1">emulators</bcf:citekey>
+    <bcf:citekey order="40" intorder="1">signals-processing</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
