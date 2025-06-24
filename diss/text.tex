@@ -10,7 +10,7 @@
 
 \usepackage{hyperref}
 
-% For paragraphs
+% Adding paragraphs as proper titles
 \usepackage{titlesec}
 \setcounter{secnumdepth}{5}
 
@@ -20,6 +20,9 @@
     url=true
 ]{biblatex}
 \addbibresource{../references/references.bib}
+
+\usepackage{graphicx}
+\graphicspath{{./img/}}
 
 \begin{document}
 
@@ -432,7 +435,8 @@ We will use a squared exponential (SE) covariance function, also known as the ra
 \end{equation*}
 To exploit the kernel trick, $k(f(X), f(X')$ is written as a function of $X$ and $X'$. 
 
-For SE, covariance is almost unity between outputs whose inputs are close together, but decays exponentially as inputs get further apart. $l$ is a "length scale" hyperparameter that controls the rate of decay of the covariance function. It can be shown that SE corresponds to a Bayesian linear regression model with infinite basis functions. The Mercer theorem states that for every positive definite covariance function $k(X,X')$, there exists a possibly infinite set of basis functions. SE can also be obtained from the linear combination of infinite Gaussian-shaped basis functions. Because SE is infinitely differentiable, it produces smooth functions.
+For SE, covariance is almost unity between outputs whose inputs are close together, but decays exponentially as inputs get further apart.  It can be shown that SE corresponds to a Bayesian linear regression model with infinite basis functions. The Mercer theorem states that for every positive definite covariance function $k(X,X')$, there exists a possibly infinite set of basis functions. SE can also be obtained from the linear combination of infinite Gaussian-shaped basis functions. Because SE is infinitely differentiable, it produces smooth functions.
+
 
 \paragraph{Function evaluations to a random function}
 We can choose a subset of five inputs $X_{*1}$ from our test data $X_*$ and apply a GP to get five outputs $f(X_{*1})$. $f(X_{*1})$ can be described as a multivariate Gaussian distribution,e.g. in the Bayesian linear model $f(X_{*1}) \sim N(0, k(X_{*1}, X_{*1}))$. Each output $f(X_{\theta*1})$ in our $f(X_{*1})$ vector is a random variable with mean $0$ and covariance with each other $K_{\theta\theta'} = k(X_{\theta*}, X_{\theta'*})$. There exists some random function $g(X_{*1})$ for our subsets such that $f(X_{*1}) = g(X_{*1})$. We only know the value of $g(X_{*1})$ at the points $X_{*1}$, so $g(X_{*1}) = {X_{*1} : f(X_{*1})}$. Because $g(X)$ entirely consists of random points, we can think of $g(X_{*1})$ as a random function.
@@ -575,7 +579,7 @@ We can plug these mean and variances into Gaussian PDF \ref{eq:gaussian_pdf} to 
     \item Return the mean $mu$, variance $var$, and log marginal likelihood
 \end{enumerate}
 
-TODO Choelsky decomposition if needed
+TODO Choelsky decomposition if needed, missing background
 
 
 \subsection{Varying the hyperparameters \cite{gp-ml}}
@@ -583,10 +587,18 @@ Our covariance functions has some hyperparameters, e.g. the full form of SE in o
 \begin{equation*}
     k_y(x,x') = \sigma^2_f \exp\left(-\frac{1}{2}\frac{|x - x'|^2}{l^2}\right) + \sigma^2_n\delta_{x,x'}
 \end{equation*}
-Note that our covariance function is for $k_y$ as it is for the noisy targets $y$, not the function $f$.
+Note that our covariance function is for $k_y$ as it is for the noisy targets $y$, not the function $f$. $\sigma^2_f$ is the signal variance, which controls the overall scale of the function. $\sigma^2_n$ is the noise variance, which controls the amount of noise in the observations. $\delta_{X,X'}$ is the Kronecker delta which represents our independence of noise assumption.
 
-$\sigma^2_f$ is the signal variance, which controls the overall scale of the function. $\sigma^2_n$ is the noise variance, which controls the amount of noise in the observations. $l$ is the length scale, which controls how quickly the covariance decays with distance - if we specify a lower $l$, we can "artificially" get a high $k(X,X')$. $\delta_{X,X'}$ is the Kronecker delta which represents our independence of noise assumption.
+$l$ is a "length scale" hyperparameter that controls how sensitive our functions are - if we specify a lower $l$, we can "artificially" get a high $k(X,X')$. One way to determine $l$ is by the expected number of "upcrossings" that our kernel is expected to make for a given level $u$. A function performs an upcrossing for $u$ when $u = f(x)$ and $dy/dx > 0$. For example, with $u = 2$ and $y = x^2$, there exists one upcrossing at $(2, \sqrt{2})$ where $dy/dx = 4$, and a downcrossing at $(2, -\sqrt{2})$ where $dy/dx = -4$. For our zero-mean Gaussian processes, the expected number of upcrossings of our (stationary) kernel for a level $ 0 < u < 1$ is:
+\begin{equation*}
+    \mathbb{E}[N_u] = \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right)
+\end{equation*}
+We can empirically count the number of upcrossings between 0 and 1 and set this equal to the expected number of upcrossings to get a value for $l$:
+\begin{equation} \label{eq:general_l}
+        \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right) = \hat{N}_u
+\end{equation}
 
+A large amount of upcrossings implies our data-generating function wiggles rapidly, so our $l$ becomes smaller to produce a covariance function that in turn produces more flexible functions.
 
 \subsection{Smoothing and equivelant kernels \cite{gp-ml}}
 TODO missing background
@@ -632,23 +644,156 @@ where $w_i = k_i / \sum_{j=1}^n k_j$ is a TODO.
 \subsubsection{Explicit basis functions}
 TODO
 
-\section{Exploring Covariance Functions}
+\section{Exploring Covariance Functions \cite{gp-ml}}
 
 
-\subsection{Covariance functions, chapter 4 \cite{gp-ml}}
+\subsection{Characteristics of covariance functions \cite{gp-ml}}
+
+\subsubsection{Stationarity and isotropicism}
+A stationary covariance function is a function of $X - X'$ only and therefore is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function is a function only of $|X - X'|$, i.e. is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because of the $|X - X'|$ term.
+
+\subsubsection{Symmetry and positive semidefiniteness}
+Given a vector of input points ${X_i | i = 1, ..., n}$, the Gram matrix $K$ is the $n \times n$ matrix whose $(i,j)$-th entry is the inner product between $X_i$ and $X_j$. Since our covariance matrix can be represented as inner products of our vectors of inputs, we can represent it as a Gram matrix. The Gram matrix has two key properties, symmetry and positive semidefiniteness:
+\begin{equation*}
+    \begin{aligned}
+        K_{ij} = K_{ji} \\
+        X^T K X \geq 0
+    \end{aligned}
+\end{equation*}
+
+TODO prove positive semidefiniteness, background needed
+
+\subsubsection{Mean square continuity and differentiability}
+Because the functions drawn from the Gaussian distribution are random functions between datapoints, there are infinitely many possible functions and determining if they are all continuous or differentiable is impossible. Instead, we can determine if the expected function is differentiable and continuous, and square these results to enable a direct comment about function smoothness.
+
+A Gaussian process $f(X)$ is continuous in mean square at $X_*$ if, as $k \to \infty$:
+\begin{equation*}
+    \mathbb{E}[|f(X_k) - f(X_*)|^2] \to \infty
+\end{equation*}
+A Gaussian process is continuous at $X_*$ if and only if its covariance function is continuous at $X_*$. For stationary covariance functions this involves checking $k(0, 0)$ only.
+
+TODO differentiability, explicitly link to smoothness
+
+
+\subsection{Stationary covariance functions \cite{gp-ml}}
 TODO
 
+\subsubsection{Spectral density for stationary processes}
+TODO, background needed
 
-\subsection{Simulations of different kernels \cite{gaupro}}
+\subsubsection{Squared exponential (SE)}
+Here is the already introduced SE:
+\begin{equation*}
+    k(X,X*) = \exp \left(- \frac{|X - X'|^2}{2l^2} \right)
+\end{equation*}
 
-\subsubsection{Continuous}
-TODO Gaussian, mattern, exponential, SE, triangle, power exponential
+We can find the value for $l$ analytically using \ref{eq:general_l}:
+\begin{equation*}
+    l = \frac{1}{2\pi\hat{N}_u} \exp\left(-\frac{u^2}{2\sigma^2}\right)
+\end{equation*}
+Setting $u = 0$ makes our term inside the exponential equal to zero:
+\begin{equation*}
+    l = \frac{1}{2\pi\hat{N}_0}
+\end{equation*}
 
-\subsubsection{Periodic}
-TODO periodic, mattern
+This covariance function is infinitely differentiable thanks to the $\exp$ term, so a GP using SE is infinitely mean-squared differentiable, which produces very smooth functions.
 
-\subsubsection{Factors}
-TODO latent factor, ordered factor, factor, Gower factor, ignore indices
+\begin{figure}[h]
+    \includegraphics[height=0.5\textwidth]{gaussian_variances.png}
+    \caption{
+        Plot of a Gaussian process using SE applied to a toy dataset. The toy dataset ($n = 15$) is a data-generating function in blue with some Gaussian noise applied to produce the datapoints in black. The black line represents the expected function from the Gaussian process. The green line represents the 90\% confidence interval around the predictive distribution without the $\sigma^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 90\% confidence interval with $\sigma^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$.
+    }
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[height=0.5\textwidth]{gaussian_draws.png}
+    \caption{
+        Plots of functions from a Gaussian process using SE applied to the same toy dataset. The blue line and black datapoints and lines are as before, but the green lines here are a sample of functions drawn from the Gaussian process.
+    }
+\end{figure}
+
+TODO proof of infinite basis functions, background needed
+
+
+% Often causes issues since it assumes infinite differentiability. Experts don’t recommend using it. \cite{gaopro}
+
+% TODO fix formatting here
+\newpage
+\subsubsection{Matern-class}
+The Matern class of covariance functions is given by:
+\begin{equation*}
+    k(X,X') = \frac{2^{1 - \nu}}{\Gamma(\nu)}\left(\frac{\sqrt{2\nu}|X - X'|}{l}\right)^{\nu}K_{\nu}\left(\frac{\sqrt{2\nu}|X - X'|}{l}\right)
+\end{equation*}
+
+$l$ is our familiar length scale hyperparameter, but $\nu$ controls how differentiable the function is. 
+
+TODO Bessel function $K_{\nu}$, background needed
+Therefore, a a Gaussian process using a Matern class kernel is $k$-times MS differentiable if and only if $\nu > k$. 
+
+We can simplify this by using half-integers, i.e. $\nu = p + 1/2$ where $p$ is a non-negative integer. In this case, the covariance function becomes a product of a polynomial and an exponential:
+
+\begin{equation*}
+    k_{\nu = p + 1/2}(X,X') = \exp \left(- \frac{\sqrt{2\nu}|X - X'|}{l} \right) \frac{\Gamma(p+1)}{\Gamma(2p+1)} \sum_{i=0}^p \frac{(p + i)!}{i!(p-i)!} \left( \frac{\sqrt{8\nu r}}{l} \right)^{p-i}
+\end{equation*}
+
+$\nu = 1/2$ is equivelant to the exponential covariance function.
+
+TODO formula
+
+\includegraphics[height=0.5\textwidth]{matern32_variances.png} \\
+\includegraphics[height=0.5\textwidth]{matern32_draws.png} \\
+
+% Matern 3/2: Assumes one time differentiability. This is often too low of an assumption. \cite{gaopro}
+
+\includegraphics[height=0.5\textwidth]{matern52_variances.png} \\
+\includegraphics[height=0.5\textwidth]{matern52_draws.png} \\
+
+% Matern 5/2: Assumes two time differentiability. Generally the best. \cite{gaopro}
+
+\subsubsection{Exponential and $\gamma$-exponential}
+TODO formulas 
+
+\includegraphics[height=0.5\textwidth]{exp_variances.png} \\
+\includegraphics[height=0.5\textwidth]{exp_draws.png} \\
+% Exponential: Equivalent to Matern 1/2. Assumes no differentiability. \cite{gaopro}
+
+\includegraphics[height=0.5\textwidth]{powerexp_variances.png} \\
+\includegraphics[height=0.5\textwidth]{powerexp_draws.png} \\
+
+\subsubsection{Rational quadratic}
+The rational quadratic can be seen as an infinite sum of SE with different length-scales.
+
+TODO formulas
+
+\includegraphics[height=0.5\textwidth]{ratquad_variances.png} \\
+\includegraphics[height=0.5\textwidth]{ratquad_draws.png} \\
+
+
+\subsection{Non-stationary covariance functions \cite{gp-ml}}
+
+\subsubsection{Sum and product}
+
+\subsubsection{Neural network}
+
+\subsubsection{Warping and periodicity}
+
+
+\subsection{Language-processing covariance functions \cite{gp-ml}}
+
+\subsubsection{String}
+
+\subsubsection{Fisher}
+
+
+\subsection{Factor-processing covariance functions \cite{gaopro}}
+
+\subsubsection{Ordered factor}
+
+\subsubsection{Factor}
+
+\subsubsection{Gower factor}
+
+\subsubsection{Indices-ignoring}
 
 
 \subsection{Deriving kernels \cite{deriving-kernels}}
@@ -670,17 +815,18 @@ TODO latent factor, ordered factor, factor, Gower factor, ignore indices
 
 
 
-\section{Extensions of the Gaussian Process}
-
-
-\subsection{Gaussian process regression networks \cite{gprn}}
-
-
-\subsection{Variational Gaussian process \cite{vgp}}
+% \section{Extensions of the Gaussian Process}
+% 
+% 
+% \subsection{Gaussian process regression networks \cite{gprn}}
+% 
+% 
+% \subsection{Variational Gaussian process \cite{vgp}}
 
 
 
 \section{Computational Issues}
+
 
 \subsection{Matrix inversion \cite{big-data}}
 Inverting the $[K(X,X) + \sigma^2_nI]$ matrix in our predictive distribution scales poorly with the number of training data points $n$, as inverting the $n \times n$ matrix $X$ that represents our training data is $O(n^3)$. Strategies to approximate the result of this inversion fall into two categories: those that produce a single approximation for the entire dataset, or those that produce several approximations that are "experts" in a particular region of the dataset and combine these local approximations to form a global approximation.
@@ -698,12 +844,15 @@ We can reduce $m$ needed to achieve the same level of accuracy with a "greedy" a
 A sparse kernel is a particularly designed kernel that imposes $k(X,X') = 0$ if $|X - X'|$ is larger than some threshold $d$ to create a sparse covariance matrix. This reduces the number of calculations that need to be performed and computational complexity to $O(an^3)$, where $a$ is the proportion of non-zero entries remaining, but the kernel needs to be carefully designed to work with zeroes and ensure all entries are positive definite to satisfy completeness. TODO sparse RBF
 
 \paragraph{Sparse approximations}
+TODO, missing background
+
 \subparagraph{Prior approximation}
 \subparagraph{Posterior approximation}
 \subparagraph{Structured sparse approximation}
 
 
 \subsubsection{Local approximations}
+TODO
 
 \paragraph{Naive-local-experts}
 
@@ -713,6 +862,7 @@ A sparse kernel is a particularly designed kernel that imposes $k(X,X') = 0$ if 
 
 
 \subsubsection{Improvements}
+TODO
 
 \paragraph{Scalability}
 

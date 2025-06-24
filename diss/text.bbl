@@ -306,6 +306,74 @@
       \verb https://github.com/CollinErickson/GauPro
       \endverb
     \endentry
+    \entry{random-subsampling}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=a1038bb860464af42ea8231d5a4fd620}{%
+           family={Hayashi},
+           familyi={H\bibinitperiod},
+           given={Kohei},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5048833195b9669c1aecb1b3b14551da}{%
+           family={Imaizumi},
+           familyi={I\bibinitperiod},
+           given={Masaaki},
+           giveni={M\bibinitperiod}}}%
+        {{hash=533a96e0549ba0ebe33580995731a148}{%
+           family={Yoshida},
+           familyi={Y\bibinitperiod},
+           given={Yuichi},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=7be343845f20ae7e5afb043f78f991fe}{%
+           family={Chiappa},
+           familyi={C\bibinitperiod},
+           given={Silvia},
+           giveni={S\bibinitperiod}}}%
+        {{hash=864584c60b808b517f2a06c664ec116a}{%
+           family={Calandra},
+           familyi={C\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{269a0a230fbe77a61d742021dec1add9}
+      \strng{fullhash}{269a0a230fbe77a61d742021dec1add9}
+      \strng{fullhashraw}{269a0a230fbe77a61d742021dec1add9}
+      \strng{bibnamehash}{269a0a230fbe77a61d742021dec1add9}
+      \strng{authorbibnamehash}{269a0a230fbe77a61d742021dec1add9}
+      \strng{authornamehash}{269a0a230fbe77a61d742021dec1add9}
+      \strng{authorfullhash}{269a0a230fbe77a61d742021dec1add9}
+      \strng{authorfullhashraw}{269a0a230fbe77a61d742021dec1add9}
+      \strng{editorbibnamehash}{975244d506887ac8f8fcf58a1715e22b}
+      \strng{editornamehash}{975244d506887ac8f8fcf58a1715e22b}
+      \strng{editorfullhash}{975244d506887ac8f8fcf58a1715e22b}
+      \strng{editorfullhashraw}{975244d506887ac8f8fcf58a1715e22b}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this paper, we study random subsampling of Gaussian process regression, one of the simplest approximation baselines, from a theoretical perspective. Although subsampling discards a large part of training data, we show provable guarantees on the accuracy of the predictive mean/variance and its generalization ability.For analysis, we consider embedding kernel matrices into graphons, which encapsulate the difference of the sample size and enables us to evaluate the approximation and generalization errors in a unified manner. The experimental results show that the subsampling approximation achieves a better trade-off regarding accuracy and runtime than the ystrom and random Fourier expansion methods.}
+      \field{booktitle}{Proceedings of the Twenty Third International Conference on Artificial Intelligence and Statistics}
+      \field{month}{26--28 Aug}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{On Random Subsampling of Gaussian Process Regression: A Graphon-Based Analysis}
+      \field{volume}{108}
+      \field{year}{2020}
+      \field{pages}{2055\bibrangedash 2065}
+      \range{pages}{11}
+      \verb{file}
+      \verb http://proceedings.mlr.press/v108/hayashi20a/hayashi20a.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v108/hayashi20a.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v108/hayashi20a.html
+      \endverb
+    \endentry
     \entry{big-data}{article}{}{}
       \name{author}{4}{}{%
         {{hash=254bd446dd0cc7de3ce1a6598912798e}{%
@@ -738,6 +806,8 @@
       \field{year}{2011}
     \endentry
   \enddatalist
+  \missing{eq:se}
+  \missing{matching-pursuit}
 \endrefsection
 \endinput
 

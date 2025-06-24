@@ -5,63 +5,89 @@
 \abx@aux@refcontext{nty/global//global/global/global}
 \abx@aux@cite{0}{gp-ml}
 \abx@aux@segm{0}{0}{gp-ml}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Defining the Gaussian Process}{3}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Weight-space view \blx@tocontentsinit {0}\cite {gp-ml}}{3}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Standard linear model}{3}{subsubsection.2.1.1}\protected@file@percent }
-\newlabel{eq:linear_model}{{1}{3}{Standard linear model}{equation.1}{}}
-\newlabel{eq:prior_distribution}{{2}{3}{Standard linear model}{equation.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Posterior distribution}{3}{subsubsection.2.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.2.1}Deriving our posterior}{3}{paragraph.2.1.2.1}\protected@file@percent }
-\newlabel{eq:posterior}{{3}{3}{Deriving our posterior}{equation.3}{}}
-\newlabel{eq:likelihood}{{4}{3}{Deriving our posterior}{equation.4}{}}
-\newlabel{eq:prior_pdf}{{5}{3}{Deriving our posterior}{equation.5}{}}
-\newlabel{eq:A_b}{{6}{4}{Deriving our posterior}{equation.6}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.2.2}Deriving the properties of the posterior by completing the square}{4}{paragraph.2.1.2.2}\protected@file@percent }
-\newlabel{eq:gaussian_pdf}{{7}{4}{Deriving the properties of the posterior by completing the square}{equation.7}{}}
-\newlabel{eq:posterior_gaussian}{{8}{4}{Deriving the properties of the posterior by completing the square}{equation.8}{}}
-\newlabel{eq:A_isotropic}{{9}{4}{Deriving the properties of the posterior by completing the square}{equation.9}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.2.3}Gaussian posteriors and ridge regression}{5}{paragraph.2.1.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Predictive distribution}{5}{subsubsection.2.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.3.1}Deriving the predictive distribution}{5}{paragraph.2.1.3.1}\protected@file@percent }
-\newlabel{eq:predictive_gaussian}{{10}{6}{Deriving the predictive distribution}{equation.10}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}Projections of inputs into feature space}{6}{subsubsection.2.1.4}\protected@file@percent }
-\newlabel{eq:predictive_gaussian_phi}{{11}{6}{Projections of inputs into feature space}{equation.11}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.5}Computational issues}{7}{subsubsection.2.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.5.1}Avoiding inversion of $A_{\phi }$}{7}{paragraph.2.1.5.1}\protected@file@percent }
-\newlabel{eq:A_phi_inverse_phi_X}{{12}{7}{Avoiding inversion of $A_{\phi }$}{equation.12}{}}
-\newlabel{eq:alt_predictive_mean_phi}{{13}{7}{Avoiding inversion of $A_{\phi }$}{equation.13}{}}
-\newlabel{eq:alt_predictive_variance_phi}{{14}{7}{Avoiding inversion of $A_{\phi }$}{equation.14}{}}
-\newlabel{eq:alt_predictive_gaussian_phi}{{15}{7}{Avoiding inversion of $A_{\phi }$}{equation.15}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.5.2}Kernels and the kernel trick}{7}{paragraph.2.1.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{4}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Defining the Gaussian Process}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Weight-space view \blx@tocontentsinit {0}\cite {gp-ml}}{4}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Standard linear model}{4}{subsubsection.2.1.1}\protected@file@percent }
+\newlabel{eq:linear_model}{{1}{4}{Standard linear model}{equation.1}{}}
+\newlabel{eq:prior_distribution}{{2}{4}{Standard linear model}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Posterior distribution}{4}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.2.1}Deriving our posterior}{4}{paragraph.2.1.2.1}\protected@file@percent }
+\newlabel{eq:posterior}{{3}{4}{Deriving our posterior}{equation.3}{}}
+\newlabel{eq:likelihood}{{4}{4}{Deriving our posterior}{equation.4}{}}
+\newlabel{eq:prior_pdf}{{5}{4}{Deriving our posterior}{equation.5}{}}
+\newlabel{eq:A_b}{{6}{5}{Deriving our posterior}{equation.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.2.2}Deriving the properties of the posterior by completing the square}{5}{paragraph.2.1.2.2}\protected@file@percent }
+\newlabel{eq:gaussian_pdf}{{7}{5}{Deriving the properties of the posterior by completing the square}{equation.7}{}}
+\newlabel{eq:posterior_gaussian}{{8}{5}{Deriving the properties of the posterior by completing the square}{equation.8}{}}
+\newlabel{eq:A_isotropic}{{9}{5}{Deriving the properties of the posterior by completing the square}{equation.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.2.3}Gaussian posteriors and ridge regression}{6}{paragraph.2.1.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Predictive distribution}{6}{subsubsection.2.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.3.1}Deriving the predictive distribution}{6}{paragraph.2.1.3.1}\protected@file@percent }
+\newlabel{eq:predictive_gaussian}{{10}{7}{Deriving the predictive distribution}{equation.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}Projections of inputs into feature space}{7}{subsubsection.2.1.4}\protected@file@percent }
+\newlabel{eq:predictive_gaussian_phi}{{11}{7}{Projections of inputs into feature space}{equation.11}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.5}Computational issues}{8}{subsubsection.2.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.5.1}Avoiding inversion of $A_{\phi }$}{8}{paragraph.2.1.5.1}\protected@file@percent }
+\newlabel{eq:A_phi_inverse_phi_X}{{12}{8}{Avoiding inversion of $A_{\phi }$}{equation.12}{}}
+\newlabel{eq:alt_predictive_mean_phi}{{13}{8}{Avoiding inversion of $A_{\phi }$}{equation.13}{}}
+\newlabel{eq:alt_predictive_variance_phi}{{14}{8}{Avoiding inversion of $A_{\phi }$}{equation.14}{}}
+\newlabel{eq:alt_predictive_gaussian_phi}{{15}{8}{Avoiding inversion of $A_{\phi }$}{equation.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.1.5.2}Kernels and the kernel trick}{8}{paragraph.2.1.5.2}\protected@file@percent }
 \abx@aux@cite{0}{gp-ml}
 \abx@aux@segm{0}{0}{gp-ml}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Function-space view \blx@tocontentsinit {0}\cite {gp-ml}}{8}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Gaussian processes (GP)}{8}{subsubsection.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.1.1}Definition}{8}{paragraph.2.2.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.1.2}Consistency requirement}{8}{paragraph.2.2.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.1.3}Bayesian linear regression as a GP}{8}{paragraph.2.2.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.1.4}Function evaluations to a random function}{8}{paragraph.2.2.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Predictive distributions with noise-free observations}{9}{subsubsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.2.1}Prior distribution over functions}{9}{paragraph.2.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.2.2}Posterior distribution over functions}{9}{paragraph.2.2.2.2}\protected@file@percent }
-\newlabel{eq:conditioning}{{16}{9}{Posterior distribution over functions}{equation.16}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Predictive distributions with noisy observations}{9}{subsubsection.2.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.3.1}Noisy observations prior}{9}{paragraph.2.2.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.3.2}Noisy observations posterior}{9}{paragraph.2.2.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Marginal likelihood}{9}{subsubsection.2.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Function-space view \blx@tocontentsinit {0}\cite {gp-ml}}{9}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Gaussian processes (GP)}{9}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.1.1}Definition}{9}{paragraph.2.2.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.1.2}Consistency requirement}{9}{paragraph.2.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.1.3}Bayesian linear regression as a GP}{9}{paragraph.2.2.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.1.4}Function evaluations to a random function}{9}{paragraph.2.2.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Predictive distributions with noise-free observations}{10}{subsubsection.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.2.1}Prior distribution over functions}{10}{paragraph.2.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.2.2}Posterior distribution over functions}{10}{paragraph.2.2.2.2}\protected@file@percent }
+\newlabel{eq:conditioning}{{16}{10}{Posterior distribution over functions}{equation.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Predictive distributions with noisy observations}{10}{subsubsection.2.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.3.1}Noisy observations prior}{10}{paragraph.2.2.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {2.2.3.2}Noisy observations posterior}{10}{paragraph.2.2.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Marginal likelihood}{10}{subsubsection.2.2.4}\protected@file@percent }
 \abx@aux@cite{0}{gp-ml}
 \abx@aux@segm{0}{0}{gp-ml}
 \abx@aux@cite{0}{gp-ml}
 \abx@aux@segm{0}{0}{gp-ml}
-\newlabel{eq:log_marginal_likelihood}{{17}{10}{Marginal likelihood}{equation.17}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}Algorithm for predictive distribution}{10}{subsubsection.2.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Varying the hyperparameters \blx@tocontentsinit {0}\cite {gp-ml}}{10}{subsection.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Smoothing and equivelant kernels \blx@tocontentsinit {0}\cite {gp-ml}}{10}{subsection.2.4}\protected@file@percent }
+\newlabel{eq:log_marginal_likelihood}{{17}{11}{Marginal likelihood}{equation.17}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}Algorithm for predictive distribution}{11}{subsubsection.2.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Varying the hyperparameters \blx@tocontentsinit {0}\cite {gp-ml}}{11}{subsection.2.3}\protected@file@percent }
+\newlabel{eq:general_l}{{18}{11}{Varying the hyperparameters \cite {gp-ml}}{equation.18}{}}
 \abx@aux@cite{0}{gp-ml}
 \abx@aux@segm{0}{0}{gp-ml}
-\abx@aux@cite{0}{gaupro}
-\abx@aux@segm{0}{0}{gaupro}
+\abx@aux@cite{0}{gp-ml}
+\abx@aux@segm{0}{0}{gp-ml}
+\abx@aux@cite{0}{eq:se}
+\abx@aux@segm{0}{0}{eq:se}
+\abx@aux@cite{0}{gp-ml}
+\abx@aux@segm{0}{0}{gp-ml}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Smoothing and equivelant kernels \blx@tocontentsinit {0}\cite {gp-ml}}{12}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Linear predictors and smoothers}{12}{subsubsection.2.4.1}\protected@file@percent }
+\newlabel{eq:gp_linear_smoother}{{19}{12}{Linear predictors and smoothers}{equation.19}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Explicit basis functions}{12}{subsubsection.2.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Exploring Covariance Functions \blx@tocontentsinit {0}\cite {gp-ml}}{12}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Characteristics of covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{12}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Stationarity and isotropicism}{12}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Symmetry and positive semidefiniteness}{12}{subsubsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Mean square continuity and differentiability}{12}{subsubsection.3.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{13}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Spectral density for stationary processes}{13}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Squared exponential (SE)}{13}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  Plot of a Gaussian process using SE applied to a toy dataset. The toy dataset ($n = 15$) is a data-generating function in blue with some Gaussian noise applied to produce the datapoints in black. The black line represents the expected function from the Gaussian process. The green line represents the 90\% confidence interval around the predictive distribution without the $\sigma ^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 90\% confidence interval with $\sigma ^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$. }}{13}{figure.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  Plots of functions from a Gaussian process using SE applied to the same toy dataset. The blue line and black datapoints and lines are as before, but the green lines here are a sample of functions drawn from the Gaussian process. }}{14}{figure.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Matern-class}{14}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Exponential and $\gamma $-exponential}{17}{subsubsection.3.2.4}\protected@file@percent }
+\abx@aux@cite{0}{gp-ml}
+\abx@aux@segm{0}{0}{gp-ml}
+\abx@aux@cite{0}{gp-ml}
+\abx@aux@segm{0}{0}{gp-ml}
+\abx@aux@cite{0}{gaopro}
+\abx@aux@segm{0}{0}{gaopro}
 \abx@aux@cite{0}{deriving-kernels}
 \abx@aux@segm{0}{0}{deriving-kernels}
 \abx@aux@cite{0}{choosing-kernels}
@@ -74,49 +100,39 @@
 \abx@aux@segm{0}{0}{freeform-kernels}
 \abx@aux@cite{0}{multi-kernels}
 \abx@aux@segm{0}{0}{multi-kernels}
-\abx@aux@cite{0}{gprn}
-\abx@aux@segm{0}{0}{gprn}
-\abx@aux@cite{0}{vgp}
-\abx@aux@segm{0}{0}{vgp}
 \abx@aux@cite{0}{big-data}
 \abx@aux@segm{0}{0}{big-data}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Linear predictors and smoothers}{11}{subsubsection.2.4.1}\protected@file@percent }
-\newlabel{eq:gp_linear_smoother}{{18}{11}{Linear predictors and smoothers}{equation.18}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Explicit basis functions}{11}{subsubsection.2.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Exploring Covariance Functions}{11}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Covariance functions, chapter 4 \blx@tocontentsinit {0}\cite {gp-ml}}{11}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Simulations of different kernels \blx@tocontentsinit {0}\cite {gaupro}}{11}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Continuous}{11}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Periodic}{11}{subsubsection.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Factors}{11}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5}Rational quadratic}{19}{subsubsection.3.2.5}\protected@file@percent }
 \abx@aux@cite{0}{random-subsampling}
 \abx@aux@segm{0}{0}{random-subsampling}
 \abx@aux@cite{0}{matching-pursuit}
 \abx@aux@segm{0}{0}{matching-pursuit}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Deriving kernels \blx@tocontentsinit {0}\cite {deriving-kernels}}{12}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Learning best kernel from data \blx@tocontentsinit {0}\cite {choosing-kernels}}{12}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Additive covariance kernels for high-dimensional learning \blx@tocontentsinit {0}\cite {additive-kernels}}{12}{subsection.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Hierarchical Bayesian covariance function for hierarchical modelling \blx@tocontentsinit {0}\cite {hierarchical-kernels}}{12}{subsection.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Free-form covariance matrix for multi-task learning \blx@tocontentsinit {0}\cite {freeform-kernels}}{12}{subsection.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Combining different kernels for multi-task learning \blx@tocontentsinit {0}\cite {multi-kernels}}{12}{subsection.3.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Extensions of the Gaussian Process}{12}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Gaussian process regression networks \blx@tocontentsinit {0}\cite {gprn}}{12}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Variational Gaussian process \blx@tocontentsinit {0}\cite {vgp}}{12}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Computational Issues}{12}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Matrix inversion \blx@tocontentsinit {0}\cite {big-data}}{12}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Global approximations}{12}{subsubsection.5.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.1.1}Subset-of-data}{12}{paragraph.5.1.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.1.2}Sparse kernels}{12}{paragraph.5.1.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.1.3}Sparse approximations}{12}{paragraph.5.1.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {5.1.1.3.1}Prior approximation}{12}{subparagraph.5.1.1.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {5.1.1.3.2}Posterior approximation}{12}{subparagraph.5.1.1.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {5.1.1.3.3}Structured sparse approximation}{12}{subparagraph.5.1.1.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Local approximations}{12}{subsubsection.5.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.2.1}Naive-local-experts}{12}{paragraph.5.1.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.2.2}Mixture-of-experts}{12}{paragraph.5.1.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.2.3}Product-of-experts}{12}{paragraph.5.1.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Improvements}{12}{subsubsection.5.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.3.1}Scalability}{12}{paragraph.5.1.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Non-stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{20}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Sum and product}{20}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Neural network}{20}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Warping and periodicity}{20}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Language-processing covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{20}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}String}{20}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Fisher}{20}{subsubsection.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Factor-processing covariance functions \blx@tocontentsinit {0}\cite {gaopro}}{20}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Ordered factor}{20}{subsubsection.3.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}Factor}{20}{subsubsection.3.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.3}Gower factor}{20}{subsubsection.3.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.4}Indices-ignoring}{20}{subsubsection.3.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Deriving kernels \blx@tocontentsinit {0}\cite {deriving-kernels}}{20}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Learning best kernel from data \blx@tocontentsinit {0}\cite {choosing-kernels}}{20}{subsection.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Additive covariance kernels for high-dimensional learning \blx@tocontentsinit {0}\cite {additive-kernels}}{20}{subsection.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Hierarchical Bayesian covariance function for hierarchical modelling \blx@tocontentsinit {0}\cite {hierarchical-kernels}}{20}{subsection.3.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.10}Free-form covariance matrix for multi-task learning \blx@tocontentsinit {0}\cite {freeform-kernels}}{20}{subsection.3.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.11}Combining different kernels for multi-task learning \blx@tocontentsinit {0}\cite {multi-kernels}}{20}{subsection.3.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Computational Issues}{20}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Matrix inversion \blx@tocontentsinit {0}\cite {big-data}}{20}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Global approximations}{20}{subsubsection.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.1.1}Subset-of-data}{20}{paragraph.4.1.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.1.2}Sparse kernels}{20}{paragraph.4.1.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.1.3}Sparse approximations}{20}{paragraph.4.1.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{\numberline {4.1.1.3.1}Prior approximation}{20}{subparagraph.4.1.1.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{\numberline {4.1.1.3.2}Posterior approximation}{20}{subparagraph.4.1.1.3.2}\protected@file@percent }
 \abx@aux@cite{0}{materials}
 \abx@aux@segm{0}{0}{materials}
 \abx@aux@cite{0}{cosmography}
@@ -125,21 +141,28 @@
 \abx@aux@segm{0}{0}{emulators}
 \abx@aux@cite{0}{signals-processing}
 \abx@aux@segm{0}{0}{signals-processing}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.3.2}Capability}{13}{paragraph.5.1.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}Extensions}{13}{subsubsection.5.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.4.1}Scalable manifold GP}{13}{paragraph.5.1.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.4.2}Scalable deep GP}{13}{paragraph.5.1.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.4.3}Scalable online GP}{13}{paragraph.5.1.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.4.4}Scalable multi-task GP}{13}{paragraph.5.1.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.4.5}Scalable recurrent GP}{13}{paragraph.5.1.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {5.1.4.6}Scalable GP classification}{13}{paragraph.5.1.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Applying a Gaussian process to TBD}{13}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Materials science \blx@tocontentsinit {0}\cite {materials}}{13}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Cosmography \blx@tocontentsinit {0}\cite {cosmography}}{13}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Statistical emulators \blx@tocontentsinit {0}\cite {emulators}}{13}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Signals processing \blx@tocontentsinit {0}\cite {signals-processing}}{13}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{13}{section.7}\protected@file@percent }
-\abx@aux@read@bbl@mdfivesum{706899714D7D73DB3A738B688ACE568F}
+\@writefile{toc}{\contentsline {subparagraph}{\numberline {4.1.1.3.3}Structured sparse approximation}{21}{subparagraph.4.1.1.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Local approximations}{21}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.2.1}Naive-local-experts}{21}{paragraph.4.1.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.2.2}Mixture-of-experts}{21}{paragraph.4.1.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.2.3}Product-of-experts}{21}{paragraph.4.1.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Improvements}{21}{subsubsection.4.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.3.1}Scalability}{21}{paragraph.4.1.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.3.2}Capability}{21}{paragraph.4.1.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Extensions}{21}{subsubsection.4.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.4.1}Scalable manifold GP}{21}{paragraph.4.1.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.4.2}Scalable deep GP}{21}{paragraph.4.1.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.4.3}Scalable online GP}{21}{paragraph.4.1.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.4.4}Scalable multi-task GP}{21}{paragraph.4.1.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.4.5}Scalable recurrent GP}{21}{paragraph.4.1.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {4.1.4.6}Scalable GP classification}{21}{paragraph.4.1.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Applying a Gaussian process to TBD}{21}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Materials science \blx@tocontentsinit {0}\cite {materials}}{21}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cosmography \blx@tocontentsinit {0}\cite {cosmography}}{21}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Statistical emulators \blx@tocontentsinit {0}\cite {emulators}}{21}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Signals processing \blx@tocontentsinit {0}\cite {signals-processing}}{21}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{21}{section.6}\protected@file@percent }
+\abx@aux@read@bbl@mdfivesum{6263D2AB94F30AECD03EF422939F6ABF}
 \abx@aux@read@bblrerun
 \abx@aux@defaultrefcontext{0}{choosing-kernels}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{emulators}{nty/global//global/global/global}
@@ -147,6 +170,7 @@
 \abx@aux@defaultrefcontext{0}{materials}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{additive-kernels}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{gaupro}{nty/global//global/global/global}
+\abx@aux@defaultrefcontext{0}{random-subsampling}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{big-data}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{multi-kernels}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{signals-processing}{nty/global//global/global/global}
@@ -156,4 +180,4 @@
 \abx@aux@defaultrefcontext{0}{vgp}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{deriving-kernels}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{gprn}{nty/global//global/global/global}
-\gdef \@abspage@last{14}
+\gdef \@abspage@last{22}
