@@ -1,0 +1,182 @@
+ection{Exploring Covariance Functions \cite{gp-ml}}
+
+
+\subsection{Characteristics of covariance functions \cite{gp-ml}}
+
+\subsubsection{Stationarity and isotropicism}
+A stationary covariance function is a function of $X - X'$ only, and is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function is a function only of $|X - X'|$, and is is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because it is a function of $|X - X'|$ only.
+
+\subsubsection{Symmetry and positive semidefiniteness}
+Given a vector of input points ${X_i | i = 1, ..., n}$, the Gram matrix $K$ is the $n \times n$ matrix whose $(i,j)$-th entry is the inner product between $X_i$ and $X_j$. Since our covariance matrix can be represented as inner products of our vectors of inputs, we can represent it as a Gram matrix. The Gram matrix has two key properties, symmetry and positive semidefiniteness:
+\begin{equation*}
+    \begin{aligned}
+        K_{ij} = K_{ji} \\
+        X^T K X \geq 0
+    \end{aligned}
+\end{equation*}
+
+TODO prove positive semidefiniteness, background needed
+
+\subsubsection{Mean square continuity and differentiability}
+
+To understand how smooth the functions drawn from a Gaussian process are, we need to understand how differentiable and continuous they are. A more differentiable function implies that the function contains higher order polynomials which makes it smoother, and a continuous function avoids any reductions in smoothness produced by discontinuities.
+
+Because the functions drawn from the Gaussian distribution are random functions between datapoints, there are infinitely many possible functions and determining if they are all continuous or differentiable is impossible. Instead, we can examine the covariance functiondifferentiable and continuous, and square these results to enable a direct comment about the smoothness of the functions drawn from the Gaussian process.
+
+\paragraph{Continuity}
+A Gaussian process $f(X)$ is continuous in mean square at $X_*$ if, as $k \to \infty$:
+\begin{equation*}
+    \mathbb{E}[|f(X_k) - f(X_*)|^2] \to \infty
+\end{equation*}
+A Gaussian process is continuous at $X_*$ if and only if its covariance function is continuous at $X_*$. For stationary covariance functions this involves checking $k(0, 0)$ only.
+
+\paragraph{Differentiability}
+TODO
+
+\subsection{Stationary covariance functions \cite{gp-ml}}
+
+\subsubsection{Spectral density for stationary processes}
+TODO, background needed
+
+\subsubsection{Squared exponential (SE)}
+Here is the already introduced SE:
+\begin{equation*}
+    k(X,X*) = \exp \left(- \frac{|X - X'|^2}{2l^2} \right)
+\end{equation*}
+
+We can find the value for $l$ analytically using \ref{eq:general_l}:
+\begin{equation*}
+    l = \frac{1}{2\pi\hat{N}_u} \exp\left(-\frac{u^2}{2\sigma^2}\right)
+\end{equation*}
+Setting $u = 0$ makes our term inside the exponential equal to zero:
+\begin{equation*}
+    l = \frac{1}{2\pi\hat{N}_0}
+\end{equation*}
+
+This covariance function is infinitely differentiable thanks to the $\exp$ term, so a GP using SE is infinitely mean-squared differentiable, which produces very smooth functions.
+
+\begin{figure}[h]
+    \includegraphics[height=0.5\textwidth]{gaussian_variances.png}
+    \caption{
+        Plot of a Gaussian process using SE applied to a toy dataset. The toy dataset ($n = 15$) is a data-generating function in blue with some Gaussian noise applied to produce the datapoints in black. The black line represents the expected function from the Gaussian process. The green line represents the 90\% confidence interval around the predictive distribution without the $\sigma^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 90\% confidence interval with $\sigma^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$.
+    }
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[height=0.5\textwidth]{gaussian_draws.png}
+    \caption{
+        Plots of functions from a Gaussian process using SE applied to the same toy dataset. The blue line and black datapoints and lines are as before, but the green lines here are a sample of functions drawn from the Gaussian process.
+    }
+\end{figure}
+
+TODO proof of infinite basis functions, background needed
+
+
+% Often causes issues since it assumes infinite differentiability. Experts don’t recommend using it. \cite{gaopro}
+
+% TODO fix formatting here
+\newpage
+\subsubsection{Matern-class}
+The Matern class of covariance functions is given by:
+\begin{equation*}
+    k(X,X') = \frac{2^{1 - \nu}}{\Gamma(\nu)}\left(\frac{\sqrt{2\nu}|X - X'|}{l}\right)^{\nu}K_{\nu}\left(\frac{\sqrt{2\nu}|X - X'|}{l}\right)
+\end{equation*}
+
+$l$ is our familiar length scale hyperparameter, but $\nu$ controls how differentiable the function is. 
+
+TODO Bessel function $K_{\nu}$, background needed
+Therefore, a a Gaussian process using a Matern class kernel is $k$-times MS differentiable if and only if $\nu > k$. 
+
+We can simplify this by using half-integers, i.e. $\nu = p + 1/2$ where $p$ is a non-negative integer. In this case, the covariance function becomes a product of a polynomial and an exponential:
+
+\begin{equation*}
+    k_{\nu = p + 1/2}(X,X') = \exp \left(- \frac{\sqrt{2\nu}|X - X'|}{l} \right) \frac{\Gamma(p+1)}{\Gamma(2p+1)} \sum_{i=0}^p \frac{(p + i)!}{i!(p-i)!} \left( \frac{\sqrt{8\nu r}}{l} \right)^{p-i}
+\end{equation*}
+
+$\nu = 1/2$ is equivelant to the exponential covariance function.
+
+TODO formula
+
+\includegraphics[height=0.5\textwidth]{matern32_variances.png} \\
+\includegraphics[height=0.5\textwidth]{matern32_draws.png} \\
+
+% Matern 3/2: Assumes one time differentiability. This is often too low of an assumption. \cite{gaopro}
+
+\includegraphics[height=0.5\textwidth]{matern52_variances.png} \\
+\includegraphics[height=0.5\textwidth]{matern52_draws.png} \\
+
+% Matern 5/2: Assumes two time differentiability. Generally the best. \cite{gaopro}
+
+\subsubsection{Exponential and $\gamma$-exponential}
+TODO formulas 
+
+\includegraphics[height=0.5\textwidth]{exp_variances.png} \\
+\includegraphics[height=0.5\textwidth]{exp_draws.png} \\
+% Exponential: Equivalent to Matern 1/2. Assumes no differentiability. \cite{gaopro}
+
+\includegraphics[height=0.5\textwidth]{powerexp_variances.png} \\
+\includegraphics[height=0.5\textwidth]{powerexp_draws.png} \\
+
+\subsubsection{Rational quadratic}
+The rational quadratic can be seen as an infinite sum of SE with different length-scales.
+
+TODO formulas
+
+\includegraphics[height=0.5\textwidth]{ratquad_variances.png} \\
+\includegraphics[height=0.5\textwidth]{ratquad_draws.png} \\
+
+
+% \subsection{Non-stationary covariance functions \cite{gp-ml}}
+% 
+% \subsubsection{Sum and product}
+% 
+% \subsubsection{Neural network}
+% 
+% \subsubsection{Warping and periodicity}
+
+
+% \subsection{Language-processing covariance functions \cite{gp-ml}}
+% 
+% \subsubsection{String}
+% 
+% \subsubsection{Fisher}
+% 
+% 
+% \subsection{Factor-processing covariance functions \cite{gaopro}}
+% 
+% \subsubsection{Ordered factor}
+% 
+% \subsubsection{Factor}
+% 
+% \subsubsection{Gower factor}
+% 
+% \subsubsection{Indices-ignoring}
+
+
+\subsection{Deriving kernels \cite{deriving-kernels}}
+TODO
+
+\subsection{Learning best kernel from data \cite{choosing-kernels}}
+TODO
+
+% \subsection{Additive covariance kernels for high-dimensional learning \cite{additive-kernels}}
+% 
+% 
+% \subsection{Hierarchical Bayesian covariance function for hierarchical modelling \cite{hierarchical-kernels}}
+% 
+% 
+% \subsection{Free-form covariance matrix for multi-task learning \cite{freeform-kernels}}
+% 
+% 
+% \subsection{Combining different kernels for multi-task learning \cite{multi-kernels}}
+
+
+
+% \section{Extensions of the Gaussian Process}
+% 
+% 
+% \subsection{Gaussian process regression networks \cite{gprn}}
+% 
+% 
+% \subsection{Variational Gaussian process \cite{vgp}}
+
