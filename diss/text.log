@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  3 JUL 2025 06:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  3 JUL 2025 06:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -778,7 +778,7 @@ LaTeX Warning: Citation 'eq:se' on page 13 undefined on input line 7.
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 36.
 
-<./img/gaussian_variances.png, id=311, 602.25pt x 451.6875pt>
+<./img/gaussian_variances.png, id=416, 602.25pt x 451.6875pt>
 File: ./img/gaussian_variances.png Graphic file (type png)
 <use ./img/gaussian_variances.png>
 Package pdftex.def Info: ./img/gaussian_variances.png  used on input line 59.
@@ -786,7 +786,7 @@ Package pdftex.def Info: ./img/gaussian_variances.png  used on input line 59.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./img/gaussian_draws.png, id=312, 602.25pt x 451.6875pt>
+<./img/gaussian_draws.png, id=417, 602.25pt x 451.6875pt>
 File: ./img/gaussian_draws.png Graphic file (type png)
 <use ./img/gaussian_draws.png>
 Package pdftex.def Info: ./img/gaussian_draws.png  used on input line 66.
@@ -801,12 +801,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 ]
-<./img/matern32_variances.png, id=328, 602.25pt x 451.6875pt>
+<./img/matern32_variances.png, id=426, 602.25pt x 451.6875pt>
 File: ./img/matern32_variances.png Graphic file (type png)
 <use ./img/matern32_variances.png>
 Package pdftex.def Info: ./img/matern32_variances.png  used on input line 100.
 (pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/matern32_draws.png, id=329, 602.25pt x 451.6875pt>
+<./img/matern32_draws.png, id=427, 602.25pt x 451.6875pt>
 File: ./img/matern32_draws.png Graphic file (type png)
 <use ./img/matern32_draws.png>
 Package pdftex.def Info: ./img/matern32_draws.png  used on input line 101.
@@ -821,12 +821,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--102
 [14 <./img/gaussian_variances.png>]
 
 [15 <./img/gaussian_draws.png> <./img/matern32_variances.png>]
-<./img/matern52_variances.png, id=344, 602.25pt x 451.6875pt>
+<./img/matern52_variances.png, id=441, 602.25pt x 451.6875pt>
 File: ./img/matern52_variances.png Graphic file (type png)
 <use ./img/matern52_variances.png>
 Package pdftex.def Info: ./img/matern52_variances.png  used on input line 105.
 (pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/matern52_draws.png, id=345, 602.25pt x 451.6875pt>
+<./img/matern52_draws.png, id=442, 602.25pt x 451.6875pt>
 File: ./img/matern52_draws.png Graphic file (type png)
 <use ./img/matern52_draws.png>
 Package pdftex.def Info: ./img/matern52_draws.png  used on input line 106.
@@ -851,12 +851,12 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 110.
 
-<./img/exp_variances.png, id=352, 602.25pt x 451.6875pt>
+<./img/exp_variances.png, id=449, 602.25pt x 451.6875pt>
 File: ./img/exp_variances.png Graphic file (type png)
 <use ./img/exp_variances.png>
 Package pdftex.def Info: ./img/exp_variances.png  used on input line 113.
 (pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/exp_draws.png, id=353, 602.25pt x 451.6875pt>
+<./img/exp_draws.png, id=450, 602.25pt x 451.6875pt>
 File: ./img/exp_draws.png Graphic file (type png)
 <use ./img/exp_draws.png>
 Package pdftex.def Info: ./img/exp_draws.png  used on input line 114.
@@ -869,12 +869,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 113--116
 
 
 [17 <./img/matern52_draws.png> <./img/exp_variances.png>]
-<./img/powerexp_variances.png, id=361, 602.25pt x 451.6875pt>
+<./img/powerexp_variances.png, id=457, 602.25pt x 451.6875pt>
 File: ./img/powerexp_variances.png Graphic file (type png)
 <use ./img/powerexp_variances.png>
 Package pdftex.def Info: ./img/powerexp_variances.png  used on input line 117.
 (pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/powerexp_draws.png, id=362, 602.25pt x 451.6875pt>
+<./img/powerexp_draws.png, id=458, 602.25pt x 451.6875pt>
 File: ./img/powerexp_draws.png Graphic file (type png)
 <use ./img/powerexp_draws.png>
 Package pdftex.def Info: ./img/powerexp_draws.png  used on input line 118.
@@ -887,12 +887,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--119
 
 
 [18 <./img/exp_draws.png> <./img/powerexp_variances.png>]
-<./img/ratquad_variances.png, id=369, 602.25pt x 451.6875pt>
+<./img/ratquad_variances.png, id=465, 602.25pt x 451.6875pt>
 File: ./img/ratquad_variances.png Graphic file (type png)
 <use ./img/ratquad_variances.png>
 Package pdftex.def Info: ./img/ratquad_variances.png  used on input line 125.
 (pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/ratquad_draws.png, id=370, 602.25pt x 451.6875pt>
+<./img/ratquad_draws.png, id=466, 602.25pt x 451.6875pt>
 File: ./img/ratquad_draws.png Graphic file (type png)
 <use ./img/ratquad_draws.png>
 Package pdftex.def Info: ./img/ratquad_draws.png  used on input line 126.
@@ -971,128 +971,41 @@ L3 programming layer <2025-01-18>
 
 LaTeX Warning: There were undefined references.
 
-
-Package rerunfilecheck Warning: File `text.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `text.out':
-(rerunfilecheck)             Before: 7D576927F9CFA6CB50EED4AD9E9D916C;3554
-(rerunfilecheck)             After:  5C187DE557C321AA2E88E4B6BE1D7C23;9990.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                text
-(biblatex)                and rerun LaTeX afterwards.
-
+Package rerunfilecheck Info: File `text.out' has not changed.
+(rerunfilecheck)             Checksum: 5C187DE557C321AA2E88E4B6BE1D7C23;9990.
 Package logreq Info: Writing requests to 'text.run.xml'.
 \openout1 = `text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18288 strings out of 473190
- 316329 string characters out of 5719979
- 1158092 words of memory out of 5000000
- 41168 multiletter control sequences out of 15000+600000
+ 18304 strings out of 473190
+ 316633 string characters out of 5719979
+ 1158285 words of memory out of 5000000
+ 41203 multiletter control sequences out of 15000+600000
  568469 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,9n,81p,1135b,1304s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{section.6} has been referenced but does not exist, 
-replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.5.5} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.5.4} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.5.3} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.5.2.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.5.2.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.5.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.5.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.4.4.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.4.4.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.4.3.3} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.4.3.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.4.3.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.4.2.3} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.3.2.5} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.3.2.4} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.3.1.3} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.3.1.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsubsection.3.1.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texli
-ve/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2025/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
-.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/t
-exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/202
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
-pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/t
-exlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texli
-ve/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on text.pdf (24 pages, 572172 bytes).
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
+live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2025/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:
+/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2
+025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
+0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
+/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
+live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on text.pdf (24 pages, 573587 bytes).
 PDF statistics:
- 544 PDF objects out of 1000 (max. 8388607)
- 451 compressed objects within 5 object streams
- 151 named destinations out of 1000 (max. 500000)
- 189 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 626 PDF objects out of 1000 (max. 8388607)
+ 532 compressed objects within 6 object streams
+ 132 named destinations out of 1000 (max. 500000)
+ 469 words of extra memory for PDF output out of 10000 (max. 10000000)
 
