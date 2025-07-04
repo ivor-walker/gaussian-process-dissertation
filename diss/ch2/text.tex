@@ -21,17 +21,51 @@ TODO prove positive semidefiniteness, background needed
 
 To understand how smooth the functions drawn from a Gaussian process are, we need to understand how differentiable and continuous they are. A more differentiable function implies that the function contains higher order polynomials which makes it smoother, and a continuous function avoids any reductions in smoothness produced by discontinuities.
 
-Because the functions drawn from the Gaussian distribution are random functions between datapoints, there are infinitely many possible functions and determining if they are all continuous or differentiable is impossible. Instead, we can examine the covariance functiondifferentiable and continuous, and square these results to enable a direct comment about the smoothness of the functions drawn from the Gaussian process.
+Because the functions drawn from the Gaussian distribution are random functions between datapoints, there are infinitely many possible functions and determining if they are all continuous or differentiable is impossible. We are l
+Instead, we can examine if the covariance function responsible for producing these functions is differentiable and continuous
 
 \paragraph{Continuity}
-A Gaussian process $f(X)$ is continuous in mean square at $X_*$ if, as $k \to \infty$:
+Let $x$ be an infinite-length vector of inputs $x_1, x_2, ...$ whose values linearly approach some stable fixed point $x_*$ as the sequence progresses. Formally:
 \begin{equation*}
-    \mathbb{E}[|f(X_k) - f(X_*)|^2] \to \infty
+    \lim_{k \to \infty} |x_k - x_*| = 0
 \end{equation*}
-A Gaussian process is continuous at $X_*$ if and only if its covariance function is continuous at $X_*$. For stationary covariance functions this involves checking $k(0, 0)$ only.
+
+A regular function $f$ is continuous at $x_*$ if three conditions are met. $x_*$ must exist in the domain of $f$, e.g. $f(X) = 1/x$ is not continuous at $f(0)$ because $0$ is not in the domain of $f$. There must be a single limit the function approaches.
+\begin{equation*}
+    f(X) = \begin{cases}
+        0 & \text{if } X < 0 \\
+        1 & \text{if } X > 0 \\
+        2 & \text{if } X = 0
+    \end{cases}
+\end{equation*}
+In this example, at $f(0)$ $x$ is not continuous at $x = 0$ since $f$ approaches both $0$ and $1$. This single limit needs to be the same as the function evaluation at the limit. If we removed the $0 \text{ if } X < 0$ case to produce a single limit, it would still not be continuous at $x = 0$ since the limit would be $1$ but $f(0) = 2$. Formally summarising these three ideas:
+\begin{equation*}
+    \lim_{x \to x_*} |f(x) - f(x_*)| = 0
+\end{equation*}
+
+A Gaussian process $f$ is MS continuous at $x_*$ if the expected function evaluations $E[f(x)]$ quadratically approach $f(x_*)$ as $x \to x_*$. Formally:
+\begin{equation*}
+    \lim_{x \to x_*} \mathbb{E}[(f(x) - f(x_*))^2] = 0
+\end{equation*}
+
+The quadratic term in our limit means our mean squared errors will also vary continuously, so we avoid wild "swings" in uncertainty when moving away from training data points in the input space. More importantly, it allows the error term to be expanded directly into kernel terms: 
+\begin{equation*}
+    \begin{aligned}
+        \mathbb{E}[(f(x) - f(x_*))^2] &= \mathbb{E}[f(x)^2] + \mathbb{E}[f(x_*)^2] - 2\mathbb{E}[f(x)f(x_*)] \\
+        &= k(x, x) + k(x_*, x_*) - 2k(x, x_*)
+    \end{aligned}
+\end{equation*}
+Using this expansion in our definition of MS continuity: 
+\begin{equation*}
+    \lim_{x \to x_*} | k(x, x) - 2k(x, x_*) + k(x_*, x_*) | = 0
+\end{equation*}
+Because $x_*$ is given, $k(x_*, x_*)$ is a constant. This limit requires that both $k(x, x)$ and $k(x, x_*) \to k(x_*, x_*)$ as $x \to x_*$, which is the very definition of continuity of $k$ at $x_*$ - they guarantee that $x_*$ is in the domain of $k$, that it has a single limit, and this limit of $k(x, x_*)$ is $k(x_*, x_*)$ as $x \to x_*$. Therefore, a Gaussian process is MS continuous at $x_*$ if and only if the covariance function $k$ is continuous at $x_*$. For stationary covariance functions, this reduces to checking that $k$ is continuous at $x_* = 0$.
 
 \paragraph{Differentiability}
-TODO
+The MS derivative of $f(X)$ in the $i$th direction is:
+\begin{equation*}
+    \frac{\delta f(x)}{\delta x_i} = \text{l.i.m}_{h \to 0} \frac{f(x + h e_i) - f(x)}{h}
+\end{equation*}
 
 \subsection{Stationary covariance functions \cite{gp-ml}}
 
@@ -69,7 +103,7 @@ This covariance function is infinitely differentiable thanks to the $\exp$ term,
     }
 \end{figure}
 
-TODO proof of infinite basis functions, background needed
+TODO proof of infinite basis functions
 
 
 % Often causes issues since it assumes infinite differentiability. Experts don’t recommend using it. \cite{gaopro}

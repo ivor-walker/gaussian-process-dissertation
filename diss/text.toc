@@ -34,11 +34,11 @@
 \contentsline {subsubsection}{\numberline {2.1.2}Symmetry and positive semidefiniteness}{13}{subsubsection.2.1.2}%
 \contentsline {subsubsection}{\numberline {2.1.3}Mean square continuity and differentiability}{13}{subsubsection.2.1.3}%
 \contentsline {paragraph}{\numberline {2.1.3.1}Continuity}{13}{paragraph.2.1.3.1}%
-\contentsline {paragraph}{\numberline {2.1.3.2}Differentiability}{13}{paragraph.2.1.3.2}%
-\contentsline {subsection}{\numberline {2.2}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{13}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Spectral density for stationary processes}{13}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Squared exponential (SE)}{13}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Matern-class}{14}{subsubsection.2.2.3}%
+\contentsline {paragraph}{\numberline {2.1.3.2}Differentiability}{14}{paragraph.2.1.3.2}%
+\contentsline {subsection}{\numberline {2.2}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{14}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Spectral density for stationary processes}{14}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Squared exponential (SE)}{14}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Matern-class}{15}{subsubsection.2.2.3}%
 \contentsline {subsubsection}{\numberline {2.2.4}Exponential and $\gamma $-exponential}{17}{subsubsection.2.2.4}%
 \contentsline {subsubsection}{\numberline {2.2.5}Rational quadratic}{19}{subsubsection.2.2.5}%
 \contentsline {subsection}{\numberline {2.3}Deriving kernels \blx@tocontentsinit {0}\cite {deriving-kernels}}{20}{subsection.2.3}%
