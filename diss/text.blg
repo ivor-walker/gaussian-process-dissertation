@@ -1,19 +1,19 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [1] Config.pm:311> INFO - Logfile is 'text.blg'
-[531] biber-MSWIN64:340> INFO - === 
-[752] Biber.pm:420> INFO - Reading 'text.bcf'
-[1070] Biber.pm:994> INFO - Found 7 citekeys in bib section 0
-[1140] Biber.pm:4463> INFO - Processing section 0
-[1213] Biber.pm:4654> INFO - Looking for bibtex file '../references/references.bib' for section 0
-[1437] bibtex.pm:1713> INFO - LaTeX decoding ...
-[1536] bibtex.pm:1519> INFO - Found BibTeX data source '../references/references.bib'
-[1887] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1888] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1889] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[1889] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
-[1988] bbl.pm:676> INFO - Writing 'text.bbl' with encoding 'UTF-8'
-[2000] bbl.pm:779> INFO - Output to text.bbl
-[2001] Biber.pm:131> WARN - legacy month field '26--28 Aug' in entry 'random-subsampling' is not an integer - this will probably not sort properly.
-[2001] Biber.pm:131> WARN - I didn't find a database entry for 'eq:se' (section 0)
-[2001] Biber.pm:131> WARN - I didn't find a database entry for 'matching-pursuit' (section 0)
-[2002] Biber.pm:133> INFO - WARNINGS: 3
+[174] biber-MSWIN64:340> INFO - === 
+[248] Biber.pm:420> INFO - Reading 'text.bcf'
+[390] Biber.pm:994> INFO - Found 7 citekeys in bib section 0
+[406] Biber.pm:4463> INFO - Processing section 0
+[422] Biber.pm:4654> INFO - Looking for bibtex file '../references/references.bib' for section 0
+[580] bibtex.pm:1713> INFO - LaTeX decoding ...
+[648] bibtex.pm:1519> INFO - Found BibTeX data source '../references/references.bib'
+[793] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[793] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[794] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[794] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
+[814] bbl.pm:676> INFO - Writing 'text.bbl' with encoding 'UTF-8'
+[823] bbl.pm:779> INFO - Output to text.bbl
+[824] Biber.pm:131> WARN - legacy month field '26--28 Aug' in entry 'random-subsampling' is not an integer - this will probably not sort properly.
+[824] Biber.pm:131> WARN - I didn't find a database entry for 'eq:se' (section 0)
+[824] Biber.pm:131> WARN - I didn't find a database entry for 'matching-pursuit' (section 0)
+[825] Biber.pm:133> INFO - WARNINGS: 3

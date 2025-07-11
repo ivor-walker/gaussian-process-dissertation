@@ -1,10 +1,8 @@
-\section{Exploring Covariance Functions \cite{gp-ml}}
+\section{Exploring Covariance Functions}
 
 
 \subsection{Characteristics of covariance functions \cite{gp-ml}}
 
-\subsubsection{Stationarity and isotropicism}
-A stationary covariance function is a function of $X - X'$ only, and is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function is a function only of $|X - X'|$, and is is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because it is a function of $|X - X'|$ only.
 
 \subsubsection{Symmetry and positive semidefiniteness}
 Given a vector of input points ${X_i | i = 1, ..., n}$, the Gram matrix $K$ is the $n \times n$ matrix whose $(i,j)$-th entry is the inner product between $X_i$ and $X_j$. Since our covariance matrix can be represented as inner products of our vectors of inputs, we can represent it as a Gram matrix. The Gram matrix has two key properties, symmetry and positive semidefiniteness:
@@ -21,8 +19,11 @@ TODO prove positive semidefiniteness, background needed
 
 To understand how smooth the functions drawn from a Gaussian process are, we need to understand how differentiable and continuous they are. A more differentiable function implies that the function contains higher order polynomials which makes it smoother, and a continuous function avoids any reductions in smoothness produced by discontinuities.
 
-Because the functions drawn from the Gaussian distribution are random functions between datapoints, there are infinitely many possible functions and determining if they are all continuous or differentiable is impossible. We are l
-Instead, we can examine if the covariance function responsible for producing these functions is differentiable and continuous
+Because the functions drawn from the Gaussian distribution are random functions between datapoints, there are infinitely many possible functions and determining if they are all continuous or differentiable is impossible. TODO 
+
+% We are l Instead, we can examine if the covariance function responsible for producing these functions is differentiable and continuous.
+
+% The quadratic term in our limit means our mean squared errors will also vary continuously, so we avoid wild "swings" in uncertainty when moving away from training data points in the input space. More importantly, it allows the error term to be expanded directly into kernel terms: 
 
 \paragraph{Continuity}
 Let $x$ be an infinite-length vector of inputs $x_1, x_2, ...$ whose values linearly approach some stable fixed point $x_*$ as the sequence progresses. Formally:
@@ -48,29 +49,231 @@ A Gaussian process $f$ is MS continuous at $x_*$ if the expected function evalua
     \lim_{x \to x_*} \mathbb{E}[(f(x) - f(x_*))^2] = 0
 \end{equation*}
 
-The quadratic term in our limit means our mean squared errors will also vary continuously, so we avoid wild "swings" in uncertainty when moving away from training data points in the input space. More importantly, it allows the error term to be expanded directly into kernel terms: 
+Thanks to the quadratic term, we can expand our error term directly into kernel terms. The covariance function $k$ is defined as the expected value of the product of two function evaluations:
 \begin{equation*}
     \begin{aligned}
-        \mathbb{E}[(f(x) - f(x_*))^2] &= \mathbb{E}[f(x)^2] + \mathbb{E}[f(x_*)^2] - 2\mathbb{E}[f(x)f(x_*)] \\
-        &= k(x, x) + k(x_*, x_*) - 2k(x, x_*)
+        \mathbb{E}[(f(x) - f(x_*))^2] = \mathbb{E}[f(x)^2] + \mathbb{E}[f(x_*)^2] - 2\mathbb{E}[f(x)f(x_*)] \\
+        = k(x, x) + k(x_*, x_*) - 2k(x, x_*)
     \end{aligned}
 \end{equation*}
 Using this expansion in our definition of MS continuity: 
-\begin{equation*}
+\begin{equation} \label{eq:ms_continuity}
     \lim_{x \to x_*} | k(x, x) - 2k(x, x_*) + k(x_*, x_*) | = 0
-\end{equation*}
-Because $x_*$ is given, $k(x_*, x_*)$ is a constant. This limit requires that both $k(x, x)$ and $k(x, x_*) \to k(x_*, x_*)$ as $x \to x_*$, which is the very definition of continuity of $k$ at $x_*$ - they guarantee that $x_*$ is in the domain of $k$, that it has a single limit, and this limit of $k(x, x_*)$ is $k(x_*, x_*)$ as $x \to x_*$. Therefore, a Gaussian process is MS continuous at $x_*$ if and only if the covariance function $k$ is continuous at $x_*$. For stationary covariance functions, this reduces to checking that $k$ is continuous at $x_* = 0$.
+\end{equation}
+Because $x_*$ is given, $k(x_*, x_*)$ is a constant. This limit requires that both $k(x, x)$ and $k(x, x_*) \to k(x_*, x_*)$ as $x \to x_*$, which is the very definition of continuity of $k$ at $x_*$ - they guarantee that $x_*$ is in the domain of $k$, that it has a single limit, and this limit of $k(x, x_*)$ is $k(x_*, x_*)$ as $x \to x_*$. Therefore, a Gaussian process is MS continuous at $x_*$ if and only if the covariance function $k$ is continuous at $x_*$.  
 
 \paragraph{Differentiability}
-The MS derivative of $f(X)$ in the $i$th direction is:
+$f$ is MS differentiable at $x_*$ in the $i$th direction of our input vector $X$ if:
 \begin{equation*}
-    \frac{\delta f(x)}{\delta x_i} = \text{l.i.m}_{h \to 0} \frac{f(x + h e_i) - f(x)}{h}
+    \lim_{h \to 0} \mathbb{E} \left[| \frac{(f(x_* + h e_i) - f(x_*))}{h} - \frac{\partial f}{\partial x_{*i}}(x_*) |\right]^2 = 0
+\end{equation*}
+$e_i = (0_0, ..., 0_{i-1}, 1_i, 0_{i+1}, ..., 0_n)$ is a unit vector that constrains the change in $x$ to only the $i$th dimension. We assume $m(x_*) = 0$ for simplicity, but a non-zero mean does not change the structure of this proof and leads to the same result.
+
+Expanding and creating simplifying $A$ and $B$ terms to represent the limit and the proposed derivative respectively:
+\begin{equation*}
+    \begin{aligned}
+        \lim_{h \to 0} \mathbb{E} \left[(A_h - B)^2\right] = \mathbb{E}[A_h^2] + \mathbb{E}[B^2] - 2\mathbb{E}[A_h B] = 0 \\
+        A_h = \frac{f(x_* + h e_i) - f(x_*)}{h} \\
+        B = \frac{\partial f}{\partial x_{*i}}(x_*)
+    \end{aligned}
+\end{equation*}
+Similar to MS continuity, we expand $A_h^2$ into kernel terms:
+\begin{equation} \label{eq:msd_a}
+    \mathbb{E}[A_h^2] = \frac{1}{h^2} \left( k(x_* + h e_i, x_* + h e_i) + k(x_*, x_*) - 2k(x_* + h e_i, x_*) \right)
+\end{equation}
+$k(x_*,x_*)$ is a constant, but the other terms vary with $h$. We can use a second-order Taylor series to approximate these terms if $k$ is twice continuously differentiable at $x_*$. Starting with the univariate $k(x_*, x_* + h e_i)$:
+\begin{equation*}
+    \begin{aligned}
+        k(x_*, x_* + h e_i) = \\
+        k(x_*, x_*) \\
+        + h [\partial_{u_i}k](x_*, x_*) \\
+        + \frac{h^2}{2} [\partial_{u_i v_i}^2k] (x_*, x_*) \\
+        + O(h^3)
+    \end{aligned}
+\end{equation*}
+$u_i$ and $v_i$ denote the first argument $x_*$ and the second argument $x_* + h e_i$ respectively in the $i$th direction. TODO explain $O$ and why it's in terms of $h^3$
+Then, the multivariate $k(x_* + h e_i, x_* + h e_i)$:
+\begin{equation*}
+    \begin{aligned}
+        k(x_* + h e_i, x_* + h e_i) = \\
+        k(x_*, x_*) \\
+        + h [\partial_{u_i}k + \partial_{v_i}k](x_*, x_*) \\
+        + \frac{h^2}{2} [\partial_{u_i v_i}^2 k + \partial_{u_i u_i}^2 k + \partial_{v_i v_i}^2 k](x_*, x_*) \\
+        + O(h^3) 
+    \end{aligned}
+\end{equation*}
+Substituting these approximations into \ref{eq:msd_a}:
+\begin{equation*}
+    \begin{aligned}
+        \mathbb{E}[A^2_h] = \frac{1}{h_2} \\
+        k(x_*, x_*) + k(x_*, x_*) - 2k(x_*, x_*) \\
+        + h [\partial_{u_i}k](x_*, x_*) - 2h[\partial_{u_i}k + \partial_{v_i}k](x_*, x_*) \\
+        + \frac{h^2}{2} [\partial_{u_i v_i}^2 k + \partial_{u_i u_i}^2 k + \partial_{v_i v_i}^2 k](x_*, x_*) - 2\frac{h^2}{2} [\partial_{u_i v_i}^2k](x_*, x_*) \\
+        + O(h^3)
+    \end{aligned}
+\end{equation*}
+The constant $k(x_*, x_*)$ terms cancel and the $O(h^3)$ remainders combine but remain the same order. 
+
+We can combine the linear partial derivatives to form a single function $[\partial_{u_i}k + \partial_{v_i}k - 2\partial_{v_i}k]$. Thanks to the symmetry of the covariance matrix inherited from the Gram matrix, $k(u,v) = k(v,u)$ and $\partial_{u_i}k = \partial_{v_i}k$ and substituting in either into our linear term cancels it completely. 
+
+Similarly, we can combine the quadratic derivatives:
+\begin{equation*}
+    = \frac{h^2}{2}[\partial_{u_i v_i}^2 k + \partial_{u_i u_i}^2 k + \partial_{v_i v_i}^2k](x_*,x_*) - h^2[\partial_{u_i v_i}^2 k](x_*, x_*)
+\end{equation*}
+Factoring out $h^2$:
+\begin{equation*}
+    \begin{aligned}
+    = h^2[\partial_{u_i v_i}^2 k + \frac{1}{2}\partial_{u_i u_i}^2 k + \frac{1}{2}\partial_{v_i v_i}^2k - \partial_{u_i v_i}^2 k](x_*, x_*) \\
+        = h^2[\frac{1}{2}\partial_{u_i u_i}^2 k + \partial_{u_i v_i}k - \frac{1}{2}\partial_{v_i v_i}^2 k](x_*, x_*)
+    \end{aligned}
+\end{equation*}
+Similarly to the linear terms, using the symmetry of $k$ to cancel $\partial_{u_i u_i}^2$ and $\partial_{v_i v_i}^2$ yields the final expression for $\mathbb{E}[A_h^2$:
+\begin{equation} \label{eq:msd_a_final}
+    \mathbb{E}[A_h^2] = h^2 \partial_{u_i v_i}^2 k(x_*,x_*) + O(h^3) 
+\end{equation}
+
+Because $B$ is Gaussian, its square is simply its variance:
+\begin{equation*}
+    \begin{aligned}
+        \mathbb{E}[B^2] = \text{Var}\left(\frac{\partial f}{\partial x_{*i}}(x_*)\right) \\
+        = \text{Cov} \left(\frac{\partial f}{\partial x_{*i}}(x_*), \frac{\partial f}{\partial x_{*i}}(x_*) \right) \\
+    \end{aligned}
+\end{equation*}
+We can substitute our regular limit definition of differentiability outside of MS space, with different small increments $h$ and $h'$:
+\begin{equation*}
+    = \text{Cov} \left(\frac{f(x_* + h e_i) - f(x_*)}{h}, \frac{f(x_* + h' e_i) - f(x_*)}{h'} \right)
+\end{equation*}
+The $h$ and $h'$ denominators merely scale the covariance, so we can take them out of the covariance expression:
+\begin{equation*}
+    = \frac{1}{hh'} \text{Cov} \left(f(x_* + h e_i) - f(x_*), f(x_* + h' e_i) - f(x_*) \right)
+\end{equation*}
+Using additivity TODO explain:
+\begin{equation*}
+    \mathbb{E}[B^2] = \frac{1}{hh'} \left( k(x_* + h e_i, x_* + h' e_i) - k(x_*, x_* + h' e_i) - k(x_* + h e_i, x_*) + k(x_*, x_*) \right)
+\end{equation*}
+We already have $k(x_* + h e_i, x_*)$ from \ref{eq:uni_taylor_a} directly, and $k(x_*, x_* + h e_i)$ by symmetry and substituting $h'$ for $h$. Our multivariate Taylor series $k(x_* + h e_i, x_* + h' e_i)$ looks similar to \ref{eq:multi_taylor_a}:
+\begin{equation*}
+    \begin{aligned}
+        k(x_* + h e_i, x_* + h' e_i) = \\
+        k(x_*, x_*) \\
+        + h [\delta_{u_i}k](x_*, x_*) 
+        + h' [\delta_{v_i}k](x_*, x_*) \\
+        + \frac{h^2}{2} [partial_{u_i u_i}^2k](x_*, x_*) \\
+        + hh' [\partial_{u_i v_i}^2k](x_*, x_*) \\
+        + \frac{h'^2}{2} [\partial_{v_i v_i}^2k](x_*, x_*) \\
+        + O(||(h,h')||^3)
+    \end{aligned}
 \end{equation*}
 
-\subsection{Stationary covariance functions \cite{gp-ml}}
+Substituting these results into $\mathbb{E}[B^2]$:
+\begin{equation*}
+    \begin{aligned}
+        \mathbb{E}[B^2] = \frac{1}{hh'} \\
+        k(x_*,x_*) \\
+        + k(x_*,x_*) + k(x_*,x_*) - k(x_*,x_*) \\
+        + h [\delta_{u_i}k](x_*, x_*) - h [\delta_{u_i}k](x_*, x_*) \\
+        + h' [\delta_{v_i}k](x_*, x_*) - h' [\delta_{v_i}k](x_*, x_*) \\
+        + \frac{h^2}{2} [\partial_{u_i u_i}^2k](x_*, x_*) -  \frac{h^2}{2} [\partial_{u_i u_i}^2k](x_*, x_*) \\
+        + hh' [\partial_{u_i v_i}^2k](x_*, x_*) \\
+        + \frac{h'^2}{2} [\partial_{v_i v_i}^2k](x_*, x_*) - \frac{h'^2}{2} [\partial_{v_i v_i}^2k](x_*, x_*) \\
+        + O(h^3) + O(h'^3) + O(||(h,h')||^3) \\
+    \end{aligned}
+\end{equation*}
+All constant, linear $h$ and $h'$, and $h^2$ and $h'^2$ terms cancel, leaving the mixed term and the remainders. $\frac{1}{hh'}$ cancel and the remainders can be combined since TODO:
+\begin{equation} \label{eq:msd_b_final}
+    \mathbb{E}[B^2] = \partial_{u_i v_i}^2 k(x_*, x_*) + O(h)
+\end{equation}
 
-\subsubsection{Spectral density for stationary processes}
+For $\mathbb{E}[A_h B]$, assuming zero-mean:
+\begin{equation*}
+    \mathbb{E}[A_h B] = \text{Cov} \left( \frac{f(x_* + h e_i) - f(x_*)}{h}, \frac{\partial f}{\partial x_{*i}}(x_*) \right)
+\end{equation*}
+Similarly to $B$, we can remove the scaling factor $\frac{1}{h}$:
+\begin{equation*}
+    = \frac{1}{h} \text{Cov} \left( f(x_* + h e_i) - f(x_*), \frac{\partial f}{\partial x_{*i}}(x_*) \right)
+\end{equation*}
+By linearity of covariance TODO elabourate:
+\begin{equation*}
+    = \frac{1}{h} \left[ \text{Cov} (f(x_* + h e_i), \frac{\partial f}{\partial x_{*i}}(x_*) ) - \text{Cov} (f(x_*), \frac{\partial f}{\partial x_{*i}}(x_*)) \right]
+\end{equation*}
+
+A fundamental identities for Gaussian fields TODO elabourate is:
+\begin{equation*}
+    \begin{aligned}
+        \text{Cov}(f(u), \delta_{u_i} f(v)) = \delta_{u_i} k(u, v) \\
+    \end{aligned}
+\end{equation*}
+Applying it to both terms:
+\begin{equation*}
+    \begin{aligned}
+        \text{Cov}(f(x_* + h e_i), \frac{\partial f}{\partial x_{*i}}(x_*)) = \delta_{u_i} k(x_* + h e_i, x_*) \\
+        \text{Cov}(f(x_*), \frac{\partial f}{\partial x_{*i}}(x_*)) = \delta_{v_i} k(x_*, x_*) \\
+    \end{aligned}
+\end{equation*}
+
+Taylor expanding our first term:
+\begin{equation*}
+    \begin{aligned}
+        \delta_{u_i} k(x_* + h e_i, x_*) = \\
+        \delta_{u_i} k(x_*, x_*) \\
+        + h \delta_{u_i v_i}^2 k(x_*, x_*) \\
+        + \frac{h^2}{2} \delta_{u_i u_i v_i}^2 k(x_*, x_*) \\
+        + O(h^3) \\
+    \end{aligned}
+\end{equation*}
+We can take advantage of symmetry of $k$ to cancel out the constant term using the second term in $\mathbb{E}[A_hB]$ - when $u = v$, $\delta_{v_i} k(x_*, x_*) = \delta_{u_i} k(x_*, x_*)$. Substituting this into $\mathbb{E}[A_h B]$:
+\begin{equation*}
+    \begin{aligned}
+        \mathbb{E}[A_h B] = \frac{1}{h} \\
+        + h \delta_{u_i v_i}^2 k(x_*, x_*)
+        + \frac{h^2}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*) \\
+        + O(h^3) \\
+    \end{aligned}
+\end{equation*}
+
+Dividing by $h$ reduces the order of the remainder. Simplifying for a final expression:
+\begin{equation} \label{eq:msd_ab_final}
+    \mathbb{E}[A_h B] = \delta_{u_i v_i}^2 k(x_*, x_*) + \frac{h}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*) + O(h^2)
+\end{equation}
+
+Substituting \ref{eq:msd_a_final}, \ref{eq:msd_b_final}, and \ref{eq:msd_ab_final} into our original limit definition of MS differentiability:
+\begin{equation*}
+    \lim_{h \to 0} h^2 \delta_{u_i v_i}^2 k(x_*, x_*) + O(h^3) + \delta_{u_i v_i}^2 k(x_*, x_*) + O(h) - 2 \left( \delta_{u_i v_i}^2 k(x_*, x_*) + \frac{h}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*) + O(h^2) \right) = 0 
+\end{equation*}
+Introducing $A = \delta_{u_i v_i}^2 k(x_*, x_*)$ and $B = \frac{h}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*)$ for brevity:
+\begin{equation*}
+    \lim_{h \to 0} h^2A + O(h^3) + A + O(h) - 2(A + \frac{h}{2}B + O(h^2)) = 0
+\end{equation*}
+Expanding the last term:
+\begin{equation*}
+    \lim_{h \to 0} h^2A + O(h^3) + A + O(h) - 2A - hB - 2O(h^2) = 0
+\end{equation*}
+Combining and reducing the remainders to the lowest order:
+\begin{equation*}
+    \lim_{h \to 0} h^2A + A - 2A - hB + O(h) = 0
+\end{equation*}
+Factoring out $h$:
+\begin{equation} \label{eq:ms_differentiability}
+    \begin{aligned}
+        \lim_{h \to 0} -h(hA - B) + O(h) = 0 \\
+        A = \delta_{u_i v_i}^2 k(x_*, x_*) \\
+        B = \frac{h}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*)
+    \end{aligned}
+\end{equation}
+Both $-h(hA - B)$ and $O(h)$ approach $0$ as $h \to 0$, and thus meet the limit definition of MS differentiability using a second-order Taylor expansion. We can extend this to any $k$-th derivative in MS space by using a $2k$-th order Taylor expansion of the covariance functions, which requires the covariance function to be $2k$-times continuously differentiable at $x_*$.
+
+\subsection{Stationary GPs \cite{gp-ml}}
+
+\subsubsection{Stationarity and isotropicism}
+A stationary covariance function is a function of $X - X'$ only, and is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function is a function only of $|X - X'|$, and is is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because it is a function of $|X - X'|$ only.
+
+\subsubsection{Stationary GPs in MS space}
+TODO ms continuity at k = 0
+TODO ms differentiability at k = 0
+
+\subsubsection{Spectral density}
 TODO, background needed
+
 
 \subsubsection{Squared exponential (SE)}
 Here is the already introduced SE:
