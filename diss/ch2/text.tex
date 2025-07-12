@@ -16,7 +16,6 @@ Given a vector of input points ${X_i | i = 1, ..., n}$, the Gram matrix $K$ is t
 TODO prove positive semidefiniteness, background needed
 
 \subsubsection{Mean square continuity and differentiability}
-
 To understand how smooth the functions drawn from a Gaussian process are, we need to understand how differentiable and continuous they are. A more differentiable function implies that the function contains higher order polynomials which makes it smoother, and a continuous function avoids any reductions in smoothness produced by discontinuities.
 
 Because the functions drawn from the Gaussian distribution are random functions between datapoints, there are infinitely many possible functions and determining if they are all continuous or differentiable is impossible. TODO 
@@ -81,34 +80,34 @@ Similar to MS continuity, we expand $A_h^2$ into kernel terms:
 \begin{equation} \label{eq:msd_a}
     \mathbb{E}[A_h^2] = \frac{1}{h^2} \left( k(x_* + h e_i, x_* + h e_i) + k(x_*, x_*) - 2k(x_* + h e_i, x_*) \right)
 \end{equation}
-$k(x_*,x_*)$ is a constant, but the other terms vary with $h$. We can use a second-order Taylor series to approximate these terms if $k$ is twice continuously differentiable at $x_*$. Starting with the univariate $k(x_*, x_* + h e_i)$:
+$k(x_*,x_*)$ is a constant, but the other terms vary with $h$. We can use a second-order Taylor series to approximate these terms if $k$ is twice continuously differentiable at $x_*$. Starting with the univariate $k(x_* + h e_i, x_*)$:
 \begin{equation*}
     \begin{aligned}
-        k(x_*, x_* + h e_i) = \\
+        k(x_* + h e_i, x_*) = \\
         k(x_*, x_*) \\
         + h [\partial_{u_i}k](x_*, x_*) \\
-        + \frac{h^2}{2} [\partial_{u_i v_i}^2k] (x_*, x_*) \\
+        + \frac{h^2}{2} [\partial_{u_i u_i}^2k] (x_*, x_*) \\
         + O(h^3)
     \end{aligned}
 \end{equation*}
-$u_i$ and $v_i$ denote the first argument $x_*$ and the second argument $x_* + h e_i$ respectively in the $i$th direction. TODO explain $O$ and why it's in terms of $h^3$
+$u_i$ and $v_i$ denote the first $x_* + h e_i$ and second $x_*$ arguments respectively in the $i$th direction. TODO explain $O$ and why it's in terms of $h^3$
 Then, the multivariate $k(x_* + h e_i, x_* + h e_i)$:
 \begin{equation*}
     \begin{aligned}
         k(x_* + h e_i, x_* + h e_i) = \\
         k(x_*, x_*) \\
         + h [\partial_{u_i}k + \partial_{v_i}k](x_*, x_*) \\
-        + \frac{h^2}{2} [\partial_{u_i v_i}^2 k + \partial_{u_i u_i}^2 k + \partial_{v_i v_i}^2 k](x_*, x_*) \\
+        + \frac{h^2}{2} [\partial_{u_i u_i}^2 k + \partial_{u_i v_i}^2 k + \partial_{v_i v_i}^2 k](x_*, x_*) \\
         + O(h^3) 
     \end{aligned}
 \end{equation*}
 Substituting these approximations into \ref{eq:msd_a}:
 \begin{equation*}
     \begin{aligned}
-        \mathbb{E}[A^2_h] = \frac{1}{h_2} \\
+        \mathbb{E}[A^2_h] = \frac{1}{h^2} \\
         k(x_*, x_*) + k(x_*, x_*) - 2k(x_*, x_*) \\
-        + h [\partial_{u_i}k](x_*, x_*) - 2h[\partial_{u_i}k + \partial_{v_i}k](x_*, x_*) \\
-        + \frac{h^2}{2} [\partial_{u_i v_i}^2 k + \partial_{u_i u_i}^2 k + \partial_{v_i v_i}^2 k](x_*, x_*) - 2\frac{h^2}{2} [\partial_{u_i v_i}^2k](x_*, x_*) \\
+        + h [\partial_{u_i}k + \partial_{v_i}k](x_*, x_*) - 2h[\partial_{u_i}k](x_*, x_*) \\
+        + \frac{h^2}{2} [\partial_{u_i u_i}^2 k + \partial_{u_i v_i}^2 k + \partial_{v_i v_i}^2 k](x_*, x_*) - 2\frac{h^2}{2} [\partial_{u_i u_i}^2k](x_*, x_*) \\
         + O(h^3)
     \end{aligned}
 \end{equation*}
@@ -118,18 +117,18 @@ We can combine the linear partial derivatives to form a single function $[\parti
 
 Similarly, we can combine the quadratic derivatives:
 \begin{equation*}
-    = \frac{h^2}{2}[\partial_{u_i v_i}^2 k + \partial_{u_i u_i}^2 k + \partial_{v_i v_i}^2k](x_*,x_*) - h^2[\partial_{u_i v_i}^2 k](x_*, x_*)
+    E[A^2] = \frac{1}{h^2} \frac{h^2}{2}[\partial_{u_i u_i}^2 k + \partial_{u_i u_i}^2 k + \partial_{v_i v_i}^2k](x_*,x_*) - h^2[\partial_{u_i v_i}^2 k](x_*, x_*)
 \end{equation*}
-Factoring out $h^2$:
+Cancelling $\frac{1}{h^2}$ and $\frac{h^2}{2}$ and simplifying:
 \begin{equation*}
     \begin{aligned}
-    = h^2[\partial_{u_i v_i}^2 k + \frac{1}{2}\partial_{u_i u_i}^2 k + \frac{1}{2}\partial_{v_i v_i}^2k - \partial_{u_i v_i}^2 k](x_*, x_*) \\
-        = h^2[\frac{1}{2}\partial_{u_i u_i}^2 k + \partial_{u_i v_i}k - \frac{1}{2}\partial_{v_i v_i}^2 k](x_*, x_*)
+    = [\partial_{u_i v_i}^2 k + \partial_{u_i u_i}^2 k + \partial_{v_i v_i}^2k - \partial_{u_i v_i}^2 k](x_*, x_*) \\
+    = [\partial_{u_i u_i}^2 k + \partial_{u_i v_i}k - \partial_{v_i v_i}^2 k](x_*, x_*)
     \end{aligned}
 \end{equation*}
 Similarly to the linear terms, using the symmetry of $k$ to cancel $\partial_{u_i u_i}^2$ and $\partial_{v_i v_i}^2$ yields the final expression for $\mathbb{E}[A_h^2$:
 \begin{equation} \label{eq:msd_a_final}
-    \mathbb{E}[A_h^2] = h^2 \partial_{u_i v_i}^2 k(x_*,x_*) + O(h^3) 
+    \mathbb{E}[A_h^2] = \partial_{u_i v_i}^2 k(x_*,x_*) + O(h^3) 
 \end{equation}
 
 Because $B$ is Gaussian, its square is simply its variance:
@@ -181,7 +180,7 @@ Substituting these results into $\mathbb{E}[B^2]$:
 \end{equation*}
 All constant, linear $h$ and $h'$, and $h^2$ and $h'^2$ terms cancel, leaving the mixed term and the remainders. $\frac{1}{hh'}$ cancel and the remainders can be combined since TODO:
 \begin{equation} \label{eq:msd_b_final}
-    \mathbb{E}[B^2] = \partial_{u_i v_i}^2 k(x_*, x_*) + O(h)
+    \mathbb{E}[B^2] = \partial_{u_i v_i}^2 k(x_*, x_*) + O(h^2)
 \end{equation}
 
 For $\mathbb{E}[A_h B]$, assuming zero-mean:
@@ -217,7 +216,7 @@ Taylor expanding our first term:
         \delta_{u_i} k(x_* + h e_i, x_*) = \\
         \delta_{u_i} k(x_*, x_*) \\
         + h \delta_{u_i v_i}^2 k(x_*, x_*) \\
-        + \frac{h^2}{2} \delta_{u_i u_i v_i}^2 k(x_*, x_*) \\
+        + \frac{h^2}{2} \delta_{u_i u_i u_i}^3 k(x_*, x_*) \\
         + O(h^3) \\
     \end{aligned}
 \end{equation*}
@@ -225,7 +224,7 @@ We can take advantage of symmetry of $k$ to cancel out the constant term using t
 \begin{equation*}
     \begin{aligned}
         \mathbb{E}[A_h B] = \frac{1}{h} \\
-        + h \delta_{u_i v_i}^2 k(x_*, x_*)
+        h \delta_{u_i v_i}^2 k(x_*, x_*)
         + \frac{h^2}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*) \\
         + O(h^3) \\
     \end{aligned}
@@ -233,47 +232,55 @@ We can take advantage of symmetry of $k$ to cancel out the constant term using t
 
 Dividing by $h$ reduces the order of the remainder. Simplifying for a final expression:
 \begin{equation} \label{eq:msd_ab_final}
-    \mathbb{E}[A_h B] = \delta_{u_i v_i}^2 k(x_*, x_*) + \frac{h}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*) + O(h^2)
+    \mathbb{E}[A_h B] = \delta_{u_i v_i}^2 k(x_*, x_*) + \frac{h}{2} \delta_{u_i u_i u_i}^3 k(x_*, x_*) + O(h^2)
 \end{equation}
 
 Substituting \ref{eq:msd_a_final}, \ref{eq:msd_b_final}, and \ref{eq:msd_ab_final} into our original limit definition of MS differentiability:
 \begin{equation*}
-    \lim_{h \to 0} h^2 \delta_{u_i v_i}^2 k(x_*, x_*) + O(h^3) + \delta_{u_i v_i}^2 k(x_*, x_*) + O(h) - 2 \left( \delta_{u_i v_i}^2 k(x_*, x_*) + \frac{h}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*) + O(h^2) \right) = 0 
+    \lim_{h \to 0} \delta_{u_i v_i}^2 k(x_*, x_*) + O(h^3) + \delta_{u_i v_i}^2 k(x_*, x_*) + O(h^2) - 2 \left( \delta_{u_i v_i}^2 k(x_*, x_*) + \frac{h}{2} \delta_{u_i u_i u_i}^3 k(x_*, x_*) + O(h^2) \right) = 0 
 \end{equation*}
-Introducing $A = \delta_{u_i v_i}^2 k(x_*, x_*)$ and $B = \frac{h}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*)$ for brevity:
+Redefining $A = \delta_{u_i v_i}^2 k(x_*, x_*)$ and $B = \frac{h}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*)$ for brevity:
 \begin{equation*}
-    \lim_{h \to 0} h^2A + O(h^3) + A + O(h) - 2(A + \frac{h}{2}B + O(h^2)) = 0
+    \lim_{h \to 0} A + O(h^3) + A + O(h^2) - 2(A + \frac{h}{2}B + O(h^2)) = 0
 \end{equation*}
 Expanding the last term:
 \begin{equation*}
-    \lim_{h \to 0} h^2A + O(h^3) + A + O(h) - 2A - hB - 2O(h^2) = 0
+    \lim_{h \to 0} A + O(h^3) + A + O(h^2) - 2A - hB - 2O(h^2) = 0
 \end{equation*}
-Combining and reducing the remainders to the lowest order:
+All $A$ terms cancel. Combining and reducing the remainders to the lowest order:
 \begin{equation*}
-    \lim_{h \to 0} h^2A + A - 2A - hB + O(h) = 0
+    \lim_{h \to 0} hB + O(h) = 0
 \end{equation*}
-Factoring out $h$:
+We can aborsb $hB$ into $O(h)$ since it is a linear term in $h$:
 \begin{equation} \label{eq:ms_differentiability}
     \begin{aligned}
-        \lim_{h \to 0} -h(hA - B) + O(h) = 0 \\
-        A = \delta_{u_i v_i}^2 k(x_*, x_*) \\
-        B = \frac{h}{2} \delta_{u_i u_i v_i}^3 k(x_*, x_*)
+        \lim_{h \to 0} O(h) = 0 \\
     \end{aligned}
 \end{equation}
-Both $-h(hA - B)$ and $O(h)$ approach $0$ as $h \to 0$, and thus meet the limit definition of MS differentiability using a second-order Taylor expansion. We can extend this to any $k$-th derivative in MS space by using a $2k$-th order Taylor expansion of the covariance functions, which requires the covariance function to be $2k$-times continuously differentiable at $x_*$.
+$O(h)$ approaches $0$ as $h \to 0$, so our limit definition of MS differentiability is met using a second-order Taylor expansion. We can extend this to any $k$-th derivative in MS space by using a $2k$-th order Taylor expansion of the covariance functions, which requires the covariance function to be $2k$-times continuously differentiable at $x_*$.
 
 \subsection{Stationary GPs \cite{gp-ml}}
 
 \subsubsection{Stationarity and isotropicism}
-A stationary covariance function is a function of $X - X'$ only, and is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function is a function only of $|X - X'|$, and is is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because it is a function of $|X - X'|$ only.
+A stationary covariance function $k(X - X')$ is some function of $X - X'$ , and is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function $k(|X - X'|)$ is a function of $|X - X'|$, and is is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because it is a function of $|X - X'|$.
 
 \subsubsection{Stationary GPs in MS space}
-TODO ms continuity at k = 0
-TODO ms differentiability at k = 0
+Putting the stationary kernel $k(x,x') = k(x - x')$ into \ref{eq:ms_continuity}:
+\begin{equation*}
+    \lim_{x \to x_*} | k(x - x) - 2k(x - x_*) + k(x_* - x_*) | = 0
+\end{equation*}
+Simplifying the terms inside the kernels and combining like terms:
+\begin{equation*}
+    \lim_{x \to x_*} 2 | k(0) - k(x - x_*) | = 0
+\end{equation*}
+$2$ is a constant factor and can be ignored. Because $ | k(0) - k(x - x_*) |$ is invariant to direction, we can swap them to align with the definition of continuity at 0:
+\begin{equation*}
+    \lim_{x \to x_*} | k(x_* - x) - k(0) | = 0
+\end{equation*}
+Thus, a stationary covariance function is MS continuous at $x_*$ if and only if it is continuous at $x_* = 0$. Similarly, it can be shown that stationary covariance functions are MS differentiable at $x_*$ if and only if they are MS differentiable at $x_* = 0$.
 
 \subsubsection{Spectral density}
-TODO, background needed
-
+TODO, background needed, if needed
 
 \subsubsection{Squared exponential (SE)}
 Here is the already introduced SE:
@@ -290,38 +297,34 @@ Setting $u = 0$ makes our term inside the exponential equal to zero:
     l = \frac{1}{2\pi\hat{N}_0}
 \end{equation*}
 
-This covariance function is infinitely differentiable thanks to the $\exp$ term, so a GP using SE is infinitely mean-squared differentiable, which produces very smooth functions.
+This covariance function is infinitely differentiable thanks to the $\exp$ term, so a GP using SE is infinitely mean-squared differentiable, which produces extremely smooth functions.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{gaussian_variances.png}
     \caption{
         Plot of a Gaussian process using SE applied to a toy dataset. The toy dataset ($n = 15$) is a data-generating function in blue with some Gaussian noise applied to produce the datapoints in black. The black line represents the expected function from the Gaussian process. The green line represents the 90\% confidence interval around the predictive distribution without the $\sigma^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 90\% confidence interval with $\sigma^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$.
     }
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{gaussian_draws.png}
     \caption{
         Plots of functions from a Gaussian process using SE applied to the same toy dataset. The blue line and black datapoints and lines are as before, but the green lines here are a sample of functions drawn from the Gaussian process.
     }
 \end{figure}
 
-TODO proof of infinite basis functions
-
-
 % Often causes issues since it assumes infinite differentiability. Experts don’t recommend using it. \cite{gaopro}
 
-% TODO fix formatting here
-\newpage
 \subsubsection{Matern-class}
-The Matern class of covariance functions is given by:
+SE has no parameter that controls or reduce its MS differentiability and its smoothness, rendering it a poor approximation of the less smooth functions we often encounter in the real world. The Matern class of covariance functions addresses this by introducing a parameter $\nu$ that controls the smoothness of the function. The Matern class is defined as:
 \begin{equation*}
     k(X,X') = \frac{2^{1 - \nu}}{\Gamma(\nu)}\left(\frac{\sqrt{2\nu}|X - X'|}{l}\right)^{\nu}K_{\nu}\left(\frac{\sqrt{2\nu}|X - X'|}{l}\right)
 \end{equation*}
 
-$l$ is our familiar length scale hyperparameter, but $\nu$ controls how differentiable the function is. 
+$l$ is our familiar length scale hyperparameter. 
 
 TODO Bessel function $K_{\nu}$, background needed
+
 Therefore, a a Gaussian process using a Matern class kernel is $k$-times MS differentiable if and only if $\nu > k$. 
 
 We can simplify this by using half-integers, i.e. $\nu = p + 1/2$ where $p$ is a non-negative integer. In this case, the covariance function becomes a product of a polynomial and an exponential:
