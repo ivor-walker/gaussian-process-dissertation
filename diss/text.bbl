@@ -19,51 +19,44 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
-    \entry{choosing-kernels}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=3ce91dbbe54cb47a5029c37100cd8f93}{%
-           family={Akian},
-           familyi={A\bibinitperiod},
-           given={Jean-Luc},
-           giveni={J\bibinithyphendelim L\bibinitperiod}}}%
-        {{hash=bbadb158df710271a6bd581982bd352d}{%
-           family={Bonnet},
-           familyi={B\bibinitperiod},
-           given={Luc},
-           giveni={L\bibinitperiod}}}%
-        {{hash=d40ae50c8176d2e33e567320d4313962}{%
-           family={Owhadi},
-           familyi={O\bibinitperiod},
-           given={Houman},
-           giveni={H\bibinitperiod}}}%
-        {{hash=6ff8e3798e82865f1ceea9ea8efe27d6}{%
-           family={Savin},
+    \entry{Gikhman2004-wc}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=1aa05f37a6087d6db04b48c8bd323bce}{%
+           family={Gikhman},
+           familyi={G\bibinitperiod},
+           given={Iosif\bibnamedelima I},
+           giveni={I\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=c3b6a5377f5dee5ca2d33aca8313371d}{%
+           family={Skorokhod},
            familyi={S\bibinitperiod},
-           given={Eric},
-           giveni={E\bibinitperiod}}}%
+           given={Anatoli\bibnamedelima V},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
       }
-      \strng{namehash}{f07b069fc9f267644c675e0bc1d82b08}
-      \strng{fullhash}{cd194814deaa62e14a08c1bd586a2bc6}
-      \strng{fullhashraw}{cd194814deaa62e14a08c1bd586a2bc6}
-      \strng{bibnamehash}{f07b069fc9f267644c675e0bc1d82b08}
-      \strng{authorbibnamehash}{f07b069fc9f267644c675e0bc1d82b08}
-      \strng{authornamehash}{f07b069fc9f267644c675e0bc1d82b08}
-      \strng{authorfullhash}{cd194814deaa62e14a08c1bd586a2bc6}
-      \strng{authorfullhashraw}{cd194814deaa62e14a08c1bd586a2bc6}
-      \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Berlin, Germany}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{b4f8d5827f50300ad2a4f0508b67fde1}
+      \strng{fullhash}{b4f8d5827f50300ad2a4f0508b67fde1}
+      \strng{fullhashraw}{b4f8d5827f50300ad2a4f0508b67fde1}
+      \strng{bibnamehash}{b4f8d5827f50300ad2a4f0508b67fde1}
+      \strng{authorbibnamehash}{b4f8d5827f50300ad2a4f0508b67fde1}
+      \strng{authornamehash}{b4f8d5827f50300ad2a4f0508b67fde1}
+      \strng{authorfullhash}{b4f8d5827f50300ad2a4f0508b67fde1}
+      \strng{authorfullhashraw}{b4f8d5827f50300ad2a4f0508b67fde1}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Computational Physics}
-      \field{month}{08}
-      \field{title}{Learning “best” kernels from data in Gaussian process regression. With application to aerodynamics}
-      \field{volume}{470}
-      \field{year}{2022}
-      \field{pages}{111595}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.1016/j.jcp.2022.111595
-      \endverb
+      \field{month}{3}
+      \field{series}{Classics in mathematics}
+      \field{title}{The theory of stochastic processes {I}}
+      \field{year}{2004}
     \endentry
     \entry{random-subsampling}{inproceedings}{}{}
       \name{author}{3}{}{%
@@ -225,75 +218,10 @@
       \verb https://doi.org/10.7551/mitpress/3206.001.0001
       \endverb
     \endentry
-    \entry{deriving-kernels}{inproceedings}{}{}
-      \name{author}{2}{}{%
-        {{hash=b06c5730edff94b151e7e0d81439cbdf}{%
-           family={Wilson},
-           familyi={W\bibinitperiod},
-           given={Andrew},
-           giveni={A\bibinitperiod}}}%
-        {{hash=a2c56063d6cc3fae5dcf9c4c4a154d7b}{%
-           family={Adams},
-           familyi={A\bibinitperiod},
-           given={Ryan},
-           giveni={R\bibinitperiod}}}%
-      }
-      \name{editor}{2}{}{%
-        {{hash=d98b5fd15360757d9d9f94eec243d6cb}{%
-           family={Dasgupta},
-           familyi={D\bibinitperiod},
-           given={Sanjoy},
-           giveni={S\bibinitperiod}}}%
-        {{hash=09a4af5c985fc9a46727803f19cd8272}{%
-           family={McAllester},
-           familyi={M\bibinitperiod},
-           given={David},
-           giveni={D\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Atlanta, Georgia, USA}%
-      }
-      \list{publisher}{1}{%
-        {PMLR}%
-      }
-      \strng{namehash}{326dc690624a77f405f42da75a65e61b}
-      \strng{fullhash}{326dc690624a77f405f42da75a65e61b}
-      \strng{fullhashraw}{326dc690624a77f405f42da75a65e61b}
-      \strng{bibnamehash}{326dc690624a77f405f42da75a65e61b}
-      \strng{authorbibnamehash}{326dc690624a77f405f42da75a65e61b}
-      \strng{authornamehash}{326dc690624a77f405f42da75a65e61b}
-      \strng{authorfullhash}{326dc690624a77f405f42da75a65e61b}
-      \strng{authorfullhashraw}{326dc690624a77f405f42da75a65e61b}
-      \strng{editorbibnamehash}{fae3c8d6c9aa902c16e025fabcad714c}
-      \strng{editornamehash}{fae3c8d6c9aa902c16e025fabcad714c}
-      \strng{editorfullhash}{fae3c8d6c9aa902c16e025fabcad714c}
-      \strng{editorfullhashraw}{fae3c8d6c9aa902c16e025fabcad714c}
-      \field{sortinit}{W}
-      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Gaussian processes are rich distributions over functions, which provide a Bayesian nonparametric approach to smoothing and interpolation. We introduce simple closed form kernels that can be used with Gaussian processes to discover patterns and enable extrapolation. These kernels are derived by modelling a spectral density – the Fourier transform of a kernel – with a Gaussian mixture. The proposed kernels support a broad class of stationary covariances, but Gaussian process inference remains simple and analytic. We demonstrate the proposed kernels by discovering patterns and performing long range extrapolation on synthetic examples, as well as atmospheric CO2 trends and airline passenger data. We also show that it is possible to reconstruct several popular standard covariances within our framework.}
-      \field{booktitle}{Proceedings of the 30th International Conference on Machine Learning}
-      \field{month}{6}
-      \field{number}{3}
-      \field{series}{Proceedings of Machine Learning Research}
-      \field{title}{Gaussian Process Kernels for Pattern Discovery and Extrapolation}
-      \field{volume}{28}
-      \field{year}{2013}
-      \field{pages}{1067\bibrangedash 1075}
-      \range{pages}{9}
-      \verb{file}
-      \verb http://proceedings.mlr.press/v28/wilson13.pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://proceedings.mlr.press/v28/wilson13.html
-      \endverb
-      \verb{url}
-      \verb https://proceedings.mlr.press/v28/wilson13.html
-      \endverb
-    \endentry
   \enddatalist
   \missing{eq:se}
+  \missing{foreman-mackay}
+  \missing{gaopro}
   \missing{matching-pursuit}
 \endrefsection
 \endinput

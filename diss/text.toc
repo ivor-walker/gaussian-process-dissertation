@@ -1,71 +1,75 @@
-\contentsline {section}{\numberline {1}Defining the Gaussian Process}{4}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Weight-space view \blx@tocontentsinit {0}\cite {gp-ml}}{4}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}Standard linear model}{4}{subsubsection.1.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.2}Determining weights}{4}{subsubsection.1.1.2}%
-\contentsline {paragraph}{\numberline {1.1.2.1}Deriving our posterior}{4}{paragraph.1.1.2.1}%
-\contentsline {paragraph}{\numberline {1.1.2.2}Deriving the properties of the posterior by completing the square}{5}{paragraph.1.1.2.2}%
-\contentsline {paragraph}{\numberline {1.1.2.3}Gaussian posteriors and ridge regression}{5}{paragraph.1.1.2.3}%
-\contentsline {subsubsection}{\numberline {1.1.3}Predictive distribution}{6}{subsubsection.1.1.3}%
-\contentsline {paragraph}{\numberline {1.1.3.1}Deriving the predictive distribution}{6}{paragraph.1.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.1.4}Projections of inputs into feature space}{7}{subsubsection.1.1.4}%
-\contentsline {subsubsection}{\numberline {1.1.5}Computational issues}{8}{subsubsection.1.1.5}%
-\contentsline {paragraph}{\numberline {1.1.5.1}Avoiding inversion of $A_{\phi }$}{8}{paragraph.1.1.5.1}%
-\contentsline {paragraph}{\numberline {1.1.5.2}Kernels and the kernel trick}{8}{paragraph.1.1.5.2}%
-\contentsline {subsection}{\numberline {1.2}Function-space view \blx@tocontentsinit {0}\cite {gp-ml}}{9}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Gaussian processes (GP)}{9}{subsubsection.1.2.1}%
-\contentsline {paragraph}{\numberline {1.2.1.1}Bayesian linear model}{9}{paragraph.1.2.1.1}%
-\contentsline {paragraph}{\numberline {1.2.1.2}Function evaluations to a random function}{9}{paragraph.1.2.1.2}%
-\contentsline {paragraph}{\numberline {1.2.1.3}Definition of a GP}{9}{paragraph.1.2.1.3}%
-\contentsline {paragraph}{\numberline {1.2.1.4}Consistency requirement}{9}{paragraph.1.2.1.4}%
-\contentsline {subsubsection}{\numberline {1.2.2}Predictive distributions with noise-free observations}{10}{subsubsection.1.2.2}%
-\contentsline {paragraph}{\numberline {1.2.2.1}Prior distribution over functions}{10}{paragraph.1.2.2.1}%
-\contentsline {paragraph}{\numberline {1.2.2.2}Posterior distribution of functions}{10}{paragraph.1.2.2.2}%
-\contentsline {subsubsection}{\numberline {1.2.3}Predictive distributions with noisy observations}{10}{subsubsection.1.2.3}%
-\contentsline {paragraph}{\numberline {1.2.3.1}Noisy observations prior}{10}{paragraph.1.2.3.1}%
-\contentsline {paragraph}{\numberline {1.2.3.2}Noisy observations posterior}{10}{paragraph.1.2.3.2}%
-\contentsline {subsubsection}{\numberline {1.2.4}Marginal likelihood}{10}{subsubsection.1.2.4}%
-\contentsline {subsubsection}{\numberline {1.2.5}Algorithm for predictive distribution}{11}{subsubsection.1.2.5}%
-\contentsline {subsection}{\numberline {1.3}Varying the hyperparameters \blx@tocontentsinit {0}\cite {gp-ml}}{11}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Smoothing and equivelant kernels \blx@tocontentsinit {0}\cite {gp-ml}}{12}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.1}Linear predictors and smoothers}{12}{subsubsection.1.4.1}%
-\contentsline {section}{\numberline {2}Exploring Covariance Functions}{13}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Characteristics of covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{13}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Symmetry and positive semidefiniteness}{13}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Mean square continuity and differentiability}{13}{subsubsection.2.1.2}%
-\contentsline {paragraph}{\numberline {2.1.2.1}Continuity}{13}{paragraph.2.1.2.1}%
-\contentsline {paragraph}{\numberline {2.1.2.2}Differentiability}{14}{paragraph.2.1.2.2}%
-\contentsline {subsection}{\numberline {2.2}Stationary GPs \blx@tocontentsinit {0}\cite {gp-ml}}{16}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Stationarity and isotropicism}{16}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Stationary GPs in MS space}{17}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Spectral density}{17}{subsubsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.4}Squared exponential (SE)}{17}{subsubsection.2.2.4}%
-\contentsline {subsubsection}{\numberline {2.2.5}Matern-class}{18}{subsubsection.2.2.5}%
-\contentsline {subsubsection}{\numberline {2.2.6}Exponential and $\gamma $-exponential}{20}{subsubsection.2.2.6}%
-\contentsline {subsubsection}{\numberline {2.2.7}Rational quadratic}{22}{subsubsection.2.2.7}%
-\contentsline {subsection}{\numberline {2.3}Deriving kernels \blx@tocontentsinit {0}\cite {deriving-kernels}}{23}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Learning best kernel from data \blx@tocontentsinit {0}\cite {choosing-kernels}}{23}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Computational Issues}{24}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Matrix inversion \blx@tocontentsinit {0}\cite {big-data}}{24}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Global approximations}{24}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Subset-of-data}{24}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Sparse kernels}{24}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Sparse approximations}{24}{subsubsection.3.2.3}%
-\contentsline {paragraph}{\numberline {3.2.3.1}Prior approximation}{24}{paragraph.3.2.3.1}%
-\contentsline {paragraph}{\numberline {3.2.3.2}Posterior approximation}{24}{paragraph.3.2.3.2}%
-\contentsline {paragraph}{\numberline {3.2.3.3}Structured sparse approximation}{24}{paragraph.3.2.3.3}%
-\contentsline {subsection}{\numberline {3.3}Local approximations}{24}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Naive-local-experts}{24}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Mixture-of-experts}{24}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Product-of-experts}{24}{subsubsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.4}Improvements}{24}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Scalability}{24}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Capability}{24}{subsubsection.3.4.2}%
-\contentsline {section}{\numberline {4}Applying a Gaussian Process to Astrostatistics}{25}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Introduction}{25}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Methodology}{25}{subsection.4.2}%
-\contentsline {subsubsection}{\numberline {4.2.1}Selecting the covariance function}{25}{subsubsection.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.2.2}Resolving computational issues}{25}{subsubsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.3}Results}{25}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Discussion}{25}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Conclusion}{25}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Conclusion}{26}{section.5}%
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {section}{\numberline {2}Defining the Gaussian Process}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Weight-space view \blx@tocontentsinit {0}\cite {gp-ml}}{5}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Standard linear model}{5}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Determining weights}{5}{subsubsection.2.1.2}%
+\contentsline {paragraph}{\numberline {2.1.2.1}Deriving our posterior}{5}{paragraph.2.1.2.1}%
+\contentsline {paragraph}{\numberline {2.1.2.2}Deriving the properties of the posterior by completing the square}{6}{paragraph.2.1.2.2}%
+\contentsline {paragraph}{\numberline {2.1.2.3}Gaussian posteriors and ridge regression}{6}{paragraph.2.1.2.3}%
+\contentsline {subsubsection}{\numberline {2.1.3}Predictive distribution}{7}{subsubsection.2.1.3}%
+\contentsline {paragraph}{\numberline {2.1.3.1}Deriving the predictive distribution}{7}{paragraph.2.1.3.1}%
+\contentsline {subsubsection}{\numberline {2.1.4}Projections of inputs into feature space}{8}{subsubsection.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.1.5}Computational issues}{9}{subsubsection.2.1.5}%
+\contentsline {paragraph}{\numberline {2.1.5.1}Avoiding inversion of $A_{\phi }$}{9}{paragraph.2.1.5.1}%
+\contentsline {paragraph}{\numberline {2.1.5.2}Kernels and the kernel trick}{9}{paragraph.2.1.5.2}%
+\contentsline {subsection}{\numberline {2.2}Function-space view \blx@tocontentsinit {0}\cite {gp-ml}}{10}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Gaussian processes (GP)}{10}{subsubsection.2.2.1}%
+\contentsline {paragraph}{\numberline {2.2.1.1}Bayesian linear model}{10}{paragraph.2.2.1.1}%
+\contentsline {paragraph}{\numberline {2.2.1.2}Function evaluations to a random function}{10}{paragraph.2.2.1.2}%
+\contentsline {paragraph}{\numberline {2.2.1.3}Definition of a GP}{10}{paragraph.2.2.1.3}%
+\contentsline {paragraph}{\numberline {2.2.1.4}Consistency requirement}{10}{paragraph.2.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.2.2}Predictive distributions with noise-free observations}{11}{subsubsection.2.2.2}%
+\contentsline {paragraph}{\numberline {2.2.2.1}Prior distribution over functions}{11}{paragraph.2.2.2.1}%
+\contentsline {paragraph}{\numberline {2.2.2.2}Posterior distribution of functions}{11}{paragraph.2.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Predictive distributions with noisy observations}{11}{subsubsection.2.2.3}%
+\contentsline {paragraph}{\numberline {2.2.3.1}Noisy observations prior}{11}{paragraph.2.2.3.1}%
+\contentsline {paragraph}{\numberline {2.2.3.2}Noisy observations posterior}{11}{paragraph.2.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.2.4}Marginal likelihood}{11}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Algorithm for predictive distribution}{12}{subsubsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.3}Varying the length scale \blx@tocontentsinit {0}\cite {gp-ml}}{12}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Exploring Covariance Functions}{13}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Characteristics of covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{13}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Symmetry and positive semidefiniteness}{13}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Mean square continuity and differentiability}{13}{subsubsection.3.1.2}%
+\contentsline {paragraph}{\numberline {3.1.2.1}Continuity}{13}{paragraph.3.1.2.1}%
+\contentsline {paragraph}{\numberline {3.1.2.2}Differentiability}{14}{paragraph.3.1.2.2}%
+\contentsline {subsection}{\numberline {3.2}Stationary GPs \blx@tocontentsinit {0}\cite {gp-ml}}{16}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{16}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Stationary GPs in MS space}{17}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Squared exponential (SE)}{17}{subsubsection.3.2.3}%
+\contentsline {paragraph}{\numberline {3.2.3.1}From feature space to SE}{17}{paragraph.3.2.3.1}%
+\contentsline {paragraph}{\numberline {3.2.3.2}Length scale in SE}{18}{paragraph.3.2.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.4}$\gamma $-exponential and exponential}{19}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Matern-class}{21}{subsubsection.3.2.5}%
+\contentsline {paragraph}{\numberline {3.2.5.1}Matern 3/2}{22}{paragraph.3.2.5.1}%
+\contentsline {paragraph}{\numberline {3.2.5.2}Matern 5/2}{23}{paragraph.3.2.5.2}%
+\contentsline {subsubsection}{\numberline {3.2.6}Rational quadratic}{24}{subsubsection.3.2.6}%
+\contentsline {section}{\numberline {4}Computational Issues}{26}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Covariance function approximations using spectral density}{26}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Spectral density \blx@tocontentsinit {0}\cite {gp-ml}}{26}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Speedups with spectral density \blx@tocontentsinit {0}\cite {foreman-mackay}}{26}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}Matrix inversion approximations \blx@tocontentsinit {0}\cite {big-data}}{26}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Global approximations}{26}{subsubsection.4.2.1}%
+\contentsline {paragraph}{\numberline {4.2.1.1}Subset-of-data}{26}{paragraph.4.2.1.1}%
+\contentsline {paragraph}{\numberline {4.2.1.2}Sparse kernels}{26}{paragraph.4.2.1.2}%
+\contentsline {paragraph}{\numberline {4.2.1.3}Sparse approximations}{26}{paragraph.4.2.1.3}%
+\contentsline {subparagraph}{\numberline {4.2.1.3.1}Prior approximation}{26}{subparagraph.4.2.1.3.1}%
+\contentsline {subparagraph}{\numberline {4.2.1.3.2}Posterior approximation}{26}{subparagraph.4.2.1.3.2}%
+\contentsline {subparagraph}{\numberline {4.2.1.3.3}Structured sparse approximation}{26}{subparagraph.4.2.1.3.3}%
+\contentsline {subsubsection}{\numberline {4.2.2}Local approximations}{26}{subsubsection.4.2.2}%
+\contentsline {paragraph}{\numberline {4.2.2.1}Naive-local-experts}{26}{paragraph.4.2.2.1}%
+\contentsline {paragraph}{\numberline {4.2.2.2}Mixture-of-experts}{26}{paragraph.4.2.2.2}%
+\contentsline {paragraph}{\numberline {4.2.2.3}Product-of-experts}{26}{paragraph.4.2.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3}Improvements}{26}{subsubsection.4.2.3}%
+\contentsline {paragraph}{\numberline {4.2.3.1}Scalability}{26}{paragraph.4.2.3.1}%
+\contentsline {paragraph}{\numberline {4.2.3.2}Capability}{26}{paragraph.4.2.3.2}%
+\contentsline {section}{\numberline {5}Applying a Gaussian Process to Astrostatistics}{27}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Introduction}{27}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Methodology}{27}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Applying the Gaussian Process}{27}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Matrix inversion}{27}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Spectral density}{27}{subsubsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.3}Results}{27}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Discussion}{27}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Conclusion}{27}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Conclusion}{28}{section.6}%

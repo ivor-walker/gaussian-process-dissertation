@@ -279,83 +279,211 @@ $2$ is a constant factor and can be ignored. Because $ | k(0) - k(x - x_*) |$ is
 \end{equation*}
 Thus, a stationary covariance function is MS continuous at $x_*$ if and only if it is continuous at $x_* = 0$. Similarly, it can be shown that stationary covariance functions are MS differentiable at $x_*$ if and only if they are MS differentiable at $x_* = 0$.
 
-\subsubsection{Spectral density}
-TODO, background needed, if needed
-
 \subsubsection{Squared exponential (SE)}
 Here is the already introduced SE:
 \begin{equation*}
     k(X,X*) = \exp \left(- \frac{|X - X'|^2}{2l^2} \right)
 \end{equation*}
 
-We can find the value for $l$ analytically using \ref{eq:general_l}:
+This covariance function is infinitely differentiable at $x - x' = 0$ thanks to the squared difference between $X$ and $X'$ in the exponent, so a GP using SE is infinitely mean-squared differentiable which produces extremely smooth functions.  
+
+\paragraph{From feature space to SE}
+We can derive this form by expanding $X$ into our feature space $\phi$ defined by Gaussian-shaped basis functions centred densely in $X$. Defining this basis function:
+\begin{equation*}
+    \phi_c(x) = \exp \left(- \frac{|x - c|^2}{2l^2} \right)
+\end{equation*}
+$c$ the centre of our basis functions. With our familiar isotropic Gaussian prior on the weights $W \sim \mathcal{N}(0, \sigma^2_pI)$, we get our familiar covariance function in weight-space:
+\begin{equation*}
+    k(x, x') = \sigma_p^2 \sum_{c=1}^N \phi_c(x) \phi_c(x') 
+\end{equation*}
+$N$ represents the number of these basis functions. If $N = \infty$ with centres everywhere between some interval $c_{min}$ and $c_{max}$, we can simply integrate over the interval:
+\begin{equation*}
+    \lim_{N \to \infty} \sigma_p^2 \sum_{c=1}^N \phi_c(x) \phi_c(x') = \sigma_p^2 \int_{c_{min}}^{c_{max}} \phi_c(x) \phi_c(x') dc
+\end{equation*}
+Plugging in our basis function:
+\begin{equation*}
+    k(x, x') = \sigma_p^2 \int_{c_{min}}^{c_{max}} \exp \left(- \frac{|x - c|^2}{2l^2} \right) \exp \left(- \frac{|x' - c|^2}{2l^2} \right) dc
+\end{equation*}
+Combining the exponentials:
+\begin{equation*}
+    = \sigma_p^2 \int_{c_{min}}^{c_{max}} \exp \left(- \frac{|x - c|^2 - |x' - c|^2}{2l^2} \right) dc
+\end{equation*}
+Expanding the squared terms, rearranging the fraction and simplifying:
+\begin{equation*}
+    = \sigma_p^2 \int_{c_{min}}^{c_{max}} \exp \left( -\frac{1}{l^2} \left[ c^2 - c(x + x') + \frac{x^2 + x'^2}{2} \right] \right) dc
+\end{equation*}
+We can complete the square on the $c$ terms to get a product of two exponentials:
+\begin{equation*}
+    = \sigma_p^2 \int_{c_{min}}^{c_{max}} \exp \left( -\frac{1}{l^2} \left[ (c - \frac{x + x'}{2})^2 - \frac{(x + x')^2}{4} \right] \right) dc
+\end{equation*}
+Our second term in the exponential does not vary with $c$ and can be safely factored out of the integral:
+\begin{equation*}
+    = \sigma_p^2 \exp \left( \frac{(x + x')^2}{4l^2} \right) \int_{c_{min}}^{c_{max}} \exp \left( -\frac{1}{l^2} (c - \frac{x + x'}{2})^2 \right) dc
+\end{equation*}
+If we let our $c_{min}$ and $c_{max}$ approach infinity, we can use the standard Gaussian integral:
+\begin{equation*}
+    \int_{-\infty}^{\infty} \exp \left( -\frac{1}{l^2} (c - \frac{x + x'}{2})^2 \right) dc = l\sqrt{\pi}
+\end{equation*}
+Substituting this in:
+\begin{equation*}
+    k(x, x') = \sigma_p^2 l\sqrt{\pi} \exp \left( -\frac{(x - x')^2}{4l^2} \right)
+\end{equation*}
+We can absorb the $l\sqrt{\pi}$ into the $\sigma_p^2$ term to produce our familiar SE with a $\sqrt{2}$ longer length scale:
+\begin{equation*}
+    k(x, x') = \sigma^2_p \exp \left( -\frac{(x - x')^2}{2(\sqrt{2}l)^2} \right)
+\end{equation*}
+
+\paragraph{Length scale in SE}
+We can observe the role $l$ plays in SE by finding the value for $l$ analytically and rearranging it for $\hat{N}_u$ to see its effect on smoothness.
+
+Using \ref{eq:general_l}:
 \begin{equation*}
     l = \frac{1}{2\pi\hat{N}_u} \exp\left(-\frac{u^2}{2\sigma^2}\right)
 \end{equation*}
 Setting $u = 0$ makes our term inside the exponential equal to zero:
 \begin{equation*}
-    l = \frac{1}{2\pi\hat{N}_0}
+    l = \frac{1}{2\pi\hat{N}_u}
 \end{equation*}
-
-This covariance function is infinitely differentiable thanks to the $\exp$ term, so a GP using SE is infinitely mean-squared differentiable, which produces extremely smooth functions.
+Rearranging for $\hat{N}_u$:
+\begin{equation*}
+    \hat{N}_u = \frac{1}{2\pi l}
+\end{equation*}
+Here, $l$ behaves as a length scale - a larger $l$ reduces the number of upcrossings, stretching out the features over longer distances and producing smoother sample paths.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{gaussian_variances.png}
     \caption{
-        Plot of a Gaussian process using SE applied to a toy dataset. The toy dataset ($n = 15$) is a data-generating function in blue with some Gaussian noise applied to produce the datapoints in black. The black line represents the expected function from the Gaussian process. The green line represents the 90\% confidence interval around the predictive distribution without the $\sigma^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 90\% confidence interval with $\sigma^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$.
+        Plot of a Gaussian process using SE applied to a toy dataset. The toy dataset ($n = 15$) is a data-generating function in blue with some Gaussian noise applied to produce the datapoints in black. The black line represents the expected function from the Gaussian process. The green line represents the 90\% confidence interval around the predictive distribution without the $\sigma^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 90\% confidence interval with $\sigma^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$. \\
+        TODO explain
     }
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{gaussian_draws.png}
     \caption{
-        Plots of functions from a Gaussian process using SE applied to the same toy dataset. The blue line and black datapoints and lines are as before, but the green lines here are a sample of functions drawn from the Gaussian process.
+        Plots of functions from a Gaussian process using SE applied to the same toy dataset. The blue line and black datapoints and lines are as before, but the green lines here are a sample of functions drawn from the Gaussian process. \\
+        TODO explain
     }
 \end{figure}
 
+
 % Often causes issues since it assumes infinite differentiability. Experts don’t recommend using it. \cite{gaopro}
 
+\subsubsection{$\gamma$-exponential and exponential}
+SE has no parameter that controls or reduce its MS differentiability and its smoothness, rendering it a poor approximation of the less smooth functions we often encounter in the real world. We can introduce a differentiability parameter $\gamma$ to control how differentiable the covariance function is:
+\begin{equation*}
+    k(X,X') = \exp \left(-\frac{|X - X'|^{\gamma}}{l^{\gamma}} \right)
+\end{equation*}
+where $0 < \gamma \geq 2$ controls the smoothness of the covariance function. 
+
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{powerexp_variances.png}
+    \caption{
+        Plot of a Gaussian process using $\gamma$-exponential applied to the toy dataset. For this dataset, the R package GauPro \cite{gaopro} has used $\gamma = 1.688043$ obtained via MLE. \\
+        There are no green lines here because TODO. $\gamma$-exponential produces much rougher functions than SE, so its expected function has a lot more wiggle and conforms to the datapoints much closer than SE. In this case, our data-generating function is smooth so SE is closer to the data-generating function than $\gamma$-exponential, but real world data-generating functions are often much rougher and would benefit from a kernel flexible enough to pass through the datapoints.
+    }
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{powerexp_draws.png}
+    \caption{
+        Plots of functions from a Gaussian process using $\gamma$-exponential applied to the same toy dataset. \\
+        These sample function draws are much rougher than SE.
+    }
+\end{figure}
+
+$\gamma = 2$ produces SE for maximal smoothness, while $\gamma = 1$ produces the exponential covariance function:
+\begin{equation*}
+    k(X,X') = \exp \left(-\frac{|X - X'|}{l} \right)
+\end{equation*}
+Here, and for all other values of $\gamma$ other than $2$, the covariance function is continuous but not differentiable at all at $|x - x'| = 0$, which coincides with the undifferentiable turning point of the modulus function at $x - x' = 0$, and produces the roughest functions of all covariance functions we consider.
+
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{exp_variances.png}
+    \caption{
+        Plot of a Gaussian process using exponential applied to the toy dataset. \\
+        TODO explain
+    }
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{exp_draws.png}
+    \caption{
+        Plots of functions from a Gaussian process using exponential applied to the same toy dataset. \\
+        These sample function draws are much rougher than SE and $\gamma$-exponential.
+    }
+\end{figure}
+
+
+% Exponential: Equivalent to Matern 1/2. Assumes no differentiability. \cite{gaopro}
+
+
 \subsubsection{Matern-class}
-SE has no parameter that controls or reduce its MS differentiability and its smoothness, rendering it a poor approximation of the less smooth functions we often encounter in the real world. The Matern class of covariance functions addresses this by introducing a parameter $\nu$ that controls the smoothness of the function. The Matern class is defined as:
+The $\gamma$-exponential generalisation is not useful due to its brittleness - it can only produce two covariance functions representing the extremes of the smoothness-roughness scale. The Matern class of covariance functions addresses this by introducing a parameter $\nu > 0$ that controls the smoothness of the function. The Matern class is defined as:
 \begin{equation*}
     k(X,X') = \frac{2^{1 - \nu}}{\Gamma(\nu)}\left(\frac{\sqrt{2\nu}|X - X'|}{l}\right)^{\nu}K_{\nu}\left(\frac{\sqrt{2\nu}|X - X'|}{l}\right)
 \end{equation*}
 
-$l$ is our familiar length scale hyperparameter. 
+$l$ is our familiar length scale hyperparameter. TODO Bessel function $K_{\nu}$, background needed. Therefore, a Gaussian process using a Matern class kernel is $k$-times MS differentiable if and only if $\nu > k$. 
 
-TODO Bessel function $K_{\nu}$, background needed
-
-Therefore, a a Gaussian process using a Matern class kernel is $k$-times MS differentiable if and only if $\nu > k$. 
-
-We can simplify this by using half-integers, i.e. $\nu = p + 1/2$ where $p$ is a non-negative integer. In this case, the covariance function becomes a product of a polynomial and an exponential:
+Using half-integers, i.e. $\nu = p + 1/2$ where $p$ is a non-negative integer, the covariance function becomes a product of a polynomial and an exponential:
 
 \begin{equation*}
     k_{\nu = p + 1/2}(X,X') = \exp \left(- \frac{\sqrt{2\nu}|X - X'|}{l} \right) \frac{\Gamma(p+1)}{\Gamma(2p+1)} \sum_{i=0}^p \frac{(p + i)!}{i!(p-i)!} \left( \frac{\sqrt{8\nu r}}{l} \right)^{p-i}
 \end{equation*}
 
-$\nu = 1/2$ is equivelant to the exponential covariance function.
+$\nu = 1/2$ is equivelant to the exponential covariance function. As $\nu \to \infty$, the Matern covariance function approaches the SE covariance function. Practically, $\nu \geq 7/2$ produces functions that are as smooth as SE, leaving us with two cases of interest: $\nu = 3/2$ and $\nu = 5/2$.
 
-TODO formula
+\paragraph{Matern 3/2}
+$\nu = 3/2$ produces the following covariance function:
+\begin{equation*}
+    k_{3/2}(X,X') = \left(1 + \frac{\sqrt{3}|X - X'|}{l} \right) \exp \left(-\frac{\sqrt{3}|X - X'|}{l} \right)
+\end{equation*}
+3/2 is one-time MS differentiable, leading to much rougher functions than SE.
 
-\includegraphics[height=0.5\textwidth]{matern32_variances.png} \\
-\includegraphics[height=0.5\textwidth]{matern32_draws.png} \\
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{matern32_variances.png}
+    \caption{
+        Plot of a Gaussian process using Matern 3/2 applied to the toy dataset. \\
+        TODO explain
+    }
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{matern32_draws.png}
+    \caption{
+        Plots of functions from a Gaussian process using Matern 3/2 applied to the same toy dataset. \\
+        TODO explain
+    }
+\end{figure}
 
 % Matern 3/2: Assumes one time differentiability. This is often too low of an assumption. \cite{gaopro}
 
-\includegraphics[height=0.5\textwidth]{matern52_variances.png} \\
-\includegraphics[height=0.5\textwidth]{matern52_draws.png} \\
+\paragraph{Matern 5/2}
+$\nu = 5/2$ produces the following covariance function:
+\begin{equation*}
+    k_{5/2}(X,X') = \left(1 + \frac{\sqrt{5}|X - X'|}{l} + \frac{5|X - X'|^2}{3l^2} \right) \exp \left(-\frac{\sqrt{5}|X - X'|}{l} \right)
+\end{equation*}
+5/2 is twice MS differentiable, producing functions that are slightly smoother than 3/2.
+
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{matern52_variances.png}
+    \caption{
+        Plot of a Gaussian process using Matern 5/2 applied to the toy dataset. \\
+        The expected function deviates very slightly from datapoints compared to 3/2, but the big difference compared to 3/2 is in the variances. 5/2 has narrower variances than 3/2, producing smoother functions and functions that are closer to the expected function. SE is still better in this instance because it is the most smooth and our data-generating function is unusually smooth. However, 5/2 is generally the most popular covariance function because it achieves this parsimonious balance between smoothness, to still reach some reasonable approximation of the data-generating function, and flexibility, to still pass through the datapoints. 
+    }
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{matern52_draws.png}
+    \caption{
+        Plots of functions from a Gaussian process using Matern 5/2 applied to the same toy dataset. \\
+        These sample function draws conform more to the expected function than 3/2 due to the narrower variances, but are still much rougher than SE and approach the data-points.
+    }
+\end{figure}
 
 % Matern 5/2: Assumes two time differentiability. Generally the best. \cite{gaopro}
 
-\subsubsection{Exponential and $\gamma$-exponential}
-TODO formulas 
-
-\includegraphics[height=0.5\textwidth]{exp_variances.png} \\
-\includegraphics[height=0.5\textwidth]{exp_draws.png} \\
-% Exponential: Equivalent to Matern 1/2. Assumes no differentiability. \cite{gaopro}
-
-\includegraphics[height=0.5\textwidth]{powerexp_variances.png} \\
-\includegraphics[height=0.5\textwidth]{powerexp_draws.png} \\
 
 \subsubsection{Rational quadratic}
 The rational quadratic can be seen as an infinite sum of SE with different length-scales.
@@ -393,11 +521,11 @@ TODO formulas
 % \subsubsection{Indices-ignoring}
 
 
-\subsection{Deriving kernels \cite{deriving-kernels}}
-TODO
-
-\subsection{Learning best kernel from data \cite{choosing-kernels}}
-TODO
+% \subsection{Deriving kernels \cite{deriving-kernels}}
+% TODO
+% 
+% \subsection{Learning best kernel from data \cite{choosing-kernels}}
+% TODO
 
 % \subsection{Additive covariance kernels for high-dimensional learning \cite{additive-kernels}}
 % 

@@ -1,45 +1,54 @@
 \section{Computational Issues}
 
+\subsection{Covariance function approximations using spectral density}
 
-\subsection{Matrix inversion \cite{big-data}}
+\subsubsection{Spectral density \cite{gp-ml}}
+Bochner's theorem states that a complex-valued function is the covariance function of a 
+
+It can be shown \cite{Gikhman2004-wc} that the covariance function of a stationary process can be represented as the Fourier transform of a positive finite measure.
+
+\subsubsection{Speedups with spectral density \cite{foreman-mackay}}
+
+
+\subsection{Matrix inversion approximations \cite{big-data}}
 Inverting the $[K(X,X) + \sigma^2_nI]$ matrix in our predictive distribution scales poorly with the number of training data points $n$, as inverting the $n \times n$ matrix $X$ that represents our training data is $O(n^3)$. Strategies to approximate the result of this inversion fall into two categories: those that produce a single approximation for the entire dataset, or those that produce several approximations that are "experts" in a particular region of the dataset and combine these local approximations to form a global approximation.
 
-\subsection{Global approximations}
+\subsubsection{Global approximations}
 
-\subsubsection{Subset-of-data}
+\paragraph{Subset-of-data}
 The simplest strategy is to use a subset $M$ of $X$ to reduce the cost of inversion to $O(m^3)$, where $m$ is the number of training points in $M$. Although this approach does not address the issues of matrix inversion directly,a theoretical graphon analysis proves that choosing $M$ randomly gives an accuracy of $O(log^{-1/4}m)$ for the predictive mean and variance, which produces more accurate predictions with faster runtimes than sparse approximations as $n$ increases. \cite{random-subsampling} Subset-of-data also requires no analytic assumptions about the kernel.
 
 % using a subset of $M$ that is representative of the entire dataset by clustering the data, e.g. using a k-means algorithm, and using these cluster centroids as our subset. 
 
 We can reduce $m$ needed to achieve the same level of accuracy with a "greedy" approach by determining the gain in likelihood from including each data point $x_i$ in X, adding the maximum gain in likelihood point to $M$ and repeating until the size of $M$ reaches $m$. However, computational savings from reducing $m$ are smaller than the cost of searching $X$ for these centroids $O(n^2m)$. Instead, we can use a "matching pursuit" approach - maintain a cache of the already precomputed kernel values, and use these to compute the gain in likelihood for each point in $X$ in $O(nm^2)$ time. \cite{matching-pursuit}
 
-\subsubsection{Sparse kernels}
+\paragraph{Sparse kernels}
 A sparse kernel is a particularly designed kernel that imposes $k(X,X') = 0$ if $|X - X'|$ is larger than some threshold $d$ to create a sparse covariance matrix. This reduces the number of calculations that need to be performed and computational complexity to $O(an^3)$, where $a$ is the proportion of non-zero entries remaining, but the kernel needs to be carefully designed to work with zeroes and ensure all entries are positive definite to satisfy completeness. TODO sparse RBF
 
-\subsubsection{Sparse approximations}
+\paragraph{Sparse approximations}
 TODO, missing background
 
-\paragraph{Prior approximation}
-\paragraph{Posterior approximation}
-\paragraph{Structured sparse approximation}
+\subparagraph{Prior approximation}
+\subparagraph{Posterior approximation}
+\subparagraph{Structured sparse approximation}
 
 
-\subsection{Local approximations}
+\subsubsection{Local approximations}
 TODO
 
-\subsubsection{Naive-local-experts}
+\paragraph{Naive-local-experts}
 
-\subsubsection{Mixture-of-experts}
+\paragraph{Mixture-of-experts}
 
-\subsubsection{Product-of-experts}
+\paragraph{Product-of-experts}
 
 
-\subsection{Improvements}
+\subsubsection{Improvements}
 TODO
 
-\subsubsection{Scalability}
+\paragraph{Scalability}
 
-\subsubsection{Capability}
+\paragraph{Capability}
 
 
 % \subsubsection{Extensions}

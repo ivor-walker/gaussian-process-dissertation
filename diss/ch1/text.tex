@@ -536,7 +536,7 @@ We can plug these mean and variances into Gaussian PDF \ref{eq:gaussian_pdf} to 
 TODO Choelsky decomposition if needed, missing background
 
 
-\subsection{Varying the hyperparameters \cite{gp-ml}}
+\subsection{Varying the length scale \cite{gp-ml}}
 Our covariance functions has some hyperparameters, e.g. the full form of SE in one dimension contains some free parameters $\sigma^2_f$, $\sigma^2_n$, and $l$:
 \begin{equation*}
     k_y(x,x') = \sigma^2_f \exp\left(-\frac{1}{2}\frac{|x - x'|^2}{l^2}\right) + \sigma^2_n\delta_{x,x'}
@@ -554,10 +554,10 @@ We can empirically count the number of upcrossings between 0 and 1 and set this 
 
 A large amount of upcrossings implies our data-generating function wiggles rapidly, so our $l$ becomes smaller to produce a covariance function that in turn produces more flexible functions.
 
-\subsection{Smoothing and equivelant kernels \cite{gp-ml}}
-TODO, missing background
-
-\subsubsection{Linear predictors and smoothers}
+% \subsection{Smoothing and equivelant kernels \cite{gp-ml}}
+% TODO, missing background
+% 
+% \subsubsection{Linear predictors and smoothers}
 % The representer theorem states that we can represent a kernel in finite-dimensional space, even if properties of our method mean we have an infinite-dimensional feature space. For example, using SE we could obtain an infinite number of basis functions, so our data could be projected into an infinite dimensional space. Any other function than the mean drawn from our predictive distribution would have to be in infinite-dimension space. However, our mean is dependent on our $n$-length training labels $y$. Therefore, TODO.
 % The mean of our predictive distribution can be represented as a "linear predictor", or as a linear combination of $X$ and our covariance function:
 % \begin{equation} \label{eq:gp_linear_predictor}
@@ -568,31 +568,31 @@ TODO, missing background
 % \end{equation}
 % Here, $\alpha_i$ is a "linear smoother" because it is a linear combination of $y$ and our covariance function.
 
-Understanding how our predictive distribution's mean varies with its inputs is difficult because of the first term $[(K(X, X) + \sigma_n^2I)]^-1$: it is dependent on exact values of $X$, and it requires the inversion of $K(X, X) + \sigma^2_nI$. Instead, we can reformulate $E_{p(f(X_*)|X_*,X,Y)}[f(X_*)]$ as an "equivelant kernel" to remove the dependence on $X$. 
-which uses a kernel smoother (also known as the Nadaraya-Watson estimator)  
-
-Firstly, we rewrite our mean such that our mean function is a "linear smoother", or a function of the covariance function and our training data labels $Y$:
-\begin{equation} \label{eq:gp_linear_smoother}
-    \begin{aligned}
-        H(X_*) = [K(X, X) + \sigma^2_nI]^{-1}K(X_*,X) \\
-        \mathbb{E}_{y_*|X_*,X,y)}[f(X_*)] = H(X_*)^T Y
-    \end{aligned}
-\end{equation}
-This vector of functions $H(X_*)$ is called a weight function and contains our problematic term. 
-
-Instead of inputting the values of $x_i$ directly into the kernel function, we can use $x_i$ centred around $X_*$: 
-\begin{equation*}
-    k_i = k(|x_i - x_{*i}|/l)
-\end{equation*}
-Where $l$ is some length scale hyperparameter. 
-
-TODO explain what we gain from this
-
-Thus, our predictive distribution mean becomes:
-\begin{equation*}
-    \mathbb{E}_{p(f(X_*)|X_*,X,Y)}[f(X_*)] = \sum_{i=1}^n w_i y_i
-\end{equation*}
-where $w_i = k_i / \sum_{j=1}^n k_j$ is a TODO.
+% Understanding how our predictive distribution's mean varies with its inputs is difficult because of the first term $[(K(X, X) + \sigma_n^2I)]^-1$: it is dependent on exact values of $X$, and it requires the inversion of $K(X, X) + \sigma^2_nI$. Instead, we can reformulate $E_{p(f(X_*)|X_*,X,Y)}[f(X_*)]$ as an "equivelant kernel" to remove the dependence on $X$. 
+% which uses a kernel smoother (also known as the Nadaraya-Watson estimator)  
+% 
+% Firstly, we rewrite our mean such that our mean function is a "linear smoother", or a function of the covariance function and our training data labels $Y$:
+% \begin{equation} \label{eq:gp_linear_smoother}
+%     \begin{aligned}
+%         H(X_*) = [K(X, X) + \sigma^2_nI]^{-1}K(X_*,X) \\
+%         \mathbb{E}_{y_*|X_*,X,y)}[f(X_*)] = H(X_*)^T Y
+%     \end{aligned}
+% \end{equation}
+% This vector of functions $H(X_*)$ is called a weight function and contains our problematic term. 
+% 
+% Instead of inputting the values of $x_i$ directly into the kernel function, we can use $x_i$ centred around $X_*$: 
+% \begin{equation*}
+%     k_i = k(|x_i - x_{*i}|/l)
+% \end{equation*}
+% Where $l$ is some length scale hyperparameter. 
+% 
+% TODO explain what we gain from this
+% 
+% Thus, our predictive distribution mean becomes:
+% \begin{equation*}
+%     \mathbb{E}_{p(f(X_*)|X_*,X,Y)}[f(X_*)] = \sum_{i=1}^n w_i y_i
+% \end{equation*}
+% where $w_i = k_i / \sum_{j=1}^n k_j$ is a TODO.
 
 
 % \subsubsection{Explicit basis functions}
