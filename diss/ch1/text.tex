@@ -536,23 +536,6 @@ We can plug these mean and variances into Gaussian PDF \ref{eq:gaussian_pdf} to 
 TODO Choelsky decomposition if needed, missing background
 
 
-\subsection{Varying the length scale \cite{gp-ml}}
-Our covariance functions has some hyperparameters, e.g. the full form of SE in one dimension contains some free parameters $\sigma^2_f$, $\sigma^2_n$, and $l$:
-\begin{equation*}
-    k_y(x,x') = \sigma^2_f \exp\left(-\frac{1}{2}\frac{|x - x'|^2}{l^2}\right) + \sigma^2_n\delta_{x,x'}
-\end{equation*}
-Note that our covariance function is for $k_y$ as it is for the noisy targets $y$, not the function $f$. $\sigma^2_f$ is the signal variance, which controls the overall scale of the function. $\sigma^2_n$ is the noise variance, which controls the amount of noise in the observations. $\delta_{X,X'}$ is the Kronecker delta which represents our independence of noise assumption.
-
-$l$ is a "length scale" hyperparameter that controls how sensitive our functions are - if we specify a lower $l$, we can "artificially" get a high $k(X,X')$. One way to determine $l$ is by the expected number of "upcrossings" that our kernel is expected to make for a given level $u$. A function performs an upcrossing for $u$ when $u = f(x)$ and $dy/dx > 0$. For example, with $u = 2$ and $y = x^2$, there exists one upcrossing at $(2, \sqrt{2})$ where $dy/dx = 4$, and a downcrossing at $(2, -\sqrt{2})$ where $dy/dx = -4$. For our zero-mean Gaussian processes, the expected number of upcrossings of our (stationary) kernel for a level $ 0 < u < 1$ is:
-\begin{equation*}
-    \mathbb{E}[N_u] = \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right)
-\end{equation*}
-We can empirically count the number of upcrossings between 0 and 1 and set this equal to the expected number of upcrossings to get a value for $l$:
-\begin{equation} \label{eq:general_l}
-        \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right) = \hat{N}_u
-\end{equation}
-
-A large amount of upcrossings implies our data-generating function wiggles rapidly, so our $l$ becomes smaller to produce a covariance function that in turn produces more flexible functions.
 
 % \subsection{Smoothing and equivelant kernels \cite{gp-ml}}
 % TODO, missing background

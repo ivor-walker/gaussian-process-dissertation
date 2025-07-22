@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  16 JUL 2025 22:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  22 JUL 2025 18:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -561,24 +561,24 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 (./ch3/text.aux) (./ch4/text.aux) (./conc/text.aux))
 \openout1 = `text.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -614,7 +614,7 @@ LaTeX Font Info:    ... okay on input line 31.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 31.
+Package hyperref Info: Link coloring OFF on input line 36.
 (./text.out) (./text.out)
 \@outlinefile=\write4
 \openout4 = `text.out'.
@@ -662,8 +662,8 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-Package biblatex Info: Reference section=0 on input line 31.
-Package biblatex Info: Reference segment=0 on input line 31.
+Package biblatex Info: Reference section=0 on input line 36.
+Package biblatex Info: Reference segment=0 on input line 36.
  (c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count427
@@ -686,13 +686,13 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
 
 
 (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
 
 
 (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -770,12 +770,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [10]
 
-[11]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 539.
-
-)
+[11])
 
 [12{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 \openout2 = `ch2/text.aux'.
@@ -797,215 +792,170 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [14]
 
 LaTeX Warning: Reference `eq:uni_taylor_a' on page 15 undefined on input line 1
-53.
+76.
 
 
 LaTeX Warning: Reference `eq:multi_taylor_a' on page 15 undefined on input line
- 153.
+ 176.
 
 
 
 [15]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 262.
-
-
-LaTeX Warning: Citation 'eq:se' on page 16 undefined on input line 265.
-
-
-
 [16]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 285.
+
+
+LaTeX Warning: Citation 'eq:se' on page 17 undefined on input line 288.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 313.
+
+
+
 [17]
-<./img/gaussian_variances.png, id=408, 602.25pt x 451.6875pt>
-File: ./img/gaussian_variances.png Graphic file (type png)
-<use ./img/gaussian_variances.png>
-Package pdftex.def Info: ./img/gaussian_variances.png  used on input line 354.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/gaussian_draws.png, id=409, 602.25pt x 451.6875pt>
-File: ./img/gaussian_draws.png Graphic file (type png)
-<use ./img/gaussian_draws.png>
-Package pdftex.def Info: ./img/gaussian_draws.png  used on input line 362.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
+<./img/gaussian_variances.png, id=431, 602.25pt x 451.6875pt>
 
 
-[18
+[18]
+<./img/gaussian_draws.png, id=437, 602.25pt x 451.6875pt>
+
+
+[19
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.368 
-       <./img/gaussian_variances.png>]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 372.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\gamma' on input line 372.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 372.
-
-<./img/powerexp_variances.png, id=418, 602.25pt x 451.6875pt>
-File: ./img/powerexp_variances.png Graphic file (type png)
-<use ./img/powerexp_variances.png>
-Package pdftex.def Info: ./img/powerexp_variances.png  used on input line 380.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-
-LaTeX Warning: Citation 'gaopro' on page 19 undefined on input line 384.
-
-
-LaTeX Warning: Citation 'gaopro' on page 19 undefined on input line 384.
-
-
-
-[19
+l.408 \includegraphics
+                      [height=0.5\textwidth]{ratquad_variances.png} \\
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.386 
-       <./img/gaussian_draws.png>]
-<./img/powerexp_draws.png, id=426, 602.25pt x 451.6875pt>
-File: ./img/powerexp_draws.png Graphic file (type png)
-<use ./img/powerexp_draws.png>
-Package pdftex.def Info: ./img/powerexp_draws.png  used on input line 388.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/exp_variances.png, id=427, 602.25pt x 451.6875pt>
-File: ./img/exp_variances.png Graphic file (type png)
-<use ./img/exp_variances.png>
-Package pdftex.def Info: ./img/exp_variances.png  used on input line 402.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
+l.408 \includegraphics
+                      [height=0.5\textwidth]{ratquad_variances.png} \\]
+<./img/ratquad_variances.png, id=446, 602.25pt x 451.6875pt>
+<./img/ratquad_draws.png, id=447, 602.25pt x 451.6875pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 408--410
+
+ []
 
 
-[20
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 413.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\gamma' on input line 413.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 413.
+
+<./img/powerexp_variances.png, id=448, 602.25pt x 451.6875pt>
+
+LaTeX Warning: Citation 'gaopro' on page 20 undefined on input line 425.
+
+
+LaTeX Warning: Citation 'gaopro' on page 20 undefined on input line 425.
+
+
+
+[20]
+<./img/powerexp_draws.png, id=453, 602.25pt x 451.6875pt>
+<./img/exp_variances.png, id=454, 602.25pt x 451.6875pt>
+
+
+[21
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.408 
+l.449 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.408 
-       <./img/powerexp_variances.png> <./img/powerexp_draws.png>]
-<./img/exp_draws.png, id=436, 602.25pt x 451.6875pt>
-File: ./img/exp_draws.png Graphic file (type png)
-<use ./img/exp_draws.png>
-Package pdftex.def Info: ./img/exp_draws.png  used on input line 410.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
+l.449 
+      ]
+<./img/exp_draws.png, id=461, 602.25pt x 451.6875pt>
 
 
-[21
+[22
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.433 \end{equation*}
+l.474 \end{equation*}
                      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.433 \end{equation*}
-                      <./img/exp_variances.png> <./img/exp_draws.png>]
-<./img/matern32_variances.png, id=445, 602.25pt x 451.6875pt>
-File: ./img/matern32_variances.png Graphic file (type png)
-<use ./img/matern32_variances.png>
-Package pdftex.def Info: ./img/matern32_variances.png  used on input line 445.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/matern32_draws.png, id=446, 602.25pt x 451.6875pt>
-File: ./img/matern32_draws.png Graphic file (type png)
-<use ./img/matern32_draws.png>
-Package pdftex.def Info: ./img/matern32_draws.png  used on input line 453.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
+l.474 \end{equation*}
+                     ]
+<./img/matern32_variances.png, id=468, 602.25pt x 451.6875pt>
+<./img/matern32_draws.png, id=469, 602.25pt x 451.6875pt>
 
 
-[22
+[23
 pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.459 
-       <./img/matern32_variances.png>]
-<./img/matern52_variances.png, id=454, 602.25pt x 451.6875pt>
-File: ./img/matern52_variances.png Graphic file (type png)
-<use ./img/matern52_variances.png>
-Package pdftex.def Info: ./img/matern52_variances.png  used on input line 470.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/matern52_draws.png, id=455, 602.25pt x 451.6875pt>
-File: ./img/matern52_draws.png Graphic file (type png)
-<use ./img/matern52_draws.png>
-Package pdftex.def Info: ./img/matern52_draws.png  used on input line 478.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
+l.500 
+      ]
+<./img/matern52_variances.png, id=476, 602.25pt x 451.6875pt>
+<./img/matern52_draws.png, id=477, 602.25pt x 451.6875pt>
 
 
-[23
+[24
 pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.484 
+l.525 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.484 
-       <./img/matern32_draws.png> <./img/matern52_variances.png>]
-<./img/ratquad_variances.png, id=465, 602.25pt x 451.6875pt>
-File: ./img/ratquad_variances.png Graphic file (type png)
-<use ./img/ratquad_variances.png>
-Package pdftex.def Info: ./img/ratquad_variances.png  used on input line 493.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
-<./img/ratquad_draws.png, id=466, 602.25pt x 451.6875pt>
-File: ./img/ratquad_draws.png Graphic file (type png)
-<use ./img/ratquad_draws.png>
-Package pdftex.def Info: ./img/ratquad_draws.png  used on input line 494.
-(pdftex.def)             Requested size: 350.17825pt x 262.61894pt.
+l.525 
+      ])
 
-Underfull \hbox (badness 10000) in paragraph at lines 493--495
-
- []
-
-
-
-[24
+[25
 pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.495 
-       <./img/matern52_draws.png> <./img/ratquad_variances.png>])
-
-[25 <./img/ratquad_draws.png>]
+l.56 \include{ch2/text}
+                       ]
 \openout2 = `ch3/text.aux'.
 
  (./ch3/text.tex
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 5.
-
-
-LaTeX Warning: Citation 'foreman-mackay' on page 26 undefined on input line 10.
-
+LaTeX Warning: Citation 'foreman-mackay' on page 26 undefined on input line 7.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 10.
+(hyperref)                removing `\cite' on input line 7.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 13.
+(hyperref)                removing `\cite' on input line 9.
 
 
-LaTeX Warning: Citation 'matching-pursuit' on page 26 undefined on input line 2
-3.
+LaTeX Warning: Citation 'matching-pursuit' on page 26 undefined on input line 1
+6.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 30.
 
 )
 
@@ -1034,7 +984,7 @@ LaTeX Warning: Citation 'matching-pursuit' on page 26 undefined on input line 2
 ]
 
 Package biblatex Warning: Month out of range
-(biblatex)                at entry 'random-subsampling' on input line 61.
+(biblatex)                at entry 'random-subsampling' on input line 66.
 
 
 
@@ -1052,16 +1002,16 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `text.out' has not changed.
-(rerunfilecheck)             Checksum: 3ACCB90398CF427600500F0F7B91AA95;8695.
+(rerunfilecheck)             Checksum: EB462DFA093C015EA097A28C4EECB69E;9745.
 Package logreq Info: Writing requests to 'text.run.xml'.
 \openout1 = `text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18422 strings out of 473190
- 318460 string characters out of 5719979
- 1163131 words of memory out of 5000000
- 41288 multiletter control sequences out of 15000+600000
+ 18407 strings out of 473190
+ 318052 string characters out of 5719979
+ 1163146 words of memory out of 5000000
+ 41277 multiletter control sequences out of 15000+600000
  568469 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,9n,81p,1135b,1343s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1082,10 +1032,10 @@ s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
 /texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on text.pdf (29 pages, 595663 bytes).
+Output written on text.pdf (29 pages, 328659 bytes).
 PDF statistics:
- 638 PDF objects out of 1000 (max. 8388607)
- 539 compressed objects within 6 object streams
- 154 named destinations out of 1000 (max. 500000)
- 413 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 637 PDF objects out of 1000 (max. 8388607)
+ 550 compressed objects within 6 object streams
+ 150 named destinations out of 1000 (max. 500000)
+ 445 words of extra memory for PDF output out of 10000 (max. 10000000)
 

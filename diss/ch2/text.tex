@@ -5,7 +5,8 @@
 
 
 \subsubsection{Symmetry and positive semidefiniteness}
-Given a vector of input points ${X_i | i = 1, ..., n}$, the Gram matrix $K$ is the $n \times n$ matrix whose $(i,j)$-th entry is the inner product between $X_i$ and $X_j$. Since our covariance matrix can be represented as inner products of our vectors of inputs, we can represent it as a Gram matrix. The Gram matrix has two key properties, symmetry and positive semidefiniteness:
+The inner product representation that any valid covariance matrix can produce is the form of a Gram matrix. Given a vector of input points ${X_i | i = 1, ..., n}$ and a covariance function $k$, a Gram matrix $K$ is the $n \times n$ matrix whose $(i,j)$-th entry is $k(x_i, x_j)$. This requires any proposed covariance matrix to exhibit the properties of a Gram matrix, namely symmetry and positive semidefiniteness.
+
 \begin{equation*}
     \begin{aligned}
         K_{ij} = K_{ji} \\
@@ -13,7 +14,29 @@ Given a vector of input points ${X_i | i = 1, ..., n}$, the Gram matrix $K$ is t
     \end{aligned}
 \end{equation*}
 
-TODO prove positive semidefiniteness, background needed
+Symmetry is inherent from the inner product property since inner products are symmetric, i.e. $X_i^T X_j = X_j^T X_i$, and imposes $cov(X_i, X_j) = cov(X_j, X_i)$. $K$ satisfies positive semidefiniteness if, for any vector $V$ of inputs, $V^T K V \geq 0$. 
+\begin{equation*}
+    V^T K V = (K V)^T (K V) = ||K V||^2 \geq 0
+\end{equation*}
+This means that the covariance matrix must not produce negative variances for any linear combination of inputs.
+
+\subsubsection{Varying the length scale}
+Our covariance functions has some hyperparameters, e.g. the full form of SE in one dimension contains some free parameters $\sigma^2_f$, $\sigma^2_n$, and $l$:
+\begin{equation*}
+    k_y(x,x') = \sigma^2_f \exp\left(-\frac{1}{2}\frac{|x - x'|^2}{l^2}\right) + \sigma^2_n\delta_{x,x'}
+\end{equation*}
+Note that our covariance function is for $k_y$ as it is for the noisy targets $y$, not the function $f$. $\sigma^2_f$ is the signal variance, which controls the overall scale of the function. $\sigma^2_n$ is the noise variance, which controls the amount of noise in the observations. $\delta_{X,X'}$ is the Kronecker delta which represents our independence of noise assumption.
+
+$l$ is a "length scale" hyperparameter that controls how sensitive our functions are - if we specify a lower $l$, we can "artificially" get a high $k(X,X')$. One way to determine $l$ is by the expected number of "upcrossings" that our kernel is expected to make for a given level $u$. A function performs an upcrossing for $u$ when $u = f(x)$ and $dy/dx > 0$. For example, with $u = 2$ and $y = x^2$, there exists one upcrossing at $(2, \sqrt{2})$ where $dy/dx = 4$, and a downcrossing at $(2, -\sqrt{2})$ where $dy/dx = -4$. For our zero-mean Gaussian processes, the expected number of upcrossings of our (stationary) kernel for a level $ 0 < u < 1$ is:
+\begin{equation*}
+    \mathbb{E}[N_u] = \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right)
+\end{equation*}
+We can empirically count the number of upcrossings between 0 and 1 and set this equal to the expected number of upcrossings to get a value for $l$:
+\begin{equation} \label{eq:general_l}
+    \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right) = \hat{N}_u
+\end{equation}
+
+A large amount of upcrossings implies our data-generating function wiggles rapidly, so our $l$ becomes smaller to produce a covariance function that in turn produces more flexible functions.
 
 \subsubsection{Mean square continuity and differentiability}
 To understand how smooth the functions drawn from a Gaussian process are, we need to understand how differentiable and continuous they are. A more differentiable function implies that the function contains higher order polynomials which makes it smoother, and a continuous function avoids any reductions in smoothness produced by discontinuities.
@@ -264,6 +287,9 @@ $O(h)$ approaches $0$ as $h \to 0$, so our limit definition of MS differentiabil
 \subsubsection{Stationarity and isotropicism}
 A stationary covariance function $k(X - X')$ is some function of $X - X'$ , and is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function $k(|X - X'|)$ is a function of $|X - X'|$, and is is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because it is a function of $|X - X'|$.
 
+
+% \subsubsection{Eigenfunction analysis of covariance functions}
+
 \subsubsection{Stationary GPs in MS space}
 Putting the stationary kernel $k(x,x') = k(x - x')$ into \ref{eq:ms_continuity}:
 \begin{equation*}
@@ -278,6 +304,13 @@ $2$ is a constant factor and can be ignored. Because $ | k(0) - k(x - x_*) |$ is
     \lim_{x \to x_*} | k(x_* - x) - k(0) | = 0
 \end{equation*}
 Thus, a stationary covariance function is MS continuous at $x_*$ if and only if it is continuous at $x_* = 0$. Similarly, it can be shown that stationary covariance functions are MS differentiable at $x_*$ if and only if they are MS differentiable at $x_* = 0$.
+
+\subsubsection{TODO Spectral density}
+Bochner's theorem states that a complex-valued function is the covariance function of a 
+
+It can be shown \cite{Gikhman2004-wc} that the covariance function of a stationary process can be represented as the Fourier transform of a positive finite measure.
+
+\subsection{Stationary covariance functions \cite{gp-ml}}
 
 \subsubsection{Squared exponential (SE)}
 Here is the already introduced SE:
@@ -350,6 +383,7 @@ Rearranging for $\hat{N}_u$:
 \end{equation*}
 Here, $l$ behaves as a length scale - a larger $l$ reduces the number of upcrossings, stretching out the features over longer distances and producing smoother sample paths.
 
+
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{gaussian_variances.png}
     \caption{
@@ -366,6 +400,13 @@ Here, $l$ behaves as a length scale - a larger $l$ reduces the number of upcross
     }
 \end{figure}
 
+\subsubsection{TODO Rational quadratic}
+The rational quadratic can be seen as an infinite sum of SE with different length-scales.
+
+TODO formulas
+
+\includegraphics[height=0.5\textwidth]{ratquad_variances.png} \\
+\includegraphics[height=0.5\textwidth]{ratquad_draws.png} \\
 
 % Often causes issues since it assumes infinite differentiability. Experts don’t recommend using it. \cite{gaopro}
 
@@ -485,13 +526,6 @@ $\nu = 5/2$ produces the following covariance function:
 % Matern 5/2: Assumes two time differentiability. Generally the best. \cite{gaopro}
 
 
-\subsubsection{Rational quadratic}
-The rational quadratic can be seen as an infinite sum of SE with different length-scales.
-
-TODO formulas
-
-\includegraphics[height=0.5\textwidth]{ratquad_variances.png} \\
-\includegraphics[height=0.5\textwidth]{ratquad_draws.png} \\
 
 
 % \subsection{Non-stationary covariance functions \cite{gp-ml}}
