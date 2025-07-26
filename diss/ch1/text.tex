@@ -365,12 +365,12 @@ This is the polynomial kernel, which is equivalent to our original polynomial ba
 
 \paragraph{Bayesian linear model}
 We can define our Bayesian linear model of a real process $f(X)$ entirely in terms of mean function $m(X)$ and covariance function $k(X,X')$:
-\begin{equation*}
+\begin{equation} \label{eq:gp_bayesian}
     \begin{aligned}
         m(X) = \phi(X)^T\mathbb{E}[W] = \phi(X)^T[0] = 0 \\
         k(X,X') = \phi(X)^T\mathbb{E}[WW^T]\phi(X') = \phi(X)^T\Sigma_P\phi(X')
     \end{aligned}
-\end{equation*}
+\end{equation}
 
 Our covariance function here is in inner product form. The kernel trick here uses the squared exponential (SE) covariance function, also known as the radial basis function (RBF) or Gaussian kernel:
 \begin{equation*}
@@ -533,8 +533,7 @@ We can plug these mean and variances into Gaussian PDF \ref{eq:gaussian_pdf} to 
     \item Return the mean $mu$, variance $var$, and log marginal likelihood
 \end{enumerate}
 
-TODO Choelsky decomposition if needed, missing background
-
+\paragraph{TODO Choelsky decomposition}
 
 
 % \subsection{Smoothing and equivelant kernels \cite{gp-ml}}

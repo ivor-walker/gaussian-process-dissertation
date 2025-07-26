@@ -19,6 +19,42 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
+    \entry{nystrom}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=7bff1fd2d94501cc77ba13cf03869303}{%
+           family={Baker},
+           familyi={B\bibinitperiod},
+           given={Christopher\bibnamedelimb T\bibnamedelima H},
+           giveni={C\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {London, England}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{7bff1fd2d94501cc77ba13cf03869303}
+      \strng{fullhash}{7bff1fd2d94501cc77ba13cf03869303}
+      \strng{fullhashraw}{7bff1fd2d94501cc77ba13cf03869303}
+      \strng{bibnamehash}{7bff1fd2d94501cc77ba13cf03869303}
+      \strng{authorbibnamehash}{7bff1fd2d94501cc77ba13cf03869303}
+      \strng{authornamehash}{7bff1fd2d94501cc77ba13cf03869303}
+      \strng{authorfullhash}{7bff1fd2d94501cc77ba13cf03869303}
+      \strng{authorfullhashraw}{7bff1fd2d94501cc77ba13cf03869303}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{series}{Monographs on Numerical Analysis}
+      \field{title}{The numerical treatment of integral equations}
+      \field{year}{1978}
+      \field{pages}{67\bibrangessep 67}
+      \range{pages}{2}
+    \endentry
     \entry{Gikhman2004-wc}{book}{}{}
       \name{author}{2}{}{%
         {{hash=1aa05f37a6087d6db04b48c8bd323bce}{%
@@ -216,6 +252,46 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.7551/mitpress/3206.001.0001
+      \endverb
+    \endentry
+    \entry{fourier_moments}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=c4ada04a4ca5499333195c24dfce4878}{%
+           family={Ritter},
+           familyi={R\bibinitperiod},
+           given={Klaus},
+           giveni={K\bibinitperiod}}}%
+        {{hash=c2569fd2a57e3fdb9be1bea6a27bce2a}{%
+           family={Wasilkowski},
+           familyi={W\bibinitperiod},
+           given={Grzegorz\bibnamedelima W.},
+           giveni={G\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=ff111097e2ce4d919b607351ba68d4d9}{%
+           family={Wozniakowski},
+           familyi={W\bibinitperiod},
+           given={Henryk},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{51f6292beda0f1dd8eb2d78827c18f58}
+      \strng{fullhash}{51f6292beda0f1dd8eb2d78827c18f58}
+      \strng{fullhashraw}{51f6292beda0f1dd8eb2d78827c18f58}
+      \strng{bibnamehash}{51f6292beda0f1dd8eb2d78827c18f58}
+      \strng{authorbibnamehash}{51f6292beda0f1dd8eb2d78827c18f58}
+      \strng{authornamehash}{51f6292beda0f1dd8eb2d78827c18f58}
+      \strng{authorfullhash}{51f6292beda0f1dd8eb2d78827c18f58}
+      \strng{authorfullhashraw}{51f6292beda0f1dd8eb2d78827c18f58}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Annals of Applied Probability}
+      \field{month}{5}
+      \field{number}{2}
+      \field{title}{Multivariate integration and approximation for random fields satisfying Sacks-Ylvisaker conditions}
+      \field{volume}{5}
+      \field{year}{1995}
+      \verb{doi}
+      \verb 10.1214/aoap/1177004776
       \endverb
     \endentry
   \enddatalist
