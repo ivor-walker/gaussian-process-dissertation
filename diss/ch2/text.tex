@@ -115,7 +115,7 @@ $l$ is a "length scale" hyperparameter that controls how sensitive our functions
 \begin{equation*}
     \mathbb{E}[N_u] = \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right)
 \end{equation*}
-We can empirically count the number of upcrossings between 0 and 1 and set this equal to the expected number of upcrossings to get a value for $l$:
+We can empirically count the number of upcrossings between 0 and 1 $\hat{N}_u$ and set this equal to the expected number of upcrossings to get a value for $l$:
 \begin{equation} \label{eq:general_l}
     \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right) = \hat{N}_u
 \end{equation}
@@ -510,10 +510,10 @@ Here, $l$ behaves as a length scale - a larger $l$ reduces the number of upcross
 % Often causes issues since it assumes infinite differentiability. Experts don’t recommend using it. \cite{gaopro}
 
 
-\subsubsection{TODO Rational quadratic (RQ)}
-RQ controls smoothness by manipulating the length scale:
+\subsubsection{Rational quadratic (RQ)}
+RQ controls smoothness by using a mixture of different length scales to capture multiple trends in the data with different frequencies. 
 \begin{equation*}
-    k(X,X') = \left( 1 + \frac{|X - X'|^2}{2\alpha l^2} \right)^{-a}
+    k(X,X') = \left( 1 + \frac{|X - X'|^2}{2\alpha l^2} \right)^{-\alpha}
 \end{equation*}
 We can derive this form by creating an infinite sum of different instances of SE with a vector of different length-scales $l$ and some weights $w_i$ attached to each instance:
 \begin{equation*}
@@ -551,7 +551,7 @@ We can use the Gamma integral here, but need some rearranging. Absorbing $\frac{
 \begin{equation*}
     k(X,X') \propto \int_{0}^{\infty} \tau^{a - 1} \exp ( -\tau c ) d\tau
 \end{equation*}
-Applying the Gamma integral, absorbing $\Gamma(a)$ into proportionality and substituting $a$ and $c$ back in:
+Applying the Gamma integral and absorbing $\Gamma(a)$ into proportionality:
 \begin{equation*}
     k(X,X') \propto c^{-a} \Gamma(a) \propto \left[ \frac{\alpha}{\beta} + \frac{|X - X'|^2}{2} \right]^{-\left( \left[ \alpha - \frac{3}{2} \right] \right)} 
 \end{equation*}
@@ -559,18 +559,30 @@ Now we need to decide on the parameter values of our Gamma distribution. Since t
 \begin{equation*}
     k(X,X') = \left( al^2 + \frac{|X - X'|^2}{2} \right)^{-\alpha - \frac{3}{2}}
 \end{equation*}
-Factoring out $\alpha l^2$ and absorbing it into proportionality, and setting $a = 2\alpha$ gives us the final form of RQ:
+Factoring out $al^2$ and absorbing it into the proportionality constant to get our final form:
 \begin{equation*}
-    k(X,X') \propto al^2 \left( 1 + \frac{|X - X'|^2}{2\alpha l^2} \right)^{-a}
+    k(X,X') = \left( 1 + \frac{|X - X'|^2}{2\alpha l^2} \right)^{-\alpha - \frac{3}{2}}
 \end{equation*}
+This derivation starts from the discrete length scale $l$ for illustrative purposes, so includes $\frac{3}{2}$ to account for the change from length scale to $\tau$. In practice, derivations start from $\tau$ so never have to change units and never include the $\frac{3}{2}$ term in the exponent.
 
+RQ is infinitely MS differentiable, so produces infinitely smooth functions no matter what the shape parameter of our distribution of length scales $\alpha$ is. As $\alpha \to \infty$, this distribution becomes sharply peaked at the single analytically chosen length scale $l$ and RQ becomes SE. However, as $\alpha \to 1$, we get a wider spread of length scales so our functions capture trends at different frequencies. 
 
-\includegraphics[height=0.5\textwidth]{ratquad_variances.png} \\
-\includegraphics[height=0.5\textwidth]{ratquad_draws.png} \\
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{ratquad_variances.png}
+    \caption{
+        Plot of a Gaussian process using rational quadratic applied to the toy dataset. For this dataset, the R package GauPro \cite{gaopro} has obtained $\alpha = 100$ via MLE which produces a kernel close to SE, reflecting the lack of trends in this dataset. \\
+    }
+\end{figure}
 
+\begin{figure}[H]
+    \includegraphics[height=0.5\textwidth]{ratquad_draws.png} \\
+    \caption{
+        Plots of functions from a Gaussian process using rational quadratic applied to the same toy dataset. \\
+    }
+\end{figure}
 
 \subsubsection{$\gamma$-exponential and exponential}
-SE has no parameter that controls or reduce its MS differentiability and its smoothness, rendering it a poor approximation of the less smooth functions we often encounter in the real world. We can introduce a differentiability parameter $\gamma$ to control how differentiable the covariance function is:
+SE and RQ have no parameter controlling or reducing its MS differentiability and its smoothness, rendering it a poor approximation of the less smooth functions we often encounter in the real world. We can introduce a differentiability parameter $\gamma$ to control how differentiable the covariance function is:
 \begin{equation*}
     k(X,X') = \exp \left(-\frac{|X - X'|^{\gamma}}{l^{\gamma}} \right)
 \end{equation*}

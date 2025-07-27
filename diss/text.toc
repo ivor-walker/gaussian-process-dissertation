@@ -48,9 +48,9 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Squared exponential (SE)}{19}{subsubsection.3.3.1}%
 \contentsline {paragraph}{\numberline {3.3.1.1}From feature space to SE}{20}{paragraph.3.3.1.1}%
 \contentsline {paragraph}{\numberline {3.3.1.2}Length scale}{20}{paragraph.3.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.3.2}TODO Rational quadratic (RQ)}{22}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{23}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{25}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{22}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{24}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{26}{subsubsection.3.3.4}%
 \contentsline {paragraph}{\numberline {3.3.4.1}Matern 3/2}{26}{paragraph.3.3.4.1}%
 \contentsline {paragraph}{\numberline {3.3.4.2}Matern 5/2}{27}{paragraph.3.3.4.2}%
 \contentsline {section}{\numberline {4}Computational Issues}{29}{section.4}%
