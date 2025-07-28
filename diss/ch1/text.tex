@@ -401,7 +401,7 @@ This definition implies a consistency requirement - any group of functions drawn
 \subsubsection{Predictive distributions with noise-free observations}
 \paragraph{Prior distribution over functions}
 $f(X)$ and $f(X_*)$ are jointly distributed according to the prior:
-\begin{equation*}
+\begin{equation} \label{eq:joint_prior}
     \begin{pmatrix}
         f(X) \\ f(X_*)
     \end{pmatrix} \sim N\left(
@@ -409,10 +409,11 @@ $f(X)$ and $f(X_*)$ are jointly distributed according to the prior:
         0 \\ 0
     \end{pmatrix},
     \begin{pmatrix}
-        K(X,X) & K(X,X_*) \\ K(X_*,X) & K(X_*,X_*)
+        K(X,X) & K(X,X_*) \\ 
+        K(X_*,X) & K(X_*,X_*)
     \end{pmatrix}
     \right)
-\end{equation*}
+\end{equation}
 
 \paragraph{Posterior distribution of functions}
 To get the posterior distribution of functions given the training data and our prior, we can condition the joint prior distribution on the training data. Intuitively, this is like generating random functions $g(X)$ and rejecting those that do not pass through the training data. Probabilistically, we condition our joint Gaussian prior distribution on the observations $p(f(X_*)|X_*, X, f(X))$.
