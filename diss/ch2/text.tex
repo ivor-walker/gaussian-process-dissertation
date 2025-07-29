@@ -392,7 +392,7 @@ The Weiner-Khinchin theorem governs the inversion of the Fourier transform to re
 \end{equation*}
 
 \paragraph{Smoothness}
-To remain integratable, our spectral density needs to approach $0$ as $\omega \to \infty$. The faster it approaches $0$, the less power it contains at high frequencies, and the smoother our resultant GP will be. Ritter et. al. \cite{fourier_moments} formalised this by by taking moments of the spectral density and connecting them to the MS differentiability of our resultant GP. The $2m$-th $\omega$-th moment of the spectral density is:
+To remain integratable, our spectral density needs to approach $0$ as $\omega \to \infty$. The faster it approaches $0$, the less power it contains at high frequencies, and the smoother our resultant GP will be. Ritter et. al. \cite{fourier-moments} formalised this by by taking moments of the spectral density and connecting them to the MS differentiability of our resultant GP. The $2m$-th $\omega$-th moment of the spectral density is:
 \begin{equation*}
     \int_{-\infty}^{\infty} |\omega|^2m S(\omega) d\omega
 \end{equation*}
@@ -507,7 +507,7 @@ Here, $l$ behaves as a length scale - a larger $l$ reduces the number of upcross
     }
 \end{figure}
 
-% Often causes issues since it assumes infinite differentiability. Experts don’t recommend using it. \cite{gaopro}
+% Often causes issues since it assumes infinite differentiability. Experts don’t recommend using it. \cite{gaupro}
 
 
 \subsubsection{Rational quadratic (RQ)}
@@ -570,7 +570,7 @@ RQ is infinitely MS differentiable, so produces infinitely smooth functions no m
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{ratquad_variances.png}
     \caption{
-        Plot of a Gaussian process using rational quadratic applied to the toy dataset. For this dataset, the R package GauPro \cite{gaopro} has obtained $\alpha = 100$ via MLE which produces a kernel close to SE, reflecting the lack of trends in this dataset. \\
+        Plot of a Gaussian process using rational quadratic applied to the toy dataset. For this dataset, the R package GauPro \cite{gaupro} has obtained $\alpha = 100$ via MLE which produces a kernel close to SE, reflecting the lack of trends in this dataset. \\
     }
 \end{figure}
 
@@ -591,7 +591,7 @@ where $0 < \gamma \geq 2$ controls the smoothness of the covariance function.
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{powerexp_variances.png}
     \caption{
-        Plot of a Gaussian process using $\gamma$-exponential applied to the toy dataset. For this dataset, the R package GauPro \cite{gaopro} has used $\gamma = 1.688043$ obtained via MLE. \\
+        Plot of a Gaussian process using $\gamma$-exponential applied to the toy dataset. For this dataset, the R package GauPro \cite{gaupro} has used $\gamma = 1.688043$ obtained via MLE. \\
         There are no green lines here because TODO. $\gamma$-exponential produces much rougher functions than SE, so its expected function has a lot more wiggle and conforms to the datapoints much closer than SE. In this case, our data-generating function is smooth so SE is closer to the data-generating function than $\gamma$-exponential, but real world data-generating functions are often much rougher and would benefit from a kernel flexible enough to pass through the datapoints.
     }
 \end{figure}
@@ -627,7 +627,7 @@ Here, and for all other values of $\gamma$ other than $2$, the covariance functi
 \end{figure}
 
 
-% Exponential: Equivalent to Matern 1/2. Assumes no differentiability. \cite{gaopro}
+% Exponential: Equivalent to Matern 1/2. Assumes no differentiability. \cite{gaupro}
 
 
 \subsubsection{Matern-class}
@@ -669,7 +669,7 @@ $\nu = 3/2$ produces the following covariance function:
     }
 \end{figure}
 
-% Matern 3/2: Assumes one time differentiability. This is often too low of an assumption. \cite{gaopro}
+% Matern 3/2: Assumes one time differentiability. This is often too low of an assumption. \cite{gaupro}
 
 \paragraph{Matern 5/2}
 $\nu = 5/2$ produces the following covariance function:
@@ -694,7 +694,7 @@ $\nu = 5/2$ produces the following covariance function:
     }
 \end{figure}
 
-% Matern 5/2: Assumes two time differentiability. Generally the best. \cite{gaopro}
+% Matern 5/2: Assumes two time differentiability. Generally the best. \cite{gaupro}
 
 
 
@@ -715,7 +715,7 @@ $\nu = 5/2$ produces the following covariance function:
 % \subsubsection{Fisher}
 % 
 % 
-% \subsection{Factor-processing covariance functions \cite{gaopro}}
+% \subsection{Factor-processing covariance functions \cite{gaupro}}
 % 
 % \subsubsection{Ordered factor}
 % 

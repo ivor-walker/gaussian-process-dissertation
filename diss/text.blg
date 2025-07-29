@@ -1,22 +1,20 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [1] Config.pm:311> INFO - Logfile is 'text.blg'
-[475] biber-MSWIN64:340> INFO - === 
-[636] Biber.pm:420> INFO - Reading 'text.bcf'
-[931] Biber.pm:994> INFO - Found 10 citekeys in bib section 0
-[973] Biber.pm:4463> INFO - Processing section 0
-[1004] Biber.pm:4654> INFO - Looking for bibtex file '../references/references.bib' for section 0
-[1209] bibtex.pm:1713> INFO - LaTeX decoding ...
-[1310] bibtex.pm:1519> INFO - Found BibTeX data source '../references/references.bib'
-[1590] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1591] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1591] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[1591] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
-[1619] bbl.pm:676> INFO - Writing 'text.bbl' with encoding 'UTF-8'
-[1631] bbl.pm:779> INFO - Output to text.bbl
-[1632] Biber.pm:131> WARN - legacy month field 'May' in entry 'fourier_moments' is not an integer - this will probably not sort properly.
-[1633] Biber.pm:131> WARN - legacy month field '26--28 Aug' in entry 'random-subsampling' is not an integer - this will probably not sort properly.
-[1633] Biber.pm:131> WARN - I didn't find a database entry for 'eq:se' (section 0)
-[1634] Biber.pm:131> WARN - I didn't find a database entry for 'gaopro' (section 0)
-[1634] Biber.pm:131> WARN - I didn't find a database entry for 'foreman-mackay' (section 0)
-[1634] Biber.pm:131> WARN - I didn't find a database entry for 'matching-pursuit' (section 0)
-[1634] Biber.pm:133> INFO - WARNINGS: 6
+[188] biber-MSWIN64:340> INFO - === 
+[267] Biber.pm:420> INFO - Reading 'text.bcf'
+[452] Biber.pm:994> INFO - Found 15 citekeys in bib section 0
+[486] Biber.pm:4463> INFO - Processing section 0
+[511] Biber.pm:4654> INFO - Looking for bibtex file '../references/references.bib' for section 0
+[702] bibtex.pm:1713> INFO - LaTeX decoding ...
+[829] bibtex.pm:1519> INFO - Found BibTeX data source '../references/references.bib'
+[1164] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1165] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1165] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[1166] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
+[1212] bbl.pm:676> INFO - Writing 'text.bbl' with encoding 'UTF-8'
+[1243] bbl.pm:779> INFO - Output to text.bbl
+[1244] Biber.pm:131> WARN - legacy month field 'May' in entry 'fourier-moments' is not an integer - this will probably not sort properly.
+[1245] Biber.pm:131> WARN - legacy month field '26--28 Aug' in entry 'random-subsampling' is not an integer - this will probably not sort properly.
+[1245] Biber.pm:131> WARN - legacy month field '16--18 Apr' in entry 'vfe' is not an integer - this will probably not sort properly.
+[1246] Biber.pm:131> WARN - I didn't find a database entry for 'eq:se' (section 0)
+[1246] Biber.pm:133> INFO - WARNINGS: 4

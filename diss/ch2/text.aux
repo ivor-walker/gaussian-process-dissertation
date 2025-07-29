@@ -6,21 +6,21 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Eigenvalue analysis of covariance matrices}{13}{subsubsection.3.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{\numberline {3.1.2.1}Integral operators}{13}{paragraph.3.1.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{\numberline {3.1.2.2}Mercer's theorem}{13}{paragraph.3.1.2.2}\protected@file@percent }
-\newlabel{eq:gp_mercer}{{23}{13}{Mercer's theorem}{equation.23}{}}
+\newlabel{eq:gp_mercer}{{24}{13}{Mercer's theorem}{equation.24}{}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {3.1.2.3}Covariance matrix approximations}{14}{paragraph.3.1.2.3}\protected@file@percent }
-\newlabel{eq:gp_mercer_approx}{{24}{14}{Covariance matrix approximations}{equation.24}{}}
+\newlabel{eq:gp_mercer_approx}{{25}{14}{Covariance matrix approximations}{equation.25}{}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {3.1.2.4}Approximating $\Phi _i$ and $U_i$}{14}{paragraph.3.1.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Varying the length scale}{14}{subsubsection.3.1.3}\protected@file@percent }
-\newlabel{eq:general_l}{{25}{15}{Varying the length scale}{equation.25}{}}
+\newlabel{eq:general_l}{{26}{15}{Varying the length scale}{equation.26}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Mean square continuity and differentiability}{15}{subsubsection.3.1.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{\numberline {3.1.4.1}Continuity}{15}{paragraph.3.1.4.1}\protected@file@percent }
-\newlabel{eq:ms_continuity}{{26}{15}{Continuity}{equation.26}{}}
+\newlabel{eq:ms_continuity}{{27}{15}{Continuity}{equation.27}{}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {3.1.4.2}Differentiability}{16}{paragraph.3.1.4.2}\protected@file@percent }
-\newlabel{eq:msd_a}{{27}{16}{Differentiability}{equation.27}{}}
-\newlabel{eq:msd_a_final}{{28}{17}{Differentiability}{equation.28}{}}
-\newlabel{eq:msd_b_final}{{29}{17}{Differentiability}{equation.29}{}}
-\newlabel{eq:msd_ab_final}{{30}{18}{Differentiability}{equation.30}{}}
-\newlabel{eq:ms_differentiability}{{31}{18}{Differentiability}{equation.31}{}}
+\newlabel{eq:msd_a}{{28}{16}{Differentiability}{equation.28}{}}
+\newlabel{eq:msd_a_final}{{29}{17}{Differentiability}{equation.29}{}}
+\newlabel{eq:msd_b_final}{{30}{17}{Differentiability}{equation.30}{}}
+\newlabel{eq:msd_ab_final}{{31}{18}{Differentiability}{equation.31}{}}
+\newlabel{eq:ms_differentiability}{{32}{18}{Differentiability}{equation.32}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{18}{subsection.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{18}{subsubsection.3.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Spectral density}{19}{subsubsection.3.2.2}\protected@file@percent }
@@ -33,10 +33,10 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  Plot of a Gaussian process using SE applied to a toy dataset. The toy dataset ($n = 15$) is a data-generating function in blue with some Gaussian noise applied to produce the datapoints in black. The black line represents the expected function from the Gaussian process. The green line represents the 90\% confidence interval around the predictive distribution without the $\sigma ^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 90\% confidence interval with $\sigma ^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$. \\ TODO explain }}{21}{figure.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  Plots of functions from a Gaussian process using SE applied to the same toy dataset. The blue line and black datapoints and lines are as before, but the green lines here are a sample of functions drawn from the Gaussian process. \\ TODO explain }}{21}{figure.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{22}{subsubsection.3.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  Plot of a Gaussian process using rational quadratic applied to the toy dataset. For this dataset, the R package GauPro \blx@tocontentsinit {0}\cite {gaopro} has obtained $\alpha = 100$ via MLE which produces a kernel close to SE, reflecting the lack of trends in this dataset. \\ }}{23}{figure.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  Plot of a Gaussian process using rational quadratic applied to the toy dataset. For this dataset, the R package GauPro \blx@tocontentsinit {0}\cite {gaupro} has obtained $\alpha = 100$ via MLE which produces a kernel close to SE, reflecting the lack of trends in this dataset. \\ }}{23}{figure.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  Plots of functions from a Gaussian process using rational quadratic applied to the same toy dataset. \\ }}{24}{figure.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{24}{subsubsection.3.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Plot of a Gaussian process using $\gamma $-exponential applied to the toy dataset. For this dataset, the R package GauPro \blx@tocontentsinit {0}\cite {gaopro} has used $\gamma = 1.688043$ obtained via MLE. \\ There are no green lines here because TODO. $\gamma $-exponential produces much rougher functions than SE, so its expected function has a lot more wiggle and conforms to the datapoints much closer than SE. In this case, our data-generating function is smooth so SE is closer to the data-generating function than $\gamma $-exponential, but real world data-generating functions are often much rougher and would benefit from a kernel flexible enough to pass through the datapoints. }}{24}{figure.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Plot of a Gaussian process using $\gamma $-exponential applied to the toy dataset. For this dataset, the R package GauPro \blx@tocontentsinit {0}\cite {gaupro} has used $\gamma = 1.688043$ obtained via MLE. \\ There are no green lines here because TODO. $\gamma $-exponential produces much rougher functions than SE, so its expected function has a lot more wiggle and conforms to the datapoints much closer than SE. In this case, our data-generating function is smooth so SE is closer to the data-generating function than $\gamma $-exponential, but real world data-generating functions are often much rougher and would benefit from a kernel flexible enough to pass through the datapoints. }}{24}{figure.5}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  Plots of functions from a Gaussian process using $\gamma $-exponential applied to the same toy dataset. \\ These sample function draws are much rougher than SE. }}{25}{figure.6}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  Plot of a Gaussian process using exponential applied to the toy dataset. \\ TODO explain }}{25}{figure.7}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Plots of functions from a Gaussian process using exponential applied to the same toy dataset. \\ These sample function draws are much rougher than SE and $\gamma $-exponential. }}{26}{figure.8}\protected@file@percent }
@@ -49,7 +49,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Plots of functions from a Gaussian process using Matern 5/2 applied to the same toy dataset. \\ These sample function draws conform more to the expected function than 3/2 due to the narrower variances, but are still much rougher than SE and approach the data-points. }}{28}{figure.12}\protected@file@percent }
 \@setckpt{ch2/text}{
 \setcounter{page}{29}
-\setcounter{equation}{31}
+\setcounter{equation}{32}
 \setcounter{enumi}{8}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -78,7 +78,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{14}
+\setcounter{instcount}{21}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}

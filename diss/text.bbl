@@ -55,7 +55,129 @@
       \field{pages}{67\bibrangessep 67}
       \range{pages}{2}
     \endentry
-    \entry{Gikhman2004-wc}{book}{}{}
+    \entry{fitc-heteroskedasticity}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=421f3008dbc4ab2676b8feea419d55eb}{%
+           family={Bauer},
+           familyi={B\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=7160da3246b72be13d1f6db1fe17a64a}{%
+           family={Wilk},
+           familyi={W\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod},
+           prefix={van\bibnamedelima der},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=58d90ed7b7348c7a5a9b4a2a8f46df7b}{%
+           family={Rasmussen},
+           familyi={R\bibinitperiod},
+           given={Carl\bibnamedelima Edward},
+           giveni={C\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{db5e23bcf4494e0397195657d2aa7e42}
+      \strng{fullhash}{db5e23bcf4494e0397195657d2aa7e42}
+      \strng{fullhashraw}{db5e23bcf4494e0397195657d2aa7e42}
+      \strng{bibnamehash}{db5e23bcf4494e0397195657d2aa7e42}
+      \strng{authorbibnamehash}{db5e23bcf4494e0397195657d2aa7e42}
+      \strng{authornamehash}{db5e23bcf4494e0397195657d2aa7e42}
+      \strng{authorfullhash}{db5e23bcf4494e0397195657d2aa7e42}
+      \strng{authorfullhashraw}{db5e23bcf4494e0397195657d2aa7e42}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.ML}
+      \field{eprinttype}{arXiv}
+      \field{title}{Understanding Probabilistic Sparse Gaussian Process Approximations}
+      \field{year}{2017}
+      \verb{eprint}
+      \verb 1606.04820
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1606.04820
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1606.04820
+      \endverb
+    \endentry
+    \entry{gaupro}{manual}{}{}
+      \name{author}{1}{}{%
+        {{hash=1dfd6f0b30b5c01a2d5d96016b8aa500}{%
+           family={Erickson},
+           familyi={E\bibinitperiod},
+           given={Collin},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{1dfd6f0b30b5c01a2d5d96016b8aa500}
+      \strng{fullhash}{1dfd6f0b30b5c01a2d5d96016b8aa500}
+      \strng{fullhashraw}{1dfd6f0b30b5c01a2d5d96016b8aa500}
+      \strng{bibnamehash}{1dfd6f0b30b5c01a2d5d96016b8aa500}
+      \strng{authorbibnamehash}{1dfd6f0b30b5c01a2d5d96016b8aa500}
+      \strng{authornamehash}{1dfd6f0b30b5c01a2d5d96016b8aa500}
+      \strng{authorfullhash}{1dfd6f0b30b5c01a2d5d96016b8aa500}
+      \strng{authorfullhashraw}{1dfd6f0b30b5c01a2d5d96016b8aa500}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{R package version 0.2.15.9000, commit 6c7a7a8055506229b6d02650aca9664a84f640f8}
+      \field{title}{GauPro: Gaussian Process Fitting}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://github.com/CollinErickson/GauPro
+      \endverb
+      \verb{url}
+      \verb https://github.com/CollinErickson/GauPro
+      \endverb
+    \endentry
+    \entry{foreman-mackay}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=d09afa31aa9325481d13539e96101e87}{%
+           family={{Foreman-Mackey}},
+           familyi={F\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=322c66d331f93cb72c3bb433277b00f0}{%
+           family={{Agol}},
+           familyi={A\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+        {{hash=218c2e2fdabe6e2af7ba58ffe2058d01}{%
+           family={{Ambikasaran}},
+           familyi={A\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=68b668e0ab8f11f89829c6efaf721358}{%
+           family={{Angus}},
+           familyi={A\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{6c28e95219898fe2fdaba62bcb4eb900}
+      \strng{fullhash}{cecde3a4e11205bf41349a257d70723c}
+      \strng{fullhashraw}{cecde3a4e11205bf41349a257d70723c}
+      \strng{bibnamehash}{6c28e95219898fe2fdaba62bcb4eb900}
+      \strng{authorbibnamehash}{6c28e95219898fe2fdaba62bcb4eb900}
+      \strng{authornamehash}{6c28e95219898fe2fdaba62bcb4eb900}
+      \strng{authorfullhash}{cecde3a4e11205bf41349a257d70723c}
+      \strng{authorfullhashraw}{cecde3a4e11205bf41349a257d70723c}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{aj}
+      \field{month}{12}
+      \field{title}{{Fast and Scalable Gaussian Process Modeling with Applications to Astronomical Time Series}}
+      \field{volume}{154}
+      \field{year}{2017}
+      \field{pages}{220}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3847/1538-3881/aa9332
+      \endverb
+    \endentry
+    \entry{bochner}{book}{}{}
       \name{author}{2}{}{%
         {{hash=1aa05f37a6087d6db04b48c8bd323bce}{%
            family={Gikhman},
@@ -162,6 +284,161 @@
       \verb https://proceedings.mlr.press/v108/hayashi20a.html
       \endverb
     \endentry
+    \entry{svgp}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=f38beb7ac4a328b7b1f798776d9e7bd9}{%
+           family={Hensman},
+           familyi={H\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3230dc18a06a348b70fbacf94994fa79}{%
+           family={Fusi},
+           familyi={F\bibinitperiod},
+           given={Nicolo},
+           giveni={N\bibinitperiod}}}%
+        {{hash=f83d1b861ef00c2c1e490eb5f7360434}{%
+           family={Lawrence},
+           familyi={L\bibinitperiod},
+           given={Neil\bibnamedelima D.},
+           giveni={N\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{0e0b7bc86abd370c68f33fab8ac98ce2}
+      \strng{fullhash}{0e0b7bc86abd370c68f33fab8ac98ce2}
+      \strng{fullhashraw}{0e0b7bc86abd370c68f33fab8ac98ce2}
+      \strng{bibnamehash}{0e0b7bc86abd370c68f33fab8ac98ce2}
+      \strng{authorbibnamehash}{0e0b7bc86abd370c68f33fab8ac98ce2}
+      \strng{authornamehash}{0e0b7bc86abd370c68f33fab8ac98ce2}
+      \strng{authorfullhash}{0e0b7bc86abd370c68f33fab8ac98ce2}
+      \strng{authorfullhashraw}{0e0b7bc86abd370c68f33fab8ac98ce2}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{Gaussian Processes for Big Data}
+      \field{year}{2013}
+      \verb{eprint}
+      \verb 1309.6835
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1309.6835
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1309.6835
+      \endverb
+    \endentry
+    \entry{sor}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=9b19cd5d76471f3a37b57dd2c6439097}{%
+           family={Joukov},
+           familyi={J\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod}}}%
+        {{hash=7be8ae2de32e6e154dd5dd61d19d2bdb}{%
+           family={Kulić},
+           familyi={K\bibinitperiod},
+           given={Dana},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Educational Activities Department}%
+      }
+      \strng{namehash}{7d66600976a0928d837bdb1332a32917}
+      \strng{fullhash}{7d66600976a0928d837bdb1332a32917}
+      \strng{fullhashraw}{7d66600976a0928d837bdb1332a32917}
+      \strng{bibnamehash}{7d66600976a0928d837bdb1332a32917}
+      \strng{authorbibnamehash}{7d66600976a0928d837bdb1332a32917}
+      \strng{authornamehash}{7d66600976a0928d837bdb1332a32917}
+      \strng{authorfullhash}{7d66600976a0928d837bdb1332a32917}
+      \strng{authorfullhashraw}{7d66600976a0928d837bdb1332a32917}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Gaussian processes regression models are an appealing machine learning method as they learn expressive nonlinear models from exemplar data with minimal parameter tuning and estimate both the mean and covariance of unseen points. However, cubic computational complexity growth with the number of samples has been a long standing challenge. Training requires the inversion of $N times N$N\texttimes{}N kernel at every iteration, whereas regression needs computation of an $m times N$m\texttimes{}N kernel, where $N$N and $m$m are the number of training and test points, respectively. This work demonstrates how approximating the covariance kernel using eigenvalues and functions leads to an approximate Gaussian process with significant reduction in training and regression complexity. Training now requires computing only an $N times n$N\texttimes{}n eigenfunction matrix and an $n times n$n\texttimes{}n inverse, where $n$n is a selected number of eigenvalues. Furthermore, regression now only requires an $m times n$m\texttimes{}n matrix. Finally, in a special case, the hyperparameter optimization is completely independent from the number of training samples. The proposed method can regress over multiple outputs, learn the correlations between them, and estimate their derivatives to any order. The computational complexity reduction, regression capabilities, multioutput correlation learning, and comparison to the state of the art are demonstrated in simulation examples. Finally we show how the proposed approach can be utilized to model real human data.}
+      \field{issn}{1541-1672}
+      \field{journaltitle}{IEEE Intelligent Systems}
+      \field{month}{7}
+      \field{number}{4}
+      \field{title}{Fast Approximate Multioutput Gaussian Processes}
+      \field{volume}{37}
+      \field{year}{2022}
+      \field{pages}{56\bibrangedash 69}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1109/MIS.2022.3169036
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1109/MIS.2022.3169036
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/MIS.2022.3169036
+      \endverb
+    \endentry
+    \entry{matching-pursuit}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=e94568a181aa1601e890ce9c26aa97e8}{%
+           family={Keerthi},
+           familyi={K\bibinitperiod},
+           given={Sathiya},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b4cf40175634d9dbb3df41ac5c026e93}{%
+           family={Chu},
+           familyi={C\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=8f15e7a6ffa7fe4cb35f0d02469cc135}{%
+           family={Weiss},
+           familyi={W\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7c06bbe61ea42603832b246c6c4c20a4}{%
+           family={Schölkopf},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=ff02bff194bb6f49f602c40fc811cfb9}{%
+           family={Platt},
+           familyi={P\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{28b699200c634361dac1d4bca5f5b317}
+      \strng{fullhash}{28b699200c634361dac1d4bca5f5b317}
+      \strng{fullhashraw}{28b699200c634361dac1d4bca5f5b317}
+      \strng{bibnamehash}{28b699200c634361dac1d4bca5f5b317}
+      \strng{authorbibnamehash}{28b699200c634361dac1d4bca5f5b317}
+      \strng{authornamehash}{28b699200c634361dac1d4bca5f5b317}
+      \strng{authorfullhash}{28b699200c634361dac1d4bca5f5b317}
+      \strng{authorfullhashraw}{28b699200c634361dac1d4bca5f5b317}
+      \strng{editorbibnamehash}{d34e5e130686915fd2edf607d5df0eec}
+      \strng{editornamehash}{d34e5e130686915fd2edf607d5df0eec}
+      \strng{editorfullhash}{d34e5e130686915fd2edf607d5df0eec}
+      \strng{editorfullhashraw}{d34e5e130686915fd2edf607d5df0eec}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems}
+      \field{title}{A matching pursuit approach to sparse Gaussian process regression}
+      \field{volume}{18}
+      \field{year}{2005}
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2005/file/1ec3e7af38e33222bde173fecaef6bfa-Paper.pdf
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2005/file/1ec3e7af38e33222bde173fecaef6bfa-Paper.pdf
+      \endverb
+    \endentry
     \entry{big-data}{article}{}{}
       \name{author}{4}{}{%
         {{hash=254bd446dd0cc7de3ce1a6598912798e}{%
@@ -254,7 +531,7 @@
       \verb https://doi.org/10.7551/mitpress/3206.001.0001
       \endverb
     \endentry
-    \entry{fourier_moments}{article}{}{}
+    \entry{fourier-moments}{article}{}{}
       \name{author}{3}{}{%
         {{hash=c4ada04a4ca5499333195c24dfce4878}{%
            family={Ritter},
@@ -294,11 +571,131 @@
       \verb 10.1214/aoap/1177004776
       \endverb
     \endentry
+    \entry{fitc}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=c126647ce6dd6d895d26fdf637d62b58}{%
+           family={Snelson},
+           familyi={S\bibinitperiod},
+           given={Edward},
+           giveni={E\bibinitperiod}}}%
+        {{hash=bf5cf30deddddad00a6341ad7a414445}{%
+           family={Ghahramani},
+           familyi={G\bibinitperiod},
+           given={Zoubin},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=8f15e7a6ffa7fe4cb35f0d02469cc135}{%
+           family={Weiss},
+           familyi={W\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7c06bbe61ea42603832b246c6c4c20a4}{%
+           family={Schölkopf},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=ff02bff194bb6f49f602c40fc811cfb9}{%
+           family={Platt},
+           familyi={P\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{49915fb8953f75f61a3db38245012e5f}
+      \strng{fullhash}{49915fb8953f75f61a3db38245012e5f}
+      \strng{fullhashraw}{49915fb8953f75f61a3db38245012e5f}
+      \strng{bibnamehash}{49915fb8953f75f61a3db38245012e5f}
+      \strng{authorbibnamehash}{49915fb8953f75f61a3db38245012e5f}
+      \strng{authornamehash}{49915fb8953f75f61a3db38245012e5f}
+      \strng{authorfullhash}{49915fb8953f75f61a3db38245012e5f}
+      \strng{authorfullhashraw}{49915fb8953f75f61a3db38245012e5f}
+      \strng{editorbibnamehash}{d34e5e130686915fd2edf607d5df0eec}
+      \strng{editornamehash}{d34e5e130686915fd2edf607d5df0eec}
+      \strng{editorfullhash}{d34e5e130686915fd2edf607d5df0eec}
+      \strng{editorfullhashraw}{d34e5e130686915fd2edf607d5df0eec}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems}
+      \field{title}{Sparse Gaussian Processes using Pseudo-inputs}
+      \field{volume}{18}
+      \field{year}{2005}
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2005/file/4491777b1aa8b5b32c2e8666dbe1a495-Paper.pdf
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2005/file/4491777b1aa8b5b32c2e8666dbe1a495-Paper.pdf
+      \endverb
+    \endentry
+    \entry{vfe}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=81ef8fd5b7b50d8f80ae8da790ccba73}{%
+           family={Titsias},
+           familyi={T\bibinitperiod},
+           given={Michalis},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=db337a47f0b5c526fc8ea21b6056fece}{%
+           family={Dyk},
+           familyi={D\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=53d2880ad8047b61cdae2c6b2803e763}{%
+           family={Welling},
+           familyi={W\bibinitperiod},
+           given={Max},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Hilton Clearwater Beach Resort, Clearwater Beach, Florida USA}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{81ef8fd5b7b50d8f80ae8da790ccba73}
+      \strng{fullhash}{81ef8fd5b7b50d8f80ae8da790ccba73}
+      \strng{fullhashraw}{81ef8fd5b7b50d8f80ae8da790ccba73}
+      \strng{bibnamehash}{81ef8fd5b7b50d8f80ae8da790ccba73}
+      \strng{authorbibnamehash}{81ef8fd5b7b50d8f80ae8da790ccba73}
+      \strng{authornamehash}{81ef8fd5b7b50d8f80ae8da790ccba73}
+      \strng{authorfullhash}{81ef8fd5b7b50d8f80ae8da790ccba73}
+      \strng{authorfullhashraw}{81ef8fd5b7b50d8f80ae8da790ccba73}
+      \strng{editorbibnamehash}{ee998fd6a3b5b26e8a94dc75e696d66b}
+      \strng{editornamehash}{ee998fd6a3b5b26e8a94dc75e696d66b}
+      \strng{editorfullhash}{ee998fd6a3b5b26e8a94dc75e696d66b}
+      \strng{editorfullhashraw}{ee998fd6a3b5b26e8a94dc75e696d66b}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Sparse Gaussian process methods that use inducing variables require the selection of the inducing inputs and the kernel hyperparameters. We introduce a variational formulation for sparse approximations that jointly infers the inducing inputs and the kernel hyperparameters by maximizing a lower bound of the true log marginal likelihood. The key property of this formulation is that the inducing inputs are defined to be variational parameters which are selected by minimizing the Kullback-Leibler divergence between the variational distribution and the exact posterior distribution over the latent function values. We apply this technique to regression and we compare it with other approaches in the literature.}
+      \field{booktitle}{Proceedings of the Twelfth International Conference on Artificial Intelligence and Statistics}
+      \field{month}{16--18 Apr}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{Variational Learning of Inducing Variables in Sparse Gaussian Processes}
+      \field{volume}{5}
+      \field{year}{2009}
+      \field{pages}{567\bibrangedash 574}
+      \range{pages}{8}
+      \verb{file}
+      \verb http://proceedings.mlr.press/v5/titsias09a/titsias09a.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v5/titsias09a.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v5/titsias09a.html
+      \endverb
+    \endentry
   \enddatalist
   \missing{eq:se}
-  \missing{foreman-mackay}
-  \missing{gaopro}
-  \missing{matching-pursuit}
 \endrefsection
 \endinput
 

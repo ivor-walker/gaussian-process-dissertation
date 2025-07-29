@@ -485,9 +485,9 @@ Our variance is independent of the targets $y$ and only depends on our inputs $X
 
 \subsubsection{Marginal likelihood}
 We need some measure of how well our GP fits the data, which we can get by computing the marginal likelihood $p(Y|X)$:
-\begin{equation*}
+\begin{equation} \label{eq:marginal_likelihood}
     p(Y|X) = \int p(Y|f,X)p(f|X) df
-\end{equation*}
+\end{equation}
 
 $p(y|f,X)$ is our familar predictive distribution $p(y|f,X) \sim N(f, \sigma^2_nI)$, and represents how well $f$ maps $X$ to $y$. $p(f|X)$ is our prior distribution over weights $\sim N(0, K)$ which we use here to represent the complexity of $f$. Our weight's mean will always be the same under our prior, but our $K(X,X')$ tells us how "wiggly" our function is. The closer our $p(f|X)$ distribution is to the true complexity of the function, the higher our marginal likelihood. For example, for SE if our data is close together, then $|X - X'|$ becomes small and our covariance $k(X,X')$ on our function distribution prior is large. Therefore, we get a high variety of functions and a higher probability of sampling a more complex function. % Conversly,ew data $k(X_*, X_*')$ that is far away from each other and would require a more complex function, its density in this prior smooth distribution will be low, so we get a low $p(f|X_*)$. 
     
