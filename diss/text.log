@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  28 JUL 2025 21:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  29 JUL 2025 19:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -826,18 +826,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [19]
 <./img/gaussian_variances.png, id=459, 827.82pt x 620.865pt>
-File: ./img/gaussian_variances.png Graphic file (type png)
-<use ./img/gaussian_variances.png>
-Package pdftex.def Info: ./img/gaussian_variances.png  used on input line 495.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
 
 
 [20]
 <./img/gaussian_draws.png, id=465, 827.82pt x 620.865pt>
-File: ./img/gaussian_draws.png Graphic file (type png)
-<use ./img/gaussian_draws.png>
-Package pdftex.def Info: ./img/gaussian_draws.png  used on input line 503.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
 
 
 [21
@@ -852,15 +844,10 @@ s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.517 \end{equation*}
-                      <./img/gaussian_variances.png> <./img/gaussian_draws.png>
-]
+                     ]
 
 [22]
-<./img/ratquad_variances.png, id=478, 827.82pt x 620.865pt>
-File: ./img/ratquad_variances.png Graphic file (type png)
-<use ./img/ratquad_variances.png>
-Package pdftex.def Info: ./img/ratquad_variances.png  used on input line 571.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
+<./img/ratquad_variances.png, id=477, 827.82pt x 620.865pt>
 
 
 LaTeX Warning: Citation 'gaopro' on page 23 undefined on input line 574.
@@ -873,11 +860,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 574--574
 
  []
 
-<./img/ratquad_draws.png, id=479, 827.82pt x 620.865pt>
-File: ./img/ratquad_draws.png Graphic file (type png)
-<use ./img/ratquad_draws.png>
-Package pdftex.def Info: ./img/ratquad_draws.png  used on input line 578.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
+<./img/ratquad_draws.png, id=478, 827.82pt x 620.865pt>
 
 
 [23
@@ -886,7 +869,7 @@ s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.583 
-       <./img/ratquad_variances.png>]
+      ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 584.
@@ -899,22 +882,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 584.
 
-<./img/powerexp_variances.png, id=486, 827.82pt x 620.865pt>
-File: ./img/powerexp_variances.png Graphic file (type png)
-<use ./img/powerexp_variances.png>
-Package pdftex.def Info: ./img/powerexp_variances.png  used on input line 592.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
+<./img/powerexp_variances.png, id=484, 827.82pt x 620.865pt>
 
 LaTeX Warning: Citation 'gaopro' on page 24 undefined on input line 596.
 
 
 LaTeX Warning: Citation 'gaopro' on page 24 undefined on input line 596.
 
-<./img/powerexp_draws.png, id=487, 827.82pt x 620.865pt>
-File: ./img/powerexp_draws.png Graphic file (type png)
-<use ./img/powerexp_draws.png>
-Package pdftex.def Info: ./img/powerexp_draws.png  used on input line 600.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
+<./img/powerexp_draws.png, id=485, 827.82pt x 620.865pt>
 
 
 [24
@@ -929,17 +904,9 @@ s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.606 
-       <./img/ratquad_draws.png> <./img/powerexp_variances.png>]
-<./img/exp_variances.png, id=496, 827.82pt x 620.865pt>
-File: ./img/exp_variances.png Graphic file (type png)
-<use ./img/exp_variances.png>
-Package pdftex.def Info: ./img/exp_variances.png  used on input line 614.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
-<./img/exp_draws.png, id=497, 827.82pt x 620.865pt>
-File: ./img/exp_draws.png Graphic file (type png)
-<use ./img/exp_draws.png>
-Package pdftex.def Info: ./img/exp_draws.png  used on input line 622.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
+      ]
+<./img/exp_variances.png, id=492, 827.82pt x 620.865pt>
+<./img/exp_draws.png, id=493, 827.82pt x 620.865pt>
 
 
 [25
@@ -954,12 +921,8 @@ s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.628 
-       <./img/powerexp_draws.png> <./img/exp_variances.png>]
-<./img/matern32_variances.png, id=507, 827.82pt x 620.865pt>
-File: ./img/matern32_variances.png Graphic file (type png)
-<use ./img/matern32_variances.png>
-Package pdftex.def Info: ./img/matern32_variances.png  used on input line 657.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
+      ]
+<./img/matern32_variances.png, id=501, 827.82pt x 620.865pt>
 
 
 [26
@@ -968,17 +931,9 @@ s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.663 
-       <./img/exp_draws.png>]
-<./img/matern32_draws.png, id=515, 827.82pt x 620.865pt>
-File: ./img/matern32_draws.png Graphic file (type png)
-<use ./img/matern32_draws.png>
-Package pdftex.def Info: ./img/matern32_draws.png  used on input line 665.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
-<./img/matern52_variances.png, id=516, 827.82pt x 620.865pt>
-File: ./img/matern52_variances.png Graphic file (type png)
-<use ./img/matern52_variances.png>
-Package pdftex.def Info: ./img/matern52_variances.png  used on input line 682.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
+      ]
+<./img/matern32_draws.png, id=508, 827.82pt x 620.865pt>
+<./img/matern52_variances.png, id=509, 827.82pt x 620.865pt>
 
 
 [27
@@ -993,12 +948,8 @@ as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.688 
-       <./img/matern32_variances.png> <./img/matern32_draws.png>]
-<./img/matern52_draws.png, id=526, 827.82pt x 620.865pt>
-File: ./img/matern52_draws.png Graphic file (type png)
-<use ./img/matern52_draws.png>
-Package pdftex.def Info: ./img/matern52_draws.png  used on input line 690.
-(pdftex.def)             Requested size: 350.1578pt x 262.61894pt.
+      ]
+<./img/matern52_draws.png, id=517, 827.82pt x 620.865pt>
 )
 
 [28
@@ -1013,8 +964,7 @@ as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.56 \include{ch2/text}
-                        <./img/matern52_variances.png> <./img/matern52_draws.pn
-g>]
+                       ]
 \openout2 = `ch3/text.aux'.
 
  (./ch3/text.tex
@@ -1027,11 +977,8 @@ LaTeX Warning: Citation 'matching-pursuit' on page 29 undefined on input line 1
 2.
 
 
-LaTeX Warning: Reference `jeq:joint_prior' on page 29 undefined on input line 4
-8.
-
-
-LaTeX Warning: Citation 'sor' on page 29 undefined on input line 58.
+LaTeX Warning: Reference `jeq:joint_prior' on page 29 undefined on input line 5
+0.
 
 
 
@@ -1041,16 +988,31 @@ LaTeX Warning: Citation 'sor' on page 29 undefined on input line 58.
 
 ]
 
+LaTeX Warning: Citation 'sor' on page 30 undefined on input line 69.
+
+
+LaTeX Warning: Citation 'fitc' on page 30 undefined on input line 93.
+
+
+Overfull \hbox (123.73866pt too wide) detected at line 113
+[][]
+ []
+
+
+LaTeX Warning: Citation 'fitc-heteroskedasticity' on page 30 undefined on input
+ line 118.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 89.
+(hyperref)                removing `\cite' on input line 129.
 
 
-LaTeX Warning: Citation 'foreman-mackay' on page 30 undefined on input line 98.
-
+LaTeX Warning: Citation 'foreman-mackay' on page 30 undefined on input line 138
+.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 98.
+(hyperref)                removing `\cite' on input line 138.
 
 )
 
@@ -1104,13 +1066,13 @@ Package logreq Info: Writing requests to 'text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18459 strings out of 473190
- 319189 string characters out of 5719979
- 1163497 words of memory out of 5000000
- 41306 multiletter control sequences out of 15000+600000
+ 18447 strings out of 473190
+ 318841 string characters out of 5719979
+ 1163577 words of memory out of 5000000
+ 41294 multiletter control sequences out of 15000+600000
  568469 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,81p,1135b,1343s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,81p,1135b,1343s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2025/texmf-d
@@ -1128,10 +1090,10 @@ s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
 /texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on text.pdf (33 pages, 700145 bytes).
+Output written on text.pdf (33 pages, 359009 bytes).
 PDF statistics:
- 705 PDF objects out of 1000 (max. 8388607)
- 601 compressed objects within 7 object streams
+ 690 PDF objects out of 1000 (max. 8388607)
+ 599 compressed objects within 6 object streams
  173 named destinations out of 1000 (max. 500000)
  453 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -286,12 +286,12 @@ Rearranging to isolate $A_\phi^{-1}\phi(X)$
     = \frac{1}{\sigma_n^2}\left[A_{\phi}^{-1}\phi(X)\right]^Ty
 \end{equation*}
 
-We can use the Sherman-Morrison identity to get an expression for $A_{\phi}^{-1}$ directly, where $K =\phi(X)^T\Sigma_p\phi(X)$
+We can use the Sherman-Morrison-Woodbury identity (SMW) to get an expression for $A_{\phi}^{-1}$ directly, where $K =\phi(X)^T\Sigma_p\phi(X)$, since TODO rank
 \begin{equation*}
     A_{\phi}^{-1} = \Sigma_p - \Sigma_p\phi(X)(K+\sigma_n^2I)^{-1}\phi(X)^T\Sigma_p
 \end{equation*}
 
-For the mean, we can use the Sherman-Morrison identity again to get an expression for $A_{\phi}^{-1}\phi(X)$
+For the mean, we can use the SMW identity again to get an expression for $A_{\phi}^{-1}\phi(X)$
 \begin{equation} \label{eq:A_phi_inverse_phi_X}
     A_{\phi}^{-1}\phi(X) = \sigma_n^2\Sigma_p\phi(X)(K+\sigma_n^2I)^{-1}
 \end{equation}

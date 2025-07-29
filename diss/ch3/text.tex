@@ -23,7 +23,7 @@ Joining a new prior on $f(X_m)$ to our previous prior on $f(X)$ \ref{eq:joint_pr
     \begin{pmatrix}
         f(X)
         f(X_m) \\
-    \end{pmatrix} \sim \mathcal{N}\left(
+    \end{pmatrix} \sim \mathcal{N} (
     \begin{pmatrix}
         0 \\
         0 \\
@@ -32,51 +32,91 @@ Joining a new prior on $f(X_m)$ to our previous prior on $f(X)$ \ref{eq:joint_pr
         K(X, X) & K(X, X_m) \\
         K(X_m, X) & K(X_m, X_m)    
     \end{pmatrix}
-    \right)
+    )
 \end{equation*}
 Similarly to \ref{eq:conditioning}, we can use the Gaussian conditioning identity to condition this joint prior on our inducing points $f(X_m)$ and obtain a posterior distribution over $f(X)$:
 \begin{equation} \label{eq:conditioning_approx}
-    p(f(X) | f(X_m)) \sim \mathcal{N}\left(
-    K(X, X_m) K(X_m, X_m)^{-1} f(X_m),
-    K(X, X) - K(X, X_m) K(X_m, X_m)^{-1} K(X_m, X)
-    \right)
+    \begin{aligned}
+        p(f(X) | f(X_m)) \sim \mathcal{N} ( \\
+        K(X, X_m) K(X_m, X_m)^{-1} f(X_m), \\
+        K(X, X) - K(X, X_m) K(X_m, X_m)^{-1} K(X_m, X) \\
+        )
+    \end{aligned}
 \end{equation}
 We can show this approach is equivelant to our original priors once we marginalise out $f(X_m)$:
 \begin{equation*}
     p(f(X)) = \int p(f(X) | f(X_m)) p(f(X_m)) df(X_m)
 \end{equation*}
-It can be shown \cite{big-data} that this integral recovers our full priors on $f(X)$ \ref{jeq:joint_prior}:
+Without any approximations, it can be shown \cite{big-data} that this integral recovers our full priors on $f(X)$ \ref{jeq:joint_prior}:
 \begin{equation*}
     p(f(X)) = \mathcal{N}\left(0, K(X, X)\right)
 \end{equation*}
-We can assemble our full joint prior \ref{eq:joint_prior} and posterior \ref{eq:conditioning} as before to produce our final predictive distribution.
+We can also assemble our predictive distribution by forming a new joint prior and a posterior with the testing data $X_*$ by substituting $X$ for $X_*$:
+\begin{equation*}
+    \begin{aligned}
+        p(f(X_*) | f(X_m)) &\sim \mathcal{N} (
+        K(X_*, X_m) K(X_m, X_m)^{-1} f(X_m),
+        K(X_*, X_*) - K(X_*, X_m) K(X_m, X_m)^{-1} K(X_m, X_*)
+        ) \\
+    \end{aligned}
+\end{equation*}
+As with training data, marginalising out $X_m$ yields our original full prior on the training data $f(X_*) \sim \mathcal{N}(0, K(X_*, X_*))$.
 
-We have introduced an additional first step into the assembly of the predictive distribution that determines our prior on $f(X)$ with no additional computational cost. By introducing approximations into this new step, we assemble $f(X)$ priors that are faster to work with than the full priors. These approximations are divided into two categories: prior approximations, which change $p(f(X) | f(X_m))$, and posterior approximations, which change how the final predictive disitribution is assembled given $p(f(X))$.
+We have introduced a reversible first step into the assembly of the predictive distribution that determines our priors on $f(X)$ and $f(X_*)$ with no additional computational cost. By introducing approximations into this new step, we assemble $f(X)$ priors that are faster to work with than the full priors. These approximations are divided into two categories: prior approximations, which change $p(f(X) | f(X_m))$, and posterior approximations, which change how the final predictive disitribution is assembled given $p(f(X))$.
 
 \paragraph{Prior approximations}
 
 \subparagraph{Subset-of-Regression (SoR) \cite{sor}}
 SoR sets the variance of \ref{eq:conditioning_approx} to zero:
 \begin{equation*}
-    p_{\text{SoR}}(f(X) | f(X_m)) \sim \mathcal{N}\left(
-    K(X, X_m) K(X_m, X_m)^{-1} f(X_m),
+    p_{\text{SoR}}(f(X_*) | f(X_m)) \sim \mathcal{N} (
+    K(X_*, X_m) K(X_m, X_m)^{-1} f(X_m),
     0
-    \right)
+    )
 \end{equation*}
 Producing a marginal prior:
 \begin{equation*}
-    p_{\text{SoR}}(f(X)) = \int p_{\text{SoR}}(f(X) | f(X_m)) p(f(X_m)) df(X_m)
+    p_{\text{SoR}}(f(X_*)) = \int p_{\text{SoR}}(f(X_*) | f(X_m)) p(f(X_m)) df(X_m)
 \end{equation*}
 Evaluating this integral and representing the result as a Gaussian distribution:
 \begin{equation*}
-    p_{\text{SoR}}(f(X)) = \mathcal{N}\left(
+    p_{\text{SoR}}(f(X_*)) = \mathcal{N}(
     0, 
-    K(X, X_m) K(X_m, X_m)^{-1} K(X_m, X)
-    \right)
+    K(X_*, X_m) K(X_m, X_m)^{-1} K(X_m, X_*)
+    )
 \end{equation*}
-Because our new variance $K(X, X_m) K(X_m, X_m)^{-1} K(X_m, X)$ is rank $m$, we can use the Sherman-Morrison-Woodbury formula \ref{eq:A_phi_inverse_phi_X} to compute the inverse of the covariance matrix in our predictive distribution in $O(nm^2)$ time. However, setting our prior's variance to zero severely underestimates uncertainty, producing GPs that are too confident far from $X_m$.
 
-\subparagraph{Fully independent training conditional (FITC)}
+Inverting the $m$-rank $K(X_m, X_M)^{-1}$ costs $O(m^3)$, and multiplying it by the $n$-rank $K(X_*, X_m)$ and $K(X_m, X_*)$ costs $O(n^2m)$, sped up using SMW \ref{eq:A_phi_inverse_phi_X} to yield $O(nm^2)$, for a total computational complexity of $O(nm^2 + m^3)$.
+
+This achieves the same computational cost as the Nystrom approximation but does so in a probabilistic framework that guarantees PSD. However, setting our prior's variance to zero produces a predictive distribution that severely underestimates uncertainty, producing GPs that are too confident far from $X_m$.
+
+\subparagraph{Fully independent training conditional (FITC) \cite{fitc}}
+FITC assumes that the new data $f(X_*)$ is independent given the inducing points $f(X_m)$. Formally:
+\begin{equation*}
+    p(f(X_*) | f(X_m)) = \prod_{i=1}^n p(f(x_{i*}) | f(X_m))
+\end{equation*}
+TODO more motivation on prior yields. Our new prior distribution is:
+\begin{equation*}
+    p_{\text{FITC}}(f(X_*) | f(X_m)) = \mathcal{N}(
+    f(X_*) | K(x_i, X_m) K(X_m, X_m)^{-1} f(X_m),
+    \text{diag}[V_{nn}] 
+    )
+\end{equation*}
+$V_{nn} = K(X_*, X_*) - K(X_*, X_m) K(X_m, X_m)^{-1} K(X_m, X_*)$. Our new predictive distribution becomes:
+\begin{equation*}
+    \begin{aligned}
+        p_{\text{FITC}}(f(X_*)) \sim \mathcal{N}(
+        k(X_*, X_m) \lambda^{-1} K(X_m, X_m) f(X_m),
+        K(X_*, X_*) - K(X_*, X_*) - K(X_*, X_m) K(X_m, X_m)^{-1} K(X_m, X_*) + K(X_*, X_m) \lambda^{-1} K(X_m, X_*) \\
+        )
+    \end{aligned}
+\end{equation*}
+$\lambda = K(X_m, X_m) + K(X_m, X_*) \text{diag}[V_{nn}]^{-1} K(X_*, X_m)$. 
+
+There are three matrices being assembled here: the at-most rank $n$ diag[$V$], the rank-$m$ $\lambda$ and the final predictive variance of rank $m$. $V$ is similar to SoR and costs $O(mn^2)$, whilst getting its diagonal costs $O(nm)$, and assembling $\lambda$ and the predictive variance is also $O(nm^2)$. We need to invert $\lambda$, $K(X_m, X_m)$ and $\text{diag}[V_{nn}]$ - the first two are rank $M$, and inverting a diagonal only costs $O(n)$. These operations reduce to an overall complexity of $O(nm^2 + m^3)$.
+
+FITC costs the same complexity as SoR but achieves a more accurate approximation for variance. Additionally, Bauer et. al. \cite{fitc-heteroskedasticity} found that the diagonal correlation $\text{diag}[V_{nn}]$ represents the posterior variances of $f(X_*)$ given $f(X_m)$ enables predictive variances to grow in regions far from inducing points, capturing a form of heteroskedasticity.
+
 
 \paragraph{Posterior approximations}
 
@@ -109,5 +149,3 @@ Because our new variance $K(X, X_m) K(X_m, X_m)^{-1} K(X_m, X)$ is rank $m$, we 
 % \paragraph{Scalable multi-task GP}
 % 
 % \paragraph{Scalable recurrent GP}
-% 
-% \paragraph{Scalable GP classification}
