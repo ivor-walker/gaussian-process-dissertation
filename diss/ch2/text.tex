@@ -20,7 +20,7 @@ Symmetry is inherent from the inner product property since inner products are sy
 This means that the covariance matrix must not produce negative variances for any linear combination of inputs.
 
 
-\subsubsection{Eigenvalue analysis of covariance matrices}
+\subsubsection{Eigenvalue and eigenfunctions of covariance matrices}
 
 \paragraph{Integral operators}
 If we wanted to multiply a vector $\Phi$ by a matrix $K(X,X')$, we would use the following matrix-vector multiplication to produce a discrete vector $[K \phi]$:
@@ -52,56 +52,7 @@ If our kernel satisfies the conditions of a Gram matrix (i.e. symmetry and posit
 \begin{equation} \label{eq:gp_mercer}
     K(X, X') = \sum_{i=1}^{\infty} \lambda_i \phi_i(X) \phi_i(X')
 \end{equation}
-A kernel with infinite rank, or a covariance function that has infinite basis functions (e.g. SE), is called a nondegenerate kernel, else it is degenerate. For example, our $N$-dimensional linear kernel $K(X, X') = X \cdot X'$ is a degenerate kernel with at most $N$ non-zero eigenvalues.
-
-\paragraph{Covariance matrix approximations}
-Instead of summing all the eigenfunctions from 1 to $\infty$, we can approximate our kernel to any degree of accuracy $M < N$ by restricting our sum to the largest $M$ eigenvalues:
-\begin{equation} \label{eq:gp_mercer_approx}
-    K(X, X') \approx \sum_{i=1}^{M} \lambda_i \phi_i(X) \phi_i(X')
-\end{equation}
-and invert this smaller matrix at a lower computational cost $O(M^3)$. However, obtaining the eigenfunctions and eigenvalues of an $N$-size covariance matrix matrix is $O(N^3)$ for a total cost of $O(N^3) + O(M^3)$. We can reduce the cost of obtaining these eigenfunctions and eigenvalues by solving our eigenproblem on a smaller random sample of $X$. These approximations, and subsequent approximations, come with irreduceable error which could create a kernel that no longer satisfies the Gram matrix constraint of positive semidefiniteness, violating Mercer's theorem and making them invalid covariance matrices. 
-
-Instead of our integral weighing our kernel and eigenfunction with the measure $\mu$ as before, they become weighed in terms of the PDF of the training data $p(x)$:
-\begin{equation*}
-    \lambda_i \phi_i(x') = \int K(x, x') p(x) \phi_i(x) dx
-\end{equation*}
-We can approximate this continuous representation and make it discrete by representing our selected samples as a vector $X_l$ of size $l$:
-\begin{equation*}
-    \lambda_i \phi_i(X') \approx \frac{1}{l} \sum_{j=1}^{l} K(x_j, X') \phi_i(x_j)
-\end{equation*}
-Defining a vector $\Phi_i$ of all eigenfunction evaluations $\phi_i(x_j)$ on the $X_l$ sample:
-\begin{equation*}
-    \lambda_i \phi_i(X') \frac{1}{l} K(X_j, X') \Phi_i
-\end{equation*}
-Multiplying both sides by $l$:
-\begin{equation*}
-    n \lambda_i \phi_i(X') = K(X_j, X') \Phi_i
-\end{equation*}
-Setting $\lambda_i^{mat} = l \lambda_i$:
-\begin{equation*}
-    K(X_l, X') \phi_i(X') = \lambda_i^{mat} \Phi_i
-\end{equation*}
-This arrangement requires our covariance matrix to be evaluated with some $X'$. Without creating another sample or defeating the point of this approximation by using the whole of $X$, the only candidate for $X'$ is the $X_l$ sample. Setting $X' = X_l$, our $\phi_i(X')$ becomes the definition of $\Phi_i$:
-\begin{equation*}
-    K(X_l, X_l) \Phi_i = \lambda_i^{mat} \Phi_i
-\end{equation*}
-Here, $\Phi_i$ also plays the role of the eigenvector $U_i$ of $K(X_l, X_l)$, and $\lambda_i^{mat}$ plays the eigenvalue of $K(X_l, X_l)$. 
-
-Although we introduced $\lambda_i^{mat} = l \lambda_i$, $\lambda_i^{mat}$ are the eigenvalues of the eigenproblem produced by sampling, whereas $\lambda_i$ are the eigenvalues from the original eigenproblem. Thus, it acts as an approximation:
-\begin{equation*}
-    \lim_{l \to \infty} \lambda_i = \frac{1}{l} \lambda_i^{mat} 
-\end{equation*}
-
-\paragraph{Approximating $\Phi_i$ and $U_i$}
-Solving this eigenproblem is $O(l^3)$ - an improvement on the $O(n^3)$ cost of solving the previous eigenproblem, and the resulting $O(l^3) + O(M^3)$ could be lower than the naive $O(n^3)$ inversion cost (if we use sufficiently low degrees of accuracy $l$ and $M$). We can improve this further by approximating $\Phi_i$.
-
-$\Phi_i$ and $U_i$ are not exactly equivelant thanks to differing normalisations. $\Phi_i$'s normalisation comes from the original Monte Carlo approximation: $\frac{1}{l} \sum_{j=1}^{l} K(x_j, X') \phi_i(x_j) \approx 1$, thus the sum and our $||\Phi_i||_2^2 \approx l$ and $||\Phi_i|| \approx \sqrt{l}$. $U_i$'s normalisation comes from solving the eigenproblem, which returns $||U_i||_2^2 = 1$ and $||U_i|| = 1$. We can convert between the two by scaling $\Phi_i$ by $\sqrt{l}$ to produce $U_i$.
-
-The Nyström method \cite{nystrom} extends this approximation from the sample points $X_l$ to the full set of points $X$:
-\begin{equation*}
-    \phi_i(X) \approx \frac{1}{\sqrt{l}} \sqrt{n} K(X_l, X) \Phi_i
-\end{equation*}
-This approximation further reduces the cost of solving the eigenproblem and inverting the low-rank matrix to $O(l^2 n) + O(M^3)$.
+A kernel with infinite rank, or a covariance function that has infinite basis functions (e.g. SE), is called a nondegenerate kernel, else it is degenerate. For example, our $N$-dimensional linear kernel $K(X, X') = X \cdot X'$ results in a degenerate kernel with at most $N$ non-zero eigenvalues.
 
 
 \subsubsection{Varying the length scale}
@@ -727,10 +678,8 @@ $\nu = 5/2$ produces the following covariance function:
 
 
 % \subsection{Deriving kernels \cite{deriving-kernels}}
-% TODO
 % 
 % \subsection{Learning best kernel from data \cite{choosing-kernels}}
-% TODO
 
 % \subsection{Additive covariance kernels for high-dimensional learning \cite{additive-kernels}}
 % 

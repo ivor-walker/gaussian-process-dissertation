@@ -484,23 +484,24 @@ Substituting $k(X,X') = \phi(X)^T\Sigma_p\phi(X')$ into here gives us the exact 
 Our variance is independent of the targets $y$ and only depends on our inputs $X$ and $X_*$. Our variance is two terms: our prior covariance $K(X_*,X_*)$, a term representing the information the observations give us about the function. As before, we can compute the predictive distribution of $y_*$ by adding the noise term $\sigma^2_nI$ to the variance.
 
 \subsubsection{Marginal likelihood}
-We need some measure of how well our GP fits the data, which we can get by computing the marginal likelihood $p(Y|X)$:
+Even though we are working within the Bayesian paradigm, certain practical subroutines e.g. kernel hyperparameter optimisation algorithms need a likelihood to maximise. The marginal likelihood $p(Y|X)$ is a measure of how well our GP fits the data:
 \begin{equation} \label{eq:marginal_likelihood}
     p(Y|X) = \int p(Y|f,X)p(f|X) df
 \end{equation}
+$p(f|X)$ is our familiar prior distribution over weights $\sim N(0, K)$ which we use here to represent the complexity of $f$. $p(y|f,X)$ is the likelihood of our observations given $p(y|f,X) \sim N(f, \sigma^2_nI)$, and represents how well $f$ maps $X$ to $y$. 
 
-$p(y|f,X)$ is our familar predictive distribution $p(y|f,X) \sim N(f, \sigma^2_nI)$, and represents how well $f$ maps $X$ to $y$. $p(f|X)$ is our prior distribution over weights $\sim N(0, K)$ which we use here to represent the complexity of $f$. Our weight's mean will always be the same under our prior, but our $K(X,X')$ tells us how "wiggly" our function is. The closer our $p(f|X)$ distribution is to the true complexity of the function, the higher our marginal likelihood. For example, for SE if our data is close together, then $|X - X'|$ becomes small and our covariance $k(X,X')$ on our function distribution prior is large. Therefore, we get a high variety of functions and a higher probability of sampling a more complex function. % Conversly,ew data $k(X_*, X_*')$ that is far away from each other and would require a more complex function, its density in this prior smooth distribution will be low, so we get a low $p(f|X_*)$. 
+Our weight's mean will always be the same under our prior, but our $K(X,X')$ tells us how "wiggly" our function is. The closer our $p(f|X)$ distribution is to the true complexity of the function, the higher our marginal likelihood. For example, for SE if our data is close together, then $|X - X'|$ becomes small and our covariance $k(X,X')$ on our function distribution prior is large. Therefore, we get a high variety of functions and a higher probability of sampling a more complex function. % Conversly,ew data $k(X_*, X_*')$ that is far away from each other and would require a more complex function, its density in this prior smooth distribution will be low, so we get a low $p(f|X_*)$. 
     
 We can express $p(Y|X)$ as a Gaussian integral over the joint distribution of $f$ and $Y$ ($p(Y,f|X)$), and marginalise out $f$ to get this PDF:
 \begin{equation} \label{eq:log_marginal_likelihood}
-    log p(Y|X) = -\frac{1}{2}Y^T(K + \sigma^2_nI)^{-1}Y - \frac{1}{2}log|K + \sigma^2_nI| - \frac{n}{2}log(2\pi)
+    log p(Y|X) = -\frac{1}{2}Y^T(K(X,X) + \sigma^2_nI)^{-1}Y - \frac{1}{2}log|K + \sigma^2_nI| - \frac{n}{2}log(2\pi)
 \end{equation}
 
 Alternatively, from \ref{eq:linear_model} we know that $y$ is Gaussian. Since both $y$ and $f$ are Gaussian, we can simply add their means and variances: 
 \begin{equation*}
     p(Y|X) = N(0, K + \sigma^2_nI)
 \end{equation*}
-We can plug these mean and variances into Gaussian PDF \ref{eq:gaussian_pdf} to get \ref{eq:log_marginal_likelihood}.
+We can plug these mean and variances into the Gaussian PDF \ref{eq:gaussian_pdf} to get \ref{eq:log_marginal_likelihood}. Assembling the likelihood is necessary for training to select hyperparameters, but the $K(X, X) + \sigma^2_nI$ inversion costs $O(n^3)$ to compute. 
 
 
 \subsubsection{Algorithm for predictive distribution}
@@ -538,10 +539,10 @@ We can plug these mean and variances into Gaussian PDF \ref{eq:gaussian_pdf} to 
 
 
 % \subsection{Smoothing and equivelant kernels \cite{gp-ml}}
-% TODO, missing background
 % 
 % \subsubsection{Linear predictors and smoothers}
-% The representer theorem states that we can represent a kernel in finite-dimensional space, even if properties of our method mean we have an infinite-dimensional feature space. For example, using SE we could obtain an infinite number of basis functions, so our data could be projected into an infinite dimensional space. Any other function than the mean drawn from our predictive distribution would have to be in infinite-dimension space. However, our mean is dependent on our $n$-length training labels $y$. Therefore, TODO.
+% The representer theorem states that we can represent a kernel in finite-dimensional space, even if properties of our method mean we have an infinite-dimensional feature space. For example, using SE we could obtain an infinite number of basis functions, so our data could be projected into an infinite dimensional space. Any other function than the mean drawn from our predictive distribution would have to be in infinite-dimension space. However, our mean is dependent on our $n$-length training labels $y$. Therefore, 
+
 % The mean of our predictive distribution can be represented as a "linear predictor", or as a linear combination of $X$ and our covariance function:
 % \begin{equation} \label{eq:gp_linear_predictor}
 %     \begin{aligned}
@@ -569,13 +570,13 @@ We can plug these mean and variances into Gaussian PDF \ref{eq:gaussian_pdf} to 
 % \end{equation*}
 % Where $l$ is some length scale hyperparameter. 
 % 
-% TODO explain what we gain from this
+% explain what we gain from this
 % 
 % Thus, our predictive distribution mean becomes:
 % \begin{equation*}
 %     \mathbb{E}_{p(f(X_*)|X_*,X,Y)}[f(X_*)] = \sum_{i=1}^n w_i y_i
 % \end{equation*}
-% where $w_i = k_i / \sum_{j=1}^n k_j$ is a TODO.
+% where $w_i = k_i / \sum_{j=1}^n k_j$ is a
 
 
 % \subsubsection{Explicit basis functions}
