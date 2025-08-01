@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  1 AUG 2025 01:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  1 AUG 2025 01:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -799,11 +799,11 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 [18]
-<./img/gaussian_variances.png, id=461, 827.82pt x 620.865pt>
+<./img/gaussian_variances.png, id=466, 827.82pt x 620.865pt>
 
 
 [19]
-<./img/gaussian_draws.png, id=468, 827.82pt x 620.865pt>
+<./img/gaussian_draws.png, id=473, 827.82pt x 620.865pt>
 
 
 [20
@@ -821,13 +821,13 @@ l.468 \end{equation*}
                      ]
 
 [21]
-<./img/ratquad_variances.png, id=480, 827.82pt x 620.865pt>
+<./img/ratquad_variances.png, id=485, 827.82pt x 620.865pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 525--525
 
  []
 
-<./img/ratquad_draws.png, id=483, 827.82pt x 620.865pt>
+<./img/ratquad_draws.png, id=488, 827.82pt x 620.865pt>
 
 
 [22
@@ -849,8 +849,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 535.
 
-<./img/powerexp_variances.png, id=490, 827.82pt x 620.865pt>
-<./img/powerexp_draws.png, id=493, 827.82pt x 620.865pt>
+<./img/powerexp_variances.png, id=495, 827.82pt x 620.865pt>
+<./img/powerexp_draws.png, id=498, 827.82pt x 620.865pt>
 
 
 [23
@@ -866,8 +866,8 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.557 
       ]
-<./img/exp_variances.png, id=500, 827.82pt x 620.865pt>
-<./img/exp_draws.png, id=501, 827.82pt x 620.865pt>
+<./img/exp_variances.png, id=505, 827.82pt x 620.865pt>
+<./img/exp_draws.png, id=506, 827.82pt x 620.865pt>
 
 
 [24
@@ -883,7 +883,7 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.579 
       ]
-<./img/matern32_variances.png, id=508, 827.82pt x 620.865pt>
+<./img/matern32_variances.png, id=513, 827.82pt x 620.865pt>
 
 
 [25
@@ -893,8 +893,8 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.614 
       ]
-<./img/matern32_draws.png, id=516, 827.82pt x 620.865pt>
-<./img/matern52_variances.png, id=517, 827.82pt x 620.865pt>
+<./img/matern32_draws.png, id=521, 827.82pt x 620.865pt>
+<./img/matern52_variances.png, id=522, 827.82pt x 620.865pt>
 
 
 [26
@@ -910,7 +910,7 @@ as been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.639 
       ]
-<./img/matern52_draws.png, id=525, 827.82pt x 620.865pt>
+<./img/matern52_draws.png, id=530, 827.82pt x 620.865pt>
 )
 
 [27
@@ -1010,8 +1010,11 @@ LaTeX Warning: Citation 'fitc-vfe-unifier' on page 32 undefined on input line 2
 65.
 
 
+LaTeX Warning: Citation 'ski' on page 32 undefined on input line 272.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 285.
+(hyperref)                removing `\cite' on input line 286.
 
 )
 
@@ -1020,8 +1023,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
  (./ch4/text.tex
 
-LaTeX Warning: Citation 'galxy-spectra-101' on page 33 undefined on input line 
-19.
+LaTeX Warning: Citation 'galaxy-spectra-101' on page 33 undefined on input line
+ 19.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1034,6 +1037,9 @@ LaTeX Warning: Citation 'galaxy-gp-noise' on page 33 undefined on input line 21
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 21.
+
+
+LaTeX Warning: Citation 'ski' on page 33 undefined on input line 30.
 
 )
 
@@ -1081,7 +1087,7 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `text.out' has not changed.
-(rerunfilecheck)             Checksum: AC01ADFC4DF9D54A14B1B952902B5440;10505.
+(rerunfilecheck)             Checksum: C8AE6B13F43D9AE3FB5BFF48221C9B0E;10688.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                text
@@ -1092,10 +1098,10 @@ Package logreq Info: Writing requests to 'text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18487 strings out of 473190
- 320076 string characters out of 5719979
- 1164133 words of memory out of 5000000
- 41324 multiletter control sequences out of 15000+600000
+ 18493 strings out of 473190
+ 320184 string characters out of 5719979
+ 1164143 words of memory out of 5000000
+ 41325 multiletter control sequences out of 15000+600000
  568469 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,10n,81p,1658b,1358s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1116,10 +1122,10 @@ s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
 /texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on text.pdf (35 pages, 376037 bytes).
+Output written on text.pdf (35 pages, 376571 bytes).
 PDF statistics:
- 750 PDF objects out of 1000 (max. 8388607)
- 654 compressed objects within 7 object streams
- 183 named destinations out of 1000 (max. 500000)
- 461 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 762 PDF objects out of 1000 (max. 8388607)
+ 666 compressed objects within 7 object streams
+ 188 named destinations out of 1000 (max. 500000)
+ 469 words of extra memory for PDF output out of 10000 (max. 10000000)
 
