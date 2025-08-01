@@ -61,24 +61,22 @@
 \contentsline {paragraph}{\numberline {4.4.1.1}Subset-of-Regression (SoR) \blx@tocontentsinit {0}\cite {sor}}{30}{paragraph.4.4.1.1}%
 \contentsline {paragraph}{\numberline {4.4.1.2}Fully independent training conditional (FITC) \blx@tocontentsinit {0}\cite {fitc}}{30}{paragraph.4.4.1.2}%
 \contentsline {subsubsection}{\numberline {4.4.2}TODO Posterior approximations}{31}{subsubsection.4.4.2}%
-\contentsline {paragraph}{\numberline {4.4.2.1}Variational free energy (VFE) \blx@tocontentsinit {0}\cite {vfe}}{31}{paragraph.4.4.2.1}%
+\contentsline {paragraph}{\numberline {4.4.2.1}Variational free energy (VFE)}{31}{paragraph.4.4.2.1}%
 \contentsline {subparagraph}{\numberline {4.4.2.1.1}Deriving FITC through the VFE framework \blx@tocontentsinit {0}\cite {fitc-vfe-unifier}}{32}{subparagraph.4.4.2.1.1}%
-\contentsline {paragraph}{\numberline {4.4.2.2}Stochastic varational GP (SVGP) \blx@tocontentsinit {0}\cite {svgp}}{32}{paragraph.4.4.2.2}%
-\contentsline {subsubsection}{\numberline {4.4.3}Structured sparse approximation}{32}{subsubsection.4.4.3}%
-\contentsline {paragraph}{\numberline {4.4.3.1}Structured kernel interpolation (SKI) \blx@tocontentsinit {0}\cite {ski}}{32}{paragraph.4.4.3.1}%
-\contentsline {subsection}{\numberline {4.5}TODO Approximations for Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{32}{subsection.4.5}%
-\contentsline {section}{\numberline {5}TODO Applying a Gaussian Process to Astrostatistics}{33}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Introduction}{33}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Astrological background \blx@tocontentsinit {0}\cite {galaxy-spectra-101}}{33}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Using GP \blx@tocontentsinit {0}\cite {galaxy-gp-noise}}{33}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}Methodology}{33}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Approaches considered}{33}{subsubsection.5.2.1}%
-\contentsline {paragraph}{\numberline {5.2.1.1}Stochastic variational Gaussian processes (SVGP) \blx@tocontentsinit {0}\cite {svgp}}{33}{paragraph.5.2.1.1}%
-\contentsline {paragraph}{\numberline {5.2.1.2}Structured kernel interpolation (SKI) \blx@tocontentsinit {0}\cite {ski}}{33}{paragraph.5.2.1.2}%
-\contentsline {paragraph}{\numberline {5.2.1.3}Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{33}{paragraph.5.2.1.3}%
-\contentsline {subsubsection}{\numberline {5.2.2}Computational speed}{33}{subsubsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.3}Accuracy}{33}{subsubsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.3}Results}{33}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Discussion}{33}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Conclusion}{33}{subsection.5.5}%
-\contentsline {section}{\numberline {6}Conclusion}{34}{section.6}%
+\contentsline {paragraph}{\numberline {4.4.2.2}Stochastic varational GP (SVGP)}{32}{paragraph.4.4.2.2}%
+\contentsline {subsection}{\numberline {4.5}TODO Approximations for Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{33}{subsection.4.5}%
+\contentsline {section}{\numberline {5}TODO Applying a Gaussian Process to Astrostatistics}{34}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Introduction}{34}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Astrological background \blx@tocontentsinit {0}\cite {galaxy-spectra-101}}{34}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Using GP \blx@tocontentsinit {0}\cite {galaxy-gp-noise}}{34}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Methodology}{34}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Approaches considered}{34}{subsubsection.5.2.1}%
+\contentsline {paragraph}{\numberline {5.2.1.1}Stochastic variational Gaussian processes (SVGP) \blx@tocontentsinit {0}\cite {svgp}}{34}{paragraph.5.2.1.1}%
+\contentsline {paragraph}{\numberline {5.2.1.2}Structured kernel interpolation (SKI) \blx@tocontentsinit {0}\cite {ski}}{34}{paragraph.5.2.1.2}%
+\contentsline {paragraph}{\numberline {5.2.1.3}Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{34}{paragraph.5.2.1.3}%
+\contentsline {subsubsection}{\numberline {5.2.2}Computational speed}{34}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Accuracy}{34}{subsubsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.3}Results}{34}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Discussion}{34}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Conclusion}{34}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Conclusion}{35}{section.6}%

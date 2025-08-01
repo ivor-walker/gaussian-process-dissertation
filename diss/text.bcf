@@ -2397,17 +2397,16 @@
     <bcf:citekey order="35" intorder="1">fitc-heteroskedasticity</bcf:citekey>
     <bcf:citekey order="36" intorder="1">vfe</bcf:citekey>
     <bcf:citekey order="37" intorder="1">vfe</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">vfe</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">fitc-vfe-unifier</bcf:citekey>
     <bcf:citekey order="39" intorder="1">fitc-vfe-unifier</bcf:citekey>
-    <bcf:citekey order="40" intorder="1">fitc-vfe-unifier</bcf:citekey>
-    <bcf:citekey order="41" intorder="1">svgp</bcf:citekey>
-    <bcf:citekey order="42" intorder="1">ski</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">foreman-mackay</bcf:citekey>
-    <bcf:citekey order="44" intorder="1">galaxy-spectra-101</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">galaxy-gp-noise</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">svgp</bcf:citekey>
-    <bcf:citekey order="47" intorder="1">ski</bcf:citekey>
-    <bcf:citekey order="48" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="40" intorder="1">svgp</bcf:citekey>
+    <bcf:citekey order="41" intorder="1">adam</bcf:citekey>
+    <bcf:citekey order="42" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="43" intorder="1">galaxy-spectra-101</bcf:citekey>
+    <bcf:citekey order="44" intorder="1">galaxy-gp-noise</bcf:citekey>
+    <bcf:citekey order="45" intorder="1">svgp</bcf:citekey>
+    <bcf:citekey order="46" intorder="1">ski</bcf:citekey>
+    <bcf:citekey order="47" intorder="1">foreman-mackay</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

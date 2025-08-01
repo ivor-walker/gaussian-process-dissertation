@@ -189,12 +189,12 @@ There are three matrices being assembled here: the at-most rank $n$ diag[$V$], t
 \end{equation*}
 requires an $O(m^3)$ inversion of $K(X_m, X_m) + K(X_m, X) [\lambda + \sigma_n^2 I_n]^{-1} K(X_m, X)$ and an $O(nm^2)$ inversion of $\lambda + \sigma_n^2 I_n$, for an overall training complexity of $O(nm^2 + m^3)$.
 
-FITC requires the same training and inference complexity as SoR but achieves a more accurate approximation for variance. Additionally, Bauer et. al. \cite{fitc-heteroskedasticity} found that the diagonal correlation $\text{diag}[V_{nn}]$ represents the posterior variances of $f(X_*)$ given $f(X_m)$ enables predictive variances to grow in regions far from inducing points, capturing a form of heteroskedasticity. However, Titsias found that approximate priors produce marginal likelihoods that are far from the marginal likelihood produced by the full prior, which degrades the accuracy of GPs trained using this goal. \cite{vfe}
+FITC requires the same training and inference complexity as SoR but achieves a more accurate approximation for variance. Additionally, Bauer et. al. \cite{fitc-heteroskedasticity} found that the diagonal correlation $\text{diag}[V_{nn}]$ represents the posterior variances of $f(X_*)$ given $f(X_m)$ enables predictive variances to grow in regions far from inducing points, capturing a form of heteroskedasticity. However, Titsias \cite{vfe} found that approximate priors produce marginal likelihoods that are far from the marginal likelihood produced by the full prior, which degrades the accuracy of GPs trained using this goal. 
 
 \subsubsection{TODO Posterior approximations}
 
-\paragraph{Variational free energy (VFE) \cite{vfe}}
-Titsias introduced a variational distribution to approximate the noisy posterior: \cite{vfe}
+\paragraph{Variational free energy (VFE)}
+Titsias \cite{vfe} introduced a variational distribution to approximate the noisy posterior:
 \begin{equation*}
     q(f(X), f(X_m) | y) = p(f(X) | f(X_m)) \cdot q(f(X_m | y))
 \end{equation*}
@@ -223,33 +223,42 @@ Rewriting to isolate $\log p(y)$:
     \log p(y) = \int q(f(X), f(X_m) | y) \log \frac{p(y, f(X), f(X_m))}{q(f(X), f(X_m) | y)} df(X) df(X_m) + D_{KL}(q(.) || p(.)) 
 \end{equation}
 
-Our first term $\text{F} = \int q(f(X), f(X_m) | y) \log \frac{p(y, f(X), f(X_m))}{q(f(X), f(X_m) | y)} df(X) df(X_m)$ is called the Evidence Lower Bound (ELBO), or the VFE term. Since $D_{KL}(q(.) || p(.)) \geq 0$, $\log p(y) \geq \text{F}$, and we can maximise $\text{F}$ to approximate the marginal likelihood $p(y)$. Maximising $\text{F}$ using the model hyperparameters directly improves the model, and maximising it using the parameters of the variational distribution makes it a better approximation which improves the hyperparameter tuning methods.
+Our first term $\text{F} = \int q(f(X), f(X_m) | y) \log \frac{p(y, f(X), f(X_m))}{q(f(X), f(X_m) | y)} df(X) df(X_m)$ is called the Evidence Lower Bound (ELBO), or the VFE term. $D_{KL}(q(.) || p(.)) \geq 0$, so $\log p(y) \geq \text{F}$ and $\text{F}$ represents the lowest possible likelihood and raising $\text{F}$ produces a raise in $log(y)$. Maximising $\text{F}$ using the model hyperparameters directly improves the model, and maximising it using the parameters of the variational distribution makes it a better approximation which improves the hyperparameter tuning methods.
 
-For inference, this approximation produces the variational predictive distribution:
-\begin{equation*}
-    \begin{aligned}
-        q(f(X_*)) = \mathcal{N}( \\
-        K(X_*, X_m) K(X_m, X_m)^{-1} \mu, \\
-        K(X_*, X_*) - K(X_*, X_m) K(X_m, X_m)^{-1} \Sigma K(X_m, X_m)^{-1} K(X_m, X_*) \\
-        )
-    \end{aligned}
-\end{equation*}
-$\mu$ and $\Sigma$ are the mean and covariance of the optimal $q(f(X_m) | y)$ variational distribution. This requires $O(nm^2 + m^3)$ time to compute, and the resulting likelihood after computing the Gaussian integrals in \ref{eq:likelihood_vfe} is:
+The resulting likelihood after computing the Gaussian integrals in \ref{eq:likelihood_vfe} is:
 \begin{equation*}
     \begin{aligned}
         p_{\text{VFE}}(Y) = -\frac{1}{2} \log(2 \pi \sigma_n^2) \\ 
         - \frac{1}{2\sigma_n^2} Y^T Y \\
-        + \frac{1}{2\sigma_n^4} Y^T K(X, X_m) [K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m)]^{-1} K(X_m, X) Y \\
+        + \frac{1}{2\sigma_n^4} Y^T K(X, X_m) [K(X_m, X_m) \\
+        + \sigma_n^{-2} K(X_m, X) K(X, X_m)]^{-1} K(X_m, X) Y \\
         - \frac{1}{2} \log | K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m) | \\
         + \frac{1}{2} \log | K(X_m, X_m) | \\
         - \frac{1}{2 \sigma_n^2} \text{tr} \left[ K(X, X) - K(X_n, X_m) K(X_m, X_m)^{-1} K(X_m, X) \right]
     \end{aligned}
 \end{equation*}
-The trace term $\text{tr}[.]$ represents the residual variance the variational distribution has left unexplained. The terms in the likelihood that dominate computational complexity are the $y^T K(X, X_m) [K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m)]^{-1} K(X_m, X) y$ and the $K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m)$ inversions, which cost $O(nm^2)$ and $O(m^3)$ respectively, for an overall training complexity of $O(nm^2 + m^3)$. VFE achieves a more accurate approximation of the marginal likelihood than FITC with no additional computational cost incurred.
+The trace term $\text{tr}[.]$ represents the residual variance the variational distribution has left unexplained. The terms in the likelihood that dominate computational complexity are the $y^T K(X, X_m) [K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m)]^{-1} K(X_m, X) y$ and the $K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m)$ inversions, which cost $O(nm^2)$ and $O(m^3)$ respectively, for an overall training complexity of $O(nm^2 + m^3)$.
 
+For inference, this posterior produces the variational predictive distribution:
+\begin{equation*}
+    \begin{aligned}
+        q(f(X_*)) = \mathcal{N}( \\
+        K(X_*, X_m) K(X_m, X_m)^{-1} \mu^*, \\
+        K(X_*, X_*) - K(X_*, X_m) K(X_m, X_m)^{-1} \Sigma^* K(X_m, X_m)^{-1} K(X_m, X_*) \\
+        )
+    \end{aligned}
+\end{equation*}
+$\mu^*$ and $\Sigma^*$ are the mean and covariance of the optimal $q(f(X_m) | y)$ variational distribution. This posterior approximation produces a likelihood where closed form solutions for $\mu^*$ and $\Sigma^*$ at $\partial \frac{p(y)}{\partial \mu} = 0$ and $\partial \frac{p(y)}{\partial \Sigma} = 0$ are available:
+\begin{equation*}
+    \begin{aligned}
+        \Sigma^* = \left[ K(X_m, X_m)^{-1} + \sigma_n^{-2} K(X_m, X_m)^{-1} K(X_m, X) K(X, X_m) K(X_m, X_m)^{-1} \right]^{-1}
+        \mu^* = \sigma_n^{-2} \Sigma^* K(X_m, X) y \\
+    \end{aligned}
+\end{equation*}
+Assembling $\Sigma^*$ and $\mu^*$ requires inverting $K(X_m, X_m)$, which costs $O(m^3)$, and multiplying it by the $n$-rank $K(X_m, X)$ and $K(X, X_m)$, which costs $O(nm^2)$, for a total complexity of $O(nm^2 + m^3)$. VFE achieves a more accurate approximation of the marginal likelihood than FITC without additional computational complexity. 
 
 \subparagraph{Deriving FITC through the VFE framework \cite{fitc-vfe-unifier}}
-Bui et. al. found that applying expectation propagation, or minimising the "inclusive" KL where $p$ and $q$ are swapped: $D_{KL}(p(.) || q(.))$ recovers the FITC prior exactly:
+Bui et. al. \cite{fitc-vfe-unifier} found that applying expectation propagation, or minimising the "inclusive" KL where $p$ and $q$ are swapped: $D_{KL}(p(.) || q(.))$ recovers the FITC prior exactly:
 \begin{equation*}
     \begin{aligned}
         q(f) = N ( \\
@@ -262,16 +271,50 @@ They defined the power expectation propagation (PEP) objective:
 \begin{equation*}
     \log q_{\text{PEP}}(y) = \log q(y) - \frac{1 - \alpha}{2\alpha} \text{tr}\left[ \log(I_n + \frac{\alpha}{\sigma_n^2} V_{nn} \right]
 \end{equation*}
-$q(y)$ represents our FITC prior and the trace term represents $VFE$. When $\alpha = 1$, the trace term vanishes and we recover FITC exactly. As $\alpha \to 0$, the expansion of the $\frac{1-\alpha}/{\alpha} \log(I + \alpha A) \to tr[A]$ and we recover VFE in its collapsed form. \cite{fitc-vfe-unifier} TODO improve explanation
+$q(y)$ represents our FITC prior and the trace term represents $VFE$. When $\alpha = 1$, the trace term vanishes and we recover FITC exactly. As $\alpha \to 0$, the expansion of the $\frac{1-\alpha}/{\alpha} \log(I + \alpha A) \to tr[A]$ and we recover VFE in its collapsed form.  TODO improve explanation
+
+\paragraph{Stochastic varational GP (SVGP)}
+Hensman et. al. \cite{svgp} removed VFE's closed form solutions for the variational distribution's mean and variance and directly optimised them for lower computational complexity. They used a simple posterior approximation:
+\begin{equation*}
+    q(f(X_m) | y) = \mathcal{N}(f(X_m) | M, S)
+\end{equation*}
+$M$ and $S$ are the vector of means and the covariance matrix respectively, and are treated as free parameters to be optimised to maximise $F$. This produces a simpler ELBO:
+\begin{equation*}
+    F = \textbf{E}_{q(f(X))} \left[ \log p(y | f(X)) \right] - D_{KL}(q(f(X_m) | y) || p(f(X_m)))
+\end{equation*}
+The KL distance between our approximation and the prior is:
+\begin{equation*}
+    D_{KL}(q(f(X_m) | y) || p(f(X_m))) = \frac{1}{2} \left( \log \frac{|K(X_m, X_m)|}{|S} - m + \text{tr}(K(X_m, X_m)^{-1} S) + M^T K(X_m, X_m)^{-1} M \right)
+\end{equation*}
+We can use the posterior produced by these approximations to obtain $log p(y | f(X))$. The posterior is:
+\begin{equation*}
+    \begin{aligned}
+        p(f(X) | X) = \mathcal{N}( \\
+        K(X, X_m) K(X_m, X_m)^{-1} M, \\
+        K(X, X) - K(X, X_m) K(X_m, X_m)^{-1} (K(X_m, X_m) - S) K(X_m, X_m)^{-1} K(X_m, X) \\
+        )
+    \end{aligned}
+\end{equation*}
+For the $i$-th point, we can find the squared difference between the true $y_i$ and the predicted $f(x_i)$ by producing predictions using the posterior mean $\mu_i$ and variance $\Sigma_{ii}$ at $i$:
+\begin{equation*}
+    \textbf{E}_{q(f(X_i))} \left[ \log p(y_i | f(X_i)) \right] =  \textbf{E} \left[ (y_i - f(x_i))^2 \right] = (y_i - \mu_i)^2 + \Sigma_{ii}
+\end{equation*}
+Assuming these remainders are Gaussian and independent of each other, we can sum all $i$ remainders together and plug them into the Gaussian likelihood to get a global expression:
+\begin{equation*}
+    \log p(y | f(X)) = -\frac{n}{2} \log(2 \pi \sigma_n^2) - \frac{1}{2\sigma_n^2} \sum_{i=1}^{n} \left[ (y_i - \mu_i)^2 + \Sigma{ii} \right]
+\end{equation*}
+The only reason both training and inference using this approximation is $O(mn^2 + m^3)$ is because the posterior means and variances currently cost $O(nm^2)$ to compute. Spending this during inference is unavoidable, but Stochastic Gradient Descent (SGD) \cite{adam} suggests that we can reduce training costs by only summing a batch of $b$ points at a time:
+\begin{equation*}
+    \log p(y | f(X)) = -\frac{n}{2} \log(2 \pi \sigma_n^2) - \frac{1}{2\sigma_n^2} \frac{n}{b} \sum_{i=1}^{b} \left[ (y_i - \mu_i)^2 + \Sigma{ii} \right]
+\end{equation*}
+This results in a training complexity of $O(bm^2 + m^3)$, which is significantly lower than the $O(nm^2 + m^3)$ complexity of VFE and FITC. TODO elabourate
 
 
-\paragraph{Stochastic varational GP (SVGP) \cite{svgp}}
+% \subsubsection{Structured sparse approximation}
 
-\subsubsection{Structured sparse approximation}
+% \paragraph{Structured kernel interpolation (SKI) \cite{ski}}
 
-\paragraph{Structured kernel interpolation (SKI) \cite{ski}}
-
-% \subsubsection{TODO Selecting inducing points}
+% \subsubsection{Selecting inducing points}
 
 
 % \subsection{Local approximations \cite{big-data}}
