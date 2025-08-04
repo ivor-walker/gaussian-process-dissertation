@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  1 AUG 2025 20:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  4 AUG 2025 23:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -557,8 +557,12 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@quotelevel=\count425
 \@quotereset=\count426
  (./text.aux
-(./abs/text.aux) (./intro/text.aux) (./ch1/text.aux) (./ch2/text.aux)
-(./ch3/text.aux) (./ch4/text.aux) (./conc/text.aux))
+(./abstract/text.aux) (./intro/text.aux) (./defining-gp/text.aux)
+(./covariance-functions/text.aux) (./computational-issues/text.aux
+
+LaTeX Warning: Label `eq:matern-32' multiply defined.
+
+) (./application/text.aux) (./discussion/text.aux) (./conclusion/text.aux))
 \openout1 = `text.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -681,10 +685,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-\openout2 = `abs/text.aux'.
+\openout2 = `abstract/text.aux'.
 
 
-(./abs/text.tex)
+(./abstract/text.tex)
 
 [2
 
@@ -705,9 +709,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [4
 
 ]
-\openout2 = `ch1/text.aux'.
+\openout2 = `defining-gp/text.aux'.
 
- (./ch1/text.tex
+ (./defining-gp/text.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 5.
@@ -725,12 +729,6 @@ Overfull \hbox (9.71089pt too wide) detected at line 110
 
 
 LaTeX Warning: Reference `A_b' on page 6 undefined on input line 122.
-
-
-Overfull \hbox (3.23486pt too wide) in paragraph at lines 139--140
-[] |\OT1/cmr/bx/n/10 2.1.2.3 Gaus-sian pos-te-ri-ors and ridge re-gres-sion \OT
-1/cmr/m/n/10 So far we have worked ex-clu-sively within the Bayesian paradigm,
- []
 
 
 
@@ -752,10 +750,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [11])
 
 [12{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-\openout2 = `ch2/text.aux'.
+\openout2 = `covariance-functions/text.aux'.
 
 
-(./ch2/text.tex
+(./covariance-functions/text.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 4.
@@ -799,11 +797,11 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 [18]
-<./img/gaussian_variances.png, id=461, 827.82pt x 620.865pt>
+<./img/gaussian_variances.png, id=464, 827.82pt x 620.865pt>
 
 
 [19]
-<./img/gaussian_draws.png, id=468, 827.82pt x 620.865pt>
+<./img/gaussian_draws.png, id=470, 827.82pt x 620.865pt>
 
 
 [20
@@ -821,13 +819,13 @@ l.468 \end{equation*}
                      ]
 
 [21]
-<./img/ratquad_variances.png, id=480, 827.82pt x 620.865pt>
+<./img/ratquad_variances.png, id=482, 827.82pt x 620.865pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 525--525
 
  []
 
-<./img/ratquad_draws.png, id=483, 827.82pt x 620.865pt>
+<./img/ratquad_draws.png, id=485, 827.82pt x 620.865pt>
 
 
 [22
@@ -849,8 +847,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 535.
 
-<./img/powerexp_variances.png, id=490, 827.82pt x 620.865pt>
-<./img/powerexp_draws.png, id=493, 827.82pt x 620.865pt>
+<./img/powerexp_variances.png, id=492, 827.82pt x 620.865pt>
 
 
 [23
@@ -858,43 +855,51 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.557 
-      
+l.550 
+      ]
+<./img/powerexp_draws.png, id=500, 827.82pt x 620.865pt>
+
+
+LaTeX Warning: Reference `eq:exp_kernel' on page 24 undefined on input line 569
+.
+
+
+LaTeX Warning: Citation 'fast-exp' on page 24 undefined on input line 569.
+
+
+
+[24
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.557 
-      ]
-<./img/exp_variances.png, id=500, 827.82pt x 620.865pt>
-<./img/exp_draws.png, id=501, 827.82pt x 620.865pt>
-
-
-[24
+l.572 \end{equation*}
+                     
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.579 
-      
+l.572 \end{equation*}
+                     ]
+<./img/exp_variances.png, id=507, 827.82pt x 620.865pt>
+<./img/exp_draws.png, id=508, 827.82pt x 620.865pt>
+
+
+[25
 pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.579 
-      ]
-<./img/matern32_variances.png, id=508, 827.82pt x 620.865pt>
-
-
-[25
+l.603 \end{equation*}
+                     
 pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.614 
-      ]
-<./img/matern32_draws.png, id=516, 827.82pt x 620.865pt>
-<./img/matern52_variances.png, id=517, 827.82pt x 620.865pt>
+l.603 \end{equation*}
+                     ]
+<./img/matern32_variances.png, id=516, 827.82pt x 620.865pt>
+<./img/matern32_draws.png, id=517, 827.82pt x 620.865pt>
 
 
 [26
@@ -902,33 +907,36 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.639 
-      
+l.637 
+      ]
+<./img/matern52_variances.png, id=524, 827.82pt x 620.865pt>
+<./img/matern52_draws.png, id=525, 827.82pt x 620.865pt>
+
+
+[27
 pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.639 
-      ]
-<./img/matern52_draws.png, id=525, 827.82pt x 620.865pt>
-)
-
-[27
+l.662 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.11}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.56 \include{ch2/text}
-                       
+l.662 
+      ])
+
+[28
 pdfTeX warning (ext4): destination with the same identifier (name{figure.12}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.56 \include{ch2/text}
-                       ]
-\openout2 = `ch3/text.aux'.
+l.56 \include{covariance-functions/text}
+                                        ]
+\openout2 = `computational-issues/text.aux'.
 
- (./ch3/text.tex
+ (./computational-issues/text.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 10.
@@ -967,7 +975,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 
-[28
+[29
 
 
 
@@ -981,14 +989,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 73.
 
 
-LaTeX Warning: Reference `jeq:joint_prior' on page 29 undefined on input line 1
+LaTeX Warning: Reference `jeq:joint_prior' on page 30 undefined on input line 1
 05.
 
 
 
-[29]
-
 [30]
+
+[31]
 Overfull \hbox (9.2629pt too wide) in paragraph at lines 239--241
 \OT1/cmr/m/n/10 li-hood that dom-i-nate com-pu-ta-tional com-plex-ity are the $
 \OML/cmm/m/it/10 y[]K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X; X[]\OT1/cmr/m/n/10 )[
@@ -1001,43 +1009,56 @@ L/cmm/m/it/10 y$
 
 
 
-[31]
+[32]
 
-LaTeX Warning: Citation 'fitc-vfe-unifier' on page 32 undefined on input line 2
+LaTeX Warning: Citation 'fitc-vfe-unifier' on page 33 undefined on input line 2
 60.
 
 
-LaTeX Warning: Citation 'fitc-vfe-unifier' on page 32 undefined on input line 2
+LaTeX Warning: Citation 'fitc-vfe-unifier' on page 33 undefined on input line 2
 61.
 
 
-Overfull \hbox (1.02875pt too wide) in paragraph at lines 261--262
-\OT1/cmr/m/n/10 found that ap-ply-ing ex-pec-ta-tion prop-a-ga-tion, or min-imi
-s-ing the "in-clu-sive" KL where $\OML/cmm/m/it/10 p$ \OT1/cmr/m/n/10 and $\OML
-/cmm/m/it/10 q$ \OT1/cmr/m/n/10 are swapped: $\OML/cmm/m/it/10 D[]\OT1/cmr/m/n/
-10 (\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 )\OMS/
-cmsy/m/n/10 jj\OML/cmm/m/it/10 q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 :\OT1/cmr/m/n
-/10 ))$
- []
-
-
-LaTeX Warning: Citation 'adam' on page 32 undefined on input line 306.
+LaTeX Warning: Citation 'adam' on page 33 undefined on input line 306.
 
 
 
-[32]
+[33]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 329.
+(hyperref)                removing `\cite' on input line 328.
+
+
+LaTeX Warning: Citation 'fast-exp' on page 34 undefined on input line 331.
+
+
+LaTeX Warning: Citation 'general-exp' on page 34 undefined on input line 333.
+
+
+LaTeX Warning: Citation 'general-exp' on page 34 undefined on input line 337.
+
+
+LaTeX Warning: Citation 'general-exp' on page 34 undefined on input line 355.
+
+
+LaTeX Warning: Citation 'sho-spectral-density' on page 34 undefined on input li
+ne 367.
+
+
+
+[34]
+
+LaTeX Warning: Citation 'sho-noise-astro' on page 35 undefined on input line 39
+1.
 
 )
 
-[33]
-\openout2 = `ch4/text.aux'.
+[35]
+\openout2 = `application/text.aux'.
 
- (./ch4/text.tex
+ (./application/text.tex
 
-LaTeX Warning: Citation 'galaxy-spectra-101' on page 34 undefined on input line
+LaTeX Warning: Citation 'galaxy-spectra-101' on page 36 undefined on input line
  19.
 
 
@@ -1045,7 +1066,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 19.
 
 
-LaTeX Warning: Citation 'galaxy-gp-noise' on page 34 undefined on input line 21
+LaTeX Warning: Citation 'galaxy-gp-noise' on page 36 undefined on input line 21
 .
 
 
@@ -1053,25 +1074,34 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 21.
 
 
-LaTeX Warning: Citation 'ski' on page 34 undefined on input line 30.
+LaTeX Warning: Citation 'ski' on page 36 undefined on input line 30.
 
 )
 
-[34
+[36
 
 
 
 ]
-\openout2 = `conc/text.aux'.
+\openout2 = `discussion/text.aux'.
 
- (./conc/text.tex)
+ (./discussion/text.tex)
 
-[35
+[37
 
 
 
 ]
-Overfull \hbox (88.11728pt too wide) in paragraph at lines 66--66
+\openout2 = `conclusion/text.aux'.
+
+ (./conclusion/text.tex)
+
+[38
+
+
+
+]
+Overfull \hbox (88.11728pt too wide) in paragraph at lines 68--68
 []\OT1/cmr/m/n/10 Collin Er-ick-son. \OT1/cmr/m/it/10 GauPro: Gaus-sian Pro-ces
 s Fit-ting\OT1/cmr/m/n/10 . R pack-age ver-sion 0.2.15.9000, com-mit 6c7a7a8055
 506229b6d02650aca9664a84f640f8.
@@ -1079,19 +1109,21 @@ s Fit-ting\OT1/cmr/m/n/10 . R pack-age ver-sion 0.2.15.9000, com-mit 6c7a7a8055
 
 
 Package biblatex Warning: Month out of range
-(biblatex)                at entry 'random-subsampling' on input line 65.
+(biblatex)                at entry 'random-subsampling' on input line 67.
 
 
 Package biblatex Warning: Month out of range
-(biblatex)                at entry 'vfe' on input line 65.
+(biblatex)                at entry 'vfe' on input line 67.
 
 
 
-[36
+[39
 
 
-] (./text.aux (./abs/text.aux) (./intro/text.aux) (./ch1/text.aux)
-(./ch2/text.aux) (./ch3/text.aux) (./ch4/text.aux) (./conc/text.aux))
+] (./text.aux (./abstract/text.aux) (./intro/text.aux)
+(./defining-gp/text.aux) (./covariance-functions/text.aux)
+(./computational-issues/text.aux) (./application/text.aux)
+(./discussion/text.aux) (./conclusion/text.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1100,8 +1132,11 @@ L3 programming layer <2025-01-18>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `text.out' has not changed.
-(rerunfilecheck)             Checksum: 117437B123751A642F8A0D98553C2E77;10459.
+(rerunfilecheck)             Checksum: AD0A436AAF55030FD30328280DF67F72;11116.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                text
@@ -1112,10 +1147,10 @@ Package logreq Info: Writing requests to 'text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18491 strings out of 473190
- 320134 string characters out of 5719979
- 1164146 words of memory out of 5000000
- 41324 multiletter control sequences out of 15000+600000
+ 18504 strings out of 473190
+ 322128 string characters out of 5719979
+ 1166971 words of memory out of 5000000
+ 41350 multiletter control sequences out of 15000+600000
  568469 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,10n,81p,1658b,1358s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1136,10 +1171,10 @@ s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
 /texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on text.pdf (36 pages, 380970 bytes).
+Output written on text.pdf (39 pages, 392898 bytes).
 PDF statistics:
- 759 PDF objects out of 1000 (max. 8388607)
- 662 compressed objects within 7 object streams
- 187 named destinations out of 1000 (max. 500000)
- 461 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 770 PDF objects out of 1000 (max. 8388607)
+ 670 compressed objects within 7 object streams
+ 167 named destinations out of 1000 (max. 500000)
+ 493 words of extra memory for PDF output out of 10000 (max. 10000000)
 

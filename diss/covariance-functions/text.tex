@@ -324,23 +324,23 @@ A stationary covariance function $k(X - X')$ is some function of $X - X'$ , and 
 
 \subsubsection{Spectral density}
 Bochner's theorem states that the covariance function of a stationary process can be represented as the Fourier transform of some positive finite measure $\mu$ \cite{bochner}:
-\begin{equation*}
+\begin{equation} \label{eq:bochner}
     k(x, x') = \int_{-\infty}^{\infty} e^{2\pi i \omega (x - x')} d\mu(\omega)
-\end{equation*}
+\end{equation}
 The Fourier transform decomposes our covariance function into a sum of sines and cosines that represents the frequences that make it up, written in a compact form as a complex exponential:
-\begin{equation*}
+\begin{equation} \label{eq:fourier}
     e^{-2\pi i \omega (x - x')} = \cos(2\pi \omega (x - x')) - i \sin(2\pi \omega (x - x'))
-\end{equation*}
+\end{equation}
 By applying this representation to the covariance function, we get its "spectral density" $S(\omega)$:
-\begin{equation*}
+\begin{equation} \label{eq:spectral_density}
     S(\omega) = \int_{-\infty}^{\infty} k(x, x') e^{2\pi i \omega (x - x')} d(x - x')
-\end{equation*}
+\end{equation}
 $S(\omega)$ is a complex number representing how much total variance is allocated per unit of frequency around our given frequency $\omega$. 
 
 The Weiner-Khinchin theorem governs the inversion of the Fourier transform to recover the original covariance function - it states that our covariance function and its spectral density are Fourier duals of each other: 
-\begin{equation*}
+\begin{equation} \label{eq:weiner-khinchin}
     k(x, x') = \int_{-\infty}^{\infty} S(\omega) e^{-2\pi i \omega (x - x')} d\omega
-\end{equation*}
+\end{equation}
 
 \paragraph{Smoothness}
 To remain integratable, our spectral density needs to approach $0$ as $\omega \to \infty$. The faster it approaches $0$, the less power it contains at high frequencies, and the smoother our resultant GP will be. Ritter et. al. \cite{fourier-moments} formalised this by by taking moments of the spectral density and connecting them to the MS differentiability of our resultant GP. The $2m$-th $\omega$-th moment of the spectral density is:
@@ -538,6 +538,7 @@ SE and RQ have no parameter controlling or reducing its MS differentiability and
     k(X,X') = \exp \left(-\frac{|X - X'|^{\gamma}}{l^{\gamma}} \right)
 \end{equation*}
 where $0 < \gamma \geq 2$ controls the smoothness of the covariance function. 
+$\gamma = 2$ produces SE for maximal smoothness. For all other values of $\gamma$ other than $2$, the covariance function is continuous but not differentiable at all at $|x - x'| = 0$, which coincides with the undifferentiable turning point of the modulus function at $x - x' = 0$, and produces the roughest functions of all covariance functions we consider.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{powerexp_variances.png}
@@ -555,11 +556,25 @@ where $0 < \gamma \geq 2$ controls the smoothness of the covariance function.
     }
 \end{figure}
 
-$\gamma = 2$ produces SE for maximal smoothness, while $\gamma = 1$ produces the exponential covariance function:
+
+\paragraph{Exponential covariance function}
+$\gamma = 1$ produces the exponential covariance function:
 \begin{equation*}
     k(X,X') = \exp \left(-\frac{|X - X'|}{l} \right)
 \end{equation*}
-Here, and for all other values of $\gamma$ other than $2$, the covariance function is continuous but not differentiable at all at $|x - x'| = 0$, which coincides with the undifferentiable turning point of the modulus function at $x - x' = 0$, and produces the roughest functions of all covariance functions we consider.
+Restating:
+\begin{equation*}
+    k(X, X') = a \exp\left(-c |X - X'|\right)
+\end{equation*}
+Setting $a = 1$ and $c = \frac{1}{l}$ recovers our familiar exponential kernel \ref{eq:exp_kernel}. Rybicki and Press \cite{fast-exp} showed that any zero-mean GP with this covariance function is the unique stationary solution of the stochastic differential equation (SDE):
+\begin{equation*}
+    dX_t = -\lambda X_t dt + \sqrt{2\lambda} dW_t
+\end{equation*}
+TODO explain parts of equation. This corresponds to the form of a strong Markov process:
+\begin{equation*}
+    dX_t = a(X_t) dt + b(X_t) dW_t
+\end{equation*}
+TODO explain Markov processes. No other covariance function produces an SDE of order 1.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{exp_variances.png}
@@ -599,9 +614,9 @@ $\nu = 1/2$ is equivelant to the exponential covariance function. As $\nu \to \i
 
 \paragraph{Matern 3/2}
 $\nu = 3/2$ produces the following covariance function:
-\begin{equation*}
+\begin{equation} \label{eq:matern-32}
     k_{3/2}(X,X') = \left(1 + \frac{\sqrt{3}|X - X'|}{l} \right) \exp \left(-\frac{\sqrt{3}|X - X'|}{l} \right)
-\end{equation*}
+\end{equation}
 3/2 is one-time MS differentiable, leading to much rougher functions than SE.
 
 \begin{figure}[H]

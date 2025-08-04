@@ -191,7 +191,7 @@ requires an $O(m^3)$ inversion of $K(X_m, X_m) + K(X_m, X) [\lambda + \sigma_n^2
 
 FITC requires the same training and inference complexity as SoR but achieves a more accurate approximation for variance. Additionally, Bauer et. al. \cite{fitc-heteroskedasticity} found that the diagonal correlation $\text{diag}[V_{nn}]$ represents the posterior variances of $f(X_*)$ given $f(X_m)$ enables predictive variances to grow in regions far from inducing points, capturing a form of heteroskedasticity. However, Titsias \cite{vfe} found that approximate priors produce marginal likelihoods that are far from the marginal likelihood produced by the full prior, which degrades the accuracy of GPs trained using this goal. 
 
-\subsubsection{TODO Posterior approximations}
+\subsubsection{Posterior approximations}
 
 \paragraph{Variational free energy (VFE)}
 Titsias \cite{vfe} introduced a variational distribution to approximate the noisy posterior:
@@ -307,7 +307,7 @@ The only reason both training and inference using this approximation is $O(mn^2 
 \begin{equation*}
     \log p(y | f(X)) = -\frac{n}{2} \log(2 \pi \sigma_n^2) - \frac{1}{2\sigma_n^2} \frac{n}{b} \sum_{i=1}^{b} \left[ (y_i - \mu_i)^2 + \Sigma{ii} \right]
 \end{equation*}
-This results in a training complexity of $O(bm^2 + m^3)$, which is significantly lower than the $O(nm^2 + m^3)$ complexity of VFE and FITC. TODO elabourate
+This results in a training complexity of $O(bm^2 + m^3)$, which is significantly lower than the $O(nm^2 + m^3)$ complexity of VFE and FITC. TODO give full advantages \& disadvantages
 
 
 % \subsubsection{Structured sparse approximation}
@@ -325,9 +325,88 @@ This results in a training complexity of $O(bm^2 + m^3)$, which is significantly
 % 
 % \subsubsection{Product-of-experts}
 
+\subsection{Celerite kernels \cite{foreman-mackay}}
 
-\subsection{TODO Approximations for Celerite kernels \cite{foreman-mackay}}
+\subsubsection{The celerite model}
+Rybicki and Press \cite{fast-exp} used the Markov property of the exponential covariance function to produce a fast algorithm for computing its inverse. Since the exponential kernel is Markov, the only non-zero covariance at $i$ is $i-1$ and $i+1$, and the covariance matrix is tridiagonal whose inverse can be computed in $O(n)$ time. 
 
+Kelly et. al. \cite{general-exp} generalised this to $J$ arbitrary mixtures of exponentials:
+\begin{equation*}
+    K(X, X') = \sum{j=1}^J a_j \exp(-c_j |X - X'|)
+\end{equation*}
+Although the inverse of this is dense, Kelly et. al. \cite{general-exp} showed that it can be computed in $O(N J^2)$ time.
+
+Foreman and Mackay \cite{foreman-mackay} used the Bochner representation \ref{eq:bochner} of this generalised covariance function: %introduced complex parameters $a_j = a_j \pm i b_j$ and $c_j = c_j \pm i d_j$ to generalise this further :
+\begin{equation*}
+    \begin{aligned}
+        K(X, X') = \sum_{j=1}^J \\
+        frac{1}{2} (a_j + i b_j) \exp(-(c_j + i d_j) |X - X'|) \\
+        + \frac{1}{2} (a_j - i b_j) \exp(-(c_j - i d_j) |X - X'|)
+    \end{aligned}
+\end{equation*}
+Using the Fourier transform \ref{eq:fourier}:
+\begin{equation*}
+    \begin{aligned}
+        K(X, X') = \sum_{j=1}^J \\
+        a_j \exp(-c_j |X - X'|) \cos(d_j |X - X'|) \\ 
+        + b_j \exp(-c_j |X - X'|) \sin(d_j |X - X'|)
+    \end{aligned}
+\end{equation*}
+The argument within this sum is called a celerite term. Setting $b_j$ and $d_j$ recovers the original exponential kernel, but Foreman and Mackay's \cite{foreman-mackay} generalisation can be extended to approximate more complex kernels than sums of exponentials whilst maintaining Kelly et. al. \cite{general-exp}'s $O(N J^2)$ complexity.
+
+\subsubsection{Building Matern 3/2 from celerite}
+Applying the Fourier representation to the kernel to obtain its spectral density \ref{eq:spectral_density}:
+\begin{equation*}
+    S(\omega) = \sum_{j=1}^J \sqrt{\frac{2}{\pi}} \frac{(a_j c_j + b_j d_j) (c_j^2 + d_j^2) + (a_j c_j - b_j d_j) \omega^2}{\omega^4 + 2(c_j^2 - d_j^2) \omega^2 + (c_j^2 + d_j^2)^2}
+\end{equation*}
+
+A stochastically-driven dampened simple harmonic oscillator (SHO) is a system that oscillates with a frequency $\omega$ and is dampened by a factor $c$. The differential equation for this system is:
+\begin{equation*}
+    \left[ \frac{d^2}{dt^2} + \frac{\omega_0}{Q} \frac{d}{dt} + \omega_0^2 \right] y(t) = \eta(t)
+\end{equation*}
+Q is the "quality factor" of the oscillator, which determines how quickly it loses energy, and $\eta(t)$ is the stochastic force driving the oscillation. Anderson et. al. \cite{sho-spectral-density} found that if $\eta(t)$ is white noise, the spectral density of the SHO is:
+\begin{equation*}
+    S(\omega) = \sqrt{\frac{2}{\pi}} \frac{S_0 \omega_0^4}{(\omega^2 - \omega_0^2)^2 + \frac{\omega_0^2 \omega^2}{Q^2}}
+\end{equation*}
+where $S_0$ is proportional to the power at $\omega = \omega_0$, $S(\omega_0) = \sqrt{\frac{2}{\pi}} S_0 Q^2$ TODO explain.
+
+Foreman and Mackay \cite{foreman-mackay} showed that the celerite spectral density matched the SHO spectral density if $Q \geq \frac{1}{2}$:
+\begin{equation*}
+    \begin{aligned}
+        a_j = S_0 \omega_0 Q \\
+        b_j = \frac{S_0 \omega_0 Q}{\sqrt{4Q^2 - 1}} \\
+        c_j = \frac{\omega_0}{2Q} \\
+        d_j = \frac{\omega_0}{2Q} \sqrt{4Q^2 - 1}
+    \end{aligned}
+\end{equation*}
+For $0 < Q \leq \frac{1}{2}$, Foreman and Mackay \cite{foreman-mackay} used a pair of celerite terms with parameters:
+\begin{equation*}
+    \begin{aligned}
+        a_{j \pm} = \frac{1}{2} S_0 \omega_0 Q \left[ 1 \pm \frac{1}{\sqrt{1 - 4Q^2}} \right] \\
+        b_{j \pm} = 0 \\
+        c_{j \pm} = \frac{\omega_0}{2Q} \left[ 1 \pm \sqrt{1 - 4Q^2} \right] \\
+        d_{j \pm} = 0
+    \end{aligned}
+\end{equation*}
+As $Q \to 0$, our spectral density indicates that the process has no oscillatory behaviour and represents a white noise process, e.g. $Q = 1 / \sqrt{2}$ recovers an astrophysics model \cite{sho-noise-astro} for background granulation noise in stars, and as $Q \to 1$ the process has strong oscillatory behaviour.
+
+We can use the Weiner-Khinchin theorem \ref{eq:weiner-khinchin} to obtain the SHO kernel from these spectral densities:
+\begin{equation*}
+    K(X, X'; S_0, Q, \omega_0) = S_0 \omega_0 Q \exp^{-\frac{\omega_0 |X - X'|}{2Q}} \begin{cases}
+            \cosh (\eta \omega_0 |X - X'|) + \frac{1}{2 \eta Q} \sinh ( \eta \omega_0 |X - X'|) & 0 < Q < \frac{1}{2} \\
+            2(1 + \omega_0 |X - X'|) & Q = \frac{1}{2} \\
+            \cos (\eta \omega_0 |X - X'|) + \frac{1}{2 \eta Q} \sin ( \eta \omega_0 |X - X'|) & Q > \frac{1}{2}
+    \end{cases}
+\end{equation*}
+$\eta = |1 - (4Q^2)^{-1} |^{1/2}$. 
+
+At $Q = \frac{1}{2}$, the kernel becomes:
+\begin{equation*}
+    K(X, X')_{Q = \frac{1}{2}} = S_0 \omega_0 \exp^{- \omega_0 |X - X'|} \left( 1 + \omega_0 |X - X'| \right)
+\end{equation*}
+Setting $\omega_0 = \frac{\sqrt{3}}{l}$ recovers the Matern 3/2 kernel \label{eq:matern-32}.
+
+\subsubsection{Fast and exact inversions of celerite kernels}
 
 % \subsubsection{Extensions}
 % 

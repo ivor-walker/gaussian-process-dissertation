@@ -10,9 +10,9 @@
 
 \usepackage{hyperref}
 
-% Adding paragraphs as proper titles
+% Remove numbers from section/paragraph titles, not contents
 \usepackage{titlesec}
-\setcounter{secnumdepth}{5}
+\titleformat{\section}{\normalfont\Large\bfseries}{}{0pt}{}
 
 \usepackage[
     backend=biber,
@@ -43,7 +43,7 @@
 \date{ }
 \maketitle
 
-\include{abs/text}
+\include{abstract/text}
 
 \newpage
 \tableofcontents
@@ -51,15 +51,17 @@
 
 \include{intro/text}
 
-\include{ch1/text}
+\include{defining-gp/text}
 
-\include{ch2/text}
+\include{covariance-functions/text}
 
-\include{ch3/text}
+\include{computational-issues/text}
 
-\include{ch4/text}
+\include{application/text}
 
-\include{conc/text}
+\include{discussion/text}
+
+\include{conclusion/text}
 
 
 \printbibliography
