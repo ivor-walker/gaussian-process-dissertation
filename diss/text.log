@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  4 AUG 2025 23:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  5 AUG 2025 02:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -747,7 +747,25 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [10]
 
-[11])
+[11]
+
+LaTeX Warning: Reference `eq:cholesky-decomp' on page 12 undefined on input lin
+e 508.
+
+
+LaTeX Warning: Reference `eq:colesky-decomp' on page 12 undefined on input line
+ 517.
+
+
+Overfull \hbox (14.21602pt too wide) in paragraph at lines 529--530
+[]\OT1/cmr/m/n/10 Plug $\OML/cmm/m/it/10 v$ \OT1/cmr/m/n/10 into the vari-ance 
+re-stated in terms of the Cholesky fac-tors, where $\OML/cmm/m/it/10 v[]v \OT1/
+cmr/m/n/10 = (\OML/cmm/m/it/10 L[]K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]; X\OT1
+/cmr/m/n/10 ))[](\OML/cmm/m/it/10 L[]K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]; X\
+OT1/cmr/m/n/10 )) =
+ []
+
+)
 
 [12{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 \openout2 = `covariance-functions/text.aux'.
@@ -797,11 +815,11 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 [18]
-<./img/gaussian_variances.png, id=464, 827.82pt x 620.865pt>
+<./img/gaussian_variances.png, id=470, 827.82pt x 620.865pt>
 
 
 [19]
-<./img/gaussian_draws.png, id=470, 827.82pt x 620.865pt>
+<./img/gaussian_draws.png, id=476, 827.82pt x 620.865pt>
 
 
 [20
@@ -819,13 +837,13 @@ l.468 \end{equation*}
                      ]
 
 [21]
-<./img/ratquad_variances.png, id=482, 827.82pt x 620.865pt>
+<./img/ratquad_variances.png, id=488, 827.82pt x 620.865pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 525--525
 
  []
 
-<./img/ratquad_draws.png, id=485, 827.82pt x 620.865pt>
+<./img/ratquad_draws.png, id=491, 827.82pt x 620.865pt>
 
 
 [22
@@ -847,7 +865,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 535.
 
-<./img/powerexp_variances.png, id=492, 827.82pt x 620.865pt>
+<./img/powerexp_variances.png, id=498, 827.82pt x 620.865pt>
 
 
 [23
@@ -857,7 +875,7 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.550 
       ]
-<./img/powerexp_draws.png, id=500, 827.82pt x 620.865pt>
+<./img/powerexp_draws.png, id=506, 827.82pt x 620.865pt>
 
 
 LaTeX Warning: Reference `eq:exp_kernel' on page 24 undefined on input line 569
@@ -881,8 +899,8 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.572 \end{equation*}
                      ]
-<./img/exp_variances.png, id=507, 827.82pt x 620.865pt>
-<./img/exp_draws.png, id=508, 827.82pt x 620.865pt>
+<./img/exp_variances.png, id=513, 827.82pt x 620.865pt>
+<./img/exp_draws.png, id=514, 827.82pt x 620.865pt>
 
 
 [25
@@ -898,8 +916,8 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.603 \end{equation*}
                      ]
-<./img/matern32_variances.png, id=516, 827.82pt x 620.865pt>
-<./img/matern32_draws.png, id=517, 827.82pt x 620.865pt>
+<./img/matern32_variances.png, id=522, 827.82pt x 620.865pt>
+<./img/matern32_draws.png, id=523, 827.82pt x 620.865pt>
 
 
 [26
@@ -909,8 +927,8 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.637 
       ]
-<./img/matern52_variances.png, id=524, 827.82pt x 620.865pt>
-<./img/matern52_draws.png, id=525, 827.82pt x 620.865pt>
+<./img/matern52_variances.png, id=530, 827.82pt x 620.865pt>
+<./img/matern52_draws.png, id=531, 827.82pt x 620.865pt>
 
 
 [27
@@ -939,39 +957,7 @@ l.56 \include{covariance-functions/text}
  (./computational-issues/text.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 10.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 53.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Phi' on input line 53.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 53.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 53.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 53.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 53.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 53.
+(hyperref)                removing `\cite' on input line 77.
 
 
 
@@ -982,22 +968,53 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 65.
+(hyperref)                removing `math shift' on input line 115.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 73.
+(hyperref)                removing `\Phi' on input line 115.
 
 
-LaTeX Warning: Reference `jeq:joint_prior' on page 30 undefined on input line 1
-05.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 115.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 115.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 115.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 115.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 115.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 127.
 
 
 
 [30]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\cite' on input line 135.
+
+
+LaTeX Warning: Reference `jeq:joint_prior' on page 31 undefined on input line 1
+67.
+
+
+
 [31]
-Overfull \hbox (9.2629pt too wide) in paragraph at lines 239--241
+
+[32]
+Overfull \hbox (9.2629pt too wide) in paragraph at lines 301--303
 \OT1/cmr/m/n/10 li-hood that dom-i-nate com-pu-ta-tional com-plex-ity are the $
 \OML/cmm/m/it/10 y[]K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X; X[]\OT1/cmr/m/n/10 )[
 \OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]; X[]\OT1/cmr/m/n/10 ) +
@@ -1009,56 +1026,60 @@ L/cmm/m/it/10 y$
 
 
 
-[32]
-
-LaTeX Warning: Citation 'fitc-vfe-unifier' on page 33 undefined on input line 2
-60.
-
-
-LaTeX Warning: Citation 'fitc-vfe-unifier' on page 33 undefined on input line 2
-61.
-
-
-LaTeX Warning: Citation 'adam' on page 33 undefined on input line 306.
-
-
-
 [33]
 
+LaTeX Warning: Citation 'fitc-vfe-unifier' on page 34 undefined on input line 3
+22.
+
+
+LaTeX Warning: Citation 'fitc-vfe-unifier' on page 34 undefined on input line 3
+23.
+
+
+LaTeX Warning: Citation 'adam' on page 34 undefined on input line 368.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 328.
+(hyperref)                removing `\cite' on input line 390.
 
 
-LaTeX Warning: Citation 'fast-exp' on page 34 undefined on input line 331.
-
-
-LaTeX Warning: Citation 'general-exp' on page 34 undefined on input line 333.
-
-
-LaTeX Warning: Citation 'general-exp' on page 34 undefined on input line 337.
-
-
-LaTeX Warning: Citation 'general-exp' on page 34 undefined on input line 355.
-
-
-LaTeX Warning: Citation 'sho-spectral-density' on page 34 undefined on input li
-ne 367.
+LaTeX Warning: Citation 'fast-exp' on page 34 undefined on input line 393.
 
 
 
 [34]
 
-LaTeX Warning: Citation 'sho-noise-astro' on page 35 undefined on input line 39
-1.
+LaTeX Warning: Citation 'general-exp' on page 35 undefined on input line 395.
+
+
+LaTeX Warning: Citation 'general-exp' on page 35 undefined on input line 399.
+
+
+LaTeX Warning: Citation 'general-exp' on page 35 undefined on input line 417.
+
+
+LaTeX Warning: Citation 'sho-spectral-density' on page 35 undefined on input li
+ne 429.
+
+
+
+[35]
+
+LaTeX Warning: Citation 'sho-noise-astro' on page 36 undefined on input line 45
+3.
+
+
+LaTeX Warning: Reference `eq:semiseperable' on page 36 undefined on input line 
+501.
 
 )
 
-[35]
+[36]
 \openout2 = `application/text.aux'.
 
  (./application/text.tex
 
-LaTeX Warning: Citation 'galaxy-spectra-101' on page 36 undefined on input line
+LaTeX Warning: Citation 'galaxy-spectra-101' on page 37 undefined on input line
  19.
 
 
@@ -1066,7 +1087,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 19.
 
 
-LaTeX Warning: Citation 'galaxy-gp-noise' on page 36 undefined on input line 21
+LaTeX Warning: Citation 'galaxy-gp-noise' on page 37 undefined on input line 21
 .
 
 
@@ -1074,11 +1095,11 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 21.
 
 
-LaTeX Warning: Citation 'ski' on page 36 undefined on input line 30.
+LaTeX Warning: Citation 'ski' on page 37 undefined on input line 30.
 
 )
 
-[36
+[37
 
 
 
@@ -1087,7 +1108,7 @@ LaTeX Warning: Citation 'ski' on page 36 undefined on input line 30.
 
  (./discussion/text.tex)
 
-[37
+[38
 
 
 
@@ -1096,7 +1117,7 @@ LaTeX Warning: Citation 'ski' on page 36 undefined on input line 30.
 
  (./conclusion/text.tex)
 
-[38
+[39
 
 
 
@@ -1117,7 +1138,7 @@ Package biblatex Warning: Month out of range
 
 
 
-[39
+[40
 
 
 ] (./text.aux (./abstract/text.aux) (./intro/text.aux)
@@ -1136,7 +1157,7 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `text.out' has not changed.
-(rerunfilecheck)             Checksum: AD0A436AAF55030FD30328280DF67F72;11116.
+(rerunfilecheck)             Checksum: 99979450A8BB6F6640D4D94EFF6B33DB;11214.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                text
@@ -1147,10 +1168,10 @@ Package logreq Info: Writing requests to 'text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18504 strings out of 473190
- 322128 string characters out of 5719979
- 1166971 words of memory out of 5000000
- 41350 multiletter control sequences out of 15000+600000
+ 18518 strings out of 473190
+ 322348 string characters out of 5719979
+ 1167181 words of memory out of 5000000
+ 41358 multiletter control sequences out of 15000+600000
  568469 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,10n,81p,1658b,1358s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1171,10 +1192,10 @@ s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
 /texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on text.pdf (39 pages, 392898 bytes).
+Output written on text.pdf (40 pages, 401593 bytes).
 PDF statistics:
- 770 PDF objects out of 1000 (max. 8388607)
- 670 compressed objects within 7 object streams
- 167 named destinations out of 1000 (max. 500000)
- 493 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 790 PDF objects out of 1000 (max. 8388607)
+ 689 compressed objects within 7 object streams
+ 173 named destinations out of 1000 (max. 500000)
+ 501 words of extra memory for PDF output out of 10000 (max. 10000000)
 

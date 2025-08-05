@@ -504,17 +504,17 @@ Alternatively, from \ref{eq:linear_model} we know that $y$ is Gaussian. Since bo
 We can plug these mean and variances into the Gaussian PDF \ref{eq:gaussian_pdf} to get \ref{eq:log_marginal_likelihood}. Assembling the likelihood is necessary for training to select hyperparameters, but the $K(X, X) + \sigma^2_nI$ inversion costs $O(n^3)$ to compute. 
 
 
-\subsubsection{Algorithm for predictive distribution}
-% Here is a practical algorithm using the above equations to compute the predictive distribution of a Gaussian process regression model:
+\subsubsection{Algorithm for Gaussian processes}
+Here is an algorithm for computing the predictive distribution for predictions and log-likelihood for training that uses Cholesky decomposition \ref{eq:cholesky-decomp} to address the matrix inversion requirement.
 \begin{enumerate}
     \item Take in inputs $X$, outputs $y$, covariance function $k$, noise level $\sigma^2_n$, and test input $X_*$
     \item $L = \text{cholesky}(K(X,X) + \sigma_n^2I)$
     \begin{itemize}
-        \item Invert our $[K(X,X) + \sigma^2_nI]$ matrix needed for mean and variance using Cholesky decomposition
+        \item Compute the Cholesky factor \ref{eq:cholesky-factor} for the $[K(X,X) + \sigma^2_nI]$ matrix that needs to be inverted for training and inference
     \end{itemize}
     \item $alpha = L^T \backslash (L \backslash y)$
     \begin{itemize}
-        \item Prepare the mean of our predictive distribution in linear combination form by computing the $\alpha$ vector
+        \item Find $[K(X,X) + \sigma^2_nI]^{-1}y$ using Cholesky decomposition \ref{eq:colesky-decomp}, which is equivelant to solving the linear system $L^T L \cdot alpha = y$.
     \end{itemize}
     \item $mu = K(X_*, X)^T \cdot alpha$
     \begin{itemize}
@@ -522,11 +522,11 @@ We can plug these mean and variances into the Gaussian PDF \ref{eq:gaussian_pdf}
     \end{itemize}
     \item $v = L \backslash K(X_*, X)^T$
     \begin{itemize}
-        \item Prepare to compute variance by computing $v$, the form in which $L$ is used in the variance
+        \item Compute $v = L^{-1} K(X_*, X)$ 
     \end{itemize}
     \item $var = K(X_*, X_*) - v^T v$
     \begin{itemize}
-        \item Compute the variance
+        \item Plug $v$ into the variance restated in terms of the Cholesky factors, where $v^T v = (L^{-1} K(X_*, X))^T (L^{-1} K(X_*, X)) = K(X_*, X)^T [K(X,X) + \sigma^2_nI]^{-1} K(X_*, X)$ 
     \end{itemize}
     \item $\text{log} p(Y|X) = -\frac{1}{2}y^T \cdot alpha - \frac{1}{2}log|K(X,X) + \sigma^2_nI| - \frac{n}{2}log(2\pi)$
     \begin{itemize}
@@ -534,9 +534,7 @@ We can plug these mean and variances into the Gaussian PDF \ref{eq:gaussian_pdf}
     \end{itemize}
     \item Return the mean $mu$, variance $var$, and log marginal likelihood
 \end{enumerate}
-
-\paragraph{TODO Choelsky decomposition}
-
+$\backslash$ denotes a linear system solver, i.e. $L \backslash y$ solves the linear system $Lx = y$ for $x$. 
 
 % \subsection{Smoothing and equivelant kernels \cite{gp-ml}}
 % 

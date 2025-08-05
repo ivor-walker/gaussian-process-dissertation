@@ -2372,19 +2372,20 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">../references/references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
+    <bcf:citekey order="12" intorder="1">gp-ml</bcf:citekey>
     <bcf:citekey order="13" intorder="1">gp-ml</bcf:citekey>
     <bcf:citekey order="14" intorder="1">gp-ml</bcf:citekey>
     <bcf:citekey order="15" intorder="1">gp-ml</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">gp-ml</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">eq:se</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">bochner</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">fourier-moments</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">gp-ml</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">eq:se</bcf:citekey>
+    <bcf:citekey order="17" intorder="1">bochner</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">fourier-moments</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">gp-ml</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">gaupro</bcf:citekey>
     <bcf:citekey order="21" intorder="1">gaupro</bcf:citekey>
     <bcf:citekey order="22" intorder="1">gaupro</bcf:citekey>
     <bcf:citekey order="23" intorder="1">gaupro</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">gaupro</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">fast-exp</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">fast-exp</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">gp-ml</bcf:citekey>
     <bcf:citekey order="26" intorder="1">big-data</bcf:citekey>
     <bcf:citekey order="27" intorder="1">gp-ml</bcf:citekey>
     <bcf:citekey order="28" intorder="1">nystrom</bcf:citekey>
@@ -2413,11 +2414,15 @@
     <bcf:citekey order="51" intorder="1">foreman-mackay</bcf:citekey>
     <bcf:citekey order="52" intorder="1">foreman-mackay</bcf:citekey>
     <bcf:citekey order="53" intorder="1">sho-noise-astro</bcf:citekey>
-    <bcf:citekey order="54" intorder="1">galaxy-spectra-101</bcf:citekey>
-    <bcf:citekey order="55" intorder="1">galaxy-gp-noise</bcf:citekey>
-    <bcf:citekey order="56" intorder="1">svgp</bcf:citekey>
-    <bcf:citekey order="57" intorder="1">ski</bcf:citekey>
-    <bcf:citekey order="58" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="55" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="56" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="57" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="58" intorder="1">galaxy-spectra-101</bcf:citekey>
+    <bcf:citekey order="59" intorder="1">galaxy-gp-noise</bcf:citekey>
+    <bcf:citekey order="60" intorder="1">svgp</bcf:citekey>
+    <bcf:citekey order="61" intorder="1">ski</bcf:citekey>
+    <bcf:citekey order="62" intorder="1">foreman-mackay</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

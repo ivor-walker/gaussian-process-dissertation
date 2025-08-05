@@ -7,13 +7,75 @@ TODO why i didnt investigate local approximations
 % \subsection{Global approximations}
 
 
-\subsection{Sparse kernels \cite{big-data}}
-A sparse kernel is a particularly designed kernel that imposes $k(X,X') = 0$ if $|X - X'|$ is larger than some threshold $d$ to create a sparse covariance matrix. This reduces the number of calculations that need to be performed and computational complexity to $O(an^3)$, where $a$ is the proportion of non-zero entries remaining, but the kernel needs to be carefully designed to work with zeroes and ensure all entries are PSD. TODO sparse RBF
 
-\subsection{Eigenfunction and eigenvalue approximation of covariance matrices \cite{gp-ml}}
+\subsection{Cholesky decomposition}
 TODO why not sparse kernels?
 
-Mercer's representation of the kernel \ref{eq:gp_mercer} provides a way of approximating any arbitrary covariance matrix. Instead of summing all the eigenfunctions from 1 to $\infty$, we can approximate our kernel to any degree of accuracy $M < N$ by restricting our sum to the largest $M$ eigenvalues:
+Cholesky decomposition \cite{gp-ml} is a matrix factorisation technique specialised for Gram matrices. Analagous to taking the square root of a Gram matrix, Cholesky finds a unique lower-traingular matrix $L$ with positive diagonal entries for some Gram matrix $A$ such that:
+\begin{equation} \label{eq:cholesky-factor}
+    A = LL^T
+\end{equation}
+For example, let:
+\begin{equation*}
+    A = \begin{pmatrix}
+        4 & 12 & -16 \\ 
+        12 & 37 & -43 \\
+        -16 & -43 & 98
+    \end{pmatrix}
+\end{equation*}
+L would be:
+\begin{equation*}
+    L = \begin{pmatrix}
+        2 & 0 & 0 \\
+        6 & 1 & 0 \\
+        -8 & 5 & 3 
+    \end{pmatrix}
+\end{equation*}
+such that:
+\begin{equation*}
+    LL^T = \begin{pmatrix}
+        2 & 0 & 0 \\
+        6 & 1 & 0 \\
+        -8 & 5 & 3 
+    \end{pmatrix} \begin{pmatrix}
+        2 & 6 & -8 \\
+        0 & 1 & 5 \\
+        0 & 0 & 3 
+    \end{pmatrix} = \begin{pmatrix}
+        4 & 12 & -16 \\ 
+        12 & 37 & -43 \\
+        -16 & -43 & 98
+    \end{pmatrix}
+\end{equation*}
+Cholesky factorisation costs $O(n^3)$ to perform. For diagonal entries in A:
+\begin{equation*}
+    L_{i,i} = \sqrt{A_{i,i} - \sum_{k=1}^{i-1} L_{i,k}^2}
+\end{equation*}
+For off-diagonal entries:
+\begin{equation*}
+    L_{i,j} = \begin{cases}
+        \frac{1}{L_{j,j}} \left( A_{i,j} - \sum_{k=1}^{j-1} L_{i,k} L_{j,k} \right) & \text{if } i > j \\
+        0 & \text{if } i < j
+    \end{cases}
+\end{equation*}
+
+TODO fix
+Once we have $L$, we can invert $A$ by solving the two triangular systems in $O(n^2)$ time:
+\begin{equation*}
+    A^{-1} = L^{-T} L^{-1}
+\end{equation*}
+$L^{-1}$ comes from solving the forward substitution problem $LY = I$, where $I$ is the identity matrix, and $L^{-T}$ comes from solving the backward substitution problem $L^TX = Y$.
+
+Inverting $L$ costs $O(n^3)$, for a total complexity of $O(n^3)$ for Cholesky factorisation and inversion. Cholesky is the preferred method because of its extreme numerical stability (thanks to the positive diagonal entries), and its guarantee to produce a valid Gram matrix.
+
+\subsection{Sparse kernels}
+Unfortunately, matrix inversion by Cholesky factorisation is prohibitively expensive thanks to the cubic complexity - a kernel with $n = 1000$ would require over two billion operations to invert. We can reduce this cost by using sparse kernels, which are designed to produce sparse covariance matrices that can be inverted more efficiently.
+
+A sparse kernel \cite{big-data} is a particularly designed kernel that imposes $k(X,X') = 0$ if $|X - X'|$ is larger than some threshold $d$ to create a sparse covariance matrix. This reduces the number of calculations that need to be performed and computational complexity to $O(an^3)$, where $a$ is the proportion of non-zero entries remaining, but the kernel needs to be carefully designed to work with zeroes and ensure all entries are PSD. TODO sparse RBF
+
+
+\subsection{Eigenfunction and eigenvalue approximation of covariance matrices \cite{gp-ml}}
+TODO why not sparse kernels? Mercer's representation of the kernel \ref{eq:gp_mercer} provides a way of approximating any arbitrary Gram matrix. Instead of summing all the eigenfunctions from 1 to $\infty$, we can approximate our kernel to any degree of accuracy $M < N$ by restricting our sum to the largest $M$ eigenvalues:
 \begin{equation} \label{eq:gp_mercer_approx}
     K(X, X') \approx \sum_{i=1}^{M} \lambda_i \phi_i(X) \phi_i(X')
 \end{equation}
@@ -345,13 +407,13 @@ Foreman and Mackay \cite{foreman-mackay} used the Bochner representation \ref{eq
     \end{aligned}
 \end{equation*}
 Using the Fourier transform \ref{eq:fourier}:
-\begin{equation*}
+\begin{equation} \label{eq:celerite}
     \begin{aligned}
         K(X, X') = \sum_{j=1}^J \\
         a_j \exp(-c_j |X - X'|) \cos(d_j |X - X'|) \\ 
         + b_j \exp(-c_j |X - X'|) \sin(d_j |X - X'|)
     \end{aligned}
-\end{equation*}
+\end{equation}
 The argument within this sum is called a celerite term. Setting $b_j$ and $d_j$ recovers the original exponential kernel, but Foreman and Mackay's \cite{foreman-mackay} generalisation can be extended to approximate more complex kernels than sums of exponentials whilst maintaining Kelly et. al. \cite{general-exp}'s $O(N J^2)$ complexity.
 
 \subsubsection{Building Matern 3/2 from celerite}
@@ -407,7 +469,53 @@ At $Q = \frac{1}{2}$, the kernel becomes:
 Setting $\omega_0 = \frac{\sqrt{3}}{l}$ recovers the Matern 3/2 kernel \label{eq:matern-32}.
 
 \subsubsection{Fast and exact inversions of celerite kernels}
+Foreman and Mackay \cite{foreman-mackay} develop a Cholesky factorisation method for these celerite kernels in $O(NJ^2)$ complexity by representing them as semiseperable matrices. 
 
+A rank-$R$ semiseperable matrix $K$ is a matrix that can be expressed as a sum of a diagonal matrix $A$ and two low-rank matrices $U$ and $V$:
+\begin{equation} \label{eq:semiseperable-cases}
+    K_ = \begin{cases}
+        \sum_{r=1}^R U_{nr} V_{mr} & m < n \\
+        A_{nn} & m = n \\
+        \sum_{r=1}^R U_{mr} V_{nr} & m > n
+    \end{cases}
+\end{equation}
+In matrix notation:
+\begin{equation} \label{eq:semiseperable-matrix}
+    K = A + \text{tri}_{\text{upper}}(U V^T) + \text{tri}_{\text{lower}}(V U^T)
+\end{equation}
+$A$ contains all the diagonal elements of the matrix $i = j$, and the second and third terms cover all the elements below and above the diagonal respectively.
+
+For celerite kernels \ref{eq:celerite}, the diagonal component $A$ is simply:
+\begin{equation*}
+    A_{nn} = \sum_{j=1}^J a_j
+\end{equation*} \cite{foreman-mackay}
+For the off-diagonal components, defining $R = 2J$, we can assemble $U$ and $V$:
+\begin{equation*}
+    \begin{aligned}
+        U_{n, 2j-1} = a_j \exp^{-c_j t_n} \cos(d_j t_n) + b_j \exp^{-c_j t_n} \sin(d_j t_n) \\
+        U_{n, 2j} = a_j \exp^{-c_j t_n} \sin(d_j t_n) - b_j \exp^{-c_j t_n} \cos(d_j t_n) \\
+        V_{m, 2j-1} = \exp^{+c_j t_m} \cos(d_j t_m) \\
+        V_{m, 2j} = \exp^{+c_j t_m} \sin(d_j t_m)
+    \end{aligned}
+\end{equation*} \cite{foreman-mackay}
+The resulting covariance matrix $K_{nm}$ can be assembled using \ref{eq:semiseperable}. 
+
+Celerite representations of the kernel can be inverted using a procedure resembling Cholesky factorisation \cite{foreman-mackay}:
+\begin{equation*}
+    x = L^{-T}y (L^{-1} y - A^{-1} y)
+\end{equation*}
+Our forward substitution step produces the first term:
+\begin{equation*}
+    v = L^{-1} y
+\end{equation*}
+For standard Cholesky factorisation, the diagonal is already baked into $L$. However, for celerite kernels, we need to subtract the diagonal from $v$ to produce the second term:
+\begin{equation*}
+    w = v - A^{-1} y 
+\end{equation*}
+Our resulting backward substitution step relates the two:
+\begin{equation*}
+    x = L^{-T} w
+\end{equation*}
 % \subsubsection{Extensions}
 % 
 % \paragraph{Scalable manifold GP}
