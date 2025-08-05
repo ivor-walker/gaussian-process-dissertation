@@ -47,7 +47,8 @@ such that:
         -16 & -43 & 98
     \end{pmatrix}
 \end{equation*}
-Cholesky factorisation costs $O(n^3)$ to perform. For diagonal entries in A:
+
+We can assemble $L$ using the Cholesky algorithm. \cite{big-data} For diagonal entries in A, this costs $O(n)$:
 \begin{equation*}
     L_{i,i} = \sqrt{A_{i,i} - \sum_{k=1}^{i-1} L_{i,k}^2}
 \end{equation*}
@@ -58,18 +59,26 @@ For off-diagonal entries:
         0 & \text{if } i < j
     \end{cases}
 \end{equation*}
+The computational cost of obtaining the Cholesky factorisation is $O(\frac{1}{3} n^3)$ thanks to the $\sum$ terms in the off-diagonal entries where $i > j$.
 
-TODO fix
-Once we have $L$, we can invert $A$ by solving the two triangular systems in $O(n^2)$ time:
+Once we have $L$, we can invert $A$ by solving the two triangular systems:
 \begin{equation*}
     A^{-1} = L^{-T} L^{-1}
 \end{equation*}
-$L^{-1}$ comes from solving the forward substitution problem $LY = I$, where $I$ is the identity matrix, and $L^{-T}$ comes from solving the backward substitution problem $L^TX = Y$.
+$L^{-1}$ comes from solving the forward substitution problem $LY = I$, where $I$ is the identity matrix, and $L^{-T}$ comes from solving the backward substitution problem $L^TX = Y$. Inverting $L$ costs $O(n^3)$, for a total complexity of $O(n^3)$ for Cholesky factorisation and inversion. 
 
-Inverting $L$ costs $O(n^3)$, for a total complexity of $O(n^3)$ for Cholesky factorisation and inversion. Cholesky is the preferred method because of its extreme numerical stability (thanks to the positive diagonal entries), and its guarantee to produce a valid Gram matrix.
+The inversions of $K(X, X)$ that we need to form \ref{eq:conditioning} and \ref{eq:log_marginal_likelihood} exist as products of other terms ($K(X,X)^{-1} Y$ or $K(X,X)^{-1} K(X, X_*)$). We can obtain these solutions by solving these traingular systems:
+\begin{equation*}
+    K(X, X)^{-1} Y = L^{-1} Y
+\end{equation*}
+$Y$ is the product $K(X, X)^{-1}$. 
+
+Cholesky is the preferred method of handling the inversion of covariance matrices because of its extreme numerical stability (thanks to the positive diagonal entries), and its guarantee to produce a valid Gram matrix. Unfortunately, matrix inversion by Cholesky factorisation is prohibitively expensive thanks to the cubic complexity - a kernel with $n = 1000$ would require over two billion operations to invert. 
+
+
 
 \subsection{Sparse kernels}
-Unfortunately, matrix inversion by Cholesky factorisation is prohibitively expensive thanks to the cubic complexity - a kernel with $n = 1000$ would require over two billion operations to invert. We can reduce this cost by using sparse kernels, which are designed to produce sparse covariance matrices that can be inverted more efficiently.
+We can improve on the cubic complexity of Cholesky decomposition by using sparse kernels, which are designed to produce sparse covariance matrices that can be inverted more efficiently.
 
 A sparse kernel \cite{big-data} is a particularly designed kernel that imposes $k(X,X') = 0$ if $|X - X'|$ is larger than some threshold $d$ to create a sparse covariance matrix. This reduces the number of calculations that need to be performed and computational complexity to $O(an^3)$, where $a$ is the proportion of non-zero entries remaining, but the kernel needs to be carefully designed to work with zeroes and ensure all entries are PSD. TODO sparse RBF
 
@@ -450,7 +459,7 @@ For $0 < Q \leq \frac{1}{2}$, Foreman and Mackay \cite{foreman-mackay} used a pa
         d_{j \pm} = 0
     \end{aligned}
 \end{equation*}
-As $Q \to 0$, our spectral density indicates that the process has no oscillatory behaviour and represents a white noise process, e.g. $Q = 1 / \sqrt{2}$ recovers an astrophysics model \cite{sho-noise-astro} for background granulation noise in stars, and as $Q \to 1$ the process has strong oscillatory behaviour.
+As $Q \to 0$, our spectral density indicates that the process has no oscillatory behaviour and represents a white noise process, e.g. $Q = 1 / \sqrt{2}$ recovers an astrophysics model \cite{sho-noise-astro} for background granulation noise in stars. Conversely, the process exhibits strong oscillatory behaviour as $Q \to 1$. 
 
 We can use the Weiner-Khinchin theorem \ref{eq:weiner-khinchin} to obtain the SHO kernel from these spectral densities:
 \begin{equation*}
@@ -468,9 +477,10 @@ At $Q = \frac{1}{2}$, the kernel becomes:
 \end{equation*}
 Setting $\omega_0 = \frac{\sqrt{3}}{l}$ recovers the Matern 3/2 kernel \label{eq:matern-32}.
 
-\subsubsection{Fast and exact inversions of celerite kernels}
-Foreman and Mackay \cite{foreman-mackay} develop a Cholesky factorisation method for these celerite kernels in $O(NJ^2)$ complexity by representing them as semiseperable matrices. 
+\subsubsection{Cholesky factorisation and inversion of celerite kernels}
+Foreman and Mackay \cite{foreman-mackay} develop a Cholesky factorisation method for these celerite kernels in $O(NR^2)$ complexity by exploiting their semiseperable structure. This methods reduces the $O(n^3)$ complexity of standard Cholesky factorisation \ref{eq:cholesky} whilst retaining its numerical stability.
 
+\paragraph{Semiseperable matrices}
 A rank-$R$ semiseperable matrix $K$ is a matrix that can be expressed as a sum of a diagonal matrix $A$ and two low-rank matrices $U$ and $V$:
 \begin{equation} \label{eq:semiseperable-cases}
     K_ = \begin{cases}
@@ -485,6 +495,7 @@ In matrix notation:
 \end{equation}
 $A$ contains all the diagonal elements of the matrix $i = j$, and the second and third terms cover all the elements below and above the diagonal respectively.
 
+\paragraph{Celerite kernels as semiseperable matrices}
 For celerite kernels \ref{eq:celerite}, the diagonal component $A$ is simply:
 \begin{equation*}
     A_{nn} = \sum_{j=1}^J a_j
@@ -498,24 +509,57 @@ For the off-diagonal components, defining $R = 2J$, we can assemble $U$ and $V$:
         V_{m, 2j} = \exp^{+c_j t_m} \sin(d_j t_m)
     \end{aligned}
 \end{equation*} \cite{foreman-mackay}
-The resulting covariance matrix $K_{nm}$ can be assembled using \ref{eq:semiseperable}. 
+The resulting covariance matrix $K_{nm}$ can be assembled using the rules for semiseperable matrices \ref{eq:semiseperable}. 
 
-Celerite representations of the kernel can be inverted using a procedure resembling Cholesky factorisation \cite{foreman-mackay}:
+\paragraph{Cholesky factorisation of semiseperable matrices}
+The goal of Cholesky factorisation \ref{eq:cholesky} remains to find the square root of the matrix. For standard Cholesky factorisation, the diagonal is already baked into $L$. However, for semiseperable matrices the diagonal is not part of $L$ and needs to be taken into account in the Cholesky representation of $K$:
+\begin{equation} \label{eq:cholesky-semiseperable}
+    K = L D L^T
+\end{equation}
+Foreman and Mackay \cite{foreman-mackay} use the ansatz that our Cholesky factor has the form:
 \begin{equation*}
-    x = L^{-T}y (L^{-1} y - A^{-1} y)
+    L = I + \text{tri}_{\text{lower}}(U W^T)
 \end{equation*}
-Our forward substitution step produces the first term:
+$I$ is the identity matrix, $U$ is from the definition of the semiseperable matrix \ref{eq:semiseperable-matrix}. After we determine the unknown $N \times N$ matrix $W$, we can determine our Cholesky factor. Substituting this ansatz into \ref{eq:cholesky-semiseperable}:
 \begin{equation*}
-    v = L^{-1} y
+    K = [I + \text{tri}_{\text{lower}}(U W^T)] D [I + \text{tri}_{\text{upper}}(W U^T)]
 \end{equation*}
-For standard Cholesky factorisation, the diagonal is already baked into $L$. However, for celerite kernels, we need to subtract the diagonal from $v$ to produce the second term:
+Simplifying:
 \begin{equation*}
-    w = v - A^{-1} y 
+    K = D + \text{tri}_{\text{lower}}(U W^T) D + D \text{tri}_{\text{upper}}(W U^T) + \text{tri}_{\text{lower}}(U W^T) D \text{tri}_{\text{upper}}(W U^T)
 \end{equation*}
-Our resulting backward substitution step relates the two:
+Setting each element on the right-hand side equal to the corresponding element on the left-hand side of \ref{eq:semiseperable-cases} (e.g. $A = D$), we derive the following recurive definition W \cite{foreman-mackay}:
 \begin{equation*}
-    x = L^{-T} w
+    \begin{aligned}
+        S_{n,j,k} = S_{n-1, j, k} + D_{n-1, n-1} W_{n-1,j} W_{n-1, k} \\
+        D_{n,n} = A_{n,n} - \sum_{j=1}^{R} \sum_{k=1}^{R} U_{n,j} S_{n,j,k} U_{n,k} \\
+        W_{n,j} = \frac{1}{D_{n,n}} \left[ V_{n,j} - \sum_{k=1}^{R} U_{n,k} S_{n,j,k} \right]
+    \end{aligned}
 \end{equation*}
+Each iteration of this recursion costs $O(R^2)$, and this needs to be run for all $N$ rows in $W$ for an overall complexity of $O(N R^2)$. This cost dominates the $O(N)$ cost of obtaining the triangle matrix $U$ and the diagonal matrix $D$. 
+
+\paragraph{Inversion of semiseperable matrices with a Cholesky factorisation}
+As with standard regular Cholesky inversion, we can avoid the full cost of inversion since GPs only require the inverse multiplied by a product. This process is also cheaper than under regular Cholesky factorisation. As before, our goal is to solve $z = K^{-1} y$:
+\begin{equation*}
+    z = K^{-1} y = L^{T^{-1}} D^{-1} L^{-1} y
+\end{equation*}
+Recursively solving for $L^{-1} y$ using forward substitution, and defining the solution as $z'$:
+\begin{equation*}
+    \begin{aligned}
+        f_{n,j} = f_{n-1,j} + W_{n-1,j} z'_{n-1} \\
+        z'_n = y_n - \sum_{j=1}^{R} U_{n,j} f_{n,j}
+    \end{aligned}
+\end{equation*}
+where $f_{0,j} = 0$ for all $j$. Using $z'$ and backward substitution, we can compute $z$ recursively:
+\begin{equation*}
+    \begin{aligned}
+        g_{n,j} = g_{n+1,} + U_{n+1,j} z_{n+1} \\
+        z_n = \frac{z'_n}{D_{n,n}} - \sum_{j=1}^R W_{n,j} g_{n,j}
+    \end{aligned}
+\end{equation*}
+The total cost of both the forwards and backwards substitution is $O(N R)$.
+
+
 % \subsubsection{Extensions}
 % 
 % \paragraph{Scalable manifold GP}

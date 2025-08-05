@@ -2387,42 +2387,44 @@
     <bcf:citekey order="24" intorder="1">fast-exp</bcf:citekey>
     <bcf:citekey order="25" intorder="1">gp-ml</bcf:citekey>
     <bcf:citekey order="26" intorder="1">big-data</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">gp-ml</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">nystrom</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">big-data</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">random-subsampling</bcf:citekey>
-    <bcf:citekey order="31" intorder="1">matching-pursuit</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">big-data</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">big-data</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">gp-ml</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">nystrom</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">big-data</bcf:citekey>
+    <bcf:citekey order="31" intorder="1">random-subsampling</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">matching-pursuit</bcf:citekey>
     <bcf:citekey order="33" intorder="1">big-data</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">sor</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">fitc</bcf:citekey>
-    <bcf:citekey order="36" intorder="1">fitc-heteroskedasticity</bcf:citekey>
-    <bcf:citekey order="37" intorder="1">vfe</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">big-data</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">sor</bcf:citekey>
+    <bcf:citekey order="36" intorder="1">fitc</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">fitc-heteroskedasticity</bcf:citekey>
     <bcf:citekey order="38" intorder="1">vfe</bcf:citekey>
-    <bcf:citekey order="39" intorder="1">fitc-vfe-unifier</bcf:citekey>
+    <bcf:citekey order="39" intorder="1">vfe</bcf:citekey>
     <bcf:citekey order="40" intorder="1">fitc-vfe-unifier</bcf:citekey>
-    <bcf:citekey order="41" intorder="1">svgp</bcf:citekey>
-    <bcf:citekey order="42" intorder="1">adam</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">foreman-mackay</bcf:citekey>
-    <bcf:citekey order="44" intorder="1">fast-exp</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">general-exp</bcf:citekey>
+    <bcf:citekey order="41" intorder="1">fitc-vfe-unifier</bcf:citekey>
+    <bcf:citekey order="42" intorder="1">svgp</bcf:citekey>
+    <bcf:citekey order="43" intorder="1">adam</bcf:citekey>
+    <bcf:citekey order="44" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="45" intorder="1">fast-exp</bcf:citekey>
     <bcf:citekey order="46" intorder="1">general-exp</bcf:citekey>
-    <bcf:citekey order="47" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="47" intorder="1">general-exp</bcf:citekey>
     <bcf:citekey order="48" intorder="1">foreman-mackay</bcf:citekey>
-    <bcf:citekey order="49" intorder="1">general-exp</bcf:citekey>
-    <bcf:citekey order="50" intorder="1">sho-spectral-density</bcf:citekey>
-    <bcf:citekey order="51" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="49" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="50" intorder="1">general-exp</bcf:citekey>
+    <bcf:citekey order="51" intorder="1">sho-spectral-density</bcf:citekey>
     <bcf:citekey order="52" intorder="1">foreman-mackay</bcf:citekey>
-    <bcf:citekey order="53" intorder="1">sho-noise-astro</bcf:citekey>
-    <bcf:citekey order="54" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="53" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">sho-noise-astro</bcf:citekey>
     <bcf:citekey order="55" intorder="1">foreman-mackay</bcf:citekey>
     <bcf:citekey order="56" intorder="1">foreman-mackay</bcf:citekey>
     <bcf:citekey order="57" intorder="1">foreman-mackay</bcf:citekey>
-    <bcf:citekey order="58" intorder="1">galaxy-spectra-101</bcf:citekey>
-    <bcf:citekey order="59" intorder="1">galaxy-gp-noise</bcf:citekey>
-    <bcf:citekey order="60" intorder="1">svgp</bcf:citekey>
-    <bcf:citekey order="61" intorder="1">ski</bcf:citekey>
-    <bcf:citekey order="62" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="58" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="59" intorder="1">foreman-mackay</bcf:citekey>
+    <bcf:citekey order="60" intorder="1">galaxy-spectra-101</bcf:citekey>
+    <bcf:citekey order="61" intorder="1">galaxy-gp-noise</bcf:citekey>
+    <bcf:citekey order="62" intorder="1">svgp</bcf:citekey>
+    <bcf:citekey order="63" intorder="1">ski</bcf:citekey>
+    <bcf:citekey order="64" intorder="1">foreman-mackay</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
