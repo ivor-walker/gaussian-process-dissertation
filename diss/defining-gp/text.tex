@@ -1,44 +1,55 @@
 \section{Defining the Gaussian Process}
+Most statistical methods describe relationships between data by estimating weights that linearly combine the data to produce an output. This is fundamentally different to Gaussian processes (GPs), which describe a distribution over possible functions that describe the data. This section aims to describe what Gaussian processes are in terms of familiar weight-based statistical tools, namely Bayesian regression. We start with an in-depth look into Bayesian linear regression, relating it to frequentist approaches and deriving important results such as the the weight and predictive distributions. By applying the linear model to some non-linear flexible function of the data $\phi(X)$, we make the model more flexible. Then, we generalise our Bayesian linear regression in terms of a distribution of possible functions that $\phi$ could be and translate our Bayesian linear regression into a Gaussian process. We finish by investigating general properties of Gaussian processes that are analagous to properties of Bayesian linear regression, such as the predictive distribution and log-likelihood, and describe some practical considerations involved in their usage such as training and inference.
 
+% One can think of a Gaussian process as defining a distribution over functions, and inference taking place directly in the space of functions, the function-space two equivalent views view. Although this view is appealing it may initially be difficult to grasp, so we start our exposition in section 2.1 with the equivalent weight-space view which may be more familiar and accessible to many, and continue in section 2.2 with the function-space view. Gaussian processes often have characteristics that can be changed by setting certain parameters and in section 2.3 we discuss how the properties change as these parameters are varied. The predictions from a GP model take the form of a full predictive distribution.
 
-
-\subsection{Weight-space view \cite{gp-ml}}
+\subsection{Weight-space view}
 
 \subsubsection{Standard linear model}
-The standard linear model summises that we have some data-generating function $f(.)$ that linearily combines training data $X$ and parameters of some model $W$ to produce an output $y$:
+The standard linear model summises that we have some data-generating function $f(.)$ that linearily combines training data $X$, parameters of some model $W$, and some irreduceable noise $\epsilon$ (because $y$ is rarely a perfect observation of $f(X)$, e.g. if $y$ is measured inaccurately) to produce an output $y$:
 \begin{equation} \label{eq:linear_model}
     \begin{aligned}
-        y = f(X) + \epsilon \\
         f(X) = X^T W \\
+        y = f(X) + \epsilon \\
     \end{aligned}
 \end{equation}
 
-We add a noise term $\epsilon$ because $y$ is rarely a perfect observation of $f(X)$ (e.g. measurement error). The standard linear model assumes that $\epsilon$ is drawn from a Gaussian distribution $\epsilon \sim N(0, \sigma_n^2I)$. We add a covariance matrix $I$ to describe how the noise for one observation is related to the noise of another observation.
+\paragraph{Errors}
+ The standard linear model assumes that our irreduceable noise, or errors, $\epsilon$ are drawn from a Gaussian distribution:
+\begin{equation} \label{eq:model_error_assumption}
+    \epsilon \sim N(0, \sigma_n^2I)
+\end{equation}
+We assume our model has zero mean because all the information we have about the data-generating function $f(X)$ is contained in the weights $W$ and the data $X$. We add a covariance matrix $I$ to describe how the noise for one observation is related to the noise of another observation. In this case, we assume that the noise is independent and identically distributed (i.i.d.) across all observations, so $I$ is an "identity matrix" where each diagonal element is 1 and all off-diagonal elements are 0. The variance $\sigma_n^2$ describes how much noise we expect in our observations.
 
-We can combine our expressions and assumptions for $f(X)$ and $\epsilon$ to produce a conditional distribution. Effectively a distribution of errors, this is the distribution from which $y$ is drawn from after knowing perfectly $X$ and $W$:
+We can combine our expressions for the data-generating function and and assumptions about our noise to produce a conditional distribution that fully describes $y$, also known as the likelihood of $y$ given $X$ and $W$:
+% michael: dist of errors is a little confusing, within the rest of the sentence
 \begin{equation*}
-    p(y|X,W) = \mathcal{N}(y | X^TW, \sigma^2_nI)
+    p(y|X,W) = \mathcal{N}(X^TW, \sigma^2_nI)
 \end{equation*}
-
+% This is the distribution from which $y$ is drawn from after perfect knowledge of our data and the weights of our data-generating function. It effectively specifies a distribution of errors - the difference between the expected value of $y$ given $X$ and $W$ and the actual value of $y$.
 
 \subsubsection{Determining weights}
-Our first task is to find $W$ as we typically do not know these in advance. Frequentist approaches focus on arriving at a single estimate of $W$ ($\hat{W}$) via "maximum likelihood estimation" (MLE). $p(y|X,W)$ is at its highest density around the expected value $y | X^TW$ so we can use optimisation methods to find the $\hat{W}$ at the maximum of $p(y|X,W)$. Because we assume $E[p(y|X,W)] = 0$, the values of $W$ at the maximum of $p(y|X,W)$ are also the values of $W$ that pushes the squared error $||y - X^TW||^2$ closest to zero. We can communicate uncertainty surrounding $\hat{W}$ by computing "standard errors", or the ratio between the variance of our errors and the variance of $X$. A high variance in errors shows that $\hat{W}$ i, but a broader range of $X$ makes it easier to estimate $W$.
+Our first task is to estimate the weights for our data-generating function $W$, as we typically do not know these in advance. Frequentist approaches focus on arriving at a single estimate of these weights ($\hat{W}$) via "maximum likelihood estimation" (MLE), whereas Bayesian approaches treat $W$ as a random variable for which a distribution is specified.
 
-Instead of producing point estimates for $\hat{W}$ and uncertainty, Bayesian statistics treats $W$ as a random variable and specifies an expected value and a variance. Placing $W$ in a probabilistic framework allows us to propagate uncertainty throughout the model and to encode beliefs (e.g. from domain experts) about the weights before observing the data.
+\paragraph{Frequentist regression}
+Because our likelihood $p(y|X,W)$ is Gaussian, it is at its highest density around the expected value $X^TW$ and we can use iterative optimisation routines to find a single estimate for $W$, $\hat{W}$, that maximises our likelihood. Because we assume $E[\epsilon] = 0$ \ref{eq:model_error_assumption}, the values of $W$ at the maximum of $p(y|X,W)$ are also the values of $W$ that minimise the squared error $||y - X^TW||^2$. We can communicate uncertainty surrounding our estimations of $W$ by computing "standard errors", or the ratio between the variance of errors and the variance in $X$. A high variance in errors shows that the variation in $y$ is more noise than signal captured by $X$, but a broader range of $X$ makes estimating $W$ easier.
+
+\paragraph{Bayesian regression}
+Instead of producing single point estimates for weights and uncertainty in estimating them, Bayesian statistics treats $W$ as a random variable and specifies an expected value and a variance. Placing $W$ in a probabilistic framework allows us to propagate uncertainty throughout the model and to encode beliefs (e.g. from domain experts) about the weights before observing the data.
 
 We start with a "prior" distribution of $W$, which the Bayesian linear model assumes:
 \begin{equation} \label{eq:prior_distribution}
-    p(W) \sim N(0, \Sigma_p)
+    p(W) = N(0, \Sigma_p)
 \end{equation}
-Then, we observe the data and update our beliefs about the weights using Bayes' theorem to produce a "posterior" distribution $p(W|X,y)$.
-
+% michael: just one possible prior
+Then, we observe the data and update our beliefs about the weights using Bayes' theorem to produce a "posterior" distribution $p(W|X,y)$:
 \begin{equation*}
     p(W|X,y) = \frac{p(y|X,W)p(W)}{p(y|X)}
 \end{equation*}
-$p(y|X,W)$ is the density of the residuals after applying $p(W)$ to $X,W$ under our assumed noise model $\epsilon$, and $p(y|X)$ is the marginal likelihood - how likely the data is given the model.   
+$p(y|X,W)$ is the density of the residuals after applying $p(W)$ to $X,W$ under our assumed noise model $\epsilon$, and $p(y|X)$ is our likelihood.
 
 \paragraph{Deriving our posterior}
-To understand the relationship between $p(W|X,y)$ and $W$, we can ignore terms that do not vary with $W$ (e.g. our marginal likelihood) by absorbing them into the proportionality constant:
+To understand the relationship between $p(W|X,y)$ and $W$, we can ignore terms that do not vary with $W$ (e.g. our marginal likelihood) by absorbing them into a proportionality constant:
 \begin{equation} \label{eq:posterior}
     p(W|X, y) \propto p(y|X,W)p(W)
 \end{equation}
@@ -48,8 +59,12 @@ To understand the relationship between $p(W|X,y)$ and $W$, we can ignore terms t
 %     p(y|X,W) = \prod_{i=1}^N \mathcal{N}(y_i|X^TW, \sigma^2_n)
 % \end{equation*}
 
-TODO fix
-We can get a probability density function (PDF) for our error distribution by representing $Y | X^TW$ in squared error form and substituting it into the Gaussian PDF:
+The probability density function (PDF) measures probability per unit length. Integrating the PDF over a range gives us the probability of observing a value in that range. The PDF of a Gaussian distribution is given by:
+\begin{equation} \label{eq:gaussian_pdf}
+    N(x | \mu, \Sigma) = \frac{1}{\sqrt{(2\pi)^d |\Sigma|}} exp\left(-\frac{1}{2}(x - \mu)^T\Sigma^{-1}(x- \mu)\right)
+\end{equation}
+
+We can get a PDF for our likelihood by representing our errors in squared error form and substituting it into the Gaussian PDF \ref{eq:gaussian_pdf}:
 \begin{equation} \label{eq:likelihood}
     p(y|X,W) = exp\left(-\frac{1}{2\sigma^2_n}||y -X^TW||^2\right)
 \end{equation}
@@ -94,7 +109,7 @@ We can ignore the constant final term. Introducing these terms to simplify this 
 \end{equation}
 
 \paragraph{Deriving the properties of the posterior by completing the square}
-Now we have a simplified form of the posterior's PDF, we need to get it into a Gaussian form to recover the properties of the posterior distribution.
+Now we have a simplified form for the posterior's PDF, we need to get it into a Gaussian form to recover the properties of the posterior distribution.
 
 Bringing all terms inside the exponential to a single term:
 \begin{equation*}
@@ -109,21 +124,16 @@ Completing the square on our new inner term $W^TAW - 2b^TW$
     \end{aligned}
 \end{equation}
 
-Looking at the Gaussian PDF:
-\begin{equation} \label{eq:gaussian_pdf}
-    N(W | \mu, \Sigma) = \frac{1}{\sqrt{(2\pi)^d |\Sigma|}} exp\left(-\frac{1}{2}(W - \mu)^T\Sigma^{-1}(W - \mu)\right)
-\end{equation}
-
 Our expression lines up with the Gaussian PDF's "kernel" term $exp\left(-\frac{1}{2}(W - \mu)^T\Sigma^{-1}(W - \mu)\right)$, where $\mu = A^{-1}b$ and $\Sigma = A^{-1}$ ($\Sigma^{-1} = A$). Therefore, \ref{eq:posterior_pdf} can be represented as a Gaussian distribution:
 \begin{equation} \label{eq:posterior_gaussian}
     p(W|X,y) \sim N(A^{-1}b, A^{-1})
 \end{equation}
 
-Inside our definition of $A$ at $\ref{A_b}$, we are missing an expression for $\Sigma_p$. Assuming independence of noise under the linear model, our weight variance $\Sigma_p$ under the Bayesian linear model is "isotropic", meaning it is the same in all directions.
+Inside our definition of $A$ at $\ref{A_b}$, we are missing an expression for $\Sigma_p$. Assuming independence of noise under the linear model \ref{eq:model_error_assumption}, our weight variance $\Sigma_p$ under the Bayesian linear model is "isotropic", meaning it is the same in all directions.
 \begin{equation*}
     \Sigma_p = \tau^2 I
 \end{equation*}
-Because we assume independence, $I$ is an "identity matrix where each diagonal element is 1 and all off-diagonal elements are 0. $\tau^2$ is a scalar variance term, chosen as a prior.
+$I$ is our familiar identity matrix and $\tau^2$ is a scalar variance term, chosen as a prior.
 
 Substituting the isotropic prior $\Sigma_p$ into $A$:
 \begin{equation*}
@@ -134,6 +144,7 @@ Simplifying:
 \begin{equation} \label{eq:A_isotropic}
 A = \frac{1}{\sigma_n^2}\left(X^TX + \frac{\sigma_n^2}{\tau^2}I\right)
 \end{equation}
+% michael: This detailed derivation is fine for me, as it is not part of what we teach. Please be careful that the maths are correct.
 
 \paragraph{Gaussian posteriors and ridge regression}
 So far we have worked exclusively within the Bayesian paradigm, but we can draw some value of $W$ from our posterior distribution to relate it to a frequentist framework. For Gaussian posteriors, our expected value of $W$ $A^{-1}b$ is also its mode. This is called the maximum a posteriori (MAP) estimate of W, and is due to symmetries in linear model and posterior and is not the case in general.  Our MAP estimate does not matter within the Bayesian framework but is equivelant to our frequentist $\hat{W}$.
@@ -342,6 +353,8 @@ These inner product representations require us to compute $\phi(X)$ and $\phi(X'
 
 Instead, the representer theorem guarantees that we can find an equivelant kernel that does not require us to explicitly compute $\phi(X)$ or $\phi(X')$ in the feature space. With this "kernel trick" we avoid the associated memory and computational costs of explicitly computing $\phi(X)$ and $\phi(X')$. Since computing the kernel directly is more convenient than the feature vectors themselves, these kernels become the object of primary interest.
 
+% Good detailed material on these non-GP approaches. is this material going to relate in some way to the GP approach and part of the project? For example using some of it later, or discussing similarities and differences. Will be good if this is the case somehow, otherwise it may seem excessive, considering the project's topic. (I have not seen the other 3 pages yet)
+
 For example, if we had some polynomial transformation $\phi(X) = [1, x^1, ..., x^D]^T$ and $\Sigma_p$ as an identity matrix, we could define $k(X,X')$ as inner products:
 \begin{equation*}
     \begin{aligned}
@@ -394,6 +407,7 @@ A GP is a collection of random variables, any finite number of which have a join
     \end{aligned}
 \end{equation*}
 % These random variables represent the value of $f(X)$ at location $X$. often Gaussian processes are defined over time so $X$ can be a time point. The covariance function specifies the covariance between pairs of random variables.
+% Ok, I see that do try to relate to the earlier material, which is good.
 
 \paragraph{Consistency requirement}
 This definition implies a consistency requirement - any group of functions drawn from our GP can be described by the same distribution as our GP. For example, if our GP implies that $(f(X_1), f(X_2)) \sim \mathcal{N}(\mu, \Sigma)$, then $(f(X_1) \sim \mathcal{N}(\mu_1, \Sigma) and f(X_2) \sim \mathcal{N}(\mu_2, \Sigma))$ where $\mu_{\theta} = m(X_{\theta})$ and $\Sigma_{\theta\theta} = k(X_{\theta}, X_{\theta})$. This requirement is also called the marginalisation property, because to get the smaller distribution of $f(X_1)$ we marginalise out the larger distribution of $f(X_1), f(X_2)$ by integrating the larger distribution wrt $f(X_2)$. Consistency is automatically gained if our covariance function specifies entries in a covariance matrix.
