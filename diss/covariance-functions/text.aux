@@ -1,58 +1,62 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Exploring Covariance Functions}{13}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Characteristics of covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{13}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Covariance matrices}{13}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Characteristics of covariance functions and matrices}{13}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Gram matrices}{13}{subsubsection.3.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Eigenvalue and eigenfunctions of covariance matrices}{13}{subsubsection.3.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Integral operators}{13}{subsubsection.3.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Mercer's theorem}{14}{subsubsection.3.1.2}\protected@file@percent }
 \newlabel{eq:gp_mercer}{{25}{14}{Mercer's theorem}{equation.25}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Varying the length scale}{14}{subsubsection.3.1.3}\protected@file@percent }
-\newlabel{eq:general_l}{{26}{14}{Varying the length scale}{equation.26}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Mean square continuity and differentiability}{14}{subsubsection.3.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Continuity}{14}{subsubsection.3.1.4}\protected@file@percent }
-\newlabel{eq:ms_continuity}{{27}{15}{Continuity}{equation.27}{}}
-\@writefile{toc}{\contentsline {paragraph}{Differentiability}{15}{equation.27}\protected@file@percent }
-\newlabel{eq:msd_a}{{28}{15}{Differentiability}{equation.28}{}}
-\newlabel{eq:msd_a_final}{{29}{16}{Differentiability}{equation.29}{}}
-\newlabel{eq:msd_b_final}{{30}{17}{Differentiability}{equation.30}{}}
-\newlabel{eq:msd_ab_final}{{31}{17}{Differentiability}{equation.31}{}}
-\newlabel{eq:ms_differentiability}{{32}{17}{Differentiability}{equation.32}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{18}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{18}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Spectral density}{18}{subsubsection.3.2.2}\protected@file@percent }
-\newlabel{eq:bochner}{{33}{18}{Spectral density}{equation.33}{}}
-\newlabel{eq:fourier}{{34}{18}{Spectral density}{equation.34}{}}
-\newlabel{eq:spectral_density}{{35}{18}{Spectral density}{equation.35}{}}
-\newlabel{eq:weiner-khinchin}{{36}{18}{Spectral density}{equation.36}{}}
-\@writefile{toc}{\contentsline {paragraph}{Smoothness}{18}{equation.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}GPs from stationary covariance functions in MS space}{18}{subsubsection.3.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{18}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Squared exponential (SE)}{18}{subsubsection.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{From feature space to SE}{19}{subsubsection.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Length scale}{19}{subsubsection.3.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  Plot of a Gaussian process using SE applied to a toy dataset. The toy dataset ($n = 15$) is a data-generating function in blue with some Gaussian noise applied to produce the datapoints in black. The black line represents the expected function from the Gaussian process. The green line represents the 90\% confidence interval around the predictive distribution without the $\sigma ^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 90\% confidence interval with $\sigma ^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$. \\ TODO explain }}{20}{figure.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  Plots of functions from a Gaussian process using SE applied to the same toy dataset. The blue line and black datapoints and lines are as before, but the green lines here are a sample of functions drawn from the Gaussian process. \\ TODO explain }}{20}{figure.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{21}{subsubsection.3.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  Plot of a Gaussian process using rational quadratic applied to the toy dataset. For this dataset, the R package GauPro \blx@tocontentsinit {0}\cite {gaupro} has obtained $\alpha = 100$ via MLE which produces a kernel close to SE, reflecting the lack of trends in this dataset. \\ }}{22}{figure.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  Plots of functions from a Gaussian process using rational quadratic applied to the same toy dataset. \\ }}{23}{figure.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{23}{subsubsection.3.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Plot of a Gaussian process using $\gamma $-exponential applied to the toy dataset. For this dataset, the R package GauPro \blx@tocontentsinit {0}\cite {gaupro} has used $\gamma = 1.688043$ obtained via MLE. \\ There are no green lines here because TODO. $\gamma $-exponential produces much rougher functions than SE, so its expected function has a lot more wiggle and conforms to the datapoints much closer than SE. In this case, our data-generating function is smooth so SE is closer to the data-generating function than $\gamma $-exponential, but real world data-generating functions are often much rougher and would benefit from a kernel flexible enough to pass through the datapoints. }}{24}{figure.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  Plots of functions from a Gaussian process using $\gamma $-exponential applied to the same toy dataset. \\ These sample function draws are much rougher than SE. }}{24}{figure.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Exponential covariance function}{24}{figure.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  Plot of a Gaussian process using exponential applied to the toy dataset. \\ TODO explain }}{25}{figure.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Plots of functions from a Gaussian process using exponential applied to the same toy dataset. \\ These sample function draws are much rougher than SE and $\gamma $-exponential. }}{25}{figure.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{25}{subsubsection.3.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Matern 3/2}{26}{subsubsection.3.3.4}\protected@file@percent }
-\newlabel{eq:matern-32}{{37}{26}{Matern 3/2}{equation.37}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Plot of a Gaussian process using Matern 3/2 applied to the toy dataset. \\ TODO explain }}{26}{figure.9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Plots of functions from a Gaussian process using Matern 3/2 applied to the same toy dataset. \\ TODO explain }}{27}{figure.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Matern 5/2}{27}{figure.10}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  Plot of a Gaussian process using Matern 5/2 applied to the toy dataset. \\ The expected function deviates very slightly from datapoints compared to 3/2, but the big difference compared to 3/2 is in the variances. 5/2 has narrower variances than 3/2, producing smoother functions and functions that are closer to the expected function. SE is still better in this instance because it is the most smooth and our data-generating function is unusually smooth. However, 5/2 is generally the most popular covariance function because it achieves this parsimonious balance between smoothness, to still reach some reasonable approximation of the data-generating function, and flexibility, to still pass through the datapoints. }}{27}{figure.11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Plots of functions from a Gaussian process using Matern 5/2 applied to the same toy dataset. \\ These sample function draws conform more to the expected function than 3/2 due to the narrower variances, but are still much rougher than SE and approach the data-points. }}{28}{figure.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Choosing the length scale and other hyperparameters}{14}{subsubsection.3.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Analysing the length scale}{14}{subsubsection.3.1.3}\protected@file@percent }
+\newlabel{eq:taylor_l}{{26}{14}{Analysing the length scale}{equation.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Length scale and upcrossings}{15}{equation.26}\protected@file@percent }
+\newlabel{eq:upcrossings}{{27}{15}{Length scale and upcrossings}{equation.27}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Mean square continuity and differentiability}{15}{subsubsection.3.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mean square space}{15}{subsubsection.3.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MS continuity}{16}{subsubsection.3.1.4}\protected@file@percent }
+\newlabel{eq:ms_continuity}{{28}{16}{MS continuity}{equation.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{MS differentiability}{16}{equation.28}\protected@file@percent }
+\newlabel{eq:msd_a}{{29}{16}{MS differentiability}{equation.29}{}}
+\newlabel{eq:msd_a_final}{{30}{17}{MS differentiability}{equation.30}{}}
+\newlabel{eq:msd_b_final}{{31}{18}{MS differentiability}{equation.31}{}}
+\newlabel{eq:msd_ab_final}{{32}{18}{MS differentiability}{equation.32}{}}
+\newlabel{eq:ms_differentiability}{{33}{19}{MS differentiability}{equation.33}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stationary covariance functions}{19}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{19}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Spectral density}{19}{subsubsection.3.2.2}\protected@file@percent }
+\newlabel{eq:bochner}{{34}{19}{Spectral density}{equation.34}{}}
+\newlabel{eq:fourier}{{35}{19}{Spectral density}{equation.35}{}}
+\newlabel{eq:spectral_density}{{36}{19}{Spectral density}{equation.36}{}}
+\newlabel{eq:weiner-khinchin}{{37}{19}{Spectral density}{equation.37}{}}
+\@writefile{toc}{\contentsline {paragraph}{Unifying length scale and MS differentiability}{19}{equation.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}GPs from stationary covariance functions in MS space}{20}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{20}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Squared exponential (SE)}{20}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{From feature space to SE}{20}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Length scale}{21}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  Plot of a Gaussian process using SE applied to a toy dataset. The toy dataset ($n = 15$) is a data-generating function in blue with some Gaussian noise applied to produce the datapoints in black. The black line represents the expected function from the Gaussian process. The green line represents the 90\% confidence interval around the predictive distribution without the $\sigma ^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 90\% confidence interval with $\sigma ^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$. \\ TODO explain }}{21}{figure.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  Plots of functions from a Gaussian process using SE applied to the same toy dataset. The blue line and black datapoints and lines are as before, but the green lines here are a sample of functions drawn from the Gaussian process. \\ TODO explain }}{22}{figure.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{22}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  Plot of a Gaussian process using rational quadratic applied to the toy dataset. For this dataset, the R package GauPro \blx@tocontentsinit {0}\cite {gaupro} has obtained $\alpha = 100$ via MLE which produces a kernel close to SE, reflecting the lack of trends in this dataset. \\ }}{23}{figure.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  Plots of functions from a Gaussian process using rational quadratic applied to the same toy dataset. \\ }}{24}{figure.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{24}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Plot of a Gaussian process using $\gamma $-exponential applied to the toy dataset. For this dataset, the R package GauPro \blx@tocontentsinit {0}\cite {gaupro} has used $\gamma = 1.688043$ obtained via MLE. \\ There are no green lines here because TODO. $\gamma $-exponential produces much rougher functions than SE, so its expected function has a lot more wiggle and conforms to the datapoints much closer than SE. In this case, our data-generating function is smooth so SE is closer to the data-generating function than $\gamma $-exponential, but real world data-generating functions are often much rougher and would benefit from a kernel flexible enough to pass through the datapoints. }}{25}{figure.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  Plots of functions from a Gaussian process using $\gamma $-exponential applied to the same toy dataset. \\ These sample function draws are much rougher than SE. }}{25}{figure.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exponential covariance function}{25}{figure.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  Plot of a Gaussian process using exponential applied to the toy dataset. \\ TODO explain }}{26}{figure.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Plots of functions from a Gaussian process using exponential applied to the same toy dataset. \\ These sample function draws are much rougher than SE and $\gamma $-exponential. }}{26}{figure.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{26}{subsubsection.3.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Matern 3/2}{27}{subsubsection.3.3.4}\protected@file@percent }
+\newlabel{eq:matern-32}{{38}{27}{Matern 3/2}{equation.38}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Plot of a Gaussian process using Matern 3/2 applied to the toy dataset. \\ TODO explain }}{27}{figure.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Plots of functions from a Gaussian process using Matern 3/2 applied to the same toy dataset. \\ TODO explain }}{28}{figure.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Matern 5/2}{28}{figure.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  Plot of a Gaussian process using Matern 5/2 applied to the toy dataset. \\ The expected function deviates very slightly from datapoints compared to 3/2, but the big difference compared to 3/2 is in the variances. 5/2 has narrower variances than 3/2, producing smoother functions and functions that are closer to the expected function. SE is still better in this instance because it is the most smooth and our data-generating function is unusually smooth. However, 5/2 is generally the most popular covariance function because it achieves this parsimonious balance between smoothness, to still reach some reasonable approximation of the data-generating function, and flexibility, to still pass through the datapoints. }}{28}{figure.11}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Plots of functions from a Gaussian process using Matern 5/2 applied to the same toy dataset. \\ These sample function draws conform more to the expected function than 3/2 due to the narrower variances, but are still much rougher than SE and approach the data-points. }}{29}{figure.12}\protected@file@percent }
 \@setckpt{covariance-functions/text}{
-\setcounter{page}{29}
-\setcounter{equation}{37}
+\setcounter{page}{30}
+\setcounter{equation}{38}
 \setcounter{enumi}{8}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -81,7 +85,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{18}
+\setcounter{instcount}{20}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}

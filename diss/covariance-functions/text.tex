@@ -1,28 +1,43 @@
 \section{Exploring Covariance Functions}
-The behaviour of the covariance function and its resulting covariance matrix is crucial to understanding the behaviour of the Gaussian process - the covariance matrix appears in every term of the predictive distribution and the marginal likelihood. In particular, the choice of covariance function affects the smoothness of the overall GP. This section describes the mechanisms that the covariance function has at its disposal to vary smoothness, namely its degree of differentiability and the choice of length scale. We investigate in detail the stationary family of covariance functions, discuss why they are the most widely used, and develop a new tool to analyse them. Finally, we introduce the most widespread stationary covariance functions, their properties, and the types of data they are best suited for.
+The behaviour of the covariance function and its resulting covariance matrix is crucial to understanding the behaviour of the Gaussian process - the covariance matrix appears in every term of the predictive distribution and the marginal likelihood. In particular, the choice of covariance function affects the smoothness of the overall GP. This section describes the mechanisms that the covariance function has at its disposal to vary smoothness, namely its degree of differentiability and the choice of length scale. We investigate in detail the stationary family of covariance functions, discuss why they are the most widely used, and develop a new tool to unify differentiability and length scale into a single notion of smoothness. Finally, we introduce the most widespread stationary covariance functions, their properties, and the types of data they are best suited for.
 
 % We have seen that a covariance function is the crucial ingredient in a Gaussian process predictor, as it encodes our assumptions about the function which we wish to learn. From a slightly different viewpoint it is clear that in supervised learning the notion of similarity between data points is crucial; it is a basic similarity assumption that points with inputs x which are close are likely to have similar target values y, and thus training points that are near to a test point should be informative about the prediction at that point. Under the Gaussian process view it is the covariance function that defines nearness or similarity.
 
 % An arbitrary function of input pairs x and x′ will not, in general, be a valid valid covariance functionscovariance function.1 The purpose of this chapter is to give examples of some commonly-used covariance functions and to examine their properties. Section 4.1 defines a number of basic terms relating to covariance functions. Section 4.2 gives examples of stationary, dot-product, and other non-stationary covariance functions, and also gives some ways to make new ones from old. Section 4.3 introduces the important topic of eigenfunction analysis of covariance functions, and states Mercer’s theorem which allows us to express the covariance function (under certain conditions) in terms of its eigenfunctions and eigenvalues. 
 
-\subsection{Characteristics of covariance functions \cite{gp-ml}}
+\subsection{Characteristics of covariance functions and matrices}
 
-\subsubsection{Covariance matrices}
-The inner product representations of the covariance for our Bayesian model in function-space \ref{eq:gp_bayesian}, weight-space \ref{eq:alt_predictive_gaussian_phi}, and covariance matrices in general can be represented as a Gram matrices. Given a vector of input points ${X_i | i = 1, ..., n}$ and a covariance function $k$, a Gram matrix $K$ is the $n \times n$ matrix whose $(i,j)$-th entry is $k(x_i, x_j)$. This requires any proposed covariance matrix to exhibit the properties of a Gram matrix, namely symmetry and positive semidefiniteness:
+\subsubsection{Gram matrices}
+The inner product representations of the covariance for our Bayesian model in function-space \ref{eq:gp_bayesian}, weight-space \ref{eq:alt_predictive_gaussian_phi}, and valid covariance matrices in general can be represented as Gram matrices. \cite{gp-ml} A Gram matrix is the matrix of all pairwise inner products of some set of vectors in an inner-product space. Formally, let $V$ be an inner-product space with an inner product $\langle \cdot, \cdot \rangle$, and let the vectors in our inner product space be $v_1, v_2, ..., v_n \in V$. The Gram matrix $G$ is defined entry-wise by:
+\begin{equation*}
+    G_{ij} = \langle v_i, v_j \rangle
+\end{equation*}
+$i, j = 1, ..., n$.
 
+The Gram matrix has two properties of interest; symmetry and positive semidefiniteness:
 \begin{equation*}
     \begin{aligned}
-        K_{ij} = K_{ji} \\
-        X^T K X \geq 0
+        G_{ij} = G_{ji} \\
+        X^T G X \geq 0
     \end{aligned}
 \end{equation*}
+Symmetry is inherent from the inner product property since inner products are symmetric, i.e. $X_i^T X_j = X_j^T X_i$ and $\langle v_i, v_j \rangle = \langle v_j, v_i \rangle$. The Gram matrix is symmetric if the inner product space is real-valued, and Hermitian if it is complex-valued.
 
-Symmetry is inherent from the inner product property since inner products are symmetric, i.e. $X_i^T X_j = X_j^T X_i$, and imposes $cov(X_i, X_j) = cov(X_j, X_i)$. $K$ satisfies positive semidefiniteness if, for any vector $V$ of inputs, $V^T K V \geq 0$ since:
+$G$ satisfies positive semidefiniteness (PSD) if, for any coefficient vector $c = (c_1, ..., c_n)^T$ to act as coefficients on the vectors $v_i$ in our Gram matrix, the quadratic form $c^T G c$ is non-negative. Assembling the quadratic form:
 \begin{equation*}
-    V^T K V = (K V)^T (K V) = ||K V||^2 \geq 0
+    c^T G c = \sum_{i=1}^n \sum_{j=1}^n c_i c_j \langle v_i, v_j \rangle
 \end{equation*}
-This means that the covariance matrix must not produce negative variances for any linear combination of inputs.
+We can rewrite the double sum as the inner product of the coefficient vector applied to the constituent vectors with itself:
+\begin{equation*}
+    c^T G c = \langle \sum_{i=1}^n c_i v_i, \sum_{j=1}^n c_j v_j \rangle
+\end{equation*}
+Representing this self-multiplication as a squared norm:
+\begin{equation*}
+    c^T G c = \left\| \sum_{i=1}^n c_i v_i \right\|^2
+\end{equation*}
+Since norms are always $\geq 0$, the quadratic application of any coefficient vector $c$ to the Gram matrix $G$ must be non-negative. 
 
+Any proposed covariance matrix $K$ needs to exhibit these properties to be a valid covariance matrix, and these existence of these properties have consequences on the composition of the covariance matrix and the GP as a whole. The symmetry property requires that $K(X, X') = K(X', X)$, whilst PSD requires the eigenvalues of $K$ to be non-negative. The latter requirement guarantees the existence of the inverse and the positivity of the determinant of $K$, which are required for the GP to be well-defined and represent a distribution over functions respectively.
 
 \subsubsection{Eigenvalue and eigenfunctions of covariance matrices}
 
@@ -52,41 +67,84 @@ Since our integral operator $K$ is like an infinite-dimensional matrix whose ent
 where $\mu$ is some measure over the domain of $x$ upon which the integration will occur thus defining the limits of integration $a, b$. 
 
 \paragraph{Mercer's theorem}
-If our kernel satisfies the conditions of a Gram matrix (i.e. symmetry and positive semidefiniteness) and our measure $\mu$ is any compact subset $C \subset \mathbb{R}^n$ (e.g. the probability space $[0,1]$), then it conforms to Mercer's theorem. Mercer's theorem states that these eigenvalues $[\lambda_i]_{i=1}^\infty$ are non-negative and decay to zero, and our kernel itself can be decomposed into a sum of eigenfunctions $\phi_i$ and eigenvalues $\lambda_i$:
+If our kernel satisfies the conditions of a Gram matrix and our measure $\mu$ is any compact subset $C \subset \mathbb{R}^n$ (e.g. the probability space $[0,1]$), then it conforms to Mercer's theorem. Mercer's theorem states that these eigenvalues $[\lambda_i]_{i=1}^\infty$ are non-negative and decay to zero, and our kernel itself can be decomposed into a sum of eigenfunctions $\phi_i$ and eigenvalues $\lambda_i$:
 \begin{equation} \label{eq:gp_mercer}
     K(X, X') = \sum_{i=1}^{\infty} \lambda_i \phi_i(X) \phi_i(X')
 \end{equation}
 A kernel with infinite rank, or a covariance function that has infinite basis functions (e.g. SE), is called a nondegenerate kernel, else it is degenerate. For example, our $N$-dimensional linear kernel $K(X, X') = X \cdot X'$ results in a degenerate kernel with at most $N$ non-zero eigenvalues.
 
 
-\subsubsection{Varying the length scale}
-Our covariance functions has some hyperparameters, e.g. the full form of SE in one dimension contains some free parameters $\sigma^2_f$, $\sigma^2_n$, and $l$:
+\subsubsection{Choosing the length scale and other hyperparameters}
+Our covariance functions have some hyperparameters that are generally tuned via MLE. For example, the full form of SE in one dimension contains some free parameters $\sigma^2_f$, $\sigma^2_n$, and $l$:
 \begin{equation*}
     k_y(x,x') = \sigma^2_f \exp\left(-\frac{1}{2}\frac{|x - x'|^2}{l^2}\right) + \sigma^2_n\delta_{x,x'}
 \end{equation*}
-Note that our covariance function is for $k_y$ as it is for the noisy targets $y$, not the function $f$. $\sigma^2_f$ is the signal variance, which controls the overall scale of the function. $\sigma^2_n$ is the noise variance, which controls the amount of noise in the observations. $\delta_{X,X'}$ is the Kronecker delta which represents our independence of noise assumption.
+$\sigma^2_f$ is the signal variance, which controls the overall scale of the function. $\sigma^2_n$ is the noise variance, which controls the amount of noise in the observations, and $\delta_{X,X'}$ is the Kronecker delta which represents our independence of noise assumption. 
 
-$l$ is a "length scale" hyperparameter that controls how sensitive our functions are - if we specify a lower $l$, we can "artificially" get a high $k(X,X')$. One way to determine $l$ is by the expected number of "upcrossings" that our kernel is expected to make for a given level $u$. A function performs an upcrossing for $u$ when $u = f(x)$ and $dy/dx > 0$. For example, with $u = 2$ and $y = x^2$, there exists one upcrossing at $(2, \sqrt{2})$ where $dy/dx = 4$, and a downcrossing at $(2, -\sqrt{2})$ where $dy/dx = -4$. For our zero-mean Gaussian processes, the expected number of upcrossings of our (stationary) kernel for a level $ 0 < u < 1$ is:
+\paragraph{Analysing the length scale}
+Analytical expressions for these noise terms are not possible to assemble and are generally estimated via MLE, but we can obtain an analytical expression for $l$ using a Taylor expansion. Taylor expanding a stationary covariance function $k(X, X')$: 
 \begin{equation*}
-    \mathbb{E}[N_u] = \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right)
+    k(X, X') = k(X, X') + k'(X, X')(X - X') + \frac{1}{2}k''(X, X')(X - X')^2 + \ldots
 \end{equation*}
-We can empirically count the number of upcrossings between 0 and 1 $\hat{N}_u$ and set this equal to the expected number of upcrossings to get a value for $l$:
-\begin{equation} \label{eq:general_l}
-    \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right) = \hat{N}_u
+We choose a stationary covariance function for convenience, but this expansion can be applied to any covariance function. By symmetry, $k'(X, X') = 0$. Our second order Taylor expansion becomes:
+\begin{equation*}
+    k(X, X') \approx k(X, X') + [0] + \frac{1}{2} k''(X, X')
+\end{equation*}
+Defining $l^2$:
+\begin{equation} \label{eq:taylor_l}
+    l^2 = \frac{k(X, X')}{-k''(X, X')}
 \end{equation}
+$l$ is our length scale; it is the ratio between the covariance function $k(X, X')$ and its second derivative $k''(X, X')$, a measure of wiggleness. As our covariance function becomes less wiggly, our length scale increases in size. The length scale effectively measures "distance per wiggle" - a less wiggly covariance function needs a larger distance to produce the same wiggle as a more wiggly covariance function. 
+We introduce the assumption that the chosen covariance function has a second derivative that is negative, i.e. $k''(X, X') < 0$, to guarantee $l^2 > 0$. This assumption is violated for certain kernels (i.e. the exponential kernel), so these violating kernels require a different notion of length scale.
 
-A large amount of upcrossings implies our data-generating function wiggles rapidly, so our $l$ becomes smaller to produce a covariance function that in turn produces more flexible functions.
+Substituting $l^2$ into the above:
+\begin{equation*}
+    k(X, X') \approx k(X, X')\left(1 - \frac{(X - X')^2}{2l^2} \right)
+\end{equation*}
+$l^2$ represents the quadratic distance over which the quadratic distance term $(X - X')^2$ in the Taylor expansion becomes comparable in size to the original $k(X, X')$. For example, at $X - X' = l$, our second-order approximation is half the size of the actual covariance function:
+\begin{equation*}
+    k(X, X') \approx k(X, X')\left(1 - \frac{[l]^2}{2l^2} \right) = k(X, X') \frac{1}{2}
+\end{equation*}
+Our approximation will always be less than $k(X, X')$ thanks to the lost Taylor remainder, but there are two factors that affect its accuracy. The first is the difference between the two points in input space being evaluated - as the gap $(X - X')^2$ grows, the second-order approximation becomes less accurate. Secondly, the always-positive squared length scale $l^2$ - as $l \to\infty$ and our function gets less wiggly, the second-order approximation approaches $k(X, X')$.
+
+\paragraph{Length scale and upcrossings}
+The effect of this measure of wiggleness $l$ is more obvious when contextualised in terms of the number of "upcrossings" our covariance function makes at a given level $u$. A function performs an upcrossing at $u$ when $u = f(x)$ and $dy/dx > 0$. For example, with $u = 2$ and $y = x^2$, there exists one upcrossing at $(2, \sqrt{2})$ where $dy/dx = 4$, and a downcrossing at $(2, -\sqrt{2})$ where $dy/dx = -4$. 
+
+Given a zero-mean GP $p(f(X)) = N(0, k)$ produced by a given covariance function $k(X, X')$, the expected number of upcrossings $\mathbb{E}[N_u]$ at a given level $ 0 < u < 1$ for a typical sample function drawn from this GP $f(X) \sim N(0, k)$ is: \cite{gp-ml}
+\begin{equation} \label{eq:upcrossings}
+    \mathbb{E}[N_u] = \frac{1}{2\pi} \sqrt{\frac{-k''(0)}{k(0)}} \exp \left(-\frac{u^2}{2k(0)}\right)
+\end{equation}
+Substituting our expression for $l^2$ from our second-order Taylor expansion \ref{eq:taylor_l}:
+\begin{equation*}
+    \mathbb{E}[N_u] = \frac{1}{2\pi} \sqrt{[l^2]} \exp \left(-\frac{u^2}{2k(0)}\right)
+\end{equation*}
+Analysing $u = 0$ reduces the RHS exponential term to 1:
+\begin{equation*}
+    \mathbb{E}[N_0] = \frac{1}{2\pi} l [1]
+\end{equation*}
+Moving the inverse to the LHS:
+\begin{equation*}
+    \frac{1}{\mathbb{E}[N_0]} = 2\pi l
+\end{equation*}
+This expression suggests that the number of upcrossings and the length scale $l$ are inversely proportional - the wigglier the covariance function, the smaller its length scale is and the more upcrossings the resulting functions drawn from the GP will have.
 
 \subsubsection{Mean square continuity and differentiability}
-To understand how smooth the functions drawn from a Gaussian process are, we need to understand how differentiable and continuous they are. A more differentiable function implies that the function contains higher order polynomials which makes it smoother, and a continuous function avoids any reductions in smoothness produced by discontinuities.
+Our length-scale based understanding of the smoothness of a sample function from our GP incorporates information about the second derivative of our covariance function. Other measures of smoothness include differentiability and continuity - more differentiable function implies that the function contains higher order polynomials which makes it smoother, and a continuous function avoids any reductions in smoothness produced by discontinuities.
 
-Because the functions drawn from the Gaussian distribution are random functions between datapoints, there are infinitely many possible functions and determining if they are all continuous or differentiable is impossible. TODO 
+\paragraph{Mean square space}
+Because our GP is a continuous distribution of functions, we have infinitely many possible sample functions we can draw and determining if each sample function is continuous or differentiable is impossible. When determining smoothness by length scale, our upcrossing theorem \ref{eq:upcrossings} required analysing our covariance function alone. 
+
+We can achieve similar results by placing our GP in mean-square (MS) space. MS space is the vector space where vectors are random variables like our GP. In MS space, continuity and differentiability become statements about the mean-square distance:
+\begin{equation*}
+    || f(x) - f(x_*) ||_2 = \sqrt{\mathbb{E}[(f(x) - f(x_*))^2]}
+\end{equation*}
+By using MS definitions of continuity and differentiability, we can derive conditions for almost-surely continuity and differentiability of any sample function based on our covariance function.
 
 % We are l Instead, we can examine if the covariance function responsible for producing these functions is differentiable and continuous.
 
 % The quadratic term in our limit means our mean squared errors will also vary continuously, so we avoid wild "swings" in uncertainty when moving away from training data points in the input space. More importantly, it allows the error term to be expanded directly into kernel terms: 
 
-\paragraph{Continuity}
+\paragraph{MS continuity}
 Let $x$ be an infinite-length vector of inputs $x_1, x_2, ...$ whose values linearly approach some stable fixed point $x_*$ as the sequence progresses. Formally:
 \begin{equation*}
     \lim_{k \to \infty} |x_k - x_*| = 0
@@ -105,7 +163,7 @@ In this example, at $f(0)$ $x$ is not continuous at $x = 0$ since $f$ approaches
     \lim_{x \to x_*} |f(x) - f(x_*)| = 0
 \end{equation*}
 
-A Gaussian process $f$ is MS continuous at $x_*$ if the expected function evaluations $E[f(x)]$ quadratically approach $f(x_*)$ as $x \to x_*$. Formally:
+A Gaussian process $f$ is MS continuous at $x_*$ if the expected function evaluations $E[f(x)]$ quadratically approach $f(x_*)$ as $x \to x_*$. \cite{gp-ml} Formally:
 \begin{equation*}
     \lim_{x \to x_*} \mathbb{E}[(f(x) - f(x_*))^2] = 0
 \end{equation*}
@@ -123,8 +181,8 @@ Using this expansion in our definition of MS continuity:
 \end{equation}
 Because $x_*$ is given, $k(x_*, x_*)$ is a constant. This limit requires that both $k(x, x)$ and $k(x, x_*) \to k(x_*, x_*)$ as $x \to x_*$, which is the very definition of continuity of $k$ at $x_*$ - they guarantee that $x_*$ is in the domain of $k$, that it has a single limit, and this limit of $k(x, x_*)$ is $k(x_*, x_*)$ as $x \to x_*$. Therefore, a Gaussian process is MS continuous at $x_*$ if and only if the covariance function $k$ is continuous at $x_*$.  
 
-\paragraph{Differentiability}
-$f$ is MS differentiable at $x_*$ in the $i$th direction of our input vector $X$ if:
+\paragraph{MS differentiability}
+$f$ is MS differentiable at $x_*$ in the $i$th direction of our input vector $X$ if: \cite{gp-ml}
 \begin{equation*}
     \lim_{h \to 0} \mathbb{E} \left[| \frac{(f(x_* + h e_i) - f(x_*))}{h} - \frac{\partial f}{\partial x_{*i}}(x_*) |\right]^2 = 0
 \end{equation*}
@@ -208,7 +266,7 @@ The $h$ and $h'$ denominators merely scale the covariance, so we can take them o
 \begin{equation*}
     = \frac{1}{hh'} \text{Cov} \left(f(x_* + h e_i) - f(x_*), f(x_* + h' e_i) - f(x_*) \right)
 \end{equation*}
-Using additivity TODO explain:
+Using additivity of covariance:
 \begin{equation*}
     \mathbb{E}[B^2] = \frac{1}{hh'} \left( k(x_* + h e_i, x_* + h' e_i) - k(x_*, x_* + h' e_i) - k(x_* + h e_i, x_*) + k(x_*, x_*) \right)
 \end{equation*}
@@ -240,7 +298,7 @@ Substituting these results into $\mathbb{E}[B^2]$:
         + O(h^3) + O(h'^3) + O(||(h,h')||^3) \\
     \end{aligned}
 \end{equation*}
-All constant, linear $h$ and $h'$, and $h^2$ and $h'^2$ terms cancel, leaving the mixed term and the remainders. $\frac{1}{hh'}$ cancel and the remainders can be combined since TODO:
+All constant, linear $h$ and $h'$, and $h^2$ and $h'^2$ terms cancel, leaving the mixed term and the remainders. $\frac{1}{hh'}$ cancel and the remainders can be combined:
 \begin{equation} \label{eq:msd_b_final}
     \mathbb{E}[B^2] = \partial_{u_i v_i}^2 k(x_*, x_*) + O(h^2)
 \end{equation}
@@ -253,16 +311,14 @@ Similarly to $B$, we can remove the scaling factor $\frac{1}{h}$:
 \begin{equation*}
     = \frac{1}{h} \text{Cov} \left( f(x_* + h e_i) - f(x_*), \frac{\partial f}{\partial x_{*i}}(x_*) \right)
 \end{equation*}
-By linearity of covariance TODO elabourate:
+By additivity of covariance:
 \begin{equation*}
     = \frac{1}{h} \left[ \text{Cov} (f(x_* + h e_i), \frac{\partial f}{\partial x_{*i}}(x_*) ) - \text{Cov} (f(x_*), \frac{\partial f}{\partial x_{*i}}(x_*)) \right]
 \end{equation*}
 
-A fundamental identities for Gaussian fields TODO elabourate is:
+A fundamental identity for Gaussian fields \cite{gp-ml} is:
 \begin{equation*}
-    \begin{aligned}
-        \text{Cov}(f(u), \delta_{u_i} f(v)) = \delta_{u_i} k(u, v) \\
-    \end{aligned}
+    \text{Cov}(f(u), \delta_{u_i} f(v)) = \delta_{u_i} k(u, v)
 \end{equation*}
 Applying it to both terms:
 \begin{equation*}
@@ -321,13 +377,13 @@ We can aborsb $hB$ into $O(h)$ since it is a linear term in $h$:
 \end{equation}
 $O(h)$ approaches $0$ as $h \to 0$, so our limit definition of MS differentiability is met using a second-order Taylor expansion. We can extend this to any $k$-th derivative in MS space by using a $2k$-th order Taylor expansion of the covariance functions, which requires the covariance function to be $2k$-times continuously differentiable at $x_*$.
 
-\subsection{Stationary covariance functions \cite{gp-ml}}
+\subsection{Stationary covariance functions}
 
 \subsubsection{Stationarity and isotropicism}
-A stationary covariance function $k(X - X')$ is some function of $X - X'$ , and is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function $k(|X - X'|)$ is a function of $|X - X'|$, and is is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because it is a function of $|X - X'|$.
+A stationary covariance function \cite{gp-ml} $k(X - X')$ is some function of $X - X'$ , and is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function $k(|X - X'|)$ is a function of $|X - X'|$, and is is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because it is a function of $|X - X'|$.
 
 \subsubsection{Spectral density}
-Bochner's theorem states that the covariance function of a stationary process can be represented as the Fourier transform of some positive finite measure $\mu$ \cite{bochner}:
+Bochner's theorem \cite{bochner} states that the covariance function of a stationary process can be represented as the Fourier transform of some positive finite measure $\mu$:
 \begin{equation} \label{eq:bochner}
     k(x, x') = \int_{-\infty}^{\infty} e^{2\pi i \omega (x - x')} d\mu(\omega)
 \end{equation}
@@ -346,7 +402,7 @@ The Weiner-Khinchin theorem governs the inversion of the Fourier transform to re
     k(x, x') = \int_{-\infty}^{\infty} S(\omega) e^{-2\pi i \omega (x - x')} d\omega
 \end{equation}
 
-\paragraph{Smoothness}
+\paragraph{Unifying length scale and MS differentiability}
 To remain integratable, our spectral density needs to approach $0$ as $\omega \to \infty$. The faster it approaches $0$, the less power it contains at high frequencies, and the smoother our resultant GP will be. Ritter et. al. \cite{fourier-moments} formalised this by by taking moments of the spectral density and connecting them to the MS differentiability of our resultant GP. The $2m$-th $\omega$-th moment of the spectral density is:
 \begin{equation*}
     \int_{-\infty}^{\infty} |\omega|^2m S(\omega) d\omega
