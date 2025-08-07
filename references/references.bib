@@ -1,24 +1,3 @@
-@book{bayes,
-	author = {Hoff, Peter D.},
-	title = {A First Course in Bayesian Statistical Methods},
-	year = {2009},
-	isbn = {0387922997},
-	publisher = {Springer Publishing Company, Incorporated},
-	edition = {1st},
-	abstract = {This book provides a compact self-contained introduction to the theory and application of Bayesian statistical methods. The book is accessible to readers havinga basic familiarity with probability, yet allows more advanced readers to quickly grasp the principles underlying Bayesian theory and methods. The examples and computer code allow the reader to understand and implement basic Bayesian data analyses using standard statistical models and to extend the standard models to specialized data analysis situations. The book begins with fundamental notions such as probability, exchangeability and Bayes' rule, and ends with modern topics such as variable selection in regression, generalized linear mixed effects models, and semiparametric copula estimation. Numerous examples from the social, biological and physical sciences show how to implement these methodologies in practice. Monte Carlo summaries of posterior distributions play an important role in Bayesian data analysis. The open-source R statistical computing environment provides sufficient functionality to make Monte Carlo estimation very easy for a large number of statistical models and example R-code is provided throughout the text. Much of the example code can be run as is' in R, and essentially all of it can be run after downloading the relevant datasets from the companion website for this book.}
-}
-
-@book{calculus,
-	title     = "Calculus: Early Transcendentals",
-	author    = "Stewart, James and Clegg, Daniel K and Watson, Saleem",
-	publisher = "Cengage Learning",
-	edition   =  9,
-	month     =  jan,
-	year      =  2020,
-	address   = "Taipei, Taiwan",
-	language  = "en"
-}
-
 @book{gp-ml,
     author = {Rasmussen, Carl Edward and Williams, Christopher K. I.},
     title = {Gaussian Processes for Machine Learning},
@@ -42,33 +21,6 @@
 	address   = "Cham, Switzerland",
 	copyright = "https://www.springernature.com/gp/researchers/text-and-data-mining",
 	language  = "en"
-}
-
-@book{linalg,
-	title     = "Introduction to Linear Algebra",
-	author    = "Strang, Gilbert",
-	publisher = "Wellesley-Cambridge Press",
-	edition   =  4,
-	month     =  feb,
-	year      =  2009,
-	address   = "Wellesley, MA"
-}
-
-@book{maths-phys,
-	title     = "Mathematical methods for physicists",
-	author    = "Arfken, George B and Weber, Hans J and Harris, Frank E",
-	publisher = "Academic Press",
-	edition   =  6,
-	month     =  jul,
-	year      =  2005,
-	address   = "San Diego, CA"
-}
-
-@misc{notes,
-	title = "Notes",
-	author = "Walker, I",
-	year = 2025,
-	url = {https://github.com/ivor-walker/gaussian-process-dissertation/blob/e94f234a4dfe23d8bea467f7be14d642952b0092/notes/notes.pdf}
 }
 
 @ARTICLE{big-data,
@@ -268,3 +220,236 @@ volume = {83},
 journal = {Journal of Multivariate Analysis},
 doi = {10.1006/jmva.2001.2056}
 }
+
+@BOOK{bochner,
+  title     = "The theory of stochastic processes {I}",
+  author    = "Gikhman, Iosif I and Skorokhod, Anatoli V",
+  publisher = "Springer",
+  series    = "Classics in mathematics",
+  month     =  mar,
+  year      =  2004,
+  address   = "Berlin, Germany",
+  language  = "en"
+}
+
+@article{fourier-moments,
+ title= {Multivariate integration and approximation for random fields satisfying Sacks-Ylvisaker conditions}, 
+ volume={5}, 
+ DOI={10.1214/aoap/1177004776}, 
+ number={2}, 
+ journal={The Annals of Applied Probability}, 
+ author={Ritter, Klaus and Wasilkowski, Grzegorz W. and Wozniakowski, Henryk}, 
+ year={1995}, 
+ month={May}
+} 
+
+@BOOK{nystrom,
+  title     = "The numerical treatment of integral equations",
+  author    = "Baker, Christopher T H",
+  publisher = "Oxford University Press",
+  series    = "Monographs on Numerical Analysis",
+  month     =  jan,
+  year      =  1978,
+  address   = "London, England",
+  language  = "en",
+  pages = "67, 67"
+}
+
+@article{sor,
+author = {Joukov, Vladimir and Kuli\'{c}, Dana},
+title = {Fast Approximate Multioutput Gaussian Processes},
+year = {2022},
+issue_date = {July-Aug. 2022},
+publisher = {IEEE Educational Activities Department},
+address = {USA},
+volume = {37},
+number = {4},
+issn = {1541-1672},
+url = {https://doi.org/10.1109/MIS.2022.3169036},
+doi = {10.1109/MIS.2022.3169036},
+abstract = {Gaussian processes regression models are an appealing machine learning method as they learn expressive nonlinear models from exemplar data with minimal parameter tuning and estimate both the mean and covariance of unseen points. However, cubic computational complexity growth with the number of samples has been a long standing challenge. Training requires the inversion of $N times N$N\texttimes{}N kernel at every iteration, whereas regression needs computation of an $m times N$m\texttimes{}N kernel, where $N$N and $m$m are the number of training and test points, respectively. This work demonstrates how approximating the covariance kernel using eigenvalues and functions leads to an approximate Gaussian process with significant reduction in training and regression complexity. Training now requires computing only an $N times n$N\texttimes{}n eigenfunction matrix and an $n times n$n\texttimes{}n inverse, where $n$n is a selected number of eigenvalues. Furthermore, regression now only requires an $m times n$m\texttimes{}n matrix. Finally, in a special case, the hyperparameter optimization is completely independent from the number of training samples. The proposed method can regress over multiple outputs, learn the correlations between them, and estimate their derivatives to any order. The computational complexity reduction, regression capabilities, multioutput correlation learning, and comparison to the state of the art are demonstrated in simulation examples. Finally we show how the proposed approach can be utilized to model real human data.},
+journal = {IEEE Intelligent Systems},
+month = jul,
+pages = {56–69},
+numpages = {14}
+}
+
+@inproceedings{fitc,
+ author = {Snelson, Edward and Ghahramani, Zoubin},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {Y. Weiss and B. Sch\"{o}lkopf and J. Platt},
+ pages = {},
+ publisher = {MIT Press},
+ title = {Sparse Gaussian Processes using Pseudo-inputs},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2005/file/4491777b1aa8b5b32c2e8666dbe1a495-Paper.pdf},
+ volume = {18},
+ year = {2005}
+}
+
+@misc{fitc-heteroskedasticity,
+      title={Understanding Probabilistic Sparse Gaussian Process Approximations}, 
+      author={Matthias Bauer and Mark van der Wilk and Carl Edward Rasmussen},
+      year={2017},
+      eprint={1606.04820},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML},
+      url={https://arxiv.org/abs/1606.04820}, 
+}
+
+
+@InProceedings{vfe,
+  title = 	 {Variational Learning of Inducing Variables in Sparse Gaussian Processes},
+  author = 	 {Titsias, Michalis},
+  booktitle = 	 {Proceedings of the Twelfth International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {567--574},
+  year = 	 {2009},
+  editor = 	 {van Dyk, David and Welling, Max},
+  volume = 	 {5},
+  series = 	 {Proceedings of Machine Learning Research},
+  address = 	 {Hilton Clearwater Beach Resort, Clearwater Beach, Florida USA},
+  month = 	 {16--18 Apr},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v5/titsias09a/titsias09a.pdf},
+  url = 	 {https://proceedings.mlr.press/v5/titsias09a.html},
+  abstract = 	 {Sparse Gaussian process methods that use inducing variables require the selection of the inducing inputs and the kernel hyperparameters. We introduce a variational formulation for sparse approximations that jointly infers the inducing inputs and the kernel hyperparameters by maximizing a lower bound of the true log marginal likelihood. The key property of this formulation is that the inducing inputs  are defined to be variational parameters  which are selected by minimizing  the Kullback-Leibler divergence between  the variational distribution and the exact posterior distribution over the latent function values. We apply this technique to regression and we compare it with other approaches in the literature.}
+}
+
+@Misc{gpy,
+  author =   {{GPy}},
+  title =    {{GPy}: A Gaussian process framework in python},
+  howpublished = {\url{http://github.com/SheffieldML/GPy}},
+  year = {since 2012}
+}
+
+@misc{svgp,
+      title={Gaussian Processes for Big Data}, 
+      author={James Hensman and Nicolo Fusi and Neil D. Lawrence},
+      year={2013},
+      eprint={1309.6835},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1309.6835}, 
+}
+
+@article{foreman-mackay,
+   author = {{Foreman-Mackey}, D. and {Agol}, E. and {Ambikasaran}, S. and
+            {Angus}, R.},
+    title = "{Fast and Scalable Gaussian Process Modeling with Applications to
+              Astronomical Time Series}",
+  journal = {aj},
+     year = 2017,
+    month = dec,
+   volume = 154,
+    pages = {220},
+      doi = {10.3847/1538-3881/aa9332},
+   adsurl = {http://adsabs.harvard.edu/abs/2017AJ....154..220F},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@inproceedings{matching-pursuit,
+ author = {Keerthi, Sathiya and Chu, Wei},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {Y. Weiss and B. Sch\"{o}lkopf and J. Platt},
+ pages = {},
+ publisher = {MIT Press},
+ title = {A matching pursuit approach to sparse Gaussian process regression},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2005/file/1ec3e7af38e33222bde173fecaef6bfa-Paper.pdf},
+ volume = {18},
+ year = {2005}
+}
+
+@unpublished{galaxy-spectra-101,
+  author       = {Vivienne Wild},
+  title        = {Fitting Galaxy Spectra 101},
+  note         = {Unpublished manuscript, created 4 July 2025},
+  year         = {2025},
+}
+
+@phdthesis{galaxy-gp-noise,
+  author       = {Ho-Hin Leung},
+  title        = {Unveiling the evolutionary history of local post-starburst galaxies through careful Bayesian modelling of their spectra},
+  school       = {University of St Andrews},
+  year         = {2025},
+  doi          = {10.17630/sta/1254},
+  url          = {https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/31630/Thesis-Ho-Hin-Leung-complete-version.pdf?sequence=5&isAllowed=y},
+  license      = {Creative Commons Attribution 4.0 International},
+  note         = {PhD thesis}
+}
+
+@article{fitc-vfe-unifier,
+  author  = {Thang D. Bui and Josiah Yan and Richard E. Turner},
+  title   = {A Unifying Framework for Gaussian Process Pseudo-Point Approximations using Power Expectation Propagation},
+  journal = {Journal of Machine Learning Research},
+  year    = {2017},
+  volume  = {18},
+  number  = {104},
+  pages   = {1--72},
+  url     = {http://jmlr.org/papers/v18/16-603.html}
+}
+
+@misc{adam,
+      title={Adam: A Method for Stochastic Optimization}, 
+      author={Diederik P. Kingma and Jimmy Ba},
+      year={2017},
+      eprint={1412.6980},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1412.6980}, 
+}
+
+@article{fast-exp,
+  title = {Class of Fast Methods for Processing Irregularly Sampled or Otherwise Inhomogeneous One-Dimensional Data},
+  author = {Rybicki, George B. and Press, William H.},
+  journal = {Phys. Rev. Lett.},
+  volume = {74},
+  issue = {7},
+  pages = {1060--1063},
+  numpages = {0},
+  year = {1995},
+  month = {Feb},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.74.1060},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.74.1060}
+}
+
+@article{general-exp,
+   title={A STOCHASTIC MODEL FOR THE LUMINOSITY FLUCTUATIONS OF ACCRETING BLACK HOLES},
+   volume={730},
+   ISSN={1538-4357},
+   url={http://dx.doi.org/10.1088/0004-637X/730/1/52},
+   DOI={10.1088/0004-637x/730/1/52},
+   number={1},
+   journal={The Astrophysical Journal},
+   publisher={American Astronomical Society},
+   author={Kelly, Brandon C. and Sobolewska, Małgorzata and Siemiginowska, Aneta},
+   year={2011},
+   month=mar, pages={52} 
+}
+
+@ARTICLE{sho-spectral-density,
+       author = {{Anderson}, Edwin R. and {Duvall}, Jr., Thomas L. and {Jefferies}, Stuart M.},
+        title = "{Modeling of Solar Oscillation Power Spectra}",
+      journal = {\apj},
+     keywords = {Power Spectra, Solar Oscillations, Spectrum Analysis, Least Squares Method, Maximum Likelihood Estimates, Parameter Identification, Probability Density Functions, Solar Physics, NUMERICAL METHODS, SUN: OSCILLATIONS},
+         year = 1990,
+        month = dec,
+       volume = {364},
+        pages = {699},
+          doi = {10.1086/169452},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/1990ApJ...364..699A},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@article{sho-noise-astro,
+	author = {{Kallinger, T.} and {De Ridder, J.} and {Hekker, S.} and {Mathur, S.} and {Mosser, B.} and {Gruberbauer, M.} and {García, R. A.} and {Karoff, C.} and {Ballot, J.}},
+	title = {The connection between stellar granulation and oscillation as seen by the Kepler mission},
+	DOI= "10.1051/0004-6361/201424313",
+	url= "https://doi.org/10.1051/0004-6361/201424313",
+	journal = {A&A},
+	year = 2014,
+	volume = 570,
+	pages = "A41",
+	month = "",
+}
+
+

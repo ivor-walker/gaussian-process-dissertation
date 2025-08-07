@@ -30,64 +30,67 @@
 \contentsline {subsubsection}{\numberline {2.2.4}Marginal likelihood}{12}{subsubsection.2.2.4}%
 \contentsline {subsubsection}{\numberline {2.2.5}Algorithm for Gaussian processes}{12}{subsubsection.2.2.5}%
 \contentsline {section}{\numberline {3}Exploring Covariance Functions}{13}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Characteristics of covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{13}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Covariance matrices}{13}{subsubsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1}Characteristics of covariance functions and matrices}{13}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Gram matrices}{13}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Eigenvalue and eigenfunctions of covariance matrices}{13}{subsubsection.3.1.2}%
 \contentsline {paragraph}{Integral operators}{13}{subsubsection.3.1.2}%
 \contentsline {paragraph}{Mercer's theorem}{14}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}Varying the length scale}{14}{subsubsection.3.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.4}Mean square continuity and differentiability}{14}{subsubsection.3.1.4}%
-\contentsline {paragraph}{Continuity}{14}{subsubsection.3.1.4}%
-\contentsline {paragraph}{Differentiability}{15}{equation.27}%
-\contentsline {subsection}{\numberline {3.2}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{18}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{18}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Spectral density}{18}{subsubsection.3.2.2}%
-\contentsline {paragraph}{Smoothness}{18}{equation.36}%
-\contentsline {subsubsection}{\numberline {3.2.3}GPs from stationary covariance functions in MS space}{18}{subsubsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.3}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{18}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Squared exponential (SE)}{18}{subsubsection.3.3.1}%
-\contentsline {paragraph}{From feature space to SE}{19}{subsubsection.3.3.1}%
-\contentsline {paragraph}{Length scale}{19}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{21}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{23}{subsubsection.3.3.3}%
-\contentsline {paragraph}{Exponential covariance function}{24}{figure.6}%
-\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{25}{subsubsection.3.3.4}%
-\contentsline {paragraph}{Matern 3/2}{26}{subsubsection.3.3.4}%
-\contentsline {paragraph}{Matern 5/2}{27}{figure.10}%
-\contentsline {section}{\numberline {4}Computational Issues}{29}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Cholesky decomposition}{29}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Sparse kernels}{30}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Eigenfunction and eigenvalue approximation of covariance matrices \blx@tocontentsinit {0}\cite {gp-ml}}{30}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}Approximating $\Phi _i$ and $U_i$ with Nystrom}{30}{subsubsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.4}Subset-of-data (SoD) \blx@tocontentsinit {0}\cite {big-data}}{31}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Sparse approximations \blx@tocontentsinit {0}\cite {big-data}}{31}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}Prior approximations}{31}{subsubsection.4.5.1}%
-\contentsline {paragraph}{Subset-of-Regression (SoR) \blx@tocontentsinit {0}\cite {sor}}{31}{subsubsection.4.5.1}%
-\contentsline {paragraph}{Fully independent training conditional (FITC) \blx@tocontentsinit {0}\cite {fitc}}{32}{subsubsection.4.5.1}%
-\contentsline {subsubsection}{\numberline {4.5.2}Posterior approximations}{33}{subsubsection.4.5.2}%
-\contentsline {paragraph}{Variational free energy (VFE)}{33}{subsubsection.4.5.2}%
-\contentsline {subparagraph}{Deriving FITC through the VFE framework \blx@tocontentsinit {0}\cite {fitc-vfe-unifier}}{34}{equation.41}%
-\contentsline {paragraph}{Stochastic varational GP (SVGP)}{34}{equation.41}%
-\contentsline {subsection}{\numberline {4.6}Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{35}{subsection.4.6}%
-\contentsline {subsubsection}{\numberline {4.6.1}The celerite model}{35}{subsubsection.4.6.1}%
-\contentsline {subsubsection}{\numberline {4.6.2}Building Matern 3/2 from celerite}{35}{subsubsection.4.6.2}%
-\contentsline {subsubsection}{\numberline {4.6.3}Cholesky factorisation and inversion of celerite kernels}{36}{subsubsection.4.6.3}%
-\contentsline {paragraph}{Semiseperable matrices}{36}{subsubsection.4.6.3}%
-\contentsline {paragraph}{Celerite kernels as semiseperable matrices}{36}{equation.44}%
-\contentsline {paragraph}{Cholesky factorisation of semiseperable matrices}{37}{equation.44}%
-\contentsline {paragraph}{Inversion of semiseperable matrices with a Cholesky factorisation}{37}{equation.45}%
-\contentsline {section}{\numberline {5}TODO Applying a Gaussian Process to Astrostatistics}{38}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Introduction}{38}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Astrological background \blx@tocontentsinit {0}\cite {galaxy-spectra-101}}{38}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Using GP \blx@tocontentsinit {0}\cite {galaxy-gp-noise}}{38}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}Methodology}{38}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Approaches considered}{38}{subsubsection.5.2.1}%
-\contentsline {paragraph}{Stochastic variational Gaussian processes (SVGP) \blx@tocontentsinit {0}\cite {svgp}}{38}{subsubsection.5.2.1}%
-\contentsline {paragraph}{Structured kernel interpolation (SKI) \blx@tocontentsinit {0}\cite {ski}}{38}{subsubsection.5.2.1}%
-\contentsline {paragraph}{Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{38}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Computational speed}{38}{subsubsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.3}Accuracy}{38}{subsubsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.3}Results}{38}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Discussion}{38}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Conclusion}{38}{subsection.5.5}%
-\contentsline {section}{\numberline {6}TODO Conclusion}{39}{section.6}%
+\contentsline {subsubsection}{\numberline {3.1.3}Choosing the length scale and other hyperparameters}{14}{subsubsection.3.1.3}%
+\contentsline {paragraph}{Analysing the length scale}{14}{subsubsection.3.1.3}%
+\contentsline {paragraph}{Length scale and upcrossings}{15}{equation.26}%
+\contentsline {subsubsection}{\numberline {3.1.4}Mean square continuity and differentiability}{15}{subsubsection.3.1.4}%
+\contentsline {paragraph}{Mean square space}{15}{subsubsection.3.1.4}%
+\contentsline {paragraph}{MS continuity}{16}{subsubsection.3.1.4}%
+\contentsline {paragraph}{MS differentiability}{16}{equation.28}%
+\contentsline {subsection}{\numberline {3.2}Stationary covariance functions}{19}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{19}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Spectral density}{19}{subsubsection.3.2.2}%
+\contentsline {paragraph}{Spectral density and MS differentiability}{20}{equation.36}%
+\contentsline {subsubsection}{\numberline {3.2.3}GPs from stationary covariance functions in MS space}{20}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{20}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Squared exponential (SE)}{20}{subsubsection.3.3.1}%
+\contentsline {paragraph}{From feature space to SE}{20}{subsubsection.3.3.1}%
+\contentsline {paragraph}{Length scale}{21}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{22}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{24}{subsubsection.3.3.3}%
+\contentsline {paragraph}{Exponential covariance function}{26}{figure.6}%
+\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{27}{subsubsection.3.3.4}%
+\contentsline {paragraph}{Matern 3/2}{27}{subsubsection.3.3.4}%
+\contentsline {paragraph}{Matern 5/2}{28}{figure.10}%
+\contentsline {section}{\numberline {4}Computational Issues}{30}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Cholesky decomposition}{30}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Sparse kernels}{31}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Eigenfunction and eigenvalue approximation of covariance matrices \blx@tocontentsinit {0}\cite {gp-ml}}{31}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Approximating $\Phi _i$ and $U_i$ with Nystrom}{31}{subsubsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.4}Subset-of-data (SoD) \blx@tocontentsinit {0}\cite {big-data}}{32}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Sparse approximations \blx@tocontentsinit {0}\cite {big-data}}{32}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Prior approximations}{32}{subsubsection.4.5.1}%
+\contentsline {paragraph}{Subset-of-Regression (SoR) \blx@tocontentsinit {0}\cite {sor}}{32}{subsubsection.4.5.1}%
+\contentsline {paragraph}{Fully independent training conditional (FITC) \blx@tocontentsinit {0}\cite {fitc}}{33}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Posterior approximations}{34}{subsubsection.4.5.2}%
+\contentsline {paragraph}{Variational free energy (VFE)}{34}{subsubsection.4.5.2}%
+\contentsline {subparagraph}{Deriving FITC through the VFE framework \blx@tocontentsinit {0}\cite {fitc-vfe-unifier}}{35}{equation.41}%
+\contentsline {paragraph}{Stochastic varational GP (SVGP)}{35}{equation.41}%
+\contentsline {subsection}{\numberline {4.6}Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{36}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}The celerite model}{36}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}Building Matern 3/2 from celerite}{36}{subsubsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.3}Cholesky factorisation and inversion of celerite kernels}{37}{subsubsection.4.6.3}%
+\contentsline {paragraph}{Semiseperable matrices}{37}{subsubsection.4.6.3}%
+\contentsline {paragraph}{Celerite kernels as semiseperable matrices}{37}{equation.44}%
+\contentsline {paragraph}{Cholesky factorisation of semiseperable matrices}{38}{equation.44}%
+\contentsline {paragraph}{Inversion of semiseperable matrices with a Cholesky factorisation}{38}{equation.45}%
+\contentsline {section}{\numberline {5}TODO Applying a Gaussian Process to Astrostatistics}{39}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Introduction}{39}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Astrological background \blx@tocontentsinit {0}\cite {galaxy-spectra-101}}{39}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Using GP \blx@tocontentsinit {0}\cite {galaxy-gp-noise}}{39}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Methodology}{39}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Approaches considered}{39}{subsubsection.5.2.1}%
+\contentsline {paragraph}{Stochastic variational Gaussian processes (SVGP) \blx@tocontentsinit {0}\cite {svgp}}{39}{subsubsection.5.2.1}%
+\contentsline {paragraph}{Structured kernel interpolation (SKI) \blx@tocontentsinit {0}\cite {ski}}{39}{subsubsection.5.2.1}%
+\contentsline {paragraph}{Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{39}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Computational speed}{39}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Accuracy}{39}{subsubsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.3}Results}{39}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Discussion}{39}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Conclusion}{39}{subsection.5.5}%
+\contentsline {section}{\numberline {6}TODO Conclusion}{40}{section.6}%

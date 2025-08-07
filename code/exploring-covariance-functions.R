@@ -6,57 +6,82 @@ set.seed(1234)
 # Create the data
 n <- 20
 x <- seq(0, 1, l=n)
-
 dimensions <- 1
-fx <- abs(sin(2 * pi * x)) ^ .8
 
-sigma_n <- 0.1
-y <- fx + rnorm(n, sd = sigma_n)
-ggplot(
-  aes(x, y), 
-  data=cbind(x, y)
-) +
-  geom_point()
+# SE: smooth sin wave
+se_fx <- sin(2 * pi * x)
 
-# Fit a linear model first
-ggplot(
-  aes(x, y), 
-  data=cbind(x, y)
-) +
-  geom_point() +
-  geom_smooth(method="lm")
-# Fits straight line through data
-# Not good descriptor of underlying function
+# RQ: multiple sin waves at different frequencies
+rq_fx <- se_fx + 0.5 * sin(10 * pi * x)
+
+# GE: intermediate roughness
+ge_fx <- abs(se_fx)
+
+# Exponential: non-differentiable
+exp_fx <- function(x) {
+  ifelse(x < 0.3,
+      x,
+      ifelse(x < 0.7,
+        1 - x,     
+        x - 0.5
+      )
+  )
+}
+  
+# Matern 3/2: smooth wave + shallow kink
+m32_fx <- se_fx + 0.2 * abs(x - 0.5)
+
+# Matern 5/2: smooth wave + deep kink
+m52_fx <- se_fx * exp(-x)
+
+
+# Assemble all functions into vector
+stationary_fxs <- cbind(
+  se_fx,
+  rq_fx,
+  ge_fx,
+  exp_fx(x),
+  m32_fx,
+  m52_fx
+)
+
+# Add noise to all results
+sigma_n <- 0.05
+stationary_ys <- stationary_fxs + rnorm(n, sd = sigma_n)
 
 # Define all kernels to use
 stationary_kernels <- c(
   # k_Triangle(D=dimensions),
   k_Gaussian(D = dimensions),
-  k_Matern52(D = dimensions),
-  k_Matern32(D = dimensions),
-  k_Exponential(D = dimensions),
+  k_RatQuad(D = dimensions),
   k_PowerExp(D = dimensions),
-  k_RatQuad(D = dimensions)
+  k_Exponential(D = dimensions),
+  k_Matern32(D = dimensions),
+  k_Matern52(D = dimensions)
 )
 
 nonstationary_kernels <- c(
-  k_Periodic(D = dimensions)
+  # k_Periodic(D = dimensions)
 )
 
 factor_kernels <- c()
 
-# Fit a Gaussian process model using each supplied kernel
+dataset_index <- 1
+# Fit a Gaussian process model using each supplied kernel and each supplied dataset
 stationary_models <- lapply(
   stationary_kernels,
   function(kernel) {
-    
+
     # Fit the model to the stationary models data
-    model <- gpkm(x, y,
+    model <- gpkm(x, ys[,dataset_index],
       kernel = kernel
     )
     
     # Add the function evaluations to the model object and return it
-    attr(model, "fx") <- fx
+    attr(model, "fx") <- fxs[,dataset_index]
+    
+    dataset_index <<- dataset_index + 1
+    
     return (model)
   }
 )
