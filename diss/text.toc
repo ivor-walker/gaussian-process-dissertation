@@ -45,7 +45,7 @@
 \contentsline {subsection}{\numberline {3.2}Stationary covariance functions}{19}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{19}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Spectral density}{19}{subsubsection.3.2.2}%
-\contentsline {paragraph}{Unifying length scale and MS differentiability}{19}{equation.37}%
+\contentsline {paragraph}{Spectral density and MS differentiability}{20}{equation.36}%
 \contentsline {subsubsection}{\numberline {3.2.3}GPs from stationary covariance functions in MS space}{20}{subsubsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.3}Stationary covariance functions \blx@tocontentsinit {0}\cite {gp-ml}}{20}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Squared exponential (SE)}{20}{subsubsection.3.3.1}%
@@ -53,8 +53,8 @@
 \contentsline {paragraph}{Length scale}{21}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{22}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{24}{subsubsection.3.3.3}%
-\contentsline {paragraph}{Exponential covariance function}{25}{figure.6}%
-\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{26}{subsubsection.3.3.4}%
+\contentsline {paragraph}{Exponential covariance function}{26}{figure.6}%
+\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{27}{subsubsection.3.3.4}%
 \contentsline {paragraph}{Matern 3/2}{27}{subsubsection.3.3.4}%
 \contentsline {paragraph}{Matern 5/2}{28}{figure.10}%
 \contentsline {section}{\numberline {4}Computational Issues}{30}{section.4}%
@@ -69,16 +69,16 @@
 \contentsline {paragraph}{Fully independent training conditional (FITC) \blx@tocontentsinit {0}\cite {fitc}}{33}{subsubsection.4.5.1}%
 \contentsline {subsubsection}{\numberline {4.5.2}Posterior approximations}{34}{subsubsection.4.5.2}%
 \contentsline {paragraph}{Variational free energy (VFE)}{34}{subsubsection.4.5.2}%
-\contentsline {subparagraph}{Deriving FITC through the VFE framework \blx@tocontentsinit {0}\cite {fitc-vfe-unifier}}{35}{equation.42}%
-\contentsline {paragraph}{Stochastic varational GP (SVGP)}{35}{equation.42}%
+\contentsline {subparagraph}{Deriving FITC through the VFE framework \blx@tocontentsinit {0}\cite {fitc-vfe-unifier}}{35}{equation.41}%
+\contentsline {paragraph}{Stochastic varational GP (SVGP)}{35}{equation.41}%
 \contentsline {subsection}{\numberline {4.6}Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{36}{subsection.4.6}%
 \contentsline {subsubsection}{\numberline {4.6.1}The celerite model}{36}{subsubsection.4.6.1}%
 \contentsline {subsubsection}{\numberline {4.6.2}Building Matern 3/2 from celerite}{36}{subsubsection.4.6.2}%
 \contentsline {subsubsection}{\numberline {4.6.3}Cholesky factorisation and inversion of celerite kernels}{37}{subsubsection.4.6.3}%
 \contentsline {paragraph}{Semiseperable matrices}{37}{subsubsection.4.6.3}%
-\contentsline {paragraph}{Celerite kernels as semiseperable matrices}{37}{equation.45}%
-\contentsline {paragraph}{Cholesky factorisation of semiseperable matrices}{38}{equation.45}%
-\contentsline {paragraph}{Inversion of semiseperable matrices with a Cholesky factorisation}{38}{equation.46}%
+\contentsline {paragraph}{Celerite kernels as semiseperable matrices}{37}{equation.44}%
+\contentsline {paragraph}{Cholesky factorisation of semiseperable matrices}{38}{equation.44}%
+\contentsline {paragraph}{Inversion of semiseperable matrices with a Cholesky factorisation}{38}{equation.45}%
 \contentsline {section}{\numberline {5}TODO Applying a Gaussian Process to Astrostatistics}{39}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Introduction}{39}{subsection.5.1}%
 \contentsline {subsubsection}{\numberline {5.1.1}Astrological background \blx@tocontentsinit {0}\cite {galaxy-spectra-101}}{39}{subsubsection.5.1.1}%

@@ -383,31 +383,35 @@ $O(h)$ approaches $0$ as $h \to 0$, so our limit definition of MS differentiabil
 A stationary covariance function \cite{gp-ml} $k(X - X')$ is some function of $X - X'$ , and is invariant to the exact locations of $X$ and $X'$. An isotropic covariance function $k(|X - X'|)$ is a function of $|X - X'|$, and is is invariant to the direction of $X - X'$. For example, SE \cite{eq:se} is both stationary and isotropic because it is a function of $|X - X'|$.
 
 \subsubsection{Spectral density}
-Bochner's theorem \cite{bochner} states that the covariance function of a stationary process can be represented as the Fourier transform of some positive finite measure $\mu$:
+So far, length-scale analysis and MS continuity and differentiability have been used to understand the smoothness of our GP. For stationary covariance functions specifically, we can use the notion of spectral density to understand how evenly spread out variance is within our GP, incorporate length scale into this notion, and use it to derive conditions for MS continuity and differentiability.
+
+Bochner's theorem \cite{bochner} states that the covariance function of any stationary process, like a stationary GP, can be represented as the Fourier transform of some positive finite measure $\mu$:
 \begin{equation} \label{eq:bochner}
     k(x, x') = \int_{-\infty}^{\infty} e^{2\pi i \omega (x - x')} d\mu(\omega)
 \end{equation}
-The Fourier transform decomposes our covariance function into a sum of sines and cosines that represents the frequences that make it up, written in a compact form as a complex exponential:
-\begin{equation} \label{eq:fourier}
+The Fourier transform decomposes our stationary covariance function into a sum of sines and cosines that occur at some frequency, written in a compact form as a complex exponential:
+\begin{equation*}
     e^{-2\pi i \omega (x - x')} = \cos(2\pi \omega (x - x')) - i \sin(2\pi \omega (x - x'))
-\end{equation}
-By applying this representation to the covariance function, we get its "spectral density" $S(\omega)$:
-\begin{equation} \label{eq:spectral_density}
+\end{equation*}
+No such Fourier transformation exists for non-stationary covariance functions, as non-stationary covariance functions depend on variables outside of $X - X'$ and cannot be expressed as a sum of sines and cosines alone.
+
+The "spectral density" $S(\omega)$ is a complex number representing how much total variance is allocated at some frequency $\omega$. 
+\begin{equation} \label{eq:spectral-density}
     S(\omega) = \int_{-\infty}^{\infty} k(x, x') e^{2\pi i \omega (x - x')} d(x - x')
 \end{equation}
-$S(\omega)$ is a complex number representing how much total variance is allocated per unit of frequency around our given frequency $\omega$. 
+To remain integratable, our spectral density function needs to approach $0$ as $\omega \to \infty$. The faster it approaches $0$ as $\omega \to infty$, the less power it contains at high frequencies, and the smoother our resultant GP will be. High variances allocated at low frequencies correspond to slow-varying, large-scale wiggles, whereas high variances at higher frequencies correspond to rapid oscillations. Since the covariance function itself is included in this definition, any length scale $l$ in the covariance function will also affect the spectral density function.
 
-The Weiner-Khinchin theorem governs the inversion of the Fourier transform to recover the original covariance function - it states that our covariance function and its spectral density are Fourier duals of each other: 
+The Weiner-Khinchin theorem \cite{gp-ml} describes how to derive the spectral density. It states that our covariance function and its spectral density are Fourier duals of each other, meaning that we obtain the spectral density by taking the Fourier transform of the covariance function \ref{eq:spectral-density}. Furthermore, this theorem implies that we can recover the covariance function from the spectral density by taking the Fourier transform of the spectral density:
 \begin{equation} \label{eq:weiner-khinchin}
     k(x, x') = \int_{-\infty}^{\infty} S(\omega) e^{-2\pi i \omega (x - x')} d\omega
 \end{equation}
 
-\paragraph{Unifying length scale and MS differentiability}
-To remain integratable, our spectral density needs to approach $0$ as $\omega \to \infty$. The faster it approaches $0$, the less power it contains at high frequencies, and the smoother our resultant GP will be. Ritter et. al. \cite{fourier-moments} formalised this by by taking moments of the spectral density and connecting them to the MS differentiability of our resultant GP. The $2m$-th $\omega$-th moment of the spectral density is:
+\paragraph{Spectral density and MS differentiability}
+We can formalise the relationship between allocations of mass in $S(\omega)$ and smoothness using "moments" of the spectral density, or an average of the total variance of the GP weighted by the frequency $\omega$ raised to some power $m$. The $2m$-th $\omega$-th moment of the spectral density is:
 \begin{equation*}
-    \int_{-\infty}^{\infty} |\omega|^2m S(\omega) d\omega
+    M_{2m} = \int_{-\infty}^{\infty} |\omega|^2m S(\omega) d\omega
 \end{equation*}
-If this $2m$ moment exists and is finite, our covariance function is $2m$ differentiable thus our GP is $m$-times MS differentiable. 
+Ritter et. al. \cite{fourier-moments} found that if this $M_{2m}$ moment exists and is finite, our covariance function is $2m$ differentiable, thus sample functions drawn from our GP are almost-surely $m$-times MS differentiable. 
 
 % \paragraph{Creating isotropic covariance functions}
 
