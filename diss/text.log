@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  7 AUG 2025 23:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  9 AUG 2025 03:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -644,6 +644,13 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                Please verify the spelling and rerun
 (biblatex)                LaTeX afterwards.
 
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                ski
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
 )
 Package biblatex Info: Reference section=0 on input line 36.
 Package biblatex Info: Reference segment=0 on input line 36.
@@ -781,11 +788,11 @@ OT1/cmr/m/n/10 )) =
 [16]
 
 LaTeX Warning: Reference `eq:uni_taylor_a' on page 17 undefined on input line 2
-73.
+74.
 
 
 LaTeX Warning: Reference `eq:multi_taylor_a' on page 17 undefined on input line
- 273.
+ 274.
 
 
 
@@ -793,27 +800,32 @@ LaTeX Warning: Reference `eq:multi_taylor_a' on page 17 undefined on input line
 
 [18]
 
-LaTeX Warning: Citation 'eq:se' on page 19 undefined on input line 383.
+LaTeX Warning: Citation 'eq:se' on page 19 undefined on input line 384.
 
 
 
 [19]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cite' on input line 435.
-
-
-
 [20]
-
-LaTeX Warning: Reference `eq:general_l' on page 21 undefined on input line 494.
-
-
-<./img/gaussian_variances.png, id=481, 827.82pt x 620.865pt>
+<./img/covariance-functions/Gaussian_Smooth_mean.png, id=489, 772.5663pt x 525.
+4029pt>
+File: ./img/covariance-functions/Gaussian_Smooth_mean.png Graphic file (type pn
+g)
+<use ./img/covariance-functions/Gaussian_Smooth_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/Gaussian_Smooth_mean.png  u
+sed on input line 521.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
 
 
 [21]
-<./img/gaussian_draws.png, id=486, 827.82pt x 620.865pt>
+<./img/covariance-functions/Gaussian_Smooth_draws.png, id=499, 772.5663pt x 525
+.4029pt>
+File: ./img/covariance-functions/Gaussian_Smooth_draws.png Graphic file (type p
+ng)
+<use ./img/covariance-functions/Gaussian_Smooth_draws.png>
+Package pdftex.def Info: ./img/covariance-functions/Gaussian_Smooth_draws.png  
+used on input line 530.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
 
 
 [22
@@ -821,37 +833,33 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.536 \end{equation*}
-                     
+l.537 
+       <./img/covariance-functions/Gaussian_Smooth_mean.png>]
+<./img/covariance-functions/Gaussian_Rough_mean.png, id=506, 772.5663pt x 525.4
+029pt>
+File: ./img/covariance-functions/Gaussian_Rough_mean.png Graphic file (type png
+)
+<use ./img/covariance-functions/Gaussian_Rough_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/Gaussian_Rough_mean.png  us
+ed on input line 539.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+
+
+[23
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.536 \end{equation*}
-                     ]
-<./img/ratquad_variances.png, id=494, 827.82pt x 620.865pt>
-
-Underfull \hbox (badness 10000) in paragraph at lines 589--589
-
- []
-
-
-
-[23]
-<./img/ratquad_draws.png, id=501, 827.82pt x 620.865pt>
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 599.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\gamma' on input line 599.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 599.
-
+l.549 
+       <./img/covariance-functions/Gaussian_Smooth_draws.png>]
+<./img/covariance-functions/Gaussian_Rough_draws.png, id=514, 772.5663pt x 525.
+4029pt>
+File: ./img/covariance-functions/Gaussian_Rough_draws.png Graphic file (type pn
+g)
+<use ./img/covariance-functions/Gaussian_Rough_draws.png>
+Package pdftex.def Info: ./img/covariance-functions/Gaussian_Rough_draws.png  u
+sed on input line 551.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
 
 
 [24
@@ -859,97 +867,289 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.603 \end{equation*}
+l.561 \end{equation*}
                      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.603 \end{equation*}
-                     ]
-<./img/powerexp_variances.png, id=509, 827.82pt x 620.865pt>
-<./img/powerexp_draws.png, id=512, 827.82pt x 620.865pt>
+l.561 \end{equation*}
+                      <./img/covariance-functions/Gaussian_Rough_mean.png> <./i
+mg/covariance-functions/Gaussian_Rough_draws.png>]
+
+[25]
+<./img/covariance-functions/RatQuad_Smooth_mean.png, id=526, 772.5663pt x 525.4
+029pt>
+File: ./img/covariance-functions/RatQuad_Smooth_mean.png Graphic file (type png
+)
+<use ./img/covariance-functions/RatQuad_Smooth_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/RatQuad_Smooth_mean.png  us
+ed on input line 615.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+<./img/covariance-functions/RatQuad_Rough_mean.png, id=529, 772.5663pt x 525.40
+29pt>
+File: ./img/covariance-functions/RatQuad_Rough_mean.png Graphic file (type png)
+
+<use ./img/covariance-functions/RatQuad_Rough_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/RatQuad_Rough_mean.png  use
+d on input line 623.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 628--628
+
+ []
 
 
-[25
+
+[26
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.628 \end{equation*}
-                     
+l.630 
+       <./img/covariance-functions/RatQuad_Smooth_mean.png>]
+<./img/covariance-functions/RatQuad_Rough_draws.png, id=535, 772.5663pt x 525.4
+029pt>
+File: ./img/covariance-functions/RatQuad_Rough_draws.png Graphic file (type png
+)
+<use ./img/covariance-functions/RatQuad_Rough_draws.png>
+Package pdftex.def Info: ./img/covariance-functions/RatQuad_Rough_draws.png  us
+ed on input line 632.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 639.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\gamma' on input line 639.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 639.
+
+
+
+[27
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.628 \end{equation*}
-                     ]
-
-LaTeX Warning: Reference `eq:exp_kernel' on page 26 undefined on input line 633
-.
-
-
-LaTeX Warning: Citation 'fast-exp' on page 26 undefined on input line 633.
-
-<./img/exp_variances.png, id=520, 827.82pt x 620.865pt>
-<./img/exp_draws.png, id=521, 827.82pt x 620.865pt>
-
-
-[26
+l.641 \begin{equation*}
+                       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.658 
-      ]
-<./img/matern32_variances.png, id=527, 827.82pt x 620.865pt>
+l.641 \begin{equation*}
+                        <./img/covariance-functions/RatQuad_Rough_mean.png> <./
+img/covariance-functions/RatQuad_Rough_draws.png>]
+<./img/covariance-functions/PowerExp_Smooth_mean.png, id=542, 772.5663pt x 525.
+4029pt>
+File: ./img/covariance-functions/PowerExp_Smooth_mean.png Graphic file (type pn
+g)
+<use ./img/covariance-functions/PowerExp_Smooth_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/PowerExp_Smooth_mean.png  u
+sed on input line 648.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+<./img/covariance-functions/PowerExp_Rough_mean.png, id=545, 772.5663pt x 525.4
+029pt>
+File: ./img/covariance-functions/PowerExp_Rough_mean.png Graphic file (type png
+)
+<use ./img/covariance-functions/PowerExp_Rough_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/PowerExp_Rough_mean.png  us
+ed on input line 656.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
 
 
-[27
+[28
 pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.693 
-      ]
-<./img/matern32_draws.png, id=534, 827.82pt x 620.865pt>
-<./img/matern52_variances.png, id=535, 827.82pt x 620.865pt>
+l.662 
+       <./img/covariance-functions/PowerExp_Smooth_mean.png>]
+<./img/covariance-functions/PowerExp_Rough_draws.png, id=553, 772.5663pt x 525.
+4029pt>
+File: ./img/covariance-functions/PowerExp_Rough_draws.png Graphic file (type pn
+g)
+<use ./img/covariance-functions/PowerExp_Rough_draws.png>
+Package pdftex.def Info: ./img/covariance-functions/PowerExp_Rough_draws.png  u
+sed on input line 664.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
 
 
-[28
+[29
 pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.718 
-      
+l.679 \end{equation*}
+                     
 pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.718 
-      ]
-<./img/matern52_draws.png, id=542, 827.82pt x 620.865pt>
-)
+l.679 \end{equation*}
+                      <./img/covariance-functions/PowerExp_Rough_mean.png> <./i
+mg/covariance-functions/PowerExp_Rough_draws.png>]
 
-[29
+LaTeX Warning: Reference `eq:exp_kernel' on page 30 undefined on input line 680
+.
+
+<./img/covariance-functions/Exponential_Smooth_mean.png, id=562, 772.5663pt x 5
+25.4029pt>
+File: ./img/covariance-functions/Exponential_Smooth_mean.png Graphic file (type
+ png)
+<use ./img/covariance-functions/Exponential_Smooth_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/Exponential_Smooth_mean.png
+  used on input line 694.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+<./img/covariance-functions/Exponential_Smooth_draws.png, id=563, 772.5663pt x 
+525.4029pt>
+File: ./img/covariance-functions/Exponential_Smooth_draws.png Graphic file (typ
+e png)
+<use ./img/covariance-functions/Exponential_Smooth_draws.png>
+Package pdftex.def Info: ./img/covariance-functions/Exponential_Smooth_draws.pn
+g  used on input line 702.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+
+
+[30
 pdfTeX warning (ext4): destination with the same identifier (name{figure.11}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.58 \include{covariance-functions/text}
-                                        
+l.708 
+       <./img/covariance-functions/Exponential_Smooth_mean.png>]
+<./img/covariance-functions/Exponential_Rough_mean.png, id=571, 772.5663pt x 52
+5.4029pt>
+File: ./img/covariance-functions/Exponential_Rough_mean.png Graphic file (type 
+png)
+<use ./img/covariance-functions/Exponential_Rough_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/Exponential_Rough_mean.png 
+ used on input line 710.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+
+
+[31
 pdfTeX warning (ext4): destination with the same identifier (name{figure.12}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
+l.728 \end{equation*}
+                     
+pdfTeX warning (ext4): destination with the same identifier (name{figure.13}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.728 \end{equation*}
+                      <./img/covariance-functions/Exponential_Smooth_draws.png>
+ <./img/covariance-functions/Exponential_Rough_mean.png>]
+<./img/covariance-functions/Matern32_Smooth_mean.png, id=579, 772.5663pt x 525.
+4029pt>
+File: ./img/covariance-functions/Matern32_Smooth_mean.png Graphic file (type pn
+g)
+<use ./img/covariance-functions/Matern32_Smooth_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/Matern32_Smooth_mean.png  u
+sed on input line 745.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+<./img/covariance-functions/Matern32_Smooth_draws.png, id=580, 772.5663pt x 525
+.4029pt>
+File: ./img/covariance-functions/Matern32_Smooth_draws.png Graphic file (type p
+ng)
+<use ./img/covariance-functions/Matern32_Smooth_draws.png>
+Package pdftex.def Info: ./img/covariance-functions/Matern32_Smooth_draws.png  
+used on input line 753.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+
+
+[32
+pdfTeX warning (ext4): destination with the same identifier (name{figure.14}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.759 
+       <./img/covariance-functions/Matern32_Smooth_mean.png>]
+<./img/covariance-functions/Matern32_Rough_draws.png, id=587, 772.5663pt x 525.
+4029pt>
+File: ./img/covariance-functions/Matern32_Rough_draws.png Graphic file (type pn
+g)
+<use ./img/covariance-functions/Matern32_Rough_draws.png>
+Package pdftex.def Info: ./img/covariance-functions/Matern32_Rough_draws.png  u
+sed on input line 761.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+<./img/covariance-functions/Matern52_Smooth_mean.png, id=589, 772.5663pt x 525.
+4029pt>
+File: ./img/covariance-functions/Matern52_Smooth_mean.png Graphic file (type pn
+g)
+<use ./img/covariance-functions/Matern52_Smooth_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/Matern52_Smooth_mean.png  u
+sed on input line 779.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+
+
+[33
+pdfTeX warning (ext4): destination with the same identifier (name{figure.15}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.785 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.16}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.785 
+       <./img/covariance-functions/Matern32_Smooth_draws.png> <./img/covariance
+-functions/Matern32_Rough_draws.png>]
+<./img/covariance-functions/Matern52_Rough_mean.png, id=596, 772.5663pt x 525.4
+029pt>
+File: ./img/covariance-functions/Matern52_Rough_mean.png Graphic file (type png
+)
+<use ./img/covariance-functions/Matern52_Rough_mean.png>
+Package pdftex.def Info: ./img/covariance-functions/Matern52_Rough_mean.png  us
+ed on input line 787.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+<./img/covariance-functions/Matern52_Rough_draws.png, id=597, 772.5663pt x 525.
+4029pt>
+File: ./img/covariance-functions/Matern52_Rough_draws.png Graphic file (type pn
+g)
+<use ./img/covariance-functions/Matern52_Rough_draws.png>
+Package pdftex.def Info: ./img/covariance-functions/Matern52_Rough_draws.png  u
+sed on input line 795.
+(pdftex.def)             Requested size: 386.1761pt x 262.61894pt.
+
+
+[34
+pdfTeX warning (ext4): destination with the same identifier (name{figure.17}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.801 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.18}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.801 
+       <./img/covariance-functions/Matern52_Smooth_mean.png> <./img/covariance-
+functions/Matern52_Rough_mean.png>])
+
+[35
+pdfTeX warning (ext4): destination with the same identifier (name{figure.19}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
 l.58 \include{covariance-functions/text}
-                                        ]
+                                         <./img/covariance-functions/Matern52_R
+ough_draws.png>]
 \openout2 = `computational-issues/text.aux'.
 
  (./computational-issues/text.tex
 
-[30
+[36
 
 
 
@@ -988,7 +1188,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 
-[31]
+[37]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 130.
@@ -998,14 +1198,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 138.
 
 
-LaTeX Warning: Reference `jeq:joint_prior' on page 32 undefined on input line 1
+LaTeX Warning: Reference `jeq:joint_prior' on page 38 undefined on input line 1
 70.
 
 
 
-[32]
+[38]
 
-[33]
+[39]
 Overfull \hbox (9.2629pt too wide) in paragraph at lines 304--306
 \OT1/cmr/m/n/10 li-hood that dom-i-nate com-pu-ta-tional com-plex-ity are the $
 \OML/cmm/m/it/10 y[]K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X; X[]\OT1/cmr/m/n/10 )[
@@ -1018,95 +1218,56 @@ L/cmm/m/it/10 y$
 
 
 
-[34]
-
-LaTeX Warning: Citation 'fitc-vfe-unifier' on page 35 undefined on input line 3
-25.
-
-
-LaTeX Warning: Citation 'fitc-vfe-unifier' on page 35 undefined on input line 3
-26.
-
-
-LaTeX Warning: Citation 'adam' on page 35 undefined on input line 371.
-
+[40]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 393.
 
 
-LaTeX Warning: Citation 'fast-exp' on page 35 undefined on input line 396.
+
+[41]
+
+LaTeX Warning: Reference `eq:fourier' on page 42 undefined on input line 412.
 
 
-
-[35]
-
-LaTeX Warning: Citation 'general-exp' on page 36 undefined on input line 398.
-
-
-LaTeX Warning: Citation 'general-exp' on page 36 undefined on input line 402.
-
-
-LaTeX Warning: Reference `eq:fourier' on page 36 undefined on input line 412.
-
-
-LaTeX Warning: Citation 'general-exp' on page 36 undefined on input line 420.
-
-
-LaTeX Warning: Reference `eq:spectral_density' on page 36 undefined on input li
+LaTeX Warning: Reference `eq:spectral_density' on page 42 undefined on input li
 ne 423.
 
 
-LaTeX Warning: Citation 'sho-spectral-density' on page 36 undefined on input li
-ne 432.
+
+[42]
+
+LaTeX Warning: Reference `eq:cholesky' on page 43 undefined on input line 475.
 
 
-
-[36]
-
-LaTeX Warning: Citation 'sho-noise-astro' on page 37 undefined on input line 45
-6.
-
-
-LaTeX Warning: Reference `eq:cholesky' on page 37 undefined on input line 475.
-
-
-LaTeX Warning: Reference `eq:semiseperable' on page 37 undefined on input line 
+LaTeX Warning: Reference `eq:semiseperable' on page 43 undefined on input line 
 506.
 
 
-LaTeX Warning: Reference `eq:cholesky' on page 37 undefined on input line 509.
+LaTeX Warning: Reference `eq:cholesky' on page 43 undefined on input line 509.
 
 
 
-[37])
+[43])
 
-[38]
+[44]
 \openout2 = `application/text.aux'.
 
  (./application/text.tex
 
-LaTeX Warning: Citation 'galaxy-spectra-101' on page 39 undefined on input line
- 19.
-
-
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 19.
-
-
-LaTeX Warning: Citation 'galaxy-gp-noise' on page 39 undefined on input line 21
-.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\cite' on input line 21.
 
 
-LaTeX Warning: Citation 'ski' on page 39 undefined on input line 30.
+LaTeX Warning: Citation 'ski' on page 45 undefined on input line 30.
 
 )
 
-[39
+[45
 
 
 
@@ -1115,11 +1276,18 @@ LaTeX Warning: Citation 'ski' on page 39 undefined on input line 30.
 
  (./conclusion/text.tex)
 
-[40
+[46
 
 
 
 ]
+! Undefined control sequence.
+<argument> \apj 
+                
+l.71 
+     
+? 
+
 Overfull \hbox (88.11728pt too wide) in paragraph at lines 71--71
 []\OT1/cmr/m/n/10 Collin Er-ick-son. \OT1/cmr/m/it/10 GauPro: Gaus-sian Pro-ces
 s Fit-ting\OT1/cmr/m/n/10 . R pack-age ver-sion 0.2.15.9000, com-mit 6c7a7a8055
@@ -1130,16 +1298,24 @@ s Fit-ting\OT1/cmr/m/n/10 . R pack-age ver-sion 0.2.15.9000, com-mit 6c7a7a8055
 Package biblatex Warning: Month out of range
 (biblatex)                at entry 'random-subsampling' on input line 70.
 
+! Misplaced alignment tab character &.
+<argument> A&
+             A
+l.71 
+     
+? 
 
 Package biblatex Warning: Month out of range
 (biblatex)                at entry 'vfe' on input line 70.
 
 
 
-[41
+[47
 
 
-] (./text.aux (./abstract/text.aux) (./intro/text.aux)
+]
+
+[48] (./text.aux (./abstract/text.aux) (./intro/text.aux)
 (./defining-gp/text.aux) (./covariance-functions/text.aux)
 (./computational-issues/text.aux) (./application/text.aux)
 (./conclusion/text.aux))
@@ -1155,24 +1331,19 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `text.out' has not changed.
-(rerunfilecheck)             Checksum: CCDF0998A02BA450C1BB162E923ED9C3;11317.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                text
-(biblatex)                and rerun LaTeX afterwards.
-
+(rerunfilecheck)             Checksum: 56D809C455E2EB8C1147162044CC4A15;11284.
 Package logreq Info: Writing requests to 'text.run.xml'.
 \openout1 = `text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18500 strings out of 473190
- 321731 string characters out of 5719979
- 1167818 words of memory out of 5000000
- 41345 multiletter control sequences out of 15000+600000
+ 18644 strings out of 473190
+ 330452 string characters out of 5719979
+ 1169265 words of memory out of 5000000
+ 41463 multiletter control sequences out of 15000+600000
  568469 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,81p,1658b,1358s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,81p,1658b,1475s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2025/texmf-d
@@ -1190,10 +1361,10 @@ s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
 /texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on text.pdf (41 pages, 414596 bytes).
+Output written on text.pdf (48 pages, 8593726 bytes).
 PDF statistics:
- 804 PDF objects out of 1000 (max. 8388607)
- 701 compressed objects within 8 object streams
- 175 named destinations out of 1000 (max. 500000)
- 493 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 908 PDF objects out of 1000 (max. 8388607)
+ 787 compressed objects within 8 object streams
+ 201 named destinations out of 1000 (max. 500000)
+ 528 words of extra memory for PDF output out of 10000 (max. 10000000)
 

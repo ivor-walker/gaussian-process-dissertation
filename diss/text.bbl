@@ -19,6 +19,50 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
+    \entry{sho-spectral-density}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=b8c757edcc065961b2f738f28145f17f}{%
+           family={{Anderson}},
+           familyi={A\bibinitperiod},
+           given={Edwin\bibnamedelima R.},
+           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=b543ceadb8e0e6450f63ba8d33f1d5f0}{%
+           family={{Duvall}},
+           familyi={D\bibinitperiod},
+           given={Thomas\bibnamedelima L.},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+           suffix={Jr.},
+           suffixi={J\bibinitperiod}}}%
+        {{hash=7a80c27ad8af8e5c19e56986d0e76163}{%
+           family={{Jefferies}},
+           familyi={J\bibinitperiod},
+           given={Stuart\bibnamedelima M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{f2027c91d5cdc6fadfffddcb57577c43}
+      \strng{fullhash}{f2027c91d5cdc6fadfffddcb57577c43}
+      \strng{fullhashraw}{f2027c91d5cdc6fadfffddcb57577c43}
+      \strng{bibnamehash}{f2027c91d5cdc6fadfffddcb57577c43}
+      \strng{authorbibnamehash}{f2027c91d5cdc6fadfffddcb57577c43}
+      \strng{authornamehash}{f2027c91d5cdc6fadfffddcb57577c43}
+      \strng{authorfullhash}{f2027c91d5cdc6fadfffddcb57577c43}
+      \strng{authorfullhashraw}{f2027c91d5cdc6fadfffddcb57577c43}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{\apj}
+      \field{month}{12}
+      \field{title}{{Modeling of Solar Oscillation Power Spectra}}
+      \field{volume}{364}
+      \field{year}{1990}
+      \field{pages}{699}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1086/169452
+      \endverb
+      \keyw{Power Spectra,Solar Oscillations,Spectrum Analysis,Least Squares Method,Maximum Likelihood Estimates,Parameter Identification,Probability Density Functions,Solar Physics,NUMERICAL METHODS,SUN: OSCILLATIONS}
+    \endentry
     \entry{nystrom}{book}{}{}
       \name{author}{1}{}{%
         {{hash=7bff1fd2d94501cc77ba13cf03869303}{%
@@ -99,6 +143,50 @@
       \endverb
       \verb{url}
       \verb https://arxiv.org/abs/1606.04820
+      \endverb
+    \endentry
+    \entry{fitc-vfe-unifier}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=e8b09e51cd1b6ebf171f830c09ae39ef}{%
+           family={Bui},
+           familyi={B\bibinitperiod},
+           given={Thang\bibnamedelima D.},
+           giveni={T\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=9700d242dc855be7096161760c540f77}{%
+           family={Yan},
+           familyi={Y\bibinitperiod},
+           given={Josiah},
+           giveni={J\bibinitperiod}}}%
+        {{hash=50bb1da31125197be3166f9bee1ed0ef}{%
+           family={Turner},
+           familyi={T\bibinitperiod},
+           given={Richard\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{321ccbc5971b1b55627712094212acc1}
+      \strng{fullhash}{321ccbc5971b1b55627712094212acc1}
+      \strng{fullhashraw}{321ccbc5971b1b55627712094212acc1}
+      \strng{bibnamehash}{321ccbc5971b1b55627712094212acc1}
+      \strng{authorbibnamehash}{321ccbc5971b1b55627712094212acc1}
+      \strng{authornamehash}{321ccbc5971b1b55627712094212acc1}
+      \strng{authorfullhash}{321ccbc5971b1b55627712094212acc1}
+      \strng{authorfullhashraw}{321ccbc5971b1b55627712094212acc1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{104}
+      \field{title}{A Unifying Framework for Gaussian Process Pseudo-Point Approximations using Power Expectation Propagation}
+      \field{volume}{18}
+      \field{year}{2017}
+      \field{pages}{1\bibrangedash 72}
+      \range{pages}{72}
+      \verb{urlraw}
+      \verb http://jmlr.org/papers/v18/16-603.html
+      \endverb
+      \verb{url}
+      \verb http://jmlr.org/papers/v18/16-603.html
       \endverb
     \endentry
     \entry{gaupro}{manual}{}{}
@@ -379,6 +467,64 @@
       \verb https://doi.org/10.1109/MIS.2022.3169036
       \endverb
     \endentry
+    \entry{sho-noise-astro}{article}{}{}
+      \name{author}{9}{}{%
+        {{hash=cc1e58bd54abb7844818bdd9bd012e3f}{%
+           family={{Kallinger, T.}},
+           familyi={K\bibinitperiod}}}%
+        {{hash=abd5287baab35df14a3d30a1aa98bc35}{%
+           family={{De Ridder, J.}},
+           familyi={D\bibinitperiod}}}%
+        {{hash=ff738520eaabea228e2c7d7dab28941a}{%
+           family={{Hekker, S.}},
+           familyi={H\bibinitperiod}}}%
+        {{hash=fe186b9d63d09262973de9bfb267c29d}{%
+           family={{Mathur, S.}},
+           familyi={M\bibinitperiod}}}%
+        {{hash=f4217fa45e74ff1a627df9276afa5ed6}{%
+           family={{Mosser, B.}},
+           familyi={M\bibinitperiod}}}%
+        {{hash=501b1c1367298b74156b27f2c41842f7}{%
+           family={{Gruberbauer, M.}},
+           familyi={G\bibinitperiod}}}%
+        {{hash=ef3cf07689cf2bbfd662e06f58b3fc4b}{%
+           family={{García, R. A.}},
+           familyi={G\bibinitperiod}}}%
+        {{hash=1c3c2d35532b01a1cdc4487b978b8b8c}{%
+           family={{Karoff, C.}},
+           familyi={K\bibinitperiod}}}%
+        {{hash=6c752ab3bdd41574928727a1852ebade}{%
+           family={{Ballot, J.}},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{54d6861751c1f7d918ed56ea79adb659}
+      \strng{fullhash}{ff996a97e89a05e786f8c87648f5ae46}
+      \strng{fullhashraw}{ff996a97e89a05e786f8c87648f5ae46}
+      \strng{bibnamehash}{54d6861751c1f7d918ed56ea79adb659}
+      \strng{authorbibnamehash}{54d6861751c1f7d918ed56ea79adb659}
+      \strng{authornamehash}{54d6861751c1f7d918ed56ea79adb659}
+      \strng{authorfullhash}{ff996a97e89a05e786f8c87648f5ae46}
+      \strng{authorfullhashraw}{ff996a97e89a05e786f8c87648f5ae46}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{A&A}
+      \field{title}{The connection between stellar granulation and oscillation as seen by the Kepler mission}
+      \field{volume}{570}
+      \field{year}{2014}
+      \field{pages}{A41}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1051/0004-6361/201424313
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1051/0004-6361/201424313
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1051/0004-6361/201424313
+      \endverb
+    \endentry
     \entry{matching-pursuit}{inproceedings}{}{}
       \name{author}{2}{}{%
         {{hash=e94568a181aa1601e890ce9c26aa97e8}{%
@@ -437,6 +583,134 @@
       \endverb
       \verb{url}
       \verb https://proceedings.neurips.cc/paper_files/paper/2005/file/1ec3e7af38e33222bde173fecaef6bfa-Paper.pdf
+      \endverb
+    \endentry
+    \entry{general-exp}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=fb8355b099175e6844d723cc627c3e82}{%
+           family={Kelly},
+           familyi={K\bibinitperiod},
+           given={Brandon\bibnamedelima C.},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=27826d82d55093966e74d28a1dd56304}{%
+           family={Sobolewska},
+           familyi={S\bibinitperiod},
+           given={Małgorzata},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f3b36176199e9af70ef4a53d4c534c7e}{%
+           family={Siemiginowska},
+           familyi={S\bibinitperiod},
+           given={Aneta},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Astronomical Society}%
+      }
+      \strng{namehash}{a12f9881d04605bb08599a242075716b}
+      \strng{fullhash}{a12f9881d04605bb08599a242075716b}
+      \strng{fullhashraw}{a12f9881d04605bb08599a242075716b}
+      \strng{bibnamehash}{a12f9881d04605bb08599a242075716b}
+      \strng{authorbibnamehash}{a12f9881d04605bb08599a242075716b}
+      \strng{authornamehash}{a12f9881d04605bb08599a242075716b}
+      \strng{authorfullhash}{a12f9881d04605bb08599a242075716b}
+      \strng{authorfullhashraw}{a12f9881d04605bb08599a242075716b}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1538-4357}
+      \field{journaltitle}{The Astrophysical Journal}
+      \field{month}{3}
+      \field{number}{1}
+      \field{title}{A STOCHASTIC MODEL FOR THE LUMINOSITY FLUCTUATIONS OF ACCRETING BLACK HOLES}
+      \field{volume}{730}
+      \field{year}{2011}
+      \field{pages}{52}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1088/0004-637x/730/1/52
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1088/0004-637X/730/1/52
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1088/0004-637X/730/1/52
+      \endverb
+    \endentry
+    \entry{adam}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=b6fbd171848aad4edf3925543f1f1522}{%
+           family={Kingma},
+           familyi={K\bibinitperiod},
+           given={Diederik\bibnamedelima P.},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=8aa66e8231cc2fdbe67aa4f18ca970c6}{%
+           family={Ba},
+           familyi={B\bibinitperiod},
+           given={Jimmy},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{fullhash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{fullhashraw}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{bibnamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorbibnamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authornamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorfullhash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorfullhashraw}{a09df9f123146b8e2c7f1134c9496932}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{Adam: A Method for Stochastic Optimization}
+      \field{year}{2017}
+      \verb{eprint}
+      \verb 1412.6980
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1412.6980
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1412.6980
+      \endverb
+    \endentry
+    \entry{galaxy-gp-noise}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{hash=42ab25f1d204f06789e9c26ef220606d}{%
+           family={Leung},
+           familyi={L\bibinitperiod},
+           given={Ho-Hin},
+           giveni={H\bibinithyphendelim H\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of St Andrews}%
+      }
+      \strng{namehash}{42ab25f1d204f06789e9c26ef220606d}
+      \strng{fullhash}{42ab25f1d204f06789e9c26ef220606d}
+      \strng{fullhashraw}{42ab25f1d204f06789e9c26ef220606d}
+      \strng{bibnamehash}{42ab25f1d204f06789e9c26ef220606d}
+      \strng{authorbibnamehash}{42ab25f1d204f06789e9c26ef220606d}
+      \strng{authornamehash}{42ab25f1d204f06789e9c26ef220606d}
+      \strng{authorfullhash}{42ab25f1d204f06789e9c26ef220606d}
+      \strng{authorfullhashraw}{42ab25f1d204f06789e9c26ef220606d}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{PhD thesis}
+      \field{title}{Unveiling the evolutionary history of local post-starburst galaxies through careful Bayesian modelling of their spectra}
+      \field{type}{phdthesis}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.17630/sta/1254
+      \endverb
+      \verb{urlraw}
+      \verb https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/31630/Thesis-Ho-Hin-Leung-complete-version.pdf?sequence=5&isAllowed=y
+      \endverb
+      \verb{url}
+      \verb https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/31630/Thesis-Ho-Hin-Leung-complete-version.pdf?sequence=5&isAllowed=y
       \endverb
     \endentry
     \entry{big-data}{article}{}{}
@@ -571,6 +845,52 @@
       \verb 10.1214/aoap/1177004776
       \endverb
     \endentry
+    \entry{fast-exp}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=a8b83f4134b8420d321b4347ac783e11}{%
+           family={Rybicki},
+           familyi={R\bibinitperiod},
+           given={George\bibnamedelima B.},
+           giveni={G\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=0eab1ccd4d6c57a2ff6794a4724ccafb}{%
+           family={Press},
+           familyi={P\bibinitperiod},
+           given={William\bibnamedelima H.},
+           giveni={W\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{515afdabfc9ca3ed31038e7c71cbc22a}
+      \strng{fullhash}{515afdabfc9ca3ed31038e7c71cbc22a}
+      \strng{fullhashraw}{515afdabfc9ca3ed31038e7c71cbc22a}
+      \strng{bibnamehash}{515afdabfc9ca3ed31038e7c71cbc22a}
+      \strng{authorbibnamehash}{515afdabfc9ca3ed31038e7c71cbc22a}
+      \strng{authornamehash}{515afdabfc9ca3ed31038e7c71cbc22a}
+      \strng{authorfullhash}{515afdabfc9ca3ed31038e7c71cbc22a}
+      \strng{authorfullhashraw}{515afdabfc9ca3ed31038e7c71cbc22a}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{7}
+      \field{journaltitle}{Phys. Rev. Lett.}
+      \field{month}{2}
+      \field{title}{Class of Fast Methods for Processing Irregularly Sampled or Otherwise Inhomogeneous One-Dimensional Data}
+      \field{volume}{74}
+      \field{year}{1995}
+      \field{pages}{1060\bibrangedash 1063}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.74.1060
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.74.1060
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.74.1060
+      \endverb
+    \endentry
     \entry{fitc}{inproceedings}{}{}
       \name{author}{2}{}{%
         {{hash=c126647ce6dd6d895d26fdf637d62b58}{%
@@ -694,8 +1014,79 @@
       \verb https://proceedings.mlr.press/v5/titsias09a.html
       \endverb
     \endentry
+    \entry{orny}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=3cb5f635974bd39fd8858d930a97e4c8}{%
+           family={Uhlenbeck},
+           familyi={U\bibinitperiod},
+           given={G.\bibnamedelimi E.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=6aa3305d0ced76439870cb07bc3c48c6}{%
+           family={Ornstein},
+           familyi={O\bibinitperiod},
+           given={L.\bibnamedelimi S.},
+           giveni={L\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{160392c4717bd1ae477c777e26beeebc}
+      \strng{fullhash}{160392c4717bd1ae477c777e26beeebc}
+      \strng{fullhashraw}{160392c4717bd1ae477c777e26beeebc}
+      \strng{bibnamehash}{160392c4717bd1ae477c777e26beeebc}
+      \strng{authorbibnamehash}{160392c4717bd1ae477c777e26beeebc}
+      \strng{authornamehash}{160392c4717bd1ae477c777e26beeebc}
+      \strng{authorfullhash}{160392c4717bd1ae477c777e26beeebc}
+      \strng{authorfullhashraw}{160392c4717bd1ae477c777e26beeebc}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{5}
+      \field{journaltitle}{Phys. Rev.}
+      \field{month}{9}
+      \field{title}{On the Theory of the Brownian Motion}
+      \field{volume}{36}
+      \field{year}{1930}
+      \field{pages}{823\bibrangedash 841}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1103/PhysRev.36.823
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.36.823
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.36.823
+      \endverb
+    \endentry
+    \entry{galaxy-spectra-101}{unpublished}{}{}
+      \name{author}{1}{}{%
+        {{hash=713363587cf9bd2a8a319e22d68d4123}{%
+           family={Wild},
+           familyi={W\bibinitperiod},
+           given={Vivienne},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{713363587cf9bd2a8a319e22d68d4123}
+      \strng{fullhash}{713363587cf9bd2a8a319e22d68d4123}
+      \strng{fullhashraw}{713363587cf9bd2a8a319e22d68d4123}
+      \strng{bibnamehash}{713363587cf9bd2a8a319e22d68d4123}
+      \strng{authorbibnamehash}{713363587cf9bd2a8a319e22d68d4123}
+      \strng{authornamehash}{713363587cf9bd2a8a319e22d68d4123}
+      \strng{authorfullhash}{713363587cf9bd2a8a319e22d68d4123}
+      \strng{authorfullhashraw}{713363587cf9bd2a8a319e22d68d4123}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Unpublished manuscript, created 4 July 2025}
+      \field{title}{Fitting Galaxy Spectra 101}
+      \field{year}{2025}
+    \endentry
   \enddatalist
   \missing{eq:se}
+  \missing{ski}
 \endrefsection
 \endinput
 
