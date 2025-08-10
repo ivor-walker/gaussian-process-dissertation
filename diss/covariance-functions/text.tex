@@ -521,19 +521,20 @@ We can absorb the $l\sqrt{\pi}$ into the $\sigma_p^2$ term to produce our famili
     \includegraphics[height=0.5\textwidth]{covariance-functions/Gaussian_Smooth_mean.png}
     \caption{
         Plot of a GP using SE applied to a smooth sin wave $y = \sin(2 * pi * x) + \epsilon$, $\epsilon \sim N(0, 0.05)$, fitted using the R package GauPro \cite{gaupro}. \\
-        The noiseless sin-wave is in blue and some sample datapoints taken from this function with noise are in black. The black line represents the expected function from the Gaussian process. The green line represents the 95\% confidence interval around the predictive distribution without the $\sigma^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 95\% confidence interval with $\sigma^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$. \\
-        For this extremely smooth function with low noise, SE nearly perfectly captures the original data-generating function. The variances fall as they approach datapoints and rise as they move away from them. Defining our point of interest as $x_*$, as $x_*$ approaches a training datapoint $x$, $x - x*$ approaches zero and the value of our SE kernel approaches one, and the predictive distribution at $x_*$ collapses close to our training data $N(Y \sigma_n^2I, \sigma_n^2I)$. This is known as the interpolation property \cite{gp-ml} and is valid for all stationary covariance functions we cover.
+        The noiseless sin-wave is in blue and some sample datapoints taken from this function with noise are in black. The black line represents the expected function from the Gaussian process. The green line represents the 95\% confidence interval around the predictive distribution without the $\sigma^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 95\% confidence interval with $\sigma^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$.
     }
 \end{figure}
+For this extremely smooth function with low noise, SE nearly perfectly captures the original data-generating function. The variances fall as they approach datapoints and rise as they move away from them. Defining our point of interest as $x_*$, as $x_*$ approaches a training datapoint $x$, $x - x*$ approaches zero and the value of our SE kernel approaches one, and the predictive distribution at $x_*$ collapses close to our training data $N(Y \sigma_n^2I, \sigma_n^2I)$. This is known as the interpolation property \cite{gp-ml} and is valid for all stationary covariance functions we cover.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Gaussian_Smooth_draws.png}
     \caption{
         Plots of some sample functions drawn from a GP trained on the smooth dataset using SE. The blue and black lines are, as before, the noiseless data-generating function and the mean function drawn from the GP respectively. The green lines are 20 functions drawn from the GP - if we superimposed these draws onto the previous GP of means and variances, we would expect approximately 95\% of these function draws to be contained within the red variance lines. \\
-        Although we can technically draw infinite sample functions from any GP, these function draws all look very similar. This is because very few functions exist that satisfy SE's infinite smoothness and can exist entirely within this variance envelope, and they inevitably share many properties. \\
-        These constraints also affect the sample functions' ability to obey the interpolation property and require a trade-off between smoothness and fidelity. For example, there are no sample functions that pass through the fourth point at $(0.21, 0.86)$ because infinitely smooth functions are too rigid to pass through this point and the next two points at $(0.29, 1)$ and $(0.36, 0.81)$. This violation of the interpolation property is a consequence of the noise term $\epsilon \sim N(0, 0.05)$ in the data-generating function. If the noise term was zero and the data-generating function was infinitely differentiable, like this one, then the GP and all sample paths would pass through all datapoints.
-    }
+            }
 \end{figure}
+Although we can technically draw infinite sample functions from any GP, these function draws all look very similar. This is because very few functions exist that satisfy SE's infinite smoothness and can exist entirely within this variance envelope, and they inevitably share many properties.
+
+These constraints also affect the sample functions' ability to obey the interpolation property and require a trade-off between smoothness and fidelity. For example, there are no sample functions that pass through the fourth point at $(0.21, 0.86)$ because infinitely smooth functions are too rigid to pass through this point and the next two points at $(0.29, 1)$ and $(0.36, 0.81)$. This violation of the interpolation property is a consequence of the noise term $\epsilon \sim N(0, 0.05)$ in the data-generating function. If the noise term was zero and the data-generating function was infinitely differentiable, like this one, then the GP and all sample paths would pass through all datapoints.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Gaussian_Rough_mean.png}
@@ -542,17 +543,17 @@ We can absorb the $l\sqrt{\pi}$ into the $\sigma_p^2$ term to produce our famili
                 x < 0.3 & x \\
                 0.3 \leq x < 0.7 & 1 - x \\
                 x \geq 0.7 & x - 0.5
-        \end{cases}$\\
-        SE performed worse on this rougher data as its extreme smoothness is unable to adapt well. The length scale has decreased (0.55, compared to 0.76 using smooth data), which reduces the rate of variance decay with frequency \ref{eq:se-sd} and increases the oscillatory behaviour of the GP sample functions whilst still producing infinitely smooth functions.
+        \end{cases}$
     }
 \end{figure}
+SE performed worse on this rougher data as its extreme smoothness is unable to adapt well. The length scale has decreased (0.55, compared to 0.76 using smooth data), which reduces the rate of variance decay with frequency \ref{eq:se-sd} and increases the oscillatory behaviour of the GP sample functions whilst still producing infinitely smooth functions.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Gaussian_Rough_draws.png}
-    \caption{Plot of some sample functions drawn from a GP as before, trained on the rough dataset using SE. \\ 
-        These functions are much more varied than those drawn from the smooth dataset, as SE is unable to adapt to the rougher data. Some draws have become more oscillatory due to the decrease in length scale, but all draws are still infinitely smooth.
+    \caption{Plot of some sample functions drawn from a GP as before, trained on the rough dataset using SE.
     }
 \end{figure}
+These functions are much more varied than those drawn from the smooth dataset, as SE is unable to adapt to the rougher data. Some draws have become more oscillatory due to the decrease in length scale, but all draws are still infinitely smooth.
 
 \subsubsection{Rational quadratic (RQ)}
 RQ controls smoothness by using a mixture of different length scales to capture multiple trends in the data at different frequencies. 
@@ -614,27 +615,28 @@ RQ is infinitely MS differentiable, so produces infinitely smooth functions no m
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/RatQuad_Smooth_mean.png}
     \caption{
-        Plot of the expected function draw and variances as before, using RQ fitted to the smooth sin wave dataset. \\
-        The GauPro package \cite{gaupro} in R used to fit these GPs has chosen an extremely high $\alpha = 100$ via MLE because of the smoothness of the data-generating function. This high $\alpha$ means we are very likely to choose one length scale $l$ and thus RQ is nearly indistinguishable from SE.
+        Plot of the expected function draw and variances as before, using RQ fitted to the smooth sin wave dataset.
     }
 \end{figure}
+The GauPro package \cite{gaupro} in R used to fit these GPs has chosen an extremely high $\alpha = 100$ via MLE because of the smoothness of the data-generating function. This high $\alpha$ means we are very likely to choose one length scale $l$ and thus RQ is nearly indistinguishable from SE.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/RatQuad_Rough_mean.png}
     \caption{
         Plot of the expected function draw and variances as before, using RQ fitted to the rougher dataset. \\
-        The rougher dataset has driven $\alpha$ to be much lower than in the smooth dataset, at $\alpha = 1.04$, and RQ becomes a true heavy-tailed mixture distribution of SEs over length scales. \\
-        The green variance lines disappear because the expected sample path passes through all datapoints, so any new training point is expected to be exactly equal to the expected function draw at that point, and the variance is zero. If the data-generating function became too rough or we used a more inflexible kernel like SE, we would need these sample variance lines to reflect how far from the expected function draw we expect the sample functions to be. \\ 
     }
 \end{figure}
+The rougher dataset has driven $\alpha$ to be much lower than in the smooth dataset, at $\alpha = 1.04$, and RQ becomes a true heavy-tailed mixture distribution of SEs over length scales.
+
+The green variance lines disappear because the expected sample path passes through all datapoints, so any new training point is expected to be exactly equal to the expected function draw at that point, and the variance is zero. If the data-generating function became too rough or we used a more inflexible kernel like SE, we would need these sample variance lines to reflect how far from the expected function draw we expect the sample functions to be. 
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/RatQuad_Rough_draws.png}
     \caption{
-        Plots of some sample functions drawn from a GP as before, trained on the rough dataset using RQ. \\
-        Each function draw expresses a different combination of high and low length scale components drawn from this fixed inverse-gamma distribution, and exhibit different behaviours at different frequencies. This is especially visible as the difference between function draws widens between data points - some function draws oscillate less than others as they are capturing a longer-term, low-frequency trend in the data. These more flexible functions are enough for the expected function draw to pass through all datapoints and satisfy the interpolation property.
+        Plots of some sample functions drawn from a GP as before, trained on the rough dataset using RQ.
     }
 \end{figure}
+Each function draw expresses a different combination of high and low length scale components drawn from this fixed inverse-gamma distribution, and exhibit different behaviours at different frequencies. This is especially visible as the difference between function draws widens between data points - some function draws oscillate less than others as they are capturing a longer-term, low-frequency trend in the data. These more flexible functions are enough for the expected function draw to pass through all datapoints and satisfy the interpolation property.
 
 \subsubsection{$\gamma$-exponential and exponential}
 RQ controlled smoothness by using a mixture of different length scales to capture multiple trends in the data at different frequencies. Another approach to controlling smoothness involves introducing a differentiability parameter $\gamma$ to control how differentiable the covariance function is and thus how smooth the sample functions are:
@@ -647,26 +649,27 @@ $\gamma = 2$ produces SE for maximal smoothness. For all other values of $\gamma
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/PowerExp_Smooth_mean.png}
     \caption{
-        Plot of the expected function draw and variances as before, using $\gamma$-exponential fitted to the smooth sin wave dataset. \\
-        The GauPro package \cite{gaupro} in R has chosen $\gamma = 2$ via MLE, which produces SE. This is because the smoothness of the data-generating function is so high that no other covariance function can capture it.
+        Plot of the expected function draw and variances as before, using $\gamma$-exponential fitted to the smooth sin wave dataset. \\ 
     }
 \end{figure}
+The GauPro package \cite{gaupro} in R has chosen $\gamma = 2$ via MLE, which produces SE. This is because the smoothness of the data-generating function is so high that no other covariance function can capture it.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/PowerExp_Rough_mean.png}
     \caption{
         Plot of the expected function draw and variances as before, using $\gamma$-exponential fitted to the rougher dataset. \\
-        $\gamma = 1.51$ has been selected by GauPro \cite{gaupro} via MLE, which produces a covariance function that is not differentiable at $|x - x'| = 0$. This is because the roughness of the data-generating function is too high for SE to capture, and the $\gamma$-exponential covariance function is able to adapt to this roughness. \\
-        These variances appear not to collapse to zero at the training points. In fact, this is a graphical issue caused by the very rough functions that the $\gamma$-exponential covariance function produces. Unlike the functions drawn from an RQ-powered GP that remain close to the training points for some time before and after the training points, functions drawn from this distribution only remain close to the training points for a very short distance before diverging - a distance that is too small to be visible in this plot.     }
+    }
 \end{figure}
+$\gamma = 1.51$ has been selected by GauPro \cite{gaupro} via MLE, which produces a covariance function that is not differentiable at $|x - x'| = 0$. This is because the roughness of the data-generating function is too high for SE to capture, and the $\gamma$-exponential covariance function is able to adapt to this roughness. \\
+        These variances appear not to collapse to zero at the training points. In fact, this is a graphical issue caused by the very rough functions that the $\gamma$-exponential covariance function produces. Unlike the functions drawn from an RQ-powered GP that remain close to the training points for some time before and after the training points, functions drawn from this distribution only remain close to the training points for a very short distance before diverging - a distance that is too small to be visible in this plot.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/PowerExp_Rough_draws.png}
     \caption{
         Plots of some sample functions drawn from a GP as before, trained on the rough dataset using $\gamma$-exponential. \\
-        These function draws are much rougher than those drawn from RQ or SE thanks to their non-differentiability.
     }
 \end{figure}
+These function draws are much rougher than those drawn from RQ or SE thanks to their non-differentiability.
 
 \paragraph{Exponential covariance function}
 $\gamma = 1$ produces the exponential covariance function:
@@ -694,25 +697,25 @@ Restating:
     \includegraphics[height=0.5\textwidth]{covariance-functions/Exponential_Smooth_mean.png}
     \caption{
         Plot of the expected function draw and variances as before, using exponential fitted to the smooth sin wave dataset. \\
-        The expected function draw is practically a straight line connecting each data point, as the exponential covariance function is not smooth enough to capture the sin wave. The graphical issue observed in $\gamma$-exponential is more pronounced here, with the variances barely approaching zero as $x_*$ approach a training point.
     }
 \end{figure}
+The expected function draw is practically a straight line connecting each data point, as the exponential covariance function is not smooth enough to capture the sin wave. The graphical issue observed in $\gamma$-exponential is more pronounced here, with the variances barely approaching zero as $x_*$ approach a training point.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Exponential_Smooth_draws.png}
     \caption{
         Plots of some sample functions drawn from a GP as before, trained on the smooth dataset using exponential. \\
-        These function draws are effectively white noise that collapses at training points.
     }
 \end{figure}
+These function draws are effectively white noise that collapses at training points.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Exponential_Rough_mean.png}
     \caption{
-        Plot of the expected function draw and variances as before, using exponential fitted to the rougher dataset. \\
-        The behaviour of GPs using the exponential covariance function is invariant to the data it is trained on - as with the smooth dataset, the expected function draw is a straight line connecting each data point, and the variances barely approach zero as $x_*$ approaches a training point. 
+        Plot of the expected function draw and variances as before, using exponential fitted to the rougher dataset.
     }
 \end{figure}
+The behaviour of GPs using the exponential covariance function is invariant to the data it is trained on - as with the smooth dataset, the expected function draw is a straight line connecting each data point, and the variances barely approach zero as $x_*$ approaches a training point. 
 % Exponential: Equivalent to Matern 1/2. Assumes no differentiability. \cite{gaupro}
 
 
@@ -744,25 +747,26 @@ $\nu = 3/2$ produces the following covariance function:
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Matern32_Smooth_mean.png}
     \caption{
-        Plot of the expected function draw and variances as before, using Matern 3/2 fitted to the smooth sin wave dataset. \\
-        This GP's expected function draw goes directly to the training points, similar to the behaviour of the exponential covariance function. Unlike the exponential covariance function, the one-time MS differentiability constraint on the sample functions restricts the sample functions from resembling white noise, which produces narrower variances closer to the expected draw.
+        Plot of the expected function draw and variances as before, using Matern 3/2 fitted to the smooth sin wave dataset.
     }
 \end{figure}
+This GP's expected function draw goes directly to the training points, similar to the behaviour of the exponential covariance function. Unlike the exponential covariance function, the one-time MS differentiability constraint on the sample functions restricts the sample functions from resembling white noise, which produces narrower variances closer to the expected draw.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Matern32_Smooth_draws.png}
     \caption{
-        Plots of some sample functions drawn from a GP as before, trained on the smooth dataset using Matern 3/2. \\
-        These function draws are much smoother than those drawn from the exponential covariance function.
+        Plots of some sample functions drawn from a GP as before, trained on the smooth dataset using Matern 3/2.
     }
 \end{figure}
+These function draws are much smoother than those drawn from the exponential covariance function.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Matern32_Rough_draws.png}
     \caption{
-        Plots of some sample functions drawn from a GP as before, trained on the rough dataset using Matern 3/2. \\
-        Although these function draws are much smoother than those produced by the exponential covariance function, they are still rough between points.    }
+        Plots of some sample functions drawn from a GP as before, trained on the rough dataset using Matern 3/2.
+    }
 \end{figure}
+Although these function draws are much smoother than those produced by the exponential covariance function, they are still rough between points.
 
 % Matern 3/2: Assumes one time differentiability. This is often too low of an assumption. \cite{gaupro}
 
@@ -778,26 +782,26 @@ This is the most commonly used stationary covariance function \cite{gaupro} beca
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Matern52_Smooth_mean.png}
     \caption{
-        Plot of the expected function draw and variances as before, using Matern 5/2 fitted to the smooth sin wave dataset. \\
-        Here, Matern 5/2's expected function is smooth enough to resembles SE - a smooth function that did not pass through all training points. The variance of the noise-free function evaluations and the noisy observations are narrower than SE's, as the additional roughness allows the expected function draw to pass closer to the training points. For example, the previously examined point at $(0.21, 0.86)$ is now much closer to the expected function draw than under SE.
+        Plot of the expected function draw and variances as before, using Matern 5/2 fitted to the smooth sin wave dataset. 
     }
 \end{figure}
+Here, Matern 5/2's expected function is smooth enough to resembles SE - a smooth function that did not pass through all training points. The variance of the noise-free function evaluations and the noisy observations are narrower than SE's, as the additional roughness allows the expected function draw to pass closer to the training points. For example, the previously examined point at $(0.21, 0.86)$ is now much closer to the expected function draw than under SE.
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Matern52_Rough_mean.png}
     \caption{
-        Plot of the expected function draw and variances as before, using Matern 5/2 fitted to the rougher dataset. \\
-        Matern 5/2 has adapted well to the rough dataset - the expected function draw is smoother than the expected function draw from Matern 3/2, but remains rough enough to pass through all training points. The variances are the narrowest of all the covariance functions because the smoothness constraint is severe enough to prevent exponential-style white noise, but the roughness is high enough to approach the training points closely. 
+        Plot of the expected function draw and variances as before, using Matern 5/2 fitted to the rougher dataset. \\ 
     }
 \end{figure}
+Matern 5/2 has adapted well to the rough dataset - the expected function draw is smoother than the expected function draw from Matern 3/2, but remains rough enough to pass through all training points. The variances are the narrowest of all the covariance functions because the smoothness constraint is severe enough to prevent exponential-style white noise, but the roughness is high enough to approach the training points closely. 
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{covariance-functions/Matern52_Rough_draws.png}
     \caption{
-        Plots of some sample functions drawn from a GP as before, trained on the rough dataset using Matern 5/2. \\
-        These function draws are much smoother than those drawn from Matern 3/2, particularly between data points, whilst still passing through all datapoints.
+        Plots of some sample functions drawn from a GP as before, trained on the rough dataset using Matern 5/2.
     }
 \end{figure}
+These function draws are much smoother than those drawn from Matern 3/2, particularly between data points, whilst still passing through all datapoints.
 
 % Matern 5/2: Assumes two time differentiability. Generally the best. \cite{gaupro}
 

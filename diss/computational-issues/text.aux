@@ -1,39 +1,46 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Computational Issues}{36}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cholesky decomposition}{36}{subsection.4.1}\protected@file@percent }
-\newlabel{eq:cholesky-factor}{{41}{36}{Cholesky decomposition}{equation.41}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Sparse kernels}{37}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Eigenfunction and eigenvalue approximation of covariance matrices \blx@tocontentsinit {0}\cite {gp-ml}}{37}{subsection.4.3}\protected@file@percent }
-\newlabel{eq:gp_mercer_approx}{{42}{37}{Eigenfunction and eigenvalue approximation of covariance matrices \cite {gp-ml}}{equation.42}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Approximating $\Phi _i$ and $U_i$ with Nystrom}{37}{subsubsection.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Subset-of-data (SoD) \blx@tocontentsinit {0}\cite {big-data}}{38}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Sparse approximations \blx@tocontentsinit {0}\cite {big-data}}{38}{subsection.4.5}\protected@file@percent }
-\newlabel{eq:conditioning_approx}{{43}{38}{Sparse approximations \cite {big-data}}{equation.43}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}Prior approximations}{38}{subsubsection.4.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Subset-of-Regression (SoR) \blx@tocontentsinit {0}\cite {sor}}{38}{subsubsection.4.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Fully independent training conditional (FITC) \blx@tocontentsinit {0}\cite {fitc}}{39}{subsubsection.4.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.2}Posterior approximations}{40}{subsubsection.4.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Variational free energy (VFE)}{40}{subsubsection.4.5.2}\protected@file@percent }
-\newlabel{eq:likelihood_vfe}{{44}{40}{Variational free energy (VFE)}{equation.44}{}}
-\@writefile{toc}{\contentsline {subparagraph}{Deriving FITC through the VFE framework \blx@tocontentsinit {0}\cite {fitc-vfe-unifier}}{41}{equation.44}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Stochastic varational GP (SVGP)}{41}{equation.44}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{42}{subsection.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}The celerite model}{42}{subsubsection.4.6.1}\protected@file@percent }
-\newlabel{eq:celerite}{{45}{42}{The celerite model}{equation.45}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2}Building Matern 3/2 from celerite}{42}{subsubsection.4.6.2}\protected@file@percent }
-\newlabel{eq:matern-32}{{4.6.2}{43}{Building Matern 3/2 from celerite}{subsubsection.4.6.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.3}Cholesky factorisation and inversion of celerite kernels}{43}{subsubsection.4.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Semiseperable matrices}{43}{subsubsection.4.6.3}\protected@file@percent }
-\newlabel{eq:semiseperable-cases}{{46}{43}{Semiseperable matrices}{equation.46}{}}
-\newlabel{eq:semiseperable-matrix}{{47}{43}{Semiseperable matrices}{equation.47}{}}
-\@writefile{toc}{\contentsline {paragraph}{Celerite kernels as semiseperable matrices}{43}{equation.47}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Cholesky factorisation of semiseperable matrices}{44}{equation.47}\protected@file@percent }
-\newlabel{eq:cholesky-semiseperable}{{48}{44}{Cholesky factorisation of semiseperable matrices}{equation.48}{}}
-\@writefile{toc}{\contentsline {paragraph}{Inversion of semiseperable matrices with a Cholesky factorisation}{44}{equation.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Computational Issues}{37}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cholesky decomposition}{37}{subsection.4.1}\protected@file@percent }
+\newlabel{eq:cholesky-factor}{{43}{37}{Cholesky decomposition}{equation.43}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Subset-of-data (SoD)}{38}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Eigenfunction and eigenvalue approximation of covariance matrices}{38}{subsection.4.3}\protected@file@percent }
+\newlabel{eq:gp_mercer_approx}{{44}{38}{Eigenfunction and eigenvalue approximation of covariance matrices}{equation.44}{}}
+\newlabel{eq:eigenproblem_sampled}{{45}{38}{Eigenfunction and eigenvalue approximation of covariance matrices}{equation.45}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Approximating covariance matrices with Nystrom}{39}{subsubsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Assembling the full covariance matrix}{39}{subsubsection.4.3.1}\protected@file@percent }
+\newlabel{eq:nystrom_approx}{{46}{39}{Assembling the full covariance matrix}{equation.46}{}}
+\@writefile{toc}{\contentsline {paragraph}{PSD issues using naive Nystrom}{39}{equation.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Sparse approximations}{40}{subsection.4.4}\protected@file@percent }
+\newlabel{eq:sparse_exact_prior}{{47}{40}{Sparse approximations}{equation.47}{}}
+\newlabel{eq:marginal_likelihood}{{4.4}{40}{Sparse approximations}{equation.47}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Prior approximations}{40}{subsubsection.4.4.1}\protected@file@percent }
+\newlabel{eq:prior_approx_pred}{{48}{40}{Prior approximations}{equation.48}{}}
+\newlabel{eq:prior_approx_likelihood}{{49}{40}{Prior approximations}{equation.49}{}}
+\@writefile{toc}{\contentsline {paragraph}{Subset-of-Regression (SoR)}{40}{equation.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fully independent training conditional (FITC)}{41}{equation.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Posterior approximations}{41}{subsubsection.4.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variational free energy (VFE)}{41}{subsubsection.4.4.2}\protected@file@percent }
+\newlabel{eq:vfe_posterior}{{50}{41}{Variational free energy (VFE)}{equation.50}{}}
+\newlabel{eq:likelihood_vfe}{{51}{41}{Variational free energy (VFE)}{equation.51}{}}
+\@writefile{toc}{\contentsline {subparagraph}{Deriving FITC through the VFE framework}{42}{equation.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stochastic varational GP (SVGP)}{42}{equation.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Celerite kernels \blx@tocontentsinit {0}\cite {foreman-mackay}}{43}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}The celerite model}{43}{subsubsection.4.5.1}\protected@file@percent }
+\newlabel{eq:celerite}{{52}{43}{The celerite model}{equation.52}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.2}Building Matern 3/2 from celerite}{43}{subsubsection.4.5.2}\protected@file@percent }
+\newlabel{eq:matern-32}{{4.5.2}{44}{Building Matern 3/2 from celerite}{subsubsection.4.5.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.3}Cholesky factorisation and inversion of celerite kernels}{44}{subsubsection.4.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Semiseperable matrices}{44}{subsubsection.4.5.3}\protected@file@percent }
+\newlabel{eq:semiseparable-cases}{{53}{44}{Semiseperable matrices}{equation.53}{}}
+\newlabel{eq:semiseparable-matrix}{{54}{44}{Semiseperable matrices}{equation.54}{}}
+\@writefile{toc}{\contentsline {paragraph}{Celerite kernels as semiseparable matrices}{44}{equation.54}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cholesky factorisation of semiseparable matrices}{45}{equation.54}\protected@file@percent }
+\newlabel{eq:cholesky-semiseparable}{{55}{45}{Cholesky factorisation of semiseparable matrices}{equation.55}{}}
+\@writefile{toc}{\contentsline {paragraph}{Inversion of semiseparable matrices with a Cholesky factorisation}{45}{equation.55}\protected@file@percent }
 \@setckpt{computational-issues/text}{
-\setcounter{page}{45}
-\setcounter{equation}{48}
+\setcounter{page}{46}
+\setcounter{equation}{55}
 \setcounter{enumi}{8}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -42,7 +49,7 @@
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{section}{4}
-\setcounter{subsection}{6}
+\setcounter{subsection}{5}
 \setcounter{subsubsection}{3}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
@@ -52,7 +59,7 @@
 \setcounter{section@level}{0}
 \setcounter{Item}{8}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{42}
+\setcounter{bookmark@seq@number}{41}
 \setcounter{tabx@nest}{0}
 \setcounter{listtotal}{0}
 \setcounter{listcount}{0}
@@ -62,7 +69,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{68}
+\setcounter{instcount}{61}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}

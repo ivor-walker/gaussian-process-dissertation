@@ -396,6 +396,7 @@ It can be shown that SE corresponds to a Bayesian linear regression model with i
 
 \paragraph{Function evaluations to a random function}
 We can choose a subset $X_{*1}$ from our test data $X_*$ and apply it to our model get some function evaluations $f(X_{*1})$. $f(X_{*1})$ can be described as a multivariate Gaussian distribution, e.g. in the Bayesian linear model $f(X_{*1}) \sim N(0, k(X_{*1}, X_{*1}))$. Each output $f(X_{\theta*1})$ in our $f(X_{*1})$ vector is a random variable with mean $0$ and covariance with each other $K_{\theta\theta'} = k(X_{\theta*}, X_{\theta'*})$. There exists some random function $g(X_{*1})$ for our subsets such that $f(X_{*1}) = g(X_{*1})$. We only know the value of $g(X_{*1})$ at the points $X_{*1}$, so $g(X_{*1}) = {X_{*1} : f(X_{*1})}$. Because $g(X)$ entirely consists of random points, we can think of $g(X_{*1})$ as a random function and our distribution $f(X)$ can be seen as a distribution of these random $g(X)$ functions. We can recover our individual $g(X_{*1}$ thanks to consistency - if we marginalised out our subset from the entire distribution $f(X_*)$, we would recover the subset distribution $N(0, K_*(X_{*1}, X_{*1}))$ that describes our random function $g(X_{*1})$.
+% Michael: Ok, I see that do try to relate to the earlier material, which is good.
 
 \paragraph{Definition of a GP}
 A GP is a collection of random variables, any finite number of which have a joint Gaussian distribution. Ultimately, GPs describe a distribution of random functions where each drawn function is a $g(X)$ sample from the GP.
@@ -407,7 +408,6 @@ A GP is a collection of random variables, any finite number of which have a join
     \end{aligned}
 \end{equation*}
 % These random variables represent the value of $f(X)$ at location $X$. often Gaussian processes are defined over time so $X$ can be a time point. The covariance function specifies the covariance between pairs of random variables.
-% Ok, I see that do try to relate to the earlier material, which is good.
 
 \paragraph{Consistency requirement}
 This definition implies a consistency requirement - any group of functions drawn from our GP can be described by the same distribution as our GP. For example, if our GP implies that $(f(X_1), f(X_2)) \sim \mathcal{N}(\mu, \Sigma)$, then $(f(X_1) \sim \mathcal{N}(\mu_1, \Sigma) and f(X_2) \sim \mathcal{N}(\mu_2, \Sigma))$ where $\mu_{\theta} = m(X_{\theta})$ and $\Sigma_{\theta\theta} = k(X_{\theta}, X_{\theta})$. This requirement is also called the marginalisation property, because to get the smaller distribution of $f(X_1)$ we marginalise out the larger distribution of $f(X_1), f(X_2)$ by integrating the larger distribution wrt $f(X_2)$. Consistency is automatically gained if our covariance function specifies entries in a covariance matrix.
@@ -430,9 +430,9 @@ $f(X)$ and $f(X_*)$ are jointly distributed according to the prior:
 \end{equation}
 
 \paragraph{Posterior distribution of functions}
-To get the posterior distribution of functions given the training data and our prior, we can condition the joint prior distribution on the training data. Intuitively, this is like generating random functions $g(X)$ and rejecting those that do not pass through the training data. Probabilistically, we condition our joint Gaussian prior distribution on the observations $p(f(X_*)|X_*, X, f(X))$.
+To get the posterior distribution of functions given the training data and our prior, we can condition the joint prior distribution on the training data. Intuitively, this is like generating random functions $g(X)$ and rejecting those that do not pass through the training data. Probabilistically, we condition our joint Gaussian prior distribution on the observations to produce a predictive distribution for some point we want to predict for $X_*$. 
 
-Substituting $p(W)$ and our conditioning $X$ into the Gaussian multivariate conditioning identity:
+Substituting our prior and our conditioning $X$ into the Gaussian multivariate conditioning identity:
 \begin{equation*}
     \begin{aligned}
         p(f(X_*)|X_*, X, f(X)) \sim N( \\
@@ -469,7 +469,7 @@ In matrix form:
 \end{equation*}
     
 This gives us this prior:
-\begin{equation*}
+\begin{equation} \label{eq:joint_prior_noisy}
     \begin{pmatrix}
         Y \\ f(X_*)
     \end{pmatrix} \sim N\left(
@@ -480,18 +480,18 @@ This gives us this prior:
         K(X,X) + \sigma^2_nI & K(X,X_*) \\ K(X_*,X) & K(X_*,X_*)
     \end{pmatrix}
     \right)
-\end{equation*}
+\end{equation}
 
 \paragraph{Noisy observations posterior}
 As before, we can form a predictive distribution using the Gaussian multivariate conditioning identity:
-\begin{equation*}
+\begin{equation} \label{eq:predictive_distribution_noisy}
     \begin{aligned}
         p(f(X_*)|X_*, X, Y) \sim N( \\
         K(X_*,X)[K(X,X) + \sigma^2_nI]^{-1}Y, \\
         K(X_*,X_*) - K(X_*,X)[K(X,X) + \sigma^2_nI]^{-1}K(X,X_*) \\
         )
     \end{aligned}
-\end{equation*}
+\end{equation}
 
 Substituting $k(X,X') = \phi(X)^T\Sigma_p\phi(X')$ into here gives us the exact same result as \ref{eq:alt_predictive_gaussian_phi}.
 
@@ -500,7 +500,7 @@ Our variance is independent of the targets $y$ and only depends on our inputs $X
 \subsubsection{Marginal likelihood}
 Even though we are working within the Bayesian paradigm, certain practical subroutines e.g. kernel hyperparameter optimisation algorithms need a likelihood to maximise. The marginal likelihood $p(Y|X)$ is a measure of how well our GP fits the data:
 \begin{equation} \label{eq:marginal_likelihood}
-    p(Y|X) = \int p(Y|f,X)p(f|X) df
+    p(Y|X) = \int p(Y|f,X) p(f|X) df
 \end{equation}
 $p(f|X)$ is our familiar prior distribution over weights $\sim N(0, K)$ which we use here to represent the complexity of $f$. $p(y|f,X)$ is the likelihood of our observations given $p(y|f,X) \sim N(f, \sigma^2_nI)$, and represents how well $f$ maps $X$ to $y$. 
 
@@ -513,7 +513,7 @@ We can express $p(Y|X)$ as a Gaussian integral over the joint distribution of $f
 
 Alternatively, from \ref{eq:linear_model} we know that $y$ is Gaussian. Since both $y$ and $f$ are Gaussian, we can simply add their means and variances: 
 \begin{equation*}
-    p(Y|X) = N(0, K + \sigma^2_nI)
+    p(Y|X) = N(0, K(X, X) + \sigma^2_nI)
 \end{equation*}
 We can plug these mean and variances into the Gaussian PDF \ref{eq:gaussian_pdf} to get \ref{eq:log_marginal_likelihood}. Assembling the likelihood is necessary for training to select hyperparameters, but the $K(X, X) + \sigma^2_nI$ inversion costs $O(n^3)$ to compute. 
 

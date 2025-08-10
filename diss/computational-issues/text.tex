@@ -1,5 +1,9 @@
 \section{Computational Issues}
-Training Gaussian processes and producing predictions using them both require inverting the $n \times n$ $[K(X,X) + \sigma^2_nI]$ matrix. Naively inverting this matrix $X$ has a computational complexity of $O(n^3)$. Unfortunately, this cubic complexity is shared by most covariance functions and renders Gaussian processes unusable in practice - a covariance matrix with $n = 1000$ would require over one billion operations to invert, and this cost would need to be paid for each hyperparameter optimisation step and each prediction. One approach is to approximate this inversion for any covariance matrix. These strategies for any covariance function fall into two categories: those that produce a single approximation for the entire dataset, or those that produce several approximations that are "experts" in a particular region of the dataset and combine these local approximations to form a global approximation. This section focuses on the global approximations because TODO. Another approach is to design a specific covariance function that produces a covariance matrix which has certain exploitable properties that allow for faster inversion. Generally speaking, these structured approaches are much more accurate than global approximations but are more computationally complex, cannot be used for all covariance functions, and cannot use more than one regressor. We introduce one structured approach, the celerite model, and discuss the origins of these limitations in detail.
+Training Gaussian processes and producing predictions using them both require inverting the $n \times n$ $[K(X,X) + \sigma^2_nI]$ matrix. Naively inverting this matrix $X$ has a computational complexity of $O(n^3)$. Unfortunately, this cubic complexity is shared by most covariance functions and renders Gaussian processes unusable in practice - a covariance matrix with $n = 1000$ would require over one billion operations to invert naively, and this cost would need to be paid for each hyperparameter optimisation step and each prediction. 
+
+One approach is to approximate this inversion for any covariance matrix. These strategies for any covariance function fall into two categories: those that produce a single approximation for the entire dataset, or those that produce several approximations that are "experts" in a particular region of the dataset and combine these local approximations to form a global approximation. This section focuses on the global approximations because the local-expert methods are much newer and lack robust open-source implementations. 
+
+Another approach is to design a specific covariance function that produces a covariance matrix which has certain exploitable properties that allow for much more accurate inversions at the cost of flexibility. We introduce one structured approach, the celerite model, and discuss the origins of these tradeoffs in detail.
 
 % \subsection{Global approximations}
 
@@ -42,7 +46,7 @@ such that:
     \end{pmatrix}
 \end{equation*}
 
-We can assemble $L$ using the Cholesky algorithm. \cite{big-data} For diagonal entries in A, this costs $O(n)$:
+We can assemble $L$ using the Cholesky algorithm \cite{big-data}. For diagonal entries in A, this costs $O(n)$:
 \begin{equation*}
     L_{i,i} = \sqrt{A_{i,i} - \sum_{k=1}^{i-1} L_{i,k}^2}
 \end{equation*}
@@ -55,34 +59,34 @@ For off-diagonal entries:
 \end{equation*}
 The computational cost of obtaining the Cholesky factorisation is $O(\frac{1}{3} n^3)$ thanks to the $\sum$ terms in the off-diagonal entries where $i > j$.
 
-Once we have $L$, we can invert $A$ by solving the two triangular systems:
+Once we have $L$, we can represent $A^{-1}$ in terms of Cholesky factors: 
 \begin{equation*}
     A^{-1} = L^{-T} L^{-1}
 \end{equation*}
-$L^{-1}$ comes from solving the forward substitution problem $LY = I$, where $I$ is the identity matrix, and $L^{-T}$ comes from solving the backward substitution problem $L^TX = Y$. Inverting $L$ costs $O(n^3)$, for a total complexity of $O(n^3)$ for Cholesky factorisation and inversion. 
+To obtain $A^{-1}$, we need to solve the forward substitution problem $LY = I$ for $Y$, where $I$ is an $N \times N$ identity matrix, and plug this solution into the backward substitution problem $L^TX = Y$ to obtain $X = A^{-1}$. Solving for one column of $A^{-1}$ requires solving the forward substitution problem for one column of $I$, which costs $O(n^2)$, and solving the backward substitution problem for one column of $Y$, which also costs $O(n^2)$. Thus, solving for all $n$ columns of $A^{-1}$ multiplies this cost to $O(n^2m)$, where $m$ is the number of columns in the product. Since inverting the matrix alone requires a self-product, $m = n$ and the total cost of inverting $A$ is $O(n^3)$.
 
-The inversions of $K(X, X)$ that we need to form \ref{eq:conditioning} and \ref{eq:log_marginal_likelihood} exist as products of other terms ($K(X,X)^{-1} Y$ or $K(X,X)^{-1} K(X, X_*)$). We can obtain these solutions by solving these traingular systems:
+The inversions of $K(X, X)$ that we need to form our predictive distribution \ref{eq:conditioning} and likelihood \ref{eq:log_marginal_likelihood} exist as products of other terms ($K(X,X)^{-1} y$ or $K(X,X)^{-1} K(X, X_*)$). We can obtain these products directly by solving these traingular systems:
 \begin{equation*}
-    K(X, X)^{-1} Y = L^{-1} Y
+    K(X, X)^{-1} Y = L^{-T} (L^{-1} Y)
 \end{equation*}
-$Y$ is the product $K(X, X)^{-1}$. 
+$Y$ is the product of the $K(X, X)^{-1}$ that we need, e.g. the vector of noisy observations $y$ or $K(X, X_*)$. $y$ is a single column vector and $K(X, X_*)$ may not contain $n$ columns, so we can solve these triangular problems in $O(n^2)$ and $O(n^2m)$ time respectively, where $m$ is the number of testing points in $X_*$.
 
-Cholesky is the preferred method of handling the inversion of covariance matrices because of its extreme numerical stability (thanks to the positive diagonal entries), and its guarantee to produce a valid Gram matrix. 
+Cholesky is the preferred method of handling the inversion of covariance matrices because of its extreme numerical stability (thanks to the positive diagonal entries), and its guarantee to produce a valid Gram matrix. However, its cubic complexity is still too high for large datasets.
 
+\subsection{Subset-of-data (SoD)}
+One naive method to reduce this cubic complexity is to simply fit the GP on a subset $M$ of our training data $X$ to reduce the cost of inversion to $O(m^3)$, where $m$ is the number of training points in $M$. 
+% using a subset of $M$ that is representative of the entire dataset by clustering the data, e.g. using a k-means algorithm, and using these cluster centroids as our subset.
 
+The central issue of this method is how to choose the subset. Choosing these points randomly maintains the highly desirable $O(m^3)$ complexity at the cost of accuracy. Hayashi et. al. \cite{random-subsampling} showed that this computational complexity is practically required to work with extremely large datasets. They also showed that at this scale, SoD is more accurate than other $O(m^3)$ methods \cite{random-subsampling} (i.e. SVGP).
 
-\subsection{Sparse kernels}
-We can improve on the cubic complexity of Cholesky decomposition by using sparse kernels, which are designed to produce sparse covariance matrices that can be inverted more efficiently.
+To remain accurate, random subsampling requires a large enough dataset such that some of the data is redundant and $M$ becomes a representative subset of $X$. This phenomenon is not possible for more reasonably sized datasets. The size of $M$ required to achieve the same level of accuracy can be reduced with a greedy approach. This greedy algorithm determines the gain in likelihood from including each data point $x_i$ in X, then adds the "centroid", or the point that produces the maximal gain in likelihood, to $M$. This process is repeated until the size of $M$ reaches $m$. However, computational savings from reducing $m$ are smaller than the cost of searching $X$ for these centroids $O(n^2m)$. Instead, Keerthi et. al. \cite{matching-pursuit} developed a "matching pursuit" approach - maintain a cache of the already precomputed kernel values, and use these to compute the gain in likelihood for each point in $X$ in $O(nm^2)$ time. 
 
-A sparse kernel \cite{big-data} is a particularly designed kernel that imposes $k(X,X') = 0$ if $|X - X'|$ is larger than some threshold $d$ to create a sparse covariance matrix. This reduces the number of calculations that need to be performed and computational complexity to $O(an^3)$, where $a$ is the proportion of non-zero entries remaining, but the kernel needs to be carefully designed to work with zeroes and ensure all entries are PSD. TODO sparse RBF
-
-
-\subsection{Eigenfunction and eigenvalue approximation of covariance matrices \cite{gp-ml}}
-TODO why not sparse kernels? Mercer's representation of the kernel \ref{eq:gp_mercer} provides a way of approximating any arbitrary Gram matrix. Instead of summing all the eigenfunctions from 1 to $\infty$, we can approximate our kernel to any degree of accuracy $M < N$ by restricting our sum to the largest $M$ eigenvalues:
+\subsection{Eigenfunction and eigenvalue approximation of covariance matrices}
+Even with matching pursuit, SoD is still too inaccurate for reasonably sized datasets. Mercer's representation of the kernel \ref{eq:gp_mercer} provides a way of approximating any arbitrary Gram matrix. Instead of summing all the eigenfunctions from 1 to $\infty$, we can approximate our kernel to any degree of accuracy $M < N$ by restricting our sum to the largest $M$ eigenvalues:
 \begin{equation} \label{eq:gp_mercer_approx}
     K(X, X') \approx \sum_{i=1}^{M} \lambda_i \phi_i(X) \phi_i(X')
 \end{equation}
-and invert this smaller matrix at a lower computational cost $O(M^3)$. However, obtaining the eigenfunctions and eigenvalues of an $N$-size covariance matrix matrix is $O(N^3)$ for a total cost of $O(N^3) + O(M^3)$. We can reduce the cost of obtaining these eigenfunctions and eigenvalues by solving our eigenproblem on a smaller random sample of $X$. These approximations, and subsequent approximations, come with irreduceable error which could create a kernel that no longer satisfies the Gram matrix constraint of positive semidefiniteness, violating Mercer's theorem and making them invalid covariance matrices. 
+and invert this smaller matrix at a lower computational cost $O(M^3)$. However, obtaining the eigenfunctions and eigenvalues of an $N$-size covariance matrix matrix is $O(N^3)$ for a total cost of $O(N^3) + O(M^3)$. We can reduce the cost of obtaining these eigenfunctions and eigenvalues by solving our eigenproblem on a smaller random sample of $X$. 
 
 Instead of our integral weighing our kernel and eigenfunction with the measure $\mu$ as before, they become weighed in terms of the PDF of the training data $p(x)$:
 \begin{equation*}
@@ -98,172 +102,202 @@ Defining a vector $\Phi_i$ of all eigenfunction evaluations $\phi_i(x_j)$ on the
 \end{equation*}
 Multiplying both sides by $l$:
 \begin{equation*}
-    n \lambda_i \phi_i(X') = K(X_j, X') \Phi_i
+    l \lambda_i \phi_i(X') = K(X_j, X') \Phi_i
 \end{equation*}
 Setting $\lambda_i^{mat} = l \lambda_i$:
 \begin{equation*}
     K(X_l, X') \phi_i(X') = \lambda_i^{mat} \Phi_i
 \end{equation*}
 This arrangement requires our covariance matrix to be evaluated with some $X'$. Without creating another sample or defeating the point of this approximation by using the whole of $X$, the only candidate for $X'$ is the $X_l$ sample. Setting $X' = X_l$, our $\phi_i(X')$ becomes the definition of $\Phi_i$:
-\begin{equation*}
+\begin{equation} \label{eq:eigenproblem_sampled}
     K(X_l, X_l) \Phi_i = \lambda_i^{mat} \Phi_i
-\end{equation*}
-Here, $\Phi_i$ also plays the role of the eigenvector $U_i$ of $K(X_l, X_l)$, and $\lambda_i^{mat}$ plays the eigenvalue of $K(X_l, X_l)$. 
+\end{equation}
+Here, $\Phi_i$ also plays the role of the eigenvector $u_i$ of $K(X_l, X_l)$, and $\lambda_i^{mat}$ plays the eigenvalue of $K(X_l, X_l)$. 
 
 Although we introduced $\lambda_i^{mat} = l \lambda_i$, $\lambda_i^{mat}$ are the eigenvalues of the eigenproblem produced by sampling, whereas $\lambda_i$ are the eigenvalues from the original eigenproblem. Thus, it acts as an approximation:
 \begin{equation*}
     \lim_{l \to \infty} \lambda_i = \frac{1}{l} \lambda_i^{mat} 
 \end{equation*}
 
-\subsubsection{Approximating $\Phi_i$ and $U_i$ with Nystrom}
+\subsubsection{Approximating covariance matrices with Nystrom}
 Solving this eigenproblem is $O(l^3)$ - an improvement on the $O(n^3)$ cost of solving the previous eigenproblem, and the resulting $O(l^3) + O(M^3)$ could be lower than the naive $O(n^3)$ inversion cost (if we use sufficiently low degrees of accuracy $l$ and $M$). We can improve this further by approximating $\Phi_i$.
 
-$\Phi_i$ and $U_i$ are not exactly equivelant thanks to differing normalisations. $\Phi_i$'s normalisation comes from the original Monte Carlo approximation: $\frac{1}{l} \sum_{j=1}^{l} K(x_j, X') \phi_i(x_j) \approx 1$, thus the sum and our $||\Phi_i||_2^2 \approx l$ and $||\Phi_i|| \approx \sqrt{l}$. $U_i$'s normalisation comes from solving the eigenproblem, which returns $||U_i||_2^2 = 1$ and $||U_i|| = 1$. We can convert between the two by scaling $\Phi_i$ by $\sqrt{l}$ to produce $U_i$.
+$u_i$ is an obvious estimator for $\Phi_i$, but they are not exactly equivelant thanks to differing normalisations. $\Phi_i$'s normalisation comes from the original Monte Carlo approximation $\frac{1}{l} \sum_{j=1}^{l} \phi_i(x_j)^2 \approx 1$, thus the sum and our $||\Phi_i||_2^2 \approx l$ and $||\Phi_i|| \approx \sqrt{l}$. $u_i$'s normalisation comes from solving the eigenproblem, which returns $||u_i||_2^2 = 1$ and $||u_i|| = 1$. We can convert between the two by scaling $\Phi_i$ by $\frac{1}{\sqrt{l}}$ to produce $u_i$.
 
-The Nyström method \cite{nystrom} extends this approximation from the sample points $X_l$ to the full set of points $X$:
+The Nystrom method \cite{nystrom} extends this approximation from the sample points $X_l$ to the full set of points $X$:
 \begin{equation*}
-    \phi_i(X) \approx \frac{1}{\sqrt{l}} \sqrt{n} K(X_l, X) \Phi_i
+    \phi_i(X) \approx \frac{\sqrt{l}}{\lambda_i^{mat}} K(X, X_l) u_i
 \end{equation*}
-This approximation further reduces the cost of solving the eigenproblem and inverting the low-rank matrix to $O(l^2 n) + O(M^3)$.
 
+\paragraph{Assembling the full covariance matrix}
+We can now assemble a full approximation for our covariance matrix by substituting this approximation of $\phi_i$ and $\lambda_i = \frac{\lambda_i^{mat}}{l}$ into the original Mercer approximation \ref{eq:gp_mercer_approx}:
+\begin{equation*}
+    K(X, X') \approx \sum_{i=1}^{M} \left( \left[ \frac{\lambda_i^{mat}}{l} \right] \left[ \frac{\sqrt{l}}{\lambda_i^{mat}} K(X, X_l) u_i \right] \left[ \frac{\sqrt{l}}{\lambda_i^{mat}} K(X', X_l) u_i \right]^T \right)
+\end{equation*}
+Expanding and simplifying:
+\begin{equation*}
+    K(X, X') \approx \sum_{i=1}^{M} \frac{1}{\lambda_i^{mat}} K(X, X_l) u_i u_i^T K(X', X_l)
+\end{equation*}
+The spectral theorem representation of the solution for $K(X_l, X_l$ to the sampling eigenproblem \ref{eq:eigenproblem_sampled} is:
+\begin{equation*}
+    K(X_l, X_l) = \sum_{i=1}^{l} \lambda_i^{mat} u_i u_i^T
+\end{equation*}
+The pseudo-inverse of this expression corresponds exactly to the middle term of our approximation, so we can substitute $K(X_l, X_l)^{\dagger}$ into our approximation:
+\begin{equation*}
+    K(X, X') \approx K(X, X_l) K(X_l, X_l)^{\dagger} K(X', X_l)
+\end{equation*}
+If we set $M = l$, the pseudo-inverse becomes a full inverse for the final Nystrom approximation $Q(X, X')$
+\begin{equation} \label{eq:nystrom_approx}
+    K(X, X') \approx Q(X, X') = K(X, X_l) K(X_l, X_l)^{-1} K(X', X_l)
+\end{equation}
 
-\subsection{Subset-of-data (SoD) \cite{big-data}}
-Matrix approximations like the Nystrom approximation can produce kernels that violate PSD due to the irreduceable error involved. Instead of producing a low-rank approximation of the covariance matrix from a full GP, we could guarantee PSD by applying the GP to a subset $M$ of $X$ to reduce the cost of inversion to $O(m^3)$, where $m$ is the number of training points in $M$. A theoretical graphon analysis showed that choosing $M$ randomly gives an accuracy of $O(log^{-1/4}m)$ for the predictive mean and variance, which produces more accurate predictions with faster runtimes than sparse approximations as $n$ increases. \cite{random-subsampling} Subset-of-data also requires no analytic assumptions about the covariance functions.
+The final computational complexity comes from assembling these matrices. Assembling $K(X, X_l)$ and $K(X', X_l)$ costs $O(nl)$, and assembling $K(X_l, X_l)$ costs $O(l^2)$. Inverting $K(X_l, X_l)^{-1}$ costs $O(l^3)$, but we can compute the product $K(X_l, X_l)^{-1} K(X', X_l)$ in $O(l^2m)$ time using Cholesky decomposition, where $m$ is the number of columns in $K(X', X_l)$. The process of assembling the Cholesky factors themselves cost $O(l^3)$. Once we have these matrices, the cost of assembling their products are $O(nlm)$, leading to a final computational complexity of $O(nlm + l^3)$, or $O(nm^2 + m^3)$ if we set $l = m$. However, inverting this matrix is $O(m^3)$ which is equal to the cost of Cholesky decomposition, so we can use the Nystrom approximation to reduce the cost of assembling the covariance matrix and its inverse to $O(nm^2 + m^3)$.
 
-% using a subset of $M$ that is representative of the entire dataset by clustering the data, e.g. using a k-means algorithm, and using these cluster centroids as our subset. 
+\paragraph{PSD issues using naive Nystrom}
+Williams and Seeger \cite{naive-nystrom} developed the naive Nystrom GP by applying the Nystrom approximation \ref{eq:nystrom_approx} to the training data's covariance matrix $K(X, X)$ that required inverting for the predictive distribution and likelihood. This effectively specified a new joint prior on $f(X_*)$ that only replaced $K(X, X)$ with $Q(X, X_*)$ in \ref{eq:joint_prior_noisy}:
+\begin{equation*}
+    p(f(X), f(X_*)) = \mathcal{N} \left( 0, 
+    \begin{pmatrix}
+        Q(X, X) + \sigma_n^2 & K(X, X_*) \\
+        K(X_*, X) & K(X_*, X_*)
+    \end{pmatrix}
+    \right)
+\end{equation*}
+The resulting predictive distribution has the following variance:
+\begin{equation*}
+    \text{Var}(f(X_*) | y) = K(X_*, X_*) - K(X_*, X) (Q(X, X) + \sigma_n^2)^{-1} K(X, X_*)
+\end{equation*}
+To be a valid predictive distribution, this overall variance must satisfy PSD because the predictive covariance between two points must be positive or zero. 
 
-We can reduce $m$ needed to achieve the same level of accuracy with a "greedy" approach by determining the gain in likelihood from including each data point $x_i$ in X, adding the maximum gain in likelihood point to $M$ and repeating until the size of $M$ reaches $m$. However, computational savings from reducing $m$ are smaller than the cost of searching $X$ for these centroids $O(n^2m)$. Instead, we can use a "matching pursuit" approach - maintain a cache of the already precomputed kernel values, and use these to compute the gain in likelihood for each point in $X$ in $O(nm^2)$ time. \cite{matching-pursuit}
+$Q(X, X)$ and the other components of the prior are guaranteed to be PSD, but this variance is guaranteed to be non-negative only if the entire joint prior is PSD. To illustrate, here is an example $2 \times 2$ matrix $A$:
+\begin{equation*}
+    A =
+    \begin{pmatrix}
+        a & b \\
+        b & c
+    \end{pmatrix}
+\end{equation*}
+$A$ satisfies PSD if $a \geq 0$, $c \geq 0$ and $ac - b^2 \geq 0$. Even if $a$ and $c$ are individually PSD, if $b$ is sufficiently large and $ac$ is sufficiently small, the entire matrix can become non-PSD. This is the case for the naive Nystrom approximation, where a sufficiently small approximation $Q(X, X)$ (e.g. if the inducing points $X_l$ are far from the training points $X$) or a sufficiently large $K(X, X_*)$ (e.g. if the testing points $X_*$ are close to the training points), can produce a non-PSD variance.
 
+\subsection{Sparse approximations}
+Sparse approximation methods attempt to build global GPs that represent the entire training data using a set of potentially imaginary inducing points $X_m$ selected via MLE to best approximate the full data. These methods attempt to resolve the PSD issues with naive Nystrom whilst maintaining its computational efficiency. For example, the Nystrom approximation \ref{eq:nystrom_approx} using inducing points becomes:
+\begin{equation*}
+    K(X, X) \approx Q(X, X) = K(X, X_m) K(X_m, X_m)^{-1} K(X_m, X)
+\end{equation*}
 
-\subsection{Sparse approximations \cite{big-data}}
-SoD throws away all data not in the selected subset of real training data $m$, losing information and reducing accuracy. Sparse approximation approaches are more accurate than SoD whilst achieving the same computational cost $O(nm^2 + m^3)$, by using potentially imaginary inducing points $X_m$ that best approximate the full covariance matrix $K(X,X)$. 
-
-Joining a new prior on $f(X_m)$ to our previous prior on $f(X)$ \ref{eq:joint_prior} gives us a new joint prior:
+Tthe joint prior \ref{eq:joint_prior} to relate the real and inducing point datasets by introducing the Nystrom approximation:
 \begin{equation*}
     \begin{pmatrix}
-        f(X)
-        f(X_m) \\
-    \end{pmatrix} \sim \mathcal{N} (
+        f(X) \\ f(X_m)
+    \end{pmatrix} \sim \mathcal{N} \left(
     \begin{pmatrix}
-        0 \\
-        0 \\
+        0 \\ 0
     \end{pmatrix},
     \begin{pmatrix}
-        K(X, X) & K(X, X_m) \\
-        K(X_m, X) & K(X_m, X_m)    
+        K(X, X), Q(X, X_*) \\ Q(X_*, X), K(X_*, X_*)
     \end{pmatrix}
-    )
+    \right)
 \end{equation*}
-Similarly to \ref{eq:conditioning}, we can use the Gaussian conditioning identity to condition this joint prior on our inducing points $f(X_m)$ and obtain a posterior distribution over $f(X)$:
-\begin{equation} \label{eq:conditioning_approx}
+Using the Gaussian conditioning rule \ref{eq:conditioning}, we can obtain the the prior conditional distribution $p(f(X_*) | f(X_m))$:
+\begin{equation} \label{eq:sparse_exact_prior}
     \begin{aligned}
-        p(f(X) | X, X_m, f(X_m)) \sim \mathcal{N} ( \\
-        K(X, X_m) K(X_m, X_m)^{-1} f(X_m), \\
-        K(X, X) - K(X, X_m) K(X_m, X_m)^{-1} K(X_m, X) \\
+        q(f(X) | f(X_m)) = \mathcal{N}( \\
+            K(X, X_m) K(X_m, X_m)^{-1} f(X_m), \\
+            K(X, X) - Q(X, X) \\
         )
     \end{aligned}
 \end{equation}
-Marginalise out $f(X_m)$:
+Since $X_m$ is imaginary, we need to integrate out $f(X_m)$ and condition on $y$ to obtain the "posterior" distribution $p(f(X), f(X_m) | y)$, or the new predictive distribution after observing the noisy observations $y$. If we do this naively, we simply recover our original predictive distribution \ref{eq:conditioning} and its cubic inference cost:
 \begin{equation*}
-    p(f(X)) = \int p(f(X) | f(X_m)) p(f(X_m)) df(X_m)
+    p(f(X_*), f(X_m) | y) = \mathcal{N}( \\
+        K(X_*, X) (K(X, X) + \sigma_n^2 I)^{-1} y, \\
+        K(X_*, X_*) - K(X_*, X) (K(X, X) + \sigma_n^2 I)^{-1} K(X, X_*)
+    )
 \end{equation*}
-Without any approximations, it can be shown \cite{big-data} that this integral recovers our full priors on $f(X)$ \ref{jeq:joint_prior}:
-\begin{equation*}
-    p(f(X)) = \mathcal{N}\left(0, K(X, X)\right)
-\end{equation*}
-We can also assemble our predictive distribution by forming a new joint prior and a posterior with the testing data $X_*$ by substituting $X$ for $X_*$:
-\begin{equation*}
-    \begin{aligned}
-        p(f(X_*) | X_*, X, f(X_m)) \sim \mathcal{N} (
-        K(X_*, X_m) K(X_m, X_m)^{-1} f(X_m),
-        K(X_*, X_*) - K(X_*, X_m) K(X_m, X_m)^{-1} K(X_m, X_*)
-        ) \\
-    \end{aligned}
-\end{equation*}
-As with training data, marginalising out $X_m$ yields our original full prior on the training data $f(X_*) \sim \mathcal{N}(0, K(X_*, X_*))$.
+Additionally, this posterior produces the same marginal likelihood \label{eq:marginal_likelihood} as before.
 
-We have introduced a new first step into the assembly of the predictive distribution that reduces the cost of prediction from $O(n^3)$ to $O(mn^2 + m^3$), but the cost of assembling the marginal likelihood remains $O(n^3)$ in training. Approximations aimed at reducing the complexity of computing our marginal likelihoods are divided into two categories: prior approximations which change $p(f(X) | f(X_m))$, and posterior approximations which change $p(f(X), f(X_m) | y)$.
+There are two classes of strategies to avoid this: prior approximations $q(f(X) | f(X_m))$ which change the conditional distribution prior to observing $y$ $p(f(X) | f(X_m))$ \ref{eq:sparse_approx_prior} and perform the conditioning process exactly, and posterior approximations that use the exact conditional distribution $p(f(X) | f(X_m))$ \ref{eq:sparse_approx_prior} but approximate the final posterior distribution $q(f(X), f(X_m) | y)$. 
 
 \subsubsection{Prior approximations}
-
-\paragraph{Subset-of-Regression (SoR) \cite{sor}}
-SoR sets the variance of \ref{eq:conditioning_approx} to zero:
+Prior approximations modify approximate the variance of the conditional distribution \ref{eq:prior_approx_pred} with $\bar{Q}(X, X)$:
 \begin{equation*}
-    p_{\text{SoR}}(f(X_*) | f(X_m)) \sim \mathcal{N} (
-    K(X_*, X_m) K(X_m, X_m)^{-1} f(X_m),
-    0
-    )
-\end{equation*}
-Producing a marginal prior:
-\begin{equation*}
-    p_{\text{SoR}}(f(X_*)) = \int p_{\text{SoR}}(f(X_*) | f(X_m)) p(f(X_m)) df(X_m)
-\end{equation*}
-Evaluating this integral and representing the result as a Gaussian distribution:
-\begin{equation*}
-    p_{\text{SoR}}(f(X_*)) = \mathcal{N}(
-    0, 
-    K(X_*, X_m) K(X_m, X_m)^{-1} K(X_m, X_*)
+    q(f(X) | f(X_m)) = \mathcal{N}( \\
+        K(X, X_m) K(X_m, X_m)^{-1} f(X_m), \\
+        \bar{Q}(X, X)
     )
 \end{equation*}
 
-Inverting the $m$-rank $K(X_m, X_M)^{-1}$ costs $O(m^3)$, and multiplying it by the $n$-rank $K(X_*, X_m)$ and $K(X_m, X_*)$ costs $O(n^2m)$, sped up using SMW \ref{eq:A_phi_inverse_phi_X} to yield $O(nm^2)$, for a predictive distribution complexity of $O(nm^2 + m^3)$. The resulting likelihood:
-\begin{equation*}
+This yields the following predictive distribution:
+\begin{equation} \label{eq:prior_approx_pred}
     \begin{aligned}
-        p_{\text{SoR}}(Y) = -\frac{1}{2} \log(2 \pi \sigma_n^2) \\
-        - \frac{1}{2\sigma_n^2} Y ^T Y \\
-        + \frac{1}{2\sigma_n^4} Y^T K(X, X_m) A^{-1} K(X_m, X) Y \\ 
-        - \frac{1}{2} \log | A | \\
-        + \frac{1}{2} \log | K(X_m, X_m) |
+        q(f(X_*), f(X_m) | y ) = \mathcal{N}( \\
+        Q(X_*, X) \left( \bar{Q}(X, X) + Q(X, X) + \sigma_n^2 I \right)^{-1} y, \\
+        \left( Q(X_*, X_*) + \bar{Q}(X_*, X_*) \right) - Q(X_*, X) \left( \bar{Q}(X, X) + Q(X, X) + \sigma_n^2 I \right)^{-1} Q(X, X_*)
+    )
     \end{aligned}
-\end{equation*}
-The only inversion here is the rank-$m$ $A = K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m)$ matrix, which costs $O(m^3)$. This achieves the same computational cost as the Nystrom approximation but does so in a probabilistic framework that guarantees PSD. However, setting our prior's variance to zero produces a predictive distribution that severely underestimates uncertainty, producing GPs that are too confident far from $X_m$.
+\end{equation}
 
-\paragraph{Fully independent training conditional (FITC) \cite{fitc}}
-FITC assumes that the new data $f(X_*)$ is independent given the inducing points $f(X_m)$. Formally:
+This also produces a new likelihood:
+\begin{equation} \label{eq:prior_approx_likelihood}
+    \begin{aligned}
+        q(y) = -\frac{n}{2} \log 2\pi
+        - \frac{1}{2} \log | \bar{Q}(X, X) + Q(X, X) + \sigma_n^2 I | \\
+        - \frac{1}{2} Y^T [\bar{Q}(X, X) + Q(X, X) + \sigma_n^2 I]^{-1} y
+    \end{aligned}
+\end{equation}
+The only term being inverted in the likelihood and the predictive distribution is $\bar{Q}(X, X) + Q(X, X) + \sigma_n^2 I$, and it is always a product of the vector $y$. If $\bar{Q}(X, X)$ is chosen to be rank $m$ or lower and is easy to invert, then obtaining this product of an inversion costs $O(nm^2)$ plus the cost of Cholesky factorisation $O(m^3)$, leading to an overall training and inference complexity of $O(nm^2 + m^3)$.
+
+As our inducing points become more representative of the data and $X_m \to X$, our Nystrom approximation improves and $Q(X, X) \to K(X, X)$. If we use a $\bar{Q}(X, X)$ that does not interfere with this process, then we can theoretically recover the full GP exactly as $X_m \to X$. However, Titsias \cite{vfe} found that maximising the approximate likelihood $q(y)$ when $X_m = X$ does not produce the same hyperparameters as maximising the full GP likelihood $p(y)$, meaning the approximate likelihood is not a good approximation of the full GP likelihood and can produce biased hyperparameter estimates.
+
+\paragraph{Subset-of-Regression (SoR)}
+Joukov and Kulic's Subset-of-Regression (SoR) \cite{sor} sets $\bar{Q}(X, X) = 0$, producing this noisy predictive distribution:
 \begin{equation*}
-    p(f(X_*) | f(X_m)) = \prod_{i=1}^n p(f(x_{i*}) | f(X_m))
-\end{equation*}
-TODO more motivation on prior yields. Our new prior distribution is:
-\begin{equation*}
-    p_{\text{FITC}}(f(X_*) | f(X_m)) = \mathcal{N}(
-    f(X_*) | K(x_i, X_m) K(X_m, X_m)^{-1} f(X_m),
-    \text{diag}[V_{nn}] 
+    q_{\text{SoR}}(f(X_*), f(X_m) | y) = \mathcal{N}( \\
+        Q(X_*, X) \left( Q(X, X) + \sigma_n^2 I \right)^{-1} y, \\
+        Q(X_*, X_*) - Q(X_*, X) \left( Q(X, X) + \sigma_n^2 I \right)^{-1} Q(X, X_*)
     )
 \end{equation*}
-$V_{nn} = K(X_*, X_*) - K(X_*, X_m) K(X_m, X_m)^{-1} K(X_m, X_*)$. Our new predictive distribution becomes:
+This approximation replaces $K(.)$ in the full predictive distribution \ref{eq:conditioning} with the Nystrom approximation $Q(.)$, which is the simplest way of addressing the PSD issues with naive Nystrom and maintains the favourable $O(nm^2 + m^3)$ training and inference complexity.  However, the variance of the predictive distribution does not reflect the approximate nature of $Q(.)$ and produces variances that are generally too low, especially in regions far from the inducing points $X_m$ \cite{big-data} that force $Q(X, X) \to 0$.
+
+\paragraph{Fully independent training conditional (FITC)}
+Snelson and Ghahramani's Fully Independent Training Conditional (FITC) \cite{fitc} improves on SoR by introducing information on the accuracy of the Nystrom approximation into the $\bar{Q}$ assumption:
 \begin{equation*}
     \begin{aligned}
-        p_{\text{FITC}}(f(X_*)) \sim \mathcal{N}( \\
-        k(X_*, X_m) \lambda^{-1} K(X_m, X_m) f(X_m), \\
-        K(X_*, X_*) - K(X_*, X_*) - K(X_*, X_m) K(X_m, X_m)^{-1} K(X_m, X_*) + K(X_*, X_m) \lambda^{-1} K(X_m, X_*) \\
-        )
+        V(X, X') = K(X, X) - Q(X, X) \\
+        \bar{Q}(X, X') = \text{diag}[V(X, X')]
     \end{aligned}
 \end{equation*}
-$\lambda = K(X_m, X_m) + K(X_m, X_*) \text{diag}[V_{nn}]^{-1} K(X_*, X_m)$. 
-
-There are three matrices being assembled here: the at-most rank $n$ diag[$V$], the rank-$m$ $\lambda$ and the final predictive variance of rank $m$. $V$ is similar to SoR and costs $O(mn^2)$, whilst getting its diagonal costs $O(nm)$, and assembling $\lambda$ and the predictive variance is also $O(nm^2)$. We need to invert $\lambda$, $K(X_m, X_m)$ and $\text{diag}[V_{nn}]$ - the first two are rank $M$, and inverting a diagonal only costs $O(n)$. These operations reduce to an overall inference complexity of $O(nm^2 + m^3)$, and the resulting likelihood:
+Substituting this into the posterior predictive distribution \ref{eq:prior_approx_pred} produces:
 \begin{equation*}
-    \begin{aligned}
-        p_{\text{FITC}}(Y) = -\frac{n}{2} \log(2 \pi) \\
-        - \frac{1}{2} \log | \lambda + \sigma_n^2 I_n | \\
-        - \frac{1}{2} \log | K(X_m, X_m) + K(X_m, X) [\lambda + \sigma_n^2 I_n]^{-1} K(X, X_m) | \\
-        + \frac{1}{2} \log | K(X_m, X_m) | \\
-        - \frac{1}{2} y^T [\lambda + \sigma_n^2 I_n]^{-1} y \\
-        + \frac{1}{2} y^T [\lambda + \sigma_n^2 I_n]^{-1} K(X, X_m) [K(X_m, X_m) + K(X_m, X) [\lambda + \sigma_n^2 I_n]^{-1} K(X_m, X) [\lambda + \sigma_n^2 I_n]^{-1} y
-    \end{aligned}
+    q_{\text{FITC}}(f(X_*), f(X_m) | y) = \mathcal{N}( \\
+        Q(X_*, X) \left( \text{diag}[V(X, X)] + Q(X, X) + \sigma_n^2 I \right)^{-1} y, \\ 
+        \left(Q(X_*, X_*) + \text{diag}[V(X_*, X_*)] \right) - Q(X_*, X) \left( \text{diag}[V(X, X)] + Q(X, X) + \sigma_n^2 I \right)^{-1} Q(X, X_*) \\
+    )
 \end{equation*}
-requires an $O(m^3)$ inversion of $K(X_m, X_m) + K(X_m, X) [\lambda + \sigma_n^2 I_n]^{-1} K(X_m, X)$ and an $O(nm^2)$ inversion of $\lambda + \sigma_n^2 I_n$, for an overall training complexity of $O(nm^2 + m^3)$.
+Since this diagonal is a vector and is simple to invert, we maintain our $O(nm^2 + m^3)$ training and inference complexity.
 
-FITC requires the same training and inference complexity as SoR but achieves a more accurate approximation for variance. Additionally, Bauer et. al. \cite{fitc-heteroskedasticity} found that the diagonal correlation $\text{diag}[V_{nn}]$ represents the posterior variances of $f(X_*)$ given $f(X_m)$ enables predictive variances to grow in regions far from inducing points, capturing a form of heteroskedasticity. However, Titsias \cite{vfe} found that approximate priors produce marginal likelihoods that are far from the marginal likelihood produced by the full prior, which degrades the accuracy of GPs trained using this goal. 
+$V(X, X)$ directly measures the differences between the full covariance matrix $K(X, X)$ and the Nystrom approximation $Q(X, X)$, and its diagonal is a vector of residuals from the Nystrom approximation for each point $x_i$ in $X$. By using the diagonal, FITC enforces independence between the Nystrom residuals since the diagonal does not incorporate information on the residuals of other points. Bauer et. al. \cite{fitc-heteroskedasticity} found that if the residuals are heteroskedastic, then FITC interprets this as input-dependent noise, which can lead to a severe underestimation of $\sigma_n^2$ and a biased predictive distribution mean.
 
 \subsubsection{Posterior approximations}
 
 \paragraph{Variational free energy (VFE)}
-Titsias \cite{vfe} introduced a variational distribution to approximate the noisy posterior:
-\begin{equation*}
+Titsias \cite{vfe} introduced a variational distribution to approximate the posterior that uses the full joint prior $p(f(X) | f(X_m))$:
+\begin{equation} \label{eq:vfe_posterior}
     q(f(X), f(X_m) | y) = p(f(X) | f(X_m)) \cdot q(f(X_m | y))
+\end{equation}
+Our optimal variational distribution $q^*(f(X_m) | y)$ is a Gaussian with mean $\mu^*$ and covariance $\Sigma^*$. Using these parameters and our full joint prior $p(f(X) | f(X_m))$ \ref{eq:sparse_exact_prior}, we can assemble our predictive distribution $q(f(X_*), f(X_m) | y)$: 
+\begin{equation*}
+    \begin{aligned}
+        q(f(X_*), f(X_m) | y) = 
+        = \mathcal{N}( \\
+            K(X_*, X_m) K(X_m, X_m)^{-1} \mu^*, \\
+            V(X_*, X_*) + K(X_*, X_m) K(X_m, X_m)^{-1} \Sigma^* \left( K(X_m, X_m)^{-1} K(X_m, X_*) \right)^T \\
+        )
+    \end{aligned}
 \end{equation*}
-The Kullback-Leibler (KL) divergence measures how different two probability distributions are. The KL divergence between the true posterior $p(f(X), f(X_m) | y)$ and our variational distribution $q(f(X), f(X_m) | y)$ is:
+$V(X_*, X_*)$ is the FITC-style Nystrom residuals $K(X_*, X_*) - Q(X_*, X_*)$.
+
+Obtaining estimates for $\Sigma^*$ and $\mu^*$ requires assembling a marginal likelihood. The Kullback-Leibler (KL) divergence measures how different two probability distributions are. The KL divergence between the true posterior $p(f(X), f(X_m) | y)$ and our variational distribution $q(f(X), f(X_m) | y)$ is:
 \begin{equation*}
     D_{KL}(q(f(X), f(X_m) | y) || p(f(X), f(X_m) | y)) = \int q(f(X), f(X_m) | y) \log \frac{q(f(X), f(X_m) | y)}{p(f(X), f(X_m) | y)} df(X) df(X_m)
 \end{equation*}
@@ -288,78 +322,35 @@ Rewriting to isolate $\log p(y)$:
     \log p(y) = \int q(f(X), f(X_m) | y) \log \frac{p(y, f(X), f(X_m))}{q(f(X), f(X_m) | y)} df(X) df(X_m) + D_{KL}(q(.) || p(.)) 
 \end{equation}
 
-Our first term $\text{F} = \int q(f(X), f(X_m) | y) \log \frac{p(y, f(X), f(X_m))}{q(f(X), f(X_m) | y)} df(X) df(X_m)$ is called the Evidence Lower Bound (ELBO), or the VFE term. $D_{KL}(q(.) || p(.)) \geq 0$, so $\log p(y) \geq \text{F}$ and $\text{F}$ represents the lowest possible likelihood and raising $\text{F}$ produces a raise in $log(y)$. Maximising $\text{F}$ using the model hyperparameters directly improves the model, and maximising it using the parameters of the variational distribution makes it a better approximation which improves the hyperparameter tuning methods.
+Our first term $\text{F} = \int q(f(X), f(X_m) | y) \log \frac{p(y, f(X), f(X_m))}{q(f(X), f(X_m) | y)} df(X) df(X_m)$ is called the Evidence Lower Bound (ELBO), or the VFE term. Titsias \cite{vfe} found that minimising $D_{KL}(q(.) || p(.)) \geq 0$ is equivelant to maximising $\text{F} \leq \log p(y)$ Maximising $\text{F}$ using the model hyperparameters directly improves the model, whilst reducing $D_{KL}(q(.) || p(.))$ using the parameters of the variational distribution drives the variational distribution closer to the true posterior. Unlike prior approximations, using the whole training data $X$ in $F$ recovers $\log p(y)$ exactly which removes the bias in hyperparameter estimates as $X_m \to X$. 
 
-The resulting likelihood after computing the Gaussian integrals in \ref{eq:likelihood_vfe} is:
+Titsias \cite{vfe} computed the Gaussian integrals in \ref{eq:likelihood_vfe}, and applied calculus of variations to eliminate $q(f(X_m) | y)$ and represent the final "collapsed" ELBO $F_{VFE}$ in terms of SoR's likelihood (\ref{eq:prior_approx_likelihood}, $\hat{Q}(X, X) = 0$) and the Nystrom residuals from FITC $V(X, X)$:
 \begin{equation*}
-    \begin{aligned}
-        p_{\text{VFE}}(Y) = -\frac{1}{2} \log(2 \pi \sigma_n^2) \\ 
-        - \frac{1}{2\sigma_n^2} Y^T Y \\
-        + \frac{1}{2\sigma_n^4} Y^T K(X, X_m) [K(X_m, X_m) \\
-        + \sigma_n^{-2} K(X_m, X) K(X, X_m)]^{-1} K(X_m, X) Y \\
-        - \frac{1}{2} \log | K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m) | \\
-        + \frac{1}{2} \log | K(X_m, X_m) | \\
-        - \frac{1}{2 \sigma_n^2} \text{tr} \left[ K(X, X) - K(X_n, X_m) K(X_m, X_m)^{-1} K(X_m, X) \right]
-    \end{aligned}
+    F_{VFE} = \log q_{SoR}(y) - \frac{1}{2\sigma_n^2} \text{tr}[V(X, X)] \geq F
 \end{equation*}
-The trace term $\text{tr}[.]$ represents the residual variance the variational distribution has left unexplained. The terms in the likelihood that dominate computational complexity are the $y^T K(X, X_m) [K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m)]^{-1} K(X_m, X) y$ and the $K(X_m, X_m) + \sigma_n^{-2} K(X_m, X) K(X, X_m)$ inversions, which cost $O(nm^2)$ and $O(m^3)$ respectively, for an overall training complexity of $O(nm^2 + m^3)$.
+Similar to its usage in FITC, the trace term $\text{tr}[V(X, X)]$ represents the residual variance the introduced Nystrom approximations left unexplained. The cost of assembling $F_{VFE}$ for training is dominated by the likelihood term $\log q_{SoR}(y)$, which is $O(nm^2 + m^3)$. VFE achieves a more accurate approximation of the marginal likelihood than FITC without additional computational complexity.
 
-For inference, this posterior produces the variational predictive distribution:
+\subparagraph{Deriving FITC through the VFE framework}
+Bui et. al. \cite{fitc-vfe-unifier} explored the links to FITC that are introduced in VFE by using the exact sparse prior \ref{eq:sparse_exact_prior}. They found that applying expectation propagation, or minimising the "inclusive" KL where $p$ and $q$ are swapped: $D_{KL}(p(.) || q(.))$ recovers the FITC approximate prior exactly. They defined the power expectation propagation (PEP) objective:
 \begin{equation*}
-    \begin{aligned}
-        q(f(X_*)) = \mathcal{N}( \\
-        K(X_*, X_m) K(X_m, X_m)^{-1} \mu^*, \\
-        K(X_*, X_*) - K(X_*, X_m) K(X_m, X_m)^{-1} \Sigma^* K(X_m, X_m)^{-1} K(X_m, X_*) \\
-        )
-    \end{aligned}
+    \log q_{\text{PEP}}(y) = \log q(y) - \frac{1 - \alpha}{2\alpha} \text{tr}\left[ \log(I_n + \frac{\alpha}{\sigma_n^2} V(X, X) \right]
 \end{equation*}
-$\mu^*$ and $\Sigma^*$ are the mean and covariance of the optimal $q(f(X_m) | y)$ variational distribution. This posterior approximation produces a likelihood where closed form solutions for $\mu^*$ and $\Sigma^*$ at $\partial \frac{p(y)}{\partial \mu} = 0$ and $\partial \frac{p(y)}{\partial \Sigma} = 0$ are available:
-\begin{equation*}
-    \begin{aligned}
-        \Sigma^* = \left[ K(X_m, X_m)^{-1} + \sigma_n^{-2} K(X_m, X_m)^{-1} K(X_m, X) K(X, X_m) K(X_m, X_m)^{-1} \right]^{-1}
-        \mu^* = \sigma_n^{-2} \Sigma^* K(X_m, X) y \\
-    \end{aligned}
-\end{equation*}
-Assembling $\Sigma^*$ and $\mu^*$ requires inverting $K(X_m, X_m)$, which costs $O(m^3)$, and multiplying it by the $n$-rank $K(X_m, X)$ and $K(X, X_m)$, which costs $O(nm^2)$, for a total complexity of $O(nm^2 + m^3)$. VFE achieves a more accurate approximation of the marginal likelihood than FITC without additional computational complexity. 
-
-\subparagraph{Deriving FITC through the VFE framework \cite{fitc-vfe-unifier}}
-Bui et. al. \cite{fitc-vfe-unifier} found that applying expectation propagation, or minimising the "inclusive" KL where $p$ and $q$ are swapped: $D_{KL}(p(.) || q(.))$ recovers the FITC prior exactly:
-\begin{equation*}
-    \begin{aligned}
-        q(f) = N ( \\
-        0, \\
-        K(X, X_m) K(X_m, X_m)^{-1} K(X_m, X) + \text{diag}[V_{nn}] \\
-        )
-    \end{aligned}
-\end{equation*}
-They defined the power expectation propagation (PEP) objective:
-\begin{equation*}
-    \log q_{\text{PEP}}(y) = \log q(y) - \frac{1 - \alpha}{2\alpha} \text{tr}\left[ \log(I_n + \frac{\alpha}{\sigma_n^2} V_{nn} \right]
-\end{equation*}
-$q(y)$ represents our FITC prior and the trace term represents $VFE$. When $\alpha = 1$, the trace term vanishes and we recover FITC exactly. As $\alpha \to 0$, the expansion of the $\frac{1-\alpha}/{\alpha} \log(I + \alpha A) \to tr[A]$ and we recover VFE in its collapsed form.  TODO improve explanation
+$q(y)$ represents our FITC prior and the trace term represents $VFE$. When $\alpha = 1$, the trace term vanishes and we recover FITC exactly. As $\alpha \to 0$, the expansion of the $\frac{1-\alpha}/{\alpha} \log(I + \alpha A) \to tr[A]$ and we recover VFE in its collapsed form. 
 
 \paragraph{Stochastic varational GP (SVGP)}
-Hensman et. al. \cite{svgp} removed VFE's closed form solutions for the variational distribution's mean and variance and directly optimised them for lower computational complexity. They used a simple posterior approximation:
+Instead of collapsing the approximate variational distribution $q(f(X_m) | y)$ in the final ELBO by calculus of variations, Hensman et. al. \cite{svgp} explicitly retained it as something to maximise:
 \begin{equation*}
-    q(f(X_m) | y) = \mathcal{N}(f(X_m) | M, S)
+    q(f(X_m) | y) = \mathcal{N}(\mu, \Sigma)
 \end{equation*}
-$M$ and $S$ are the vector of means and the covariance matrix respectively, and are treated as free parameters to be optimised to maximise $F$. This produces a simpler ELBO:
+$\mu$ is an $m$-sized vector representing the best estimates of the function at each inducing point, and $\Sigma$ is an $m \times m$ covariance matrix representing the covariance between the inducing points. These are free variational parameters optimised to maximise this ELBO:
 \begin{equation*}
-    F = \textbf{E}_{q(f(X))} \left[ \log p(y | f(X)) \right] - D_{KL}(q(f(X_m) | y) || p(f(X_m)))
+    F_{SVGP} = \textbf{E}_{q(f(X_m) | y) \cdot p(f(X) | f(X_m))} \left[ \log p(y | f(X)) \right] - D_{KL}(q(f(X_m) | y) || p(f(X_m)))
 \end{equation*}
 The KL distance between our approximation and the prior is:
 \begin{equation*}
-    D_{KL}(q(f(X_m) | y) || p(f(X_m))) = \frac{1}{2} \left( \log \frac{|K(X_m, X_m)|}{|S} - m + \text{tr}(K(X_m, X_m)^{-1} S) + M^T K(X_m, X_m)^{-1} M \right)
+    D_{KL}(q(f(X_m) | y) || p(f(X_m))) = \frac{1}{2} \left( \log \frac{|K(X_m, X_m)|}{|S} - m + \text{tr}(K(X_m, X_m)^{-1} \Sigma) + \mu^T K(X_m, X_m)^{-1} \mu \right)
 \end{equation*}
-We can use the posterior produced by these approximations to obtain $log p(y | f(X))$. The posterior is:
-\begin{equation*}
-    \begin{aligned}
-        p(f(X) | X) = \mathcal{N}( \\
-        K(X, X_m) K(X_m, X_m)^{-1} M, \\
-        K(X, X) - K(X, X_m) K(X_m, X_m)^{-1} (K(X_m, X_m) - S) K(X_m, X_m)^{-1} K(X_m, X) \\
-        )
-    \end{aligned}
-\end{equation*}
+
 For the $i$-th point, we can find the squared difference between the true $y_i$ and the predicted $f(x_i)$ by producing predictions using the posterior mean $\mu_i$ and variance $\Sigma_{ii}$ at $i$:
 \begin{equation*}
     \textbf{E}_{q(f(X_i))} \left[ \log p(y_i | f(X_i)) \right] =  \textbf{E} \left[ (y_i - f(x_i))^2 \right] = (y_i - \mu_i)^2 + \Sigma_{ii}
@@ -368,11 +359,11 @@ Assuming these remainders are Gaussian and independent of each other, we can sum
 \begin{equation*}
     \log p(y | f(X)) = -\frac{n}{2} \log(2 \pi \sigma_n^2) - \frac{1}{2\sigma_n^2} \sum_{i=1}^{n} \left[ (y_i - \mu_i)^2 + \Sigma{ii} \right]
 \end{equation*}
-The only reason both training and inference using this approximation is $O(mn^2 + m^3)$ is because the posterior means and variances currently cost $O(nm^2)$ to compute. Spending this during inference is unavoidable, but Stochastic Gradient Descent (SGD) \cite{adam} suggests that we can reduce training costs by only summing a batch of $b$ points at a time:
+The only reason both training and inference using this approximation is $O(mn^2 + m^3)$ is because the posterior means and variances currently cost $O(nm^2)$ to compute. Spending this during inference is unavoidable, but Kingma and Ba's Stochastic Gradient Descent (SGD) \cite{adam} suggests that we can reduce training costs by only summing a batch of $b$ points at a time:
 \begin{equation*}
     \log p(y | f(X)) = -\frac{n}{2} \log(2 \pi \sigma_n^2) - \frac{1}{2\sigma_n^2} \frac{n}{b} \sum_{i=1}^{b} \left[ (y_i - \mu_i)^2 + \Sigma{ii} \right]
 \end{equation*}
-This results in a training complexity of $O(bm^2 + m^3)$, which is significantly lower than the $O(nm^2 + m^3)$ complexity of VFE and FITC. TODO give full advantages \& disadvantages
+This results in a training complexity of $O(bm^2 + m^3)$, which is significantly lower than the $O(nm^2 + m^3)$ complexity of VFE and FITC. However, since the optimal $q(f(X_m) | y)$ is not analytically determined and collapsed, $F_{SVGP}$ will be lower than $F_{VFE}$ and produce less accurate hyperparameter estimates. Practically, SGD itself requires hyperparameter estimates such as learning-rate and schedule choices, and optimising $m$ and $S$ in addition to inducing locations and model hyperparameters increases epoch time.
 
 
 % \subsubsection{Structured sparse approximation}
@@ -391,9 +382,14 @@ This results in a training complexity of $O(bm^2 + m^3)$, which is significantly
 % \subsubsection{Product-of-experts}
 
 \subsection{Celerite kernels \cite{foreman-mackay}}
+The approximation methods we have seen so far are designed to approximate any valid covariance matrix. The celerite kernel is an example of a structured approximation approach, whereby the kernel itself is specifically designed to be computationally efficient to invert.
+
+A naive example of a structured approximation is a sparse kernel. Sparse kernels \cite{big-data} are particularly designed kernels that impose $k(X,X') = 0$ if $|X - X'|$ is larger than some threshold $d$ to create a sparse covariance matrix. This reduces the number of calculations that need to be performed and computational complexity to $O(an^3)$, where $a$ is the proportion of non-zero entries remaining. However, the kernel needs to be carefully designed to work with zeroes and ensure all entries are PSD.
+
+Celerite models achieve a much smaller computational complexity $O(N J^2)$ for one-dimensional stationary kernels expressible as sums of dampened sinusoids and exponentials, such as the Matern 3/2 kernel.
 
 \subsubsection{The celerite model}
-Rybicki and Press \cite{fast-exp} used the Markov property of the exponential covariance function to produce a fast algorithm for computing its inverse. Since the exponential kernel is Markov, the only non-zero covariance at $i$ is $i-1$ and $i+1$, and the covariance matrix is tridiagonal whose inverse can be computed in $O(n)$ time. 
+Rybicki and Press \cite{fast-exp} used the Markov property of the exponential covariance function to produce a fast algorithm for computing its inverse. Since the exponential kernel is Markov, the only non-zero inverse covariance at $i$ is $i-1$ and $i+1$, and the inverse covariance matrix is tridiagonal whose inverse can be computed in $O(n)$ time. 
 
 Kelly et. al. \cite{general-exp} generalised this to $J$ arbitrary mixtures of exponentials:
 \begin{equation*}
@@ -401,7 +397,7 @@ Kelly et. al. \cite{general-exp} generalised this to $J$ arbitrary mixtures of e
 \end{equation*}
 Although the inverse of this is dense, Kelly et. al. \cite{general-exp} showed that it can be computed in $O(N J^2)$ time.
 
-Foreman and Mackay \cite{foreman-mackay} used the Bochner representation \ref{eq:bochner} of this generalised covariance function: %introduced complex parameters $a_j = a_j \pm i b_j$ and $c_j = c_j \pm i d_j$ to generalise this further :
+Foreman-Mackay et. al. \cite{foreman-mackay} used the Bochner representation \ref{eq:bochner} of this generalised covariance function: %introduced complex parameters $a_j = a_j \pm i b_j$ and $c_j = c_j \pm i d_j$ to generalise this further :
 \begin{equation*}
     \begin{aligned}
         K(X, X') = \sum_{j=1}^J \\
@@ -417,7 +413,7 @@ Using the Fourier transform \ref{eq:fourier}:
         + b_j \exp(-c_j |X - X'|) \sin(d_j |X - X'|)
     \end{aligned}
 \end{equation}
-The argument within this sum is called a celerite term. Setting $b_j$ and $d_j$ recovers the original exponential kernel, but Foreman and Mackay's \cite{foreman-mackay} generalisation can be extended to approximate more complex kernels than sums of exponentials whilst maintaining Kelly et. al. \cite{general-exp}'s $O(N J^2)$ complexity.
+The argument within this sum is called a celerite term. Each celerite term contributes two ranks in the semiseparable factorisation; with $J$ celerite terms, the off-diagonal rank is $2J$. Setting $b_j = 0$ and $d_j = 0$ recovers the original exponential kernel, but Foreman-Mackay et. al.'s \cite{foreman-mackay} generalisation can be extended to approximate more complex kernels than sums of exponentials whilst maintaining Kelly et. al. \cite{general-exp}'s $O(N J^2)$ complexity.
 
 \subsubsection{Building Matern 3/2 from celerite}
 Applying the Fourier representation to the kernel to obtain its spectral density \ref{eq:spectral_density}:
@@ -425,7 +421,7 @@ Applying the Fourier representation to the kernel to obtain its spectral density
     S(\omega) = \sum_{j=1}^J \sqrt{\frac{2}{\pi}} \frac{(a_j c_j + b_j d_j) (c_j^2 + d_j^2) + (a_j c_j - b_j d_j) \omega^2}{\omega^4 + 2(c_j^2 - d_j^2) \omega^2 + (c_j^2 + d_j^2)^2}
 \end{equation*}
 
-A stochastically-driven dampened simple harmonic oscillator (SHO) is a system that oscillates with a frequency $\omega$ and is dampened by a factor $c$. The differential equation for this system is:
+A stochastically-driven damped simple harmonic oscillator (SHO) is a system that oscillates with a frequency $\omega$ and is dampened by a factor $c$. The differential equation for this system is:
 \begin{equation*}
     \left[ \frac{d^2}{dt^2} + \frac{\omega_0}{Q} \frac{d}{dt} + \omega_0^2 \right] y(t) = \eta(t)
 \end{equation*}
@@ -435,7 +431,7 @@ Q is the "quality factor" of the oscillator, which determines how quickly it los
 \end{equation*}
 where $S_0$ is proportional to the power at $\omega = \omega_0$, $S(\omega_0) = \sqrt{\frac{2}{\pi}} S_0 Q^2$ TODO explain.
 
-Foreman and Mackay \cite{foreman-mackay} showed that the celerite spectral density matched the SHO spectral density if $Q \geq \frac{1}{2}$:
+Foreman-Mackay et. al. \cite{foreman-mackay} showed that the celerite spectral density matched the SHO spectral density if $Q \geq \frac{1}{2}$:
 \begin{equation*}
     \begin{aligned}
         a_j = S_0 \omega_0 Q \\
@@ -444,7 +440,7 @@ Foreman and Mackay \cite{foreman-mackay} showed that the celerite spectral densi
         d_j = \frac{\omega_0}{2Q} \sqrt{4Q^2 - 1}
     \end{aligned}
 \end{equation*}
-For $0 < Q \leq \frac{1}{2}$, Foreman and Mackay \cite{foreman-mackay} used a pair of celerite terms with parameters:
+For $0 < Q \leq \frac{1}{2}$, Foreman-Mackay et. al. \cite{foreman-mackay} used a pair of celerite terms with parameters:
 \begin{equation*}
     \begin{aligned}
         a_{j \pm} = \frac{1}{2} S_0 \omega_0 Q \left[ 1 \pm \frac{1}{\sqrt{1 - 4Q^2}} \right] \\
@@ -453,11 +449,11 @@ For $0 < Q \leq \frac{1}{2}$, Foreman and Mackay \cite{foreman-mackay} used a pa
         d_{j \pm} = 0
     \end{aligned}
 \end{equation*}
-As $Q \to 0$, our spectral density indicates that the process has no oscillatory behaviour and represents a white noise process, e.g. $Q = 1 / \sqrt{2}$ recovers an astrophysics model \cite{sho-noise-astro} for background granulation noise in stars. Conversely, the process exhibits strong oscillatory behaviour as $Q \to 1$. 
+As $Q \to 0$, our spectral density indicates that the process has no oscillatory behaviour and over-damped, e.g. $Q = 1 / \sqrt{2}$ recovers an astrophysics model \cite{sho-noise-astro} for background granulation noise in stars. Conversely, the process exhibits strong oscillatory behaviour from $Q = \frac{1}{2}$ onwards.
 
-We can use the Weiner-Khinchin theorem \ref{eq:weiner-khinchin} to obtain the SHO kernel from these spectral densities:
+We can use the Wiener-Khinchin theorem \ref{eq:weiner-khinchin} to obtain the SHO kernel from these spectral densities:
 \begin{equation*}
-    K(X, X'; S_0, Q, \omega_0) = S_0 \omega_0 Q \exp^{-\frac{\omega_0 |X - X'|}{2Q}} \begin{cases}
+    K(X, X'; S_0, Q, \omega_0) = S_0 \omega_0 Q \exp \left( -\frac{\omega_0 |X - X'|}{2Q} \right) \begin{cases}
             \cosh (\eta \omega_0 |X - X'|) + \frac{1}{2 \eta Q} \sinh ( \eta \omega_0 |X - X'|) & 0 < Q < \frac{1}{2} \\
             2(1 + \omega_0 |X - X'|) & Q = \frac{1}{2} \\
             \cos (\eta \omega_0 |X - X'|) + \frac{1}{2 \eta Q} \sin ( \eta \omega_0 |X - X'|) & Q > \frac{1}{2}
@@ -469,52 +465,55 @@ At $Q = \frac{1}{2}$, the kernel becomes:
 \begin{equation*}
     K(X, X')_{Q = \frac{1}{2}} = S_0 \omega_0 \exp^{- \omega_0 |X - X'|} \left( 1 + \omega_0 |X - X'| \right)
 \end{equation*}
-Setting $\omega_0 = \frac{\sqrt{3}}{l}$ recovers the Matern 3/2 kernel \label{eq:matern-32}.
+Setting $\omega_0 = \frac{\sqrt{3}}{l}$ and $\sigma^2 = S_0 \omega_0$ recovers the Matern 3/2 kernel \label{eq:matern-32}:
+\begin{equation*}
+    K(X, X')_{Q = \frac{1}{2}} = \sigma^2 \exp \left(- \frac{\sqrt{3}}{l} |X - X'|\right) \left( 1 + \frac{\sqrt{3}}{l} |X - X'| \right)
+\end{equation*}
 
 \subsubsection{Cholesky factorisation and inversion of celerite kernels}
-Foreman and Mackay \cite{foreman-mackay} develop a Cholesky factorisation method for these celerite kernels in $O(NR^2)$ complexity by exploiting their semiseperable structure. This methods reduces the $O(n^3)$ complexity of standard Cholesky factorisation \ref{eq:cholesky} whilst retaining its numerical stability.
+Foreman-Mackay et. al. \cite{foreman-mackay} develop a Cholesky factorisation method for these celerite kernels in $O(NR^2)$ complexity by exploiting their semiseparable structure. This methods reduces the $O(n^3)$ complexity of standard Cholesky factorisation \ref{eq:cholesky} whilst retaining its numerical stability.
 
 \paragraph{Semiseperable matrices}
-A rank-$R$ semiseperable matrix $K$ is a matrix that can be expressed as a sum of a diagonal matrix $A$ and two low-rank matrices $U$ and $V$:
-\begin{equation} \label{eq:semiseperable-cases}
-    K_ = \begin{cases}
+A rank-$R$ semiseparable matrix $K$ is a matrix that can be expressed as a sum of a diagonal matrix $A$ and two low-rank matrices $U$ and $V$:
+\begin{equation} \label{eq:semiseparable-cases}
+    K_{nm} = \begin{cases}
         \sum_{r=1}^R U_{nr} V_{mr} & m < n \\
         A_{nn} & m = n \\
         \sum_{r=1}^R U_{mr} V_{nr} & m > n
     \end{cases}
 \end{equation}
 In matrix notation:
-\begin{equation} \label{eq:semiseperable-matrix}
+\begin{equation} \label{eq:semiseparable-matrix}
     K = A + \text{tri}_{\text{upper}}(U V^T) + \text{tri}_{\text{lower}}(V U^T)
 \end{equation}
 $A$ contains all the diagonal elements of the matrix $i = j$, and the second and third terms cover all the elements below and above the diagonal respectively.
 
-\paragraph{Celerite kernels as semiseperable matrices}
+\paragraph{Celerite kernels as semiseparable matrices}
 For celerite kernels \ref{eq:celerite}, the diagonal component $A$ is simply:
 \begin{equation*}
     A_{nn} = \sum_{j=1}^J a_j
 \end{equation*} \cite{foreman-mackay}
-For the off-diagonal components, defining $R = 2J$, we can assemble $U$ and $V$:
+For the off-diagonal components, defining $R = 2J$ , we can assemble $U$ and $V$ \cite{foreman-mackay}:
 \begin{equation*}
     \begin{aligned}
-        U_{n, 2j-1} = a_j \exp^{-c_j t_n} \cos(d_j t_n) + b_j \exp^{-c_j t_n} \sin(d_j t_n) \\
-        U_{n, 2j} = a_j \exp^{-c_j t_n} \sin(d_j t_n) - b_j \exp^{-c_j t_n} \cos(d_j t_n) \\
-        V_{m, 2j-1} = \exp^{+c_j t_m} \cos(d_j t_m) \\
-        V_{m, 2j} = \exp^{+c_j t_m} \sin(d_j t_m)
+        U_{n, 2j-1} = a_j \exp (-c_j t_n) \cos(d_j t_n) + b_j \exp^{-c_j t_n} \sin(d_j t_n) \\
+        U_{n, 2j} = a_j \exp (-c_j t_n) \sin(d_j t_n) - b_j \exp^{-c_j t_n} \cos(d_j t_n) \\
+        V_{m, 2j-1} = \exp (+c_j t_m) \cos(d_j t_m) \\
+        V_{m, 2j} = \exp (+c_j t_m) \sin(d_j t_m)
     \end{aligned}
-\end{equation*} \cite{foreman-mackay}
-The resulting covariance matrix $K_{nm}$ can be assembled using the rules for semiseperable matrices \ref{eq:semiseperable}. 
+\end{equation*} 
+The resulting covariance matrix $K_{nm}$ can be assembled using the rules for semiseparable matrices \ref{eq:semiseparable}. 
 
-\paragraph{Cholesky factorisation of semiseperable matrices}
-The goal of Cholesky factorisation \ref{eq:cholesky} remains to find the square root of the matrix. For standard Cholesky factorisation, the diagonal is already baked into $L$. However, for semiseperable matrices the diagonal is not part of $L$ and needs to be taken into account in the Cholesky representation of $K$:
-\begin{equation} \label{eq:cholesky-semiseperable}
+\paragraph{Cholesky factorisation of semiseparable matrices}
+The goal of Cholesky factorisation \ref{eq:cholesky} remains to find the square root of the matrix. For standard Cholesky factorisation, the diagonal is already baked into $L$. However, for semiseparable matrices the diagonal is not part of $L$ and needs to be taken into account in the Cholesky representation of $K$:
+\begin{equation} \label{eq:cholesky-semiseparable}
     K = L D L^T
 \end{equation}
-Foreman and Mackay \cite{foreman-mackay} use the ansatz that our Cholesky factor has the form:
+Foreman-Mackay et. al. \cite{foreman-mackay} use the ansatz that our Cholesky factor has the form:
 \begin{equation*}
     L = I + \text{tri}_{\text{lower}}(U W^T)
 \end{equation*}
-$I$ is the identity matrix, $U$ is from the definition of the semiseperable matrix \ref{eq:semiseperable-matrix}. After we determine the unknown $N \times N$ matrix $W$, we can determine our Cholesky factor. Substituting this ansatz into \ref{eq:cholesky-semiseperable}:
+$I$ is the identity matrix, $U$ is from the definition of the semiseparable matrix \ref{eq:semiseparable-matrix}. After we determine the unknown $N \times N$ matrix $W$, we can determine our Cholesky factor. Substituting this ansatz into \ref{eq:cholesky-semiseparable}:
 \begin{equation*}
     K = [I + \text{tri}_{\text{lower}}(U W^T)] D [I + \text{tri}_{\text{upper}}(W U^T)]
 \end{equation*}
@@ -522,7 +521,7 @@ Simplifying:
 \begin{equation*}
     K = D + \text{tri}_{\text{lower}}(U W^T) D + D \text{tri}_{\text{upper}}(W U^T) + \text{tri}_{\text{lower}}(U W^T) D \text{tri}_{\text{upper}}(W U^T)
 \end{equation*}
-Setting each element on the right-hand side equal to the corresponding element on the left-hand side of \ref{eq:semiseperable-cases} (e.g. $A = D$), we derive the following recurive definition W \cite{foreman-mackay}:
+Setting each element on the right-hand side equal to the corresponding element on the left-hand side of \ref{eq:semiseparable-cases} (e.g. $A = D$), we derive the following recurive definition W \cite{foreman-mackay}:
 \begin{equation*}
     \begin{aligned}
         S_{n,j,k} = S_{n-1, j, k} + D_{n-1, n-1} W_{n-1,j} W_{n-1, k} \\
@@ -532,7 +531,7 @@ Setting each element on the right-hand side equal to the corresponding element o
 \end{equation*}
 Each iteration of this recursion costs $O(R^2)$, and this needs to be run for all $N$ rows in $W$ for an overall complexity of $O(N R^2)$. This cost dominates the $O(N)$ cost of obtaining the triangle matrix $U$ and the diagonal matrix $D$. 
 
-\paragraph{Inversion of semiseperable matrices with a Cholesky factorisation}
+\paragraph{Inversion of semiseparable matrices with a Cholesky factorisation}
 As with standard regular Cholesky inversion, we can avoid the full cost of inversion since GPs only require the inverse multiplied by a product. This process is also cheaper than under regular Cholesky factorisation. As before, our goal is to solve $z = K^{-1} y$:
 \begin{equation*}
     z = K^{-1} y = L^{T^{-1}} D^{-1} L^{-1} y
@@ -551,8 +550,9 @@ where $f_{0,j} = 0$ for all $j$. Using $z'$ and backward substitution, we can co
         z_n = \frac{z'_n}{D_{n,n}} - \sum_{j=1}^R W_{n,j} g_{n,j}
     \end{aligned}
 \end{equation*}
-The total cost of both the forwards and backwards substitution is $O(N R)$.
+The total cost of both the forwards and backwards substitution is $O(N R)$, equivelantly $O(N J^")$.
 
+Celerite models achieve extreme numerical stability and accuracy, but have several disadvantages. The $O(N J^2)$ complexity, whilst an improvement over the naive Cholesky inversion $O(n^3)$ or the Nystrom-based approximations $O(nm^2 + m^3)$, is inferior to the $O(bm^2 + m^3)$ complexity of SVGP. The Markov property that this alternative Cholesky factorisation exploits requires that the data is sequentially ordered. Celerite approximations rely on the off-diagonal blocks being uniformly low rank $2J$ which is not the case if the training data is more than one dimension. These two issues restrict celerite models to one-dimensional time-series data only.
 
 % \subsubsection{Extensions}
 % 

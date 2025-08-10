@@ -51,7 +51,7 @@
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{\apj}
+      \field{journaltitle}{apj}
       \field{month}{12}
       \field{title}{{Modeling of Solar Oscillation Power Spectra}}
       \field{volume}{364}
@@ -509,7 +509,7 @@
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{A&A}
+      \field{journaltitle}{A\&A}
       \field{title}{The connection between stellar granulation and oscillation as seen by the Kepler mission}
       \field{volume}{570}
       \field{year}{2014}
@@ -1083,6 +1083,66 @@
       \field{note}{Unpublished manuscript, created 4 July 2025}
       \field{title}{Fitting Galaxy Spectra 101}
       \field{year}{2025}
+    \endentry
+    \entry{naive-nystrom}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=6dedcea44b2da1415e95ac8a84fef83e}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod}}}%
+        {{hash=9f881b2bdd82b01b43c0b7a6f9dd3208}{%
+           family={Seeger},
+           familyi={S\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=d0fa2183d141c3c709a512cab4fee1b2}{%
+           family={Leen},
+           familyi={L\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c58e1166ec83cf487ab9ae5ffa047a29}{%
+           family={Dietterich},
+           familyi={D\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=6e0f2cad96aa044f459455da8a9f0712}{%
+           family={Tresp},
+           familyi={T\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{f95cef2fac4c564b3b0411416a2938bb}
+      \strng{fullhash}{f95cef2fac4c564b3b0411416a2938bb}
+      \strng{fullhashraw}{f95cef2fac4c564b3b0411416a2938bb}
+      \strng{bibnamehash}{f95cef2fac4c564b3b0411416a2938bb}
+      \strng{authorbibnamehash}{f95cef2fac4c564b3b0411416a2938bb}
+      \strng{authornamehash}{f95cef2fac4c564b3b0411416a2938bb}
+      \strng{authorfullhash}{f95cef2fac4c564b3b0411416a2938bb}
+      \strng{authorfullhashraw}{f95cef2fac4c564b3b0411416a2938bb}
+      \strng{editorbibnamehash}{1fc2d8764e83eac6419a393a8d598eea}
+      \strng{editornamehash}{1fc2d8764e83eac6419a393a8d598eea}
+      \strng{editorfullhash}{1fc2d8764e83eac6419a393a8d598eea}
+      \strng{editorfullhashraw}{1fc2d8764e83eac6419a393a8d598eea}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems}
+      \field{title}{Using the Nyström Method to Speed Up Kernel Machines}
+      \field{volume}{13}
+      \field{year}{2000}
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2000/file/19de10adbaa1b2ee13f77f679fa1483a-Paper.pdf
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2000/file/19de10adbaa1b2ee13f77f679fa1483a-Paper.pdf
+      \endverb
     \endentry
   \enddatalist
   \missing{eq:se}
