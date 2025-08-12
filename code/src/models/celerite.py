@@ -14,52 +14,62 @@ class Celerite(BaseModel):
 
         self.__yerr = None;
         
-        # Define bounds on optimiser, especially to keep length scale long
-        self.__lower_length_scale = 500;
+        # Define lower length scale bound to avoid capturing high-frequency noise 
+        # Measured in fraction of span, i.e. length scale scaled by the range of data
+        self.__lower_length_scale = 0.10;
+        self.__upper_length_scale = 3;
 
         
-    def train(self, data_X, data_y, yerr = 0.8):
+    def train(self, data_X, data_y, yerr_min = 0.8, yerr_scale = 1.4826, yerr_boost = 2):
         self.__trained = True;
         
         data_X, data_y = self.__one_d_data(data_X, data_y); 
         
         n_X = len(data_X);
-        self.__yerr = np.full(n_X, float(yerr), dtype=float);
+
+        # Estimate model parameters using centred y
+        centered_y = data_y - np.median(data_y); 
+        mean_guess = 0 
+        sigma_guess = float(np.std(centered_y));
+
+        # Estimate yerr using centred y also
+        centered_diff_y = np.diff(centered_y);
+        yerr_est = yerr_scale * np.median(np.abs(centered_diff_y)) / np.sqrt(2.0);
+        self.__yerr = np.full(n_X, float(max(yerr_est, yerr_min)), dtype = float) * yerr_boost;
         
-        # Initial guesses based on data
-        mean_guess = float(np.median(data_y));
-        sigma_guess = float(np.std(data_y));
-        length_scale_guess = float(data_X.max() - data_X.min()) * 0.3;
+        self.__length_scale_geometry = float(data_X.max() - data_X.min());
+        length_scale_guess = self.__length_scale_geometry * self.__lower_length_scale 
 
         self.__kernel = terms.Matern32Term(
             sigma = sigma_guess,
-            rho = length_scale_guess
+            rho = length_scale_guess 
         );
         self.__model = celerite2.GaussianProcess(self.__kernel, mean = mean_guess);
         self.__model.compute(data_X, yerr = self.__yerr);
 
         print("Initial log-likelihood: ", self.__model.log_likelihood(data_y));
         
-        # Create bounds based on initial guesses, especially to keep length scale long
-        self.__optimiser_bounds = {
-            "mean": (None, None),
-            "sigma": (np.log(1e-6 * sigma_guess + 1e-12), np.log(1e6 * sigma_guess + 1e-12)),
-            "rho": (np.log(max(self.__lower_length_scale, length_scale_guess * 0.05)), 
-                    np.log(length_scale_guess * 20)),
-        };
-        self.__optimiser_bounds = self.__optimiser_bounds.values();
+        # Create bounds based on initial guesses, especially to keep length scale long, in terms of fractions
+        self.__optimiser_bounds = [
+            (None, None),
+            (np.log(0.5 * sigma_guess), np.log(2.0 * sigma_guess)),
+            (np.log(self.__lower_length_scale), (np.log(self.__upper_length_scale))) 
+        ];
 
         init_params = [
             mean_guess,
-            np.log(sigma_guess + 1e-12),
-            np.log(length_scale_guess),
+            np.log(sigma_guess),
+            np.log(self.__lower_length_scale)
         ];
+        
+        print(f"Optimising with initial parameters: {init_params} and bounds: {self.__optimiser_bounds}");
 
         solution = minimize(
             self.__neg_log_like,
             init_params,
             args = (data_X, data_y),
             method = 'L-BFGS-B',
+            bounds = self.__optimiser_bounds,
         );
 
         self.__set_params(solution.x, data_X);
@@ -77,9 +87,15 @@ class Celerite(BaseModel):
 
     def __set_params(self, params, data_X):
         mean, log_sigma, log_length_scale = params;
-
+        
+        # De-log sigma and length scale
+        sigma = float(np.exp(log_sigma));
+        rho_frac = float(np.exp(log_length_scale));
+        length_scale = self.__length_scale_geometry * rho_frac;
+        
+        print(f"Given parameters {params}, setting parameters: mean={mean}, sigma={sigma}, length scale frac={rho_frac}, length_scale={length_scale}, yerr={self.__yerr[0]}");
         self.__model.mean = mean;
-        self.__kernel = terms.Matern32Term(sigma = log_sigma, rho = log_length_scale);
+        self.__kernel = terms.Matern32Term(sigma = sigma, rho = length_scale);
 
         self.__model.kernel = self.__kernel;
         self.__model.compute(data_X, yerr = self.__yerr, quiet = True);

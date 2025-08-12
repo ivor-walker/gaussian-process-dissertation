@@ -28,38 +28,49 @@ class SVGP(BaseModel):
     def __init__(self):
         super().__init__("SVGP");
 
-        self.__length_scale = 1.0;
-
         # Use RBF kernel
-        self.__kernel = GPy.kern.Matern32(input_dim=1, lengthscale=self.__length_scale);
+        self.__kernel = GPy.kern.RBF(input_dim=1);
 
-        # Do not change length scale during training, needs to be tuned manually
-        self.__kernel.lengthscale.fix();
+        self.__kernel.lengthscale.constrain_bounded(0.08, 0.20);
 
         self.__likelihood = GPy.likelihoods.Gaussian();
         
-    def train(self, data_X, data_y, yerr = 0.8):
+    def train(self, data_X, data_y):
         self.__trained = True;
         
         n_X = data_X.shape[0];
         
-        # Initialise yerr (high frequency noise level)
-        self.__yerr = np.full(n_X, float(yerr), dtype=float);
+        # Normalise the data
+        self.__xmin = data_X.min();
+        self.__xscale = data_X.max() - data_X.min(); 
+        norm_X = (data_X - self.__xmin) / self.__xscale;
+
+        self.__ymean = data_y.mean();
+        self.__yscale = float(data_y.std() + 1e-12);
+        norm_y = (data_y - self.__ymean) / self.__yscale;
+
+        # Initialise likelihood variance from data
+        hf = np.diff(norm_y.ravel());
+        sig = 1.4826 * np.median(np.abs(hf)) / np.sqrt(2.0);
+        self.__likelihood.variance = sig ** 2;
+        self.__likelihood.variance.constrain_bounded(1e-6, 0.1);
+        
+        self.__kernel.variance.constrain_bounded(0.1, 2.0);
 
         # Create inducing points at random
-        m = n_X // 1000;
+        m = max(256, min(512, n_X // 10));
         M = np.linspace(
-            np.min(data_X),
-            np.max(data_X),
+            0,
+            1,
             m,
         dtype = float).reshape(-1, 1);
         
         # Enable minibatching
-        batch_size = min(256, n_X);
+        batch_size = min(1024, n_X);
         
         self.__model = GPy.core.SVGP(
-            data_X,
-            data_y,
+            norm_X,
+            norm_y,
             M,
             self.__kernel,
             self.__likelihood,
@@ -67,9 +78,10 @@ class SVGP(BaseModel):
         );
 
         # Use Adadelta optimiser
-        self.__optimiser = climin.Adadelta(
+        self.__optimiser = climin.Adam(
             self.__model.optimizer_array,
-            self.__model.stochastic_grad
+            self.__model.stochastic_grad,
+            step_rate = 1e-3,
         );
 
         info = self.__optimiser.minimize_until(self.__optimiser_callback);
@@ -99,16 +111,16 @@ class SVGP(BaseModel):
 
         if improvement < self._tolerance:
             self._stall_count += 1;
-            # print(f"Iteration {iteration}: Log likelihood = {ll} (stall, stall count: {self._stall_count})");
+            print(f"Iteration {iteration}: Log likelihood = {ll} (stall, stall count: {self._stall_count})");
             
             if self._stall_count >= self._max_stalls:
-                # print(f"Reached maximum stalls: {self._stall_count}");
+                print(f"Reached maximum stalls: {self._stall_count}");
                 return True;
 
         else:
             ();
             # self._stall_count = 0;
-            # print(f"Iteration {iteration}: Log likelihood = {ll} (improvement: {improvement})");
+            print(f"Iteration {iteration}: Log likelihood = {ll} (improvement: {improvement})");
 
         self.__prev_ll = ll;
         return False;
@@ -117,5 +129,12 @@ class SVGP(BaseModel):
         if self.__trained == False:
             raise Exception("Model has not been trained yet.");
         
-        mu, variance = self.__model.predict(data_X);
+        data_X = np.asarray(data_X, dtype=float).reshape(-1, 1);
+
+        # Normalise the data
+        norm_X = (data_X - self.__xmin) / self.__xscale;
+        mu, variance = self.__model.predict(norm_X);
+        mu = mu * self.__yscale + self.__ymean;
+        variance = variance * self.__yscale ** 2;
+
         return mu, variance;

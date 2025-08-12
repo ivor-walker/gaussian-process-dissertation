@@ -6,7 +6,7 @@ class BaseModel:
 
         self._trained = False;
 
-        self._max_iterations = 1000;
+        self._max_iterations = 5000;
         self._eval_every = 10;
         self._tolerance = 1e-6;
         self._max_stalls = 10;
