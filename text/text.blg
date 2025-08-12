@@ -1,0 +1,23 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[1] Config.pm:311> INFO - Logfile is 'text.blg'
+[463] biber-MSWIN64:340> INFO - === 
+[704] Biber.pm:420> INFO - Reading 'text.bcf'
+[1101] Biber.pm:994> INFO - Found 27 citekeys in bib section 0
+[1143] Biber.pm:4463> INFO - Processing section 0
+[1192] Biber.pm:4654> INFO - Looking for bibtex file '../references/references.bib' for section 0
+[1421] bibtex.pm:1713> INFO - LaTeX decoding ...
+[1594] bibtex.pm:1519> INFO - Found BibTeX data source '../references/references.bib'
+[2285] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[2286] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[2287] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[2287] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
+[2419] bbl.pm:676> INFO - Writing 'text.bbl' with encoding 'UTF-8'
+[2467] bbl.pm:779> INFO - Output to text.bbl
+[2468] Biber.pm:131> WARN - legacy month field 'May' in entry 'fourier-moments' is not an integer - this will probably not sort properly.
+[2469] Biber.pm:131> WARN - legacy month field 'Sep' in entry 'orny' is not an integer - this will probably not sort properly.
+[2469] Biber.pm:131> WARN - legacy month field '26--28 Aug' in entry 'random-subsampling' is not an integer - this will probably not sort properly.
+[2470] Biber.pm:131> WARN - legacy month field '16--18 Apr' in entry 'vfe' is not an integer - this will probably not sort properly.
+[2470] Biber.pm:131> WARN - legacy month field 'Feb' in entry 'fast-exp' is not an integer - this will probably not sort properly.
+[2471] Biber.pm:131> WARN - legacy month field 'apr' in entry 'gpflow' is not an integer - this will probably not sort properly.
+[2471] Biber.pm:131> WARN - I didn't find a database entry for 'eq:se' (section 0)
+[2472] Biber.pm:133> INFO - WARNINGS: 7
