@@ -1,7 +1,4 @@
 \section{Defining the Gaussian Process}
-Most statistical methods describe relationships between data by estimating weights that linearly combine the data to produce an output. This is fundamentally different to Gaussian processes (GPs), which describe a distribution over possible functions that describe the data. This section aims to describe what Gaussian processes are in terms of familiar weight-based statistical tools, namely Bayesian regression. We start with an in-depth look into Bayesian linear regression, relating it to frequentist approaches and deriving important results such as the the weight and predictive distributions. By applying the linear model to some non-linear flexible function of the data $\phi(X)$, we make the model more flexible. Then, we generalise our Bayesian linear regression in terms of a distribution of possible functions that $\phi$ could be and translate our Bayesian linear regression into a Gaussian process. We finish by investigating general properties of Gaussian processes that are analagous to properties of Bayesian linear regression, such as the predictive distribution and log-likelihood, and describe some practical considerations involved in their usage such as training and inference.
-
-% One can think of a Gaussian process as defining a distribution over functions, and inference taking place directly in the space of functions, the function-space two equivalent views view. Although this view is appealing it may initially be difficult to grasp, so we start our exposition in section 2.1 with the equivalent weight-space view which may be more familiar and accessible to many, and continue in section 2.2 with the function-space view. Gaussian processes often have characteristics that can be changed by setting certain parameters and in section 2.3 we discuss how the properties change as these parameters are varied. The predictions from a GP model take the form of a full predictive distribution.
 
 \subsection{Weight-space view}
 
@@ -372,7 +369,7 @@ This is the polynomial kernel, which is equivalent to our original polynomial ba
 
 
 
-\subsection{Function-space view \cite{gp-ml}}
+\subsection{Function-space view}
 
 \subsubsection{Gaussian processes (GP)}
 

@@ -1,1 +1,10 @@
-\section{TODO Conclusion}
+\section{Conclusion}
+
+\paragraph{Analysis of covariance functions}
+Conceptually, reframing smoothness as a single lens that unites length-scale, mean-square (MS) differentiability, and spectral decay proved useful. The Taylor–upcrossing analysis shows how length-scale governs the density of wiggles in typical function draws; shorter scales imply more upcrossings, while longer scales enforce broader, slower variations. In MS space, continuity and differentiability conditions translate directly into constraints on the kernel. For stationary kernels the spectral viewpoint makes the trade visible: fast high-frequency spectral decay yields very smooth sample paths. Together, these perspectives clarify why ostensibly similar kernels behave so differently downstream and proved fundamental in understanding the different performances of Matern 3/2 versus SE in the case study.
+
+\paragraph{Computational efficiency}
+The work established and disentangled several approaches to making GPs computationally tractable. Stochastic variational GPs (SVGP) buy generality at the price of accuracy and wall-clock time, while structured methods, exemplified by celerite, achieve near-exact linear-time algebra on restricted kernel classes and data layouts. Even though SVGP had a theoretically attractive computational complexity, its training took 65,000 times longer than celerite training and ultimately was too computationally infeasible to recommend for this application. In this case study, practical cost dependend more on optimiser dynamics and noise levels than on theoretical computational complexity. 
+
+\paragraph{Identifiability}
+The case study's objective was to remove correlated, low-frequency "wobbles" while leaving high-frequency noise intact so downstream inference remains valid. SE's rapid spectral decay matches that need by resisting high-frequency noise but rising and falling to capture correlated residuals. By contrast, Matérn 3/2's rougher prior tends to pass through more datapoints and, in this setting, overfits both low-frequency and high-frequency structure. 

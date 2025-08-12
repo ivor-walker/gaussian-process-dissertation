@@ -1,12 +1,6 @@
 \section{Computational Issues}
-Training Gaussian processes and producing predictions using them both require inverting the $n \times n$ $[K(X,X) + \sigma^2_nI]$ matrix. Naively inverting this matrix $X$ has a computational complexity of $O(n^3)$. Unfortunately, this cubic complexity is shared by most covariance functions and renders Gaussian processes unusable in practice - a covariance matrix with $n = 1000$ would require over one billion operations to invert naively, and this cost would need to be paid for each hyperparameter optimisation step and each prediction. 
-
-One approach is to approximate this inversion for any covariance matrix. These strategies for any covariance function fall into two categories: those that produce a single approximation for the entire dataset, or those that produce several approximations that are "experts" in a particular region of the dataset and combine these local approximations to form a global approximation. This section focuses on the global approximations because the local-expert methods are much newer and lack robust open-source implementations. 
-
-Another approach is to design a specific covariance function that produces a covariance matrix which has certain exploitable properties that allow for much more accurate inversions at the cost of flexibility. We introduce one structured approach, the celerite model, and discuss the origins of these tradeoffs in detail.
 
 % \subsection{Global approximations}
-
 
 \subsection{Cholesky decomposition}
 Cholesky decomposition \cite{gp-ml} is a matrix factorisation technique specialised for Gram matrices. Analagous to taking the square root of a Gram matrix, Cholesky finds a unique lower-traingular matrix $L$ with positive diagonal entries for some Gram matrix $A$ such that:
@@ -381,7 +375,7 @@ This results in a training complexity of $O(bm^2 + m^3)$, which is significantly
 % 
 % \subsubsection{Product-of-experts}
 
-\subsection{Celerite kernels \cite{foreman-mackay}}
+\subsection{Celerite kernels}
 The approximation methods we have seen so far are designed to approximate any valid covariance matrix. The celerite kernel is an example of a structured approximation approach, whereby the kernel itself is specifically designed to be computationally efficient to invert.
 
 A naive example of a structured approximation is a sparse kernel. Sparse kernels \cite{big-data} are particularly designed kernels that impose $k(X,X') = 0$ if $|X - X'|$ is larger than some threshold $d$ to create a sparse covariance matrix. This reduces the number of calculations that need to be performed and computational complexity to $O(an^3)$, where $a$ is the proportion of non-zero entries remaining. However, the kernel needs to be carefully designed to work with zeroes and ensure all entries are PSD.

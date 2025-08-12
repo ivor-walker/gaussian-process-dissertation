@@ -1268,6 +1268,72 @@
       \verb https://proceedings.neurips.cc/paper_files/paper/2000/file/19de10adbaa1b2ee13f77f679fa1483a-Paper.pdf
       \endverb
     \endentry
+    \entry{ski}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=b06c5730edff94b151e7e0d81439cbdf}{%
+           family={Wilson},
+           familyi={W\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b4e0d96a1c8f7f305ae85ede50f85610}{%
+           family={Nickisch},
+           familyi={N\bibinitperiod},
+           given={Hannes},
+           giveni={H\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=93da2819ab01d8a5e7bae39ce6f17c1f}{%
+           family={Bach},
+           familyi={B\bibinitperiod},
+           given={Francis},
+           giveni={F\bibinitperiod}}}%
+        {{hash=df034c01f40f9863f7986f0670e3f863}{%
+           family={Blei},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Lille, France}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{3bbb8ccfdb328ec4ff3e32f1eba0fcd1}
+      \strng{fullhash}{3bbb8ccfdb328ec4ff3e32f1eba0fcd1}
+      \strng{fullhashraw}{3bbb8ccfdb328ec4ff3e32f1eba0fcd1}
+      \strng{bibnamehash}{3bbb8ccfdb328ec4ff3e32f1eba0fcd1}
+      \strng{authorbibnamehash}{3bbb8ccfdb328ec4ff3e32f1eba0fcd1}
+      \strng{authornamehash}{3bbb8ccfdb328ec4ff3e32f1eba0fcd1}
+      \strng{authorfullhash}{3bbb8ccfdb328ec4ff3e32f1eba0fcd1}
+      \strng{authorfullhashraw}{3bbb8ccfdb328ec4ff3e32f1eba0fcd1}
+      \strng{editorbibnamehash}{4188f673e8c288b53fdbccdd66b77f3f}
+      \strng{editornamehash}{4188f673e8c288b53fdbccdd66b77f3f}
+      \strng{editorfullhash}{4188f673e8c288b53fdbccdd66b77f3f}
+      \strng{editorfullhashraw}{4188f673e8c288b53fdbccdd66b77f3f}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We introduce a new structured kernel interpolation (SKI) framework, which generalises and unifies inducing point methods for scalable Gaussian processes (GPs). SKI methods produce kernel approximations for fast computations through kernel interpolation. The SKI framework clarifies how the quality of an inducing point approach depends on the number of inducing (aka interpolation) points, interpolation strategy, and GP covariance kernel. SKI also provides a mechanism to create new scalable kernel methods, through choosing different kernel interpolation strategies. Using SKI, with local cubic kernel interpolation, we introduce KISS-GP, which is 1) more scalable than inducing point alternatives, 2) naturally enables Kronecker and Toeplitz algebra for substantial additional gains in scalability, without requiring any grid data, and 3) can be used for fast and expressive kernel learning. KISS-GP costs O(n) time and storage for GP inference. We evaluate KISS-GP for kernel matrix approximation, kernel learning, and natural sound modelling.}
+      \field{booktitle}{Proceedings of the 32nd International Conference on Machine Learning}
+      \field{month}{07--09 Jul}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{Kernel Interpolation for Scalable Structured Gaussian Processes (KISS-GP)}
+      \field{volume}{37}
+      \field{year}{2015}
+      \field{pages}{1775\bibrangedash 1784}
+      \range{pages}{10}
+      \verb{file}
+      \verb http://proceedings.mlr.press/v37/wilson15.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v37/wilson15.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v37/wilson15.html
+      \endverb
+    \endentry
   \enddatalist
   \missing{eq:se}
 \endrefsection

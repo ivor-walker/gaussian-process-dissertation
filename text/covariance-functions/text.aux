@@ -1,70 +1,70 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Exploring Covariance Functions}{14}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Characteristics of covariance functions and matrices}{14}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Gram matrices}{14}{subsubsection.3.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Eigenvalue and eigenfunctions of covariance matrices}{14}{subsubsection.3.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Integral operators}{14}{subsubsection.3.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Mercer's theorem}{15}{subsubsection.3.1.2}\protected@file@percent }
-\newlabel{eq:gp_mercer}{{27}{15}{Mercer's theorem}{equation.27}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Choosing the length scale and other hyperparameters}{15}{subsubsection.3.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Analysing the length scale}{15}{subsubsection.3.1.3}\protected@file@percent }
-\newlabel{eq:taylor_l}{{28}{15}{Analysing the length scale}{equation.28}{}}
-\@writefile{toc}{\contentsline {paragraph}{Length scale and upcrossings}{16}{equation.28}\protected@file@percent }
-\newlabel{eq:upcrossings}{{29}{16}{Length scale and upcrossings}{equation.29}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Mean square continuity and differentiability}{16}{subsubsection.3.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Mean square space}{16}{subsubsection.3.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{MS continuity}{17}{subsubsection.3.1.4}\protected@file@percent }
-\newlabel{eq:ms_continuity}{{30}{17}{MS continuity}{equation.30}{}}
-\@writefile{toc}{\contentsline {paragraph}{MS differentiability}{17}{equation.30}\protected@file@percent }
-\newlabel{eq:msd_a}{{31}{17}{MS differentiability}{equation.31}{}}
-\newlabel{eq:msd_a_final}{{32}{18}{MS differentiability}{equation.32}{}}
-\newlabel{eq:msd_b_final}{{33}{19}{MS differentiability}{equation.33}{}}
-\newlabel{eq:msd_ab_final}{{34}{20}{MS differentiability}{equation.34}{}}
-\newlabel{eq:ms_differentiability}{{35}{20}{MS differentiability}{equation.35}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stationary covariance functions}{20}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{20}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Spectral density}{20}{subsubsection.3.2.2}\protected@file@percent }
-\newlabel{eq:bochner}{{36}{20}{Spectral density}{equation.36}{}}
-\newlabel{eq:spectral-density}{{37}{20}{Spectral density}{equation.37}{}}
-\newlabel{eq:weiner-khinchin}{{38}{21}{Spectral density}{equation.38}{}}
-\@writefile{toc}{\contentsline {paragraph}{Spectral density and MS differentiability}{21}{equation.38}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}GPs from stationary covariance functions in MS space}{21}{subsubsection.3.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stationary covariance functions}{21}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Squared exponential (SE)}{21}{subsubsection.3.3.1}\protected@file@percent }
-\newlabel{eq:se}{{39}{21}{Squared exponential (SE)}{equation.39}{}}
-\newlabel{eq:se-sd}{{40}{21}{Squared exponential (SE)}{equation.40}{}}
-\@writefile{toc}{\contentsline {paragraph}{From feature space to SE}{22}{equation.40}\protected@file@percent }
-\newlabel{eq:feature-space-se}{{41}{22}{From feature space to SE}{equation.41}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  Plot of a GP using SE applied to a smooth sin wave $y = \sin (2 * pi * x) + \epsilon $, $\epsilon \sim N(0, 0.05)$, fitted using the R package GauPro \blx@tocontentsinit {0}\cite {gaupro}. \\ The noiseless sin-wave is in blue and some sample datapoints taken from this function with noise are in black. The black line represents the expected function from the Gaussian process. The green line represents the 95\% confidence interval around the predictive distribution without the $\sigma ^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 95\% confidence interval with $\sigma ^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$. }}{23}{figure.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  Plots of some sample functions drawn from a GP trained on the smooth dataset using SE. The blue and black lines are, as before, the noiseless data-generating function and the mean function drawn from the GP respectively. The green lines are 20 functions drawn from the GP - if we superimposed these draws onto the previous GP of means and variances, we would expect approximately 95\% of these function draws to be contained within the red variance lines. \\ }}{24}{figure.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Plot of the expected function draw and variances as before, using SE fitted to a rougher function: $\begin {cases} x < 0.3 & x \\ 0.3 \leq x < 0.7 & 1 - x \\ x \geq 0.7 & x - 0.5 \end  {cases}$ }}{25}{figure.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Plot of some sample functions drawn from a GP as before, trained on the rough dataset using SE. }}{25}{figure.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{26}{subsubsection.3.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Plot of the expected function draw and variances as before, using RQ fitted to the smooth sin wave dataset. }}{27}{figure.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  Plot of the expected function draw and variances as before, using RQ fitted to the rougher dataset. \\ }}{28}{figure.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the rough dataset using RQ. }}{28}{figure.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{29}{subsubsection.3.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Plot of the expected function draw and variances as before, using $\gamma $-exponential fitted to the smooth sin wave dataset. \\ }}{29}{figure.8}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Plot of the expected function draw and variances as before, using $\gamma $-exponential fitted to the rougher dataset. \\ }}{30}{figure.9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the rough dataset using $\gamma $-exponential. \\ }}{30}{figure.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Exponential covariance function}{31}{figure.10}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  Plot of the expected function draw and variances as before, using exponential fitted to the smooth sin wave dataset. \\ }}{31}{figure.11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the smooth dataset using exponential. \\ }}{32}{figure.12}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  Plot of the expected function draw and variances as before, using exponential fitted to the rougher dataset. }}{32}{figure.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{32}{subsubsection.3.3.4}\protected@file@percent }
-\newlabel{eq:matern_spectral}{{42}{33}{Matern-class}{equation.42}{}}
-\@writefile{toc}{\contentsline {paragraph}{Matern 3/2}{33}{equation.42}\protected@file@percent }
-\newlabel{eq:matern-32}{{43}{33}{Matern 3/2}{equation.43}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  Plot of the expected function draw and variances as before, using Matern 3/2 fitted to the smooth sin wave dataset. }}{33}{figure.14}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the smooth dataset using Matern 3/2. }}{34}{figure.15}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the rough dataset using Matern 3/2. }}{34}{figure.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Matern 5/2}{34}{figure.16}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces  Plot of the expected function draw and variances as before, using Matern 5/2 fitted to the smooth sin wave dataset. }}{35}{figure.17}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces  Plot of the expected function draw and variances as before, using Matern 5/2 fitted to the rougher dataset. \\ }}{35}{figure.18}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the rough dataset using Matern 5/2. }}{36}{figure.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Exploring Covariance Functions}{13}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Characteristics of covariance functions and matrices}{13}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Gram matrices}{13}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Eigenvalue and eigenfunctions of covariance matrices}{13}{subsubsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Integral operators}{13}{subsubsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mercer's theorem}{14}{subsubsection.3.1.2}\protected@file@percent }
+\newlabel{eq:gp_mercer}{{27}{14}{Mercer's theorem}{equation.27}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Choosing the length scale and other hyperparameters}{14}{subsubsection.3.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Analysing the length scale}{14}{subsubsection.3.1.3}\protected@file@percent }
+\newlabel{eq:taylor_l}{{28}{14}{Analysing the length scale}{equation.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{Length scale and upcrossings}{15}{equation.28}\protected@file@percent }
+\newlabel{eq:upcrossings}{{29}{15}{Length scale and upcrossings}{equation.29}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Mean square continuity and differentiability}{15}{subsubsection.3.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mean square space}{15}{subsubsection.3.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MS continuity}{15}{subsubsection.3.1.4}\protected@file@percent }
+\newlabel{eq:ms_continuity}{{30}{16}{MS continuity}{equation.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{MS differentiability}{16}{equation.30}\protected@file@percent }
+\newlabel{eq:msd_a}{{31}{16}{MS differentiability}{equation.31}{}}
+\newlabel{eq:msd_a_final}{{32}{17}{MS differentiability}{equation.32}{}}
+\newlabel{eq:msd_b_final}{{33}{18}{MS differentiability}{equation.33}{}}
+\newlabel{eq:msd_ab_final}{{34}{18}{MS differentiability}{equation.34}{}}
+\newlabel{eq:ms_differentiability}{{35}{18}{MS differentiability}{equation.35}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stationary covariance functions}{19}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{19}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Spectral density}{19}{subsubsection.3.2.2}\protected@file@percent }
+\newlabel{eq:bochner}{{36}{19}{Spectral density}{equation.36}{}}
+\newlabel{eq:spectral-density}{{37}{19}{Spectral density}{equation.37}{}}
+\newlabel{eq:weiner-khinchin}{{38}{19}{Spectral density}{equation.38}{}}
+\@writefile{toc}{\contentsline {paragraph}{Spectral density and MS differentiability}{19}{equation.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}GPs from stationary covariance functions in MS space}{19}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stationary covariance functions}{20}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Squared exponential (SE)}{20}{subsubsection.3.3.1}\protected@file@percent }
+\newlabel{eq:se}{{39}{20}{Squared exponential (SE)}{equation.39}{}}
+\newlabel{eq:se-sd}{{40}{20}{Squared exponential (SE)}{equation.40}{}}
+\@writefile{toc}{\contentsline {paragraph}{From feature space to SE}{20}{equation.40}\protected@file@percent }
+\newlabel{eq:feature-space-se}{{41}{21}{From feature space to SE}{equation.41}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  Plot of a GP using SE applied to a smooth sin wave $y = \sin (2 * pi * x) + \epsilon $, $\epsilon \sim N(0, 0.05)$, fitted using the R package GauPro \blx@tocontentsinit {0}\cite {gaupro}. \\ The noiseless sin-wave is in blue and some sample datapoints taken from this function with noise are in black. The black line represents the expected function from the Gaussian process. The green line represents the 95\% confidence interval around the predictive distribution without the $\sigma ^2_n$ term, representing the uncertainty surrounding predictions of the noise-free mean function $f(X)$. The red line represents the 95\% confidence interval with $\sigma ^2_n$, representing the uncertainty surrounding predictions of the noisy observations $y$. }}{21}{figure.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  Plots of some sample functions drawn from a GP trained on the smooth dataset using SE. The blue and black lines are, as before, the noiseless data-generating function and the mean function drawn from the GP respectively. The green lines are 20 functions drawn from the GP - if we superimposed these draws onto the previous GP of means and variances, we would expect approximately 95\% of these function draws to be contained within the red variance lines. \\ }}{22}{figure.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Plot of the expected function draw and variances as before, using SE fitted to a rougher function: $\begin {cases} x < 0.3 & x \\ 0.3 \leq x < 0.7 & 1 - x \\ x \geq 0.7 & x - 0.5 \end  {cases}$ }}{23}{figure.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Plot of some sample functions drawn from a GP as before, trained on the rough dataset using SE. }}{23}{figure.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{24}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Plot of the expected function draw and variances as before, using RQ fitted to the smooth sin wave dataset. }}{25}{figure.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  Plot of the expected function draw and variances as before, using RQ fitted to the rougher dataset. \\ }}{26}{figure.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the rough dataset using RQ. }}{26}{figure.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{27}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Plot of the expected function draw and variances as before, using $\gamma $-exponential fitted to the smooth sin wave dataset. \\ }}{27}{figure.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Plot of the expected function draw and variances as before, using $\gamma $-exponential fitted to the rougher dataset. \\ }}{28}{figure.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the rough dataset using $\gamma $-exponential. \\ }}{28}{figure.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exponential covariance function}{29}{figure.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  Plot of the expected function draw and variances as before, using exponential fitted to the smooth sin wave dataset. \\ }}{29}{figure.11}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the smooth dataset using exponential. \\ }}{30}{figure.12}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  Plot of the expected function draw and variances as before, using exponential fitted to the rougher dataset. }}{30}{figure.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{30}{subsubsection.3.3.4}\protected@file@percent }
+\newlabel{eq:matern_spectral}{{42}{31}{Matern-class}{equation.42}{}}
+\@writefile{toc}{\contentsline {paragraph}{Matern 3/2}{31}{equation.42}\protected@file@percent }
+\newlabel{eq:matern-32}{{43}{31}{Matern 3/2}{equation.43}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  Plot of the expected function draw and variances as before, using Matern 3/2 fitted to the smooth sin wave dataset. }}{31}{figure.14}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the smooth dataset using Matern 3/2. }}{32}{figure.15}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the rough dataset using Matern 3/2. }}{32}{figure.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Matern 5/2}{32}{figure.16}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces  Plot of the expected function draw and variances as before, using Matern 5/2 fitted to the smooth sin wave dataset. }}{33}{figure.17}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces  Plot of the expected function draw and variances as before, using Matern 5/2 fitted to the rougher dataset. \\ }}{33}{figure.18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces  Plots of some sample functions drawn from a GP as before, trained on the rough dataset using Matern 5/2. }}{34}{figure.19}\protected@file@percent }
 \@setckpt{covariance-functions/text}{
-\setcounter{page}{37}
+\setcounter{page}{35}
 \setcounter{equation}{43}
 \setcounter{enumi}{8}
 \setcounter{enumii}{0}
@@ -94,7 +94,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{24}
+\setcounter{instcount}{21}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}

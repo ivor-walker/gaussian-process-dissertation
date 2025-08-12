@@ -361,6 +361,7 @@ numpages = {14}
 @unpublished{galaxy-spectra-101,
   author       = {Vivienne Wild},
   title        = {Fitting Galaxy Spectra 101},
+  school       = {University of St Andrews},
   note         = {Unpublished manuscript, created 4 July 2025},
   year         = {2025},
 }
@@ -501,4 +502,22 @@ numpages = {14}
   number  = {40},
   pages   = {1-6},
   url     = {http://jmlr.org/papers/v18/16-537.html}
+}
+
+
+@InProceedings{ski,
+  title = 	 {Kernel Interpolation for Scalable Structured Gaussian Processes (KISS-GP)},
+  author = 	 {Wilson, Andrew and Nickisch, Hannes},
+  booktitle = 	 {Proceedings of the 32nd International Conference on Machine Learning},
+  pages = 	 {1775--1784},
+  year = 	 {2015},
+  editor = 	 {Bach, Francis and Blei, David},
+  volume = 	 {37},
+  series = 	 {Proceedings of Machine Learning Research},
+  address = 	 {Lille, France},
+  month = 	 {07--09 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v37/wilson15.pdf},
+  url = 	 {https://proceedings.mlr.press/v37/wilson15.html},
+  abstract = 	 {We introduce a new structured kernel interpolation (SKI) framework, which generalises and unifies inducing point methods for scalable Gaussian processes (GPs). SKI methods produce kernel approximations for fast computations through kernel interpolation. The SKI framework clarifies how the quality of an inducing point approach depends on the number of inducing (aka interpolation) points, interpolation strategy, and GP covariance kernel. SKI also provides a mechanism to create new scalable kernel methods, through choosing different kernel interpolation strategies. Using SKI, with local cubic kernel interpolation, we introduce KISS-GP, which is 1) more scalable than inducing point alternatives, 2) naturally enables Kronecker and Toeplitz algebra for substantial additional gains in scalability, without requiring any grid data, and 3) can be used for fast and expressive kernel learning. KISS-GP costs O(n) time and storage for GP inference. We evaluate KISS-GP for kernel matrix approximation, kernel learning, and natural sound modelling.}
 }
