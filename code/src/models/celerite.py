@@ -12,27 +12,49 @@ class Celerite(BaseModel):
         super().__init__("Celerite");
         self.__trained = False;
 
-        self.__length_scale = 1.0;
+        self.__yerr = None;
+        
+        # Define bounds on optimiser, especially to keep length scale long
+        self.__lower_length_scale = 500;
 
-        self.__kernel = terms.Matern32Term(sigma = 1.0, rho = self.__length_scale);
-        self.__model = celerite2.GaussianProcess(self.__kernel);
-
-        # Define fixed machine epsilon jitter
-        self.__yerr = float(1e-8);
-
-    def train(self, data_X, data_y):
+        
+    def train(self, data_X, data_y, yerr = 0.8):
         self.__trained = True;
         
         data_X, data_y = self.__one_d_data(data_X, data_y); 
+        
+        n_X = len(data_X);
+        self.__yerr = np.full(n_X, float(yerr), dtype=float);
+        
+        # Initial guesses based on data
+        mean_guess = float(np.median(data_y));
+        sigma_guess = float(np.std(data_y));
+        length_scale_guess = float(data_X.max() - data_X.min()) * 0.3;
 
+        self.__kernel = terms.Matern32Term(
+            sigma = sigma_guess,
+            rho = length_scale_guess
+        );
+        self.__model = celerite2.GaussianProcess(self.__kernel, mean = mean_guess);
         self.__model.compute(data_X, yerr = self.__yerr);
+
         print("Initial log-likelihood: ", self.__model.log_likelihood(data_y));
         
-        # Optimise mean and sigma_s only
-        init_mean = 0;
-        init_sigma = 1;
+        # Create bounds based on initial guesses, especially to keep length scale long
+        self.__optimiser_bounds = {
+            "mean": (None, None),
+            "sigma": (np.log(1e-6 * sigma_guess + 1e-12), np.log(1e6 * sigma_guess + 1e-12)),
+            "rho": (np.log(max(self.__lower_length_scale, length_scale_guess * 0.05)), 
+                    np.log(length_scale_guess * 20)),
+        };
+        self.__optimiser_bounds = self.__optimiser_bounds.values();
 
-        init_params = [init_mean, np.log(init_sigma)];
+        init_params = [
+            mean_guess,
+            np.log(sigma_guess + 1e-12),
+            np.log(length_scale_guess),
+        ];
+
         solution = minimize(
             self.__neg_log_like,
             init_params,
@@ -54,13 +76,13 @@ class Celerite(BaseModel):
         return -self.__model.log_likelihood(data_y);
 
     def __set_params(self, params, data_X):
-        self.__model.mean = params[0];
-        log_sigma = params[1];
+        mean, log_sigma, log_length_scale = params;
 
-        sigma = np.exp(log_sigma);
+        self.__model.mean = mean;
+        self.__kernel = terms.Matern32Term(sigma = log_sigma, rho = log_length_scale);
 
-        self.__kernel = terms.Matern32Term(sigma = sigma, rho = self.__length_scale);
-        self.__model.compute(data_X, quiet = True);
+        self.__model.kernel = self.__kernel;
+        self.__model.compute(data_X, yerr = self.__yerr, quiet = True);
 
     def predict(self, test_X, train_y):
         if self.__trained == False:

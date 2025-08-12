@@ -38,10 +38,13 @@ class SVGP(BaseModel):
 
         self.__likelihood = GPy.likelihoods.Gaussian();
         
-    def train(self, data_X, data_y):
+    def train(self, data_X, data_y, yerr = 0.8):
         self.__trained = True;
         
         n_X = data_X.shape[0];
+        
+        # Initialise yerr (high frequency noise level)
+        self.__yerr = np.full(n_X, float(yerr), dtype=float);
 
         # Create inducing points at random
         m = n_X // 1000;
