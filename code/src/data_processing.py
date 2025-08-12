@@ -1,11 +1,25 @@
 import pandas as pd;
+
+import numpy as np
+
 """
 Full processing pipeline
 """
 def process(file_path):
     data = __load_data(file_path); 
-
-    return data;
+    
+    # Drop useless error column
+    data = data.drop(columns = ["error"]);
+    
+    X_label = "wave_obs_AA";
+    y_label = "residual";
+    training_data = data.dropna(subset = ["wave_obs_AA", "residual"]);
+    
+    return (
+        data,
+        np.asarray(training_data[X_label], dtype = float).reshape(-1, 1),
+        np.asarray(training_data[y_label], dtype = float).reshape(-1, 1)
+    )
 
 """
 Load and fix data

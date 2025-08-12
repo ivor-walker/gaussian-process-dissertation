@@ -1,15 +1,22 @@
 import matplotlib.pyplot as plt;
 
+import numpy as np;
+
 """
 Display and close a plot
 """
-def __show_plot():
-    plt.grid()
-    plt.legend()
-    plt.tight_layout()
+def __show_plot(fig = None):
+    if fig is None:
+        plt.grid()
+        plt.legend()
+        plt.tight_layout()
+
+    else:
+        fig.tight_layout()
 
     plt.show()
-    plt.close()
+    return;
+    # fig.close()
 
 """
 Pre-plot settings that remain constant for all plots
@@ -100,7 +107,44 @@ def raw_residuals(df, final_plot = True):
     low_frequency_2_start = 6650;
     low_frequency_2_end = 7325;
     plt.axvspan(low_frequency_2_start, low_frequency_2_end, color='blue', alpha=0.3);
-    
+        
     __show_plot();
+
+"""
+SVGP and celerite comparison
+"""
+def svgp_vs_celerite(models_data, data_X, data_y, final_plot = True):
+    # Horizontal plot of all models
+    fig, ax = plt.subplots(1, len(models_data), sharex=True, sharey=True, figsize=(12, 6));
+    
+    # Add convolution moving average of residuals
+    window_size = 50;
+    min_periods = round(window_size / 2)
+    
+    data_X = data_X.ravel();
+    data_y = data_y.ravel();
+    kernel = np.ones(window_size) / window_size;
+    moving_average = np.convolve(data_y, kernel, mode='same');
+
+    # Plot each model in each subplot
+    for i, model_data in enumerate(models_data):
+        model_name = model_data['model_name'];
+        model_y = model_data['result'][0].ravel();
+        model_var = model_data['result'][1].ravel();
+        
+        ax[i].plot(data_X, data_y, label='Original residuals', color='orange', alpha=0.3);
+        ax[i].plot(data_X, moving_average, label='Moving average of original residuals', color='red');        
+        
+        ax[i].plot(data_X, model_y, label="GP residuals", color = 'blue');
+        # ax[i].plot(data_X, model_data['mean'], label='GP mean', color='green');
+        ax[i].fill_between(data_X, model_y - model_var, model_y + model_var, color='purple', alpha=0.3, label='GP variance');
+
+        ax[i].set_title(model_name);
+        ax[i].set_xlabel('Wavelength (Angstrom)');
+        ax[i].set_ylabel('Brightness (flux per unit wavelength)');
+        ax[i].grid();
+        ax[i].legend();
+    
+    __show_plot(fig);
 
 
