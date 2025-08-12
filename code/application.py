@@ -20,6 +20,8 @@ models = [
     SVGP(),
 ];
 
+models = [Celerite()];
+
 training_times = [model.time_train(data_X, data_y) for model in models];
 print(training_times);
 
