@@ -196,7 +196,7 @@ Similar to MS continuity, we expand $A_h^2$ into kernel terms:
     \mathbb{E}[A_h^2] = \frac{1}{h^2} \left( k(x_* + h e_i, x_* + h e_i) + k(x_*, x_*) - 2k(x_* + h e_i, x_*) \right)
 \end{equation}
 $k(x_*,x_*)$ is a constant, but the other terms vary with $h$. We can use a second-order Taylor series to approximate these terms if $k$ is twice continuously differentiable at $x_*$. Starting with the univariate $k(x_* + h e_i, x_*)$:
-\begin{equation*}
+\begin{equation} \label{eq:uni_taylor_a}
     \begin{aligned}
         k(x_* + h e_i, x_*) = \\
         k(x_*, x_*) \\
@@ -204,11 +204,11 @@ $k(x_*,x_*)$ is a constant, but the other terms vary with $h$. We can use a seco
         + \frac{h^2}{2} [\partial_{u_i u_i}^2k] (x_*, x_*) \\
         + O(h^3)
     \end{aligned}
-\end{equation*}
+\end{equation}
 $u_i$ and $v_i$ denote the first $x_* + h e_i$ and second $x_*$ arguments respectively in the $i$th direction. $O$ represents the remainder of the Taylor series. Since we are using a second-order Taylor series, the remainder is of order $h^3$ and higher.
 
 Then, the multivariate $k(x_* + h e_i, x_* + h e_i)$:
-\begin{equation*}
+\begin{equation} \label{eq:multi_taylor_a}
     \begin{aligned}
         k(x_* + h e_i, x_* + h e_i) = \\
         k(x_*, x_*) \\
@@ -216,7 +216,7 @@ Then, the multivariate $k(x_* + h e_i, x_* + h e_i)$:
         + \frac{h^2}{2} [\partial_{u_i u_i}^2 k + \partial_{u_i v_i}^2 k + \partial_{v_i v_i}^2 k](x_*, x_*) \\
         + O(h^3) 
     \end{aligned}
-\end{equation*}
+\end{equation}
 Substituting these approximations into \ref{eq:msd_a}:
 \begin{equation*}
     \begin{aligned}
@@ -386,9 +386,9 @@ Bochner's theorem \cite{bochner} states that the covariance function of any stat
     k(x, x') = \int_{-\infty}^{\infty} e^{2\pi i \omega (x - x')} d\mu(\omega)
 \end{equation}
 The Fourier transform decomposes our stationary covariance function into a sum of sines and cosines that occur at some frequency, written in a compact form as a complex exponential:
-\begin{equation*}
+\begin{equation} \label{eq:fourier}
     e^{-2\pi i \omega (x - x')} = \cos(2\pi \omega (x - x')) - i \sin(2\pi \omega (x - x'))
-\end{equation*}
+\end{equation}
 No such Fourier transformation exists for non-stationary covariance functions, as non-stationary covariance functions depend on variables outside of $X - X'$ and cannot be expressed as a sum of sines and cosines alone.
 
 The "spectral density" $S(\omega)$ is a complex number representing how much total variance is allocated at some frequency $\omega$. 
@@ -668,9 +668,9 @@ These function draws are much rougher than those drawn from RQ or SE thanks to t
 
 \paragraph{Exponential covariance function}
 $\gamma = 1$ produces the exponential covariance function:
-\begin{equation*}
+\begin{equation} \label{eq:exp_kernel}
     k(X,X') = \exp \left(-\frac{|X - X'|}{l} \right)
-\end{equation*}
+\end{equation}
 Restating:
 \begin{equation*}
     k(X, X') = a \exp\left(-c |X - X'|\right)

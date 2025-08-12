@@ -219,6 +219,69 @@
       \verb https://github.com/CollinErickson/GauPro
       \endverb
     \endentry
+    \entry{ski-smoother}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=00fb2b2bd85d351b9de55086ed8913a9}{%
+           family={Evans},
+           familyi={E\bibinitperiod},
+           given={Trefor},
+           giveni={T\bibinitperiod}}}%
+        {{hash=868551272dcec0de9f4c624c9b85d209}{%
+           family={Nair},
+           familyi={N\bibinitperiod},
+           given={Prasanth},
+           giveni={P\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=dc770b9b0d58d3008bbb3906497d898c}{%
+           family={Dy},
+           familyi={D\bibinitperiod},
+           given={Jennifer},
+           giveni={J\bibinitperiod}}}%
+        {{hash=112eb0b147c4a7f674d015a86e5dea70}{%
+           family={Krause},
+           familyi={K\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{94894941cc505023e20a84ba05a1aaab}
+      \strng{fullhash}{94894941cc505023e20a84ba05a1aaab}
+      \strng{fullhashraw}{94894941cc505023e20a84ba05a1aaab}
+      \strng{bibnamehash}{94894941cc505023e20a84ba05a1aaab}
+      \strng{authorbibnamehash}{94894941cc505023e20a84ba05a1aaab}
+      \strng{authornamehash}{94894941cc505023e20a84ba05a1aaab}
+      \strng{authorfullhash}{94894941cc505023e20a84ba05a1aaab}
+      \strng{authorfullhashraw}{94894941cc505023e20a84ba05a1aaab}
+      \strng{editorbibnamehash}{83be554d58af5be1788b5c3616f0e92a}
+      \strng{editornamehash}{83be554d58af5be1788b5c3616f0e92a}
+      \strng{editorfullhash}{83be554d58af5be1788b5c3616f0e92a}
+      \strng{editorfullhashraw}{83be554d58af5be1788b5c3616f0e92a}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We introduce a kernel approximation strategy that enables computation of the Gaussian process log marginal likelihood and all hyperparameter derivatives in O(p) time. Our GRIEF kernel consists of p eigenfunctions found using a Nystrom approximation from a dense Cartesian product grid of inducing points. By exploiting algebraic properties of Kronecker and Khatri-Rao tensor products, computational complexity of the training procedure can be practically independent of the number of inducing points. This allows us to use arbitrarily many inducing points to achieve a globally accurate kernel approximation, even in high-dimensional problems. The fast likelihood evaluation enables type-I or II Bayesian inference on large-scale datasets. We benchmark our algorithms on real-world problems with up to two-million training points and 10^33 inducing points.}
+      \field{booktitle}{Proceedings of the 35th International Conference on Machine Learning}
+      \field{month}{10--15 Jul}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{Scalable {G}aussian Processes with Grid-Structured Eigenfunctions ({GP}-{GRIEF})}
+      \field{volume}{80}
+      \field{year}{2018}
+      \field{pages}{1417\bibrangedash 1426}
+      \range{pages}{10}
+      \verb{file}
+      \verb http://proceedings.mlr.press/v80/evans18a/evans18a.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v80/evans18a.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v80/evans18a.html
+      \endverb
+    \endentry
     \entry{foreman-mackay}{article}{}{}
       \name{author}{4}{}{%
         {{hash=d09afa31aa9325481d13539e96101e87}{%
@@ -357,6 +420,28 @@
       \field{series}{Classics in mathematics}
       \field{title}{The theory of stochastic processes {I}}
       \field{year}{2004}
+    \endentry
+    \entry{gpy}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=8595799bc58dcf1b657c7cdeb8ac8334}{%
+           family={{GPy}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8595799bc58dcf1b657c7cdeb8ac8334}
+      \strng{fullhash}{8595799bc58dcf1b657c7cdeb8ac8334}
+      \strng{fullhashraw}{8595799bc58dcf1b657c7cdeb8ac8334}
+      \strng{bibnamehash}{8595799bc58dcf1b657c7cdeb8ac8334}
+      \strng{authorbibnamehash}{8595799bc58dcf1b657c7cdeb8ac8334}
+      \strng{authornamehash}{8595799bc58dcf1b657c7cdeb8ac8334}
+      \strng{authorfullhash}{8595799bc58dcf1b657c7cdeb8ac8334}
+      \strng{authorfullhashraw}{8595799bc58dcf1b657c7cdeb8ac8334}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://github.com/SheffieldML/GPy}}
+      \field{title}{{GPy}: A Gaussian process framework in python}
+      \field{year}{since 2012}
     \endentry
     \entry{random-subsampling}{inproceedings}{}{}
       \name{author}{3}{}{%
@@ -1191,6 +1276,9 @@
            familyi={W\bibinitperiod},
            given={Vivienne},
            giveni={V\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of St Andrews}%
       }
       \strng{namehash}{713363587cf9bd2a8a319e22d68d4123}
       \strng{fullhash}{713363587cf9bd2a8a319e22d68d4123}

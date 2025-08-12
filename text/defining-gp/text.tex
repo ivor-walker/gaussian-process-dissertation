@@ -126,7 +126,7 @@ Our expression lines up with the Gaussian PDF's "kernel" term $exp\left(-\frac{1
     p(W|X,y) \sim N(A^{-1}b, A^{-1})
 \end{equation}
 
-Inside our definition of $A$ at $\ref{A_b}$, we are missing an expression for $\Sigma_p$. Assuming independence of noise under the linear model \ref{eq:model_error_assumption}, our weight variance $\Sigma_p$ under the Bayesian linear model is "isotropic", meaning it is the same in all directions.
+Inside our definition of $A$ at $\ref{eq:A_b}$, we are missing an expression for $\Sigma_p$. Assuming independence of noise under the linear model \ref{eq:model_error_assumption}, our weight variance $\Sigma_p$ under the Bayesian linear model is "isotropic", meaning it is the same in all directions.
 \begin{equation*}
     \Sigma_p = \tau^2 I
 \end{equation*}
@@ -294,7 +294,7 @@ Rearranging to isolate $A_\phi^{-1}\phi(X)$
     = \frac{1}{\sigma_n^2}\left[A_{\phi}^{-1}\phi(X)\right]^Ty
 \end{equation*}
 
-We can use the Sherman-Morrison-Woodbury identity (SMW) to get an expression for $A_{\phi}^{-1}$ directly, where $K =\phi(X)^T\Sigma_p\phi(X)$, since TODO rank
+We can use the Sherman-Morrison-Woodbury identity (SMW) to get an expression for $A_{\phi}^{-1}$ directly, where $K =\phi(X)^T\Sigma_p\phi(X)$:
 \begin{equation*}
     A_{\phi}^{-1} = \Sigma_p - \Sigma_p\phi(X)(K+\sigma_n^2I)^{-1}\phi(X)^T\Sigma_p
 \end{equation*}
@@ -516,7 +516,7 @@ We can plug these mean and variances into the Gaussian PDF \ref{eq:gaussian_pdf}
 
 
 \subsubsection{Algorithm for Gaussian processes}
-Here is an algorithm for computing the predictive distribution for predictions and log-likelihood for training that uses Cholesky decomposition \ref{eq:cholesky-decomp} to address the matrix inversion requirement.
+Here is an algorithm for computing the predictive distribution for predictions and log-likelihood for training that uses Cholesky decomposition \ref{eq:cholesky-factor} to address the matrix inversion requirement.
 \begin{enumerate}
     \item Take in inputs $X$, outputs $y$, covariance function $k$, noise level $\sigma^2_n$, and test input $X_*$
     \item $L = \text{cholesky}(K(X,X) + \sigma_n^2I)$
@@ -525,7 +525,7 @@ Here is an algorithm for computing the predictive distribution for predictions a
     \end{itemize}
     \item $alpha = L^T \backslash (L \backslash y)$
     \begin{itemize}
-        \item Find $[K(X,X) + \sigma^2_nI]^{-1}y$ using Cholesky decomposition \ref{eq:colesky-decomp}, which is equivelant to solving the linear system $L^T L \cdot alpha = y$.
+        \item Find $[K(X,X) + \sigma^2_nI]^{-1}y$ using Cholesky decomposition \ref{eq:cholesky-factor}, which is equivelant to solving the linear system $L^T L \cdot alpha = y$.
     \end{itemize}
     \item $mu = K(X_*, X)^T \cdot alpha$
     \begin{itemize}

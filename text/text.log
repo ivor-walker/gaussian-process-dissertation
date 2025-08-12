@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  12 AUG 2025 22:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.21)  12 AUG 2025 23:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -730,9 +730,6 @@ Overfull \hbox (9.71089pt too wide) detected at line 122
  []
 
 
-LaTeX Warning: Reference `A_b' on page 6 undefined on input line 129.
-
-
 
 [6]
 
@@ -745,15 +742,6 @@ LaTeX Warning: Reference `A_b' on page 6 undefined on input line 129.
 [10]
 
 [11]
-
-LaTeX Warning: Reference `eq:cholesky-decomp' on page 12 undefined on input lin
-e 519.
-
-
-LaTeX Warning: Reference `eq:colesky-decomp' on page 12 undefined on input line
- 528.
-
-
 Overfull \hbox (14.21602pt too wide) in paragraph at lines 540--541
 []\OT1/cmr/m/n/10 Plug $\OML/cmm/m/it/10 v$ \OT1/cmr/m/n/10 into the vari-ance 
 re-stated in terms of the Cholesky fac-tors, where $\OML/cmm/m/it/10 v[]v \OT1/
@@ -782,15 +770,6 @@ OT1/cmr/m/n/10 )) =
 
 [16]
 
-LaTeX Warning: Reference `eq:uni_taylor_a' on page 17 undefined on input line 2
-69.
-
-
-LaTeX Warning: Reference `eq:multi_taylor_a' on page 17 undefined on input line
- 269.
-
-
-
 [17]
 
 LaTeX Warning: Citation 'eq:se' on page 18 undefined on input line 379.
@@ -802,9 +781,9 @@ LaTeX Warning: Citation 'eq:se' on page 18 undefined on input line 379.
 [19]
 
 [20]
-<./img/covariance-functions/Gaussian_Smooth_mean.png, id=479, 772.5663pt x 525.
+<./img/covariance-functions/Gaussian_Smooth_mean.png, id=487, 772.5663pt x 525.
 4029pt>
-<./img/covariance-functions/Gaussian_Smooth_draws.png, id=483, 772.5663pt x 525
+<./img/covariance-functions/Gaussian_Smooth_draws.png, id=491, 772.5663pt x 525
 .4029pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 528--528
@@ -821,7 +800,7 @@ s been already used, duplicate ignored
 l.530 A
        lthough we can technically draw infinite sample functions from any GP...
 ]
-<./img/covariance-functions/Gaussian_Rough_mean.png, id=492, 772.5663pt x 525.4
+<./img/covariance-functions/Gaussian_Rough_mean.png, id=500, 772.5663pt x 525.4
 029pt>
 
 
@@ -833,7 +812,7 @@ s been already used, duplicate ignored
 l.544 S
        E performed worse on this rougher data as its extreme smoothness is u...
 ]
-<./img/covariance-functions/Gaussian_Rough_draws.png, id=499, 772.5663pt x 525.
+<./img/covariance-functions/Gaussian_Rough_draws.png, id=507, 772.5663pt x 525.
 4029pt>
 
 
@@ -852,9 +831,9 @@ l.557 \end{equation*}
                      ]
 
 [24]
-<./img/covariance-functions/RatQuad_Smooth_mean.png, id=510, 772.5663pt x 525.4
+<./img/covariance-functions/RatQuad_Smooth_mean.png, id=518, 772.5663pt x 525.4
 029pt>
-<./img/covariance-functions/RatQuad_Rough_mean.png, id=512, 772.5663pt x 525.40
+<./img/covariance-functions/RatQuad_Rough_mean.png, id=520, 772.5663pt x 525.40
 29pt>
 
 
@@ -866,7 +845,7 @@ s been already used, duplicate ignored
 l.624 T
        he rougher dataset has driven $\alpha$ to be much lower than in the s...
 ]
-<./img/covariance-functions/RatQuad_Rough_draws.png, id=519, 772.5663pt x 525.4
+<./img/covariance-functions/RatQuad_Rough_draws.png, id=527, 772.5663pt x 525.4
 029pt>
 
 
@@ -896,14 +875,14 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.638 \begin{equation*}
                        ]
-<./img/covariance-functions/PowerExp_Smooth_mean.png, id=526, 772.5663pt x 525.
+<./img/covariance-functions/PowerExp_Smooth_mean.png, id=534, 772.5663pt x 525.
 4029pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 648--648
 
  []
 
-<./img/covariance-functions/PowerExp_Rough_mean.png, id=528, 772.5663pt x 525.4
+<./img/covariance-functions/PowerExp_Rough_mean.png, id=536, 772.5663pt x 525.4
 029pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 656--656
@@ -920,7 +899,7 @@ s been already used, duplicate ignored
 l.658 $
        \gamma = 1.51$ has been selected by GauPro \cite{gaupro} via MLE, whi...
 ]
-<./img/covariance-functions/PowerExp_Rough_draws.png, id=535, 772.5663pt x 525.
+<./img/covariance-functions/PowerExp_Rough_draws.png, id=543, 772.5663pt x 525.
 4029pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 665--665
@@ -934,26 +913,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.673 \end{equation*}
-                     
+l.673 \end{equation}
+                    
 pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.673 \end{equation*}
-                     ]
-
-LaTeX Warning: Reference `eq:exp_kernel' on page 29 undefined on input line 678
-.
-
-<./img/covariance-functions/Exponential_Smooth_mean.png, id=544, 772.5663pt x 5
+l.673 \end{equation}
+                    ]
+<./img/covariance-functions/Exponential_Smooth_mean.png, id=553, 772.5663pt x 5
 25.4029pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 695--695
 
  []
 
-<./img/covariance-functions/Exponential_Smooth_draws.png, id=545, 772.5663pt x 
+<./img/covariance-functions/Exponential_Smooth_draws.png, id=554, 772.5663pt x 
 525.4029pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 703--703
@@ -970,7 +945,7 @@ as been already used, duplicate ignored
 l.705 T
        hese function draws are effectively white noise that collapses at tra...
 ]
-<./img/covariance-functions/Exponential_Rough_mean.png, id=552, 772.5663pt x 52
+<./img/covariance-functions/Exponential_Rough_mean.png, id=563, 772.5663pt x 52
 5.4029pt>
 
 
@@ -987,9 +962,9 @@ as been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.726 \end{equation}
                     ]
-<./img/covariance-functions/Matern32_Smooth_mean.png, id=560, 772.5663pt x 525.
+<./img/covariance-functions/Matern32_Smooth_mean.png, id=570, 772.5663pt x 525.
 4029pt>
-<./img/covariance-functions/Matern32_Smooth_draws.png, id=561, 772.5663pt x 525
+<./img/covariance-functions/Matern32_Smooth_draws.png, id=571, 772.5663pt x 525
 .4029pt>
 
 
@@ -1001,9 +976,9 @@ as been already used, duplicate ignored
 l.756 T
        hese function draws are much smoother than those drawn from the expon...
 ]
-<./img/covariance-functions/Matern32_Rough_draws.png, id=570, 772.5663pt x 525.
+<./img/covariance-functions/Matern32_Rough_draws.png, id=580, 772.5663pt x 525.
 4029pt>
-<./img/covariance-functions/Matern52_Smooth_mean.png, id=572, 772.5663pt x 525.
+<./img/covariance-functions/Matern52_Smooth_mean.png, id=582, 772.5663pt x 525.
 4029pt>
 
 
@@ -1022,9 +997,9 @@ as been already used, duplicate ignored
 l.783 H
        ere, Matern 5/2's expected function is smooth enough to resembles SE ...
 ]
-<./img/covariance-functions/Matern52_Rough_mean.png, id=579, 772.5663pt x 525.4
+<./img/covariance-functions/Matern52_Rough_mean.png, id=589, 772.5663pt x 525.4
 029pt>
-<./img/covariance-functions/Matern52_Rough_draws.png, id=580, 772.5663pt x 525.
+<./img/covariance-functions/Matern52_Rough_draws.png, id=590, 772.5663pt x 525.
 4029pt>
 
 
@@ -1064,15 +1039,6 @@ l.58 \include{covariance-functions/text}
 [36]
 
 [37]
-
-LaTeX Warning: Reference `eq:sparse_approx_prior' on page 38 undefined on input
- line 213.
-
-
-LaTeX Warning: Reference `eq:sparse_approx_prior' on page 38 undefined on input
- line 213.
-
-
 Overfull \hbox (214.11919pt too wide) detected at line 270
 \OML/cmm/m/it/10 q[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cm
 m/m/it/10 X[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; f\OT1/cmr/m/n/10 (\OML/cmm/m/i
@@ -1092,41 +1058,21 @@ m/n/10 ^^@ \OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]; X\OT1/cmr/m
 
 [40]
 
-LaTeX Warning: Reference `eq:fourier' on page 41 undefined on input line 402.
-
-
-LaTeX Warning: Reference `eq:spectral_density' on page 41 undefined on input li
-ne 413.
-
-
-
 [41]
 
-LaTeX Warning: Reference `eq:cholesky' on page 42 undefined on input line 468.
-
-
-LaTeX Warning: Reference `eq:semiseparable' on page 42 undefined on input line 
-499.
-
-
-
-[42]
-
-LaTeX Warning: Reference `eq:cholesky' on page 43 undefined on input line 502.
-
-)
+[42])
 
 [43]
 \openout2 = `application/text.aux'.
 
  (./application/text.tex
-<./img/application/observed-spectrum.png, id=719, 1447.5681pt x 725.5908pt>
+<./img/application/observed-spectrum.png, id=736, 1447.5681pt x 725.5908pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--24
 [][]
  []
 
-<./img/application/model.png, id=724, 1447.5681pt x 725.5908pt>
+<./img/application/model.png, id=741, 1447.5681pt x 725.5908pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 29--30
 [][]
@@ -1146,7 +1092,7 @@ as been already used, duplicate ignored
 l.32 L
       eung's model \cite{galaxy-gp-noise} agreed with the observed SED in th...
 ]
-<./img/application/raw_residuals.png, id=734, 1447.5681pt x 725.5908pt>
+<./img/application/raw_residuals.png, id=751, 1447.5681pt x 725.5908pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 36--37
 [][]
@@ -1169,13 +1115,13 @@ as been already used, duplicate ignored
 l.43 A
       s the source of low-frequency wobbles is not well understood and canno...
 ]
-<./img/application/gp_residuals.png, id=745, 1447.5681pt x 725.5908pt>
+<./img/application/gp_residuals.png, id=762, 1447.5681pt x 725.5908pt>
 
 Underfull \hbox (badness 10000) in paragraph at lines 48--49
 [][]
  []
 
-<./img/application/celerite_svgp.png, id=750, 1447.5681pt x 758.835pt>
+<./img/application/celerite_svgp.png, id=767, 1447.5681pt x 758.835pt>
 
 
 [46
@@ -1183,22 +1129,21 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.23}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.68 M
-      atern 3/2 ultimately performed worse on this task because it produced ...
-]
+l.68 
+     ]
 
 [47
 pdfTeX warning (ext4): destination with the same identifier (name{figure.24}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.102 
+l.103 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.102 
+l.103 
       ])
 
 [48]
@@ -1250,9 +1195,6 @@ L3 programming layer <2025-01-18>
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `text.out' has not changed.
@@ -1262,13 +1204,13 @@ Package logreq Info: Writing requests to 'text.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18712 strings out of 473190
- 332024 string characters out of 5719979
- 1170974 words of memory out of 5000000
- 41509 multiletter control sequences out of 15000+600000
+ 18717 strings out of 473190
+ 332230 string characters out of 5719979
+ 1170271 words of memory out of 5000000
+ 41508 multiletter control sequences out of 15000+600000
  568469 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,81p,1762b,1481s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,81p,1762b,1471s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2025/texmf-d
@@ -1286,10 +1228,10 @@ s/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:
 /texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/tex
 live/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on text.pdf (51 pages, 454261 bytes).
+Output written on text.pdf (51 pages, 456910 bytes).
 PDF statistics:
- 974 PDF objects out of 1000 (max. 8388607)
- 846 compressed objects within 9 object streams
- 223 named destinations out of 1000 (max. 500000)
+ 1004 PDF objects out of 1200 (max. 8388607)
+ 874 compressed objects within 9 object streams
+ 229 named destinations out of 1000 (max. 500000)
  553 words of extra memory for PDF output out of 10000 (max. 10000000)
 

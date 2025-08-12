@@ -210,7 +210,7 @@ Since $X_m$ is imaginary, we need to integrate out $f(X_m)$ and condition on $y$
 \end{equation*}
 Additionally, this posterior produces the same marginal likelihood \label{eq:marginal_likelihood} as before.
 
-There are two classes of strategies to avoid this: prior approximations $q(f(X) | f(X_m))$ which change the conditional distribution prior to observing $y$ $p(f(X) | f(X_m))$ \ref{eq:sparse_approx_prior} and perform the conditioning process exactly, and posterior approximations that use the exact conditional distribution $p(f(X) | f(X_m))$ \ref{eq:sparse_approx_prior} but approximate the final posterior distribution $q(f(X), f(X_m) | y)$. 
+There are two classes of strategies to avoid this: prior approximations $q(f(X) | f(X_m))$ which change the conditional distribution prior to observing $y$ $p(f(X) | f(X_m))$ \ref{eq:sparse_exact_prior} and perform the conditioning process exactly, and posterior approximations that use the exact conditional distribution $p(f(X) | f(X_m))$ \ref{eq:sparse_exact_prior} but approximate the final posterior distribution $q(f(X), f(X_m) | y)$. 
 
 \subsubsection{Prior approximations}
 Prior approximations modify approximate the variance of the conditional distribution \ref{eq:prior_approx_pred} with $\bar{Q}(X, X)$:
@@ -410,7 +410,7 @@ Using the Fourier transform \ref{eq:fourier}:
 The argument within this sum is called a celerite term. Each celerite term contributes two ranks in the semiseparable factorisation; with $J$ celerite terms, the off-diagonal rank is $2J$. Setting $b_j = 0$ and $d_j = 0$ recovers the original exponential kernel, but Foreman-Mackay et. al.'s \cite{foreman-mackay} generalisation can be extended to approximate more complex kernels than sums of exponentials whilst maintaining Kelly et. al. \cite{general-exp}'s $O(N J^2)$ complexity.
 
 \subsubsection{Building Matern 3/2 from celerite}
-Applying the Fourier representation to the kernel to obtain its spectral density \ref{eq:spectral_density}:
+Applying the Fourier representation to the kernel to obtain its spectral density \ref{eq:spectral-density}:
 \begin{equation*}
     S(\omega) = \sum_{j=1}^J \sqrt{\frac{2}{\pi}} \frac{(a_j c_j + b_j d_j) (c_j^2 + d_j^2) + (a_j c_j - b_j d_j) \omega^2}{\omega^4 + 2(c_j^2 - d_j^2) \omega^2 + (c_j^2 + d_j^2)^2}
 \end{equation*}
@@ -423,7 +423,7 @@ Q is the "quality factor" of the oscillator, which determines how quickly it los
 \begin{equation*}
     S(\omega) = \sqrt{\frac{2}{\pi}} \frac{S_0 \omega_0^4}{(\omega^2 - \omega_0^2)^2 + \frac{\omega_0^2 \omega^2}{Q^2}}
 \end{equation*}
-where $S_0$ is proportional to the power at $\omega = \omega_0$, $S(\omega_0) = \sqrt{\frac{2}{\pi}} S_0 Q^2$ TODO explain.
+where $S_0$ is proportional to the power at $\omega = \omega_0$, $S(\omega_0) = \sqrt{\frac{2}{\pi}} S_0 Q^2$. 
 
 Foreman-Mackay et. al. \cite{foreman-mackay} showed that the celerite spectral density matched the SHO spectral density if $Q \geq \frac{1}{2}$:
 \begin{equation*}
@@ -465,7 +465,7 @@ Setting $\omega_0 = \frac{\sqrt{3}}{l}$ and $\sigma^2 = S_0 \omega_0$ recovers t
 \end{equation*}
 
 \subsubsection{Cholesky factorisation and inversion of celerite kernels}
-Foreman-Mackay et. al. \cite{foreman-mackay} develop a Cholesky factorisation method for these celerite kernels in $O(NR^2)$ complexity by exploiting their semiseparable structure. This methods reduces the $O(n^3)$ complexity of standard Cholesky factorisation \ref{eq:cholesky} whilst retaining its numerical stability.
+Foreman-Mackay et. al. \cite{foreman-mackay} develop a Cholesky factorisation method for these celerite kernels in $O(NR^2)$ complexity by exploiting their semiseparable structure. This methods reduces the $O(n^3)$ complexity of standard Cholesky factorisation \ref{eq:cholesky-factor} whilst retaining its numerical stability.
 
 \paragraph{Semiseperable matrices}
 A rank-$R$ semiseparable matrix $K$ is a matrix that can be expressed as a sum of a diagonal matrix $A$ and two low-rank matrices $U$ and $V$:
@@ -496,10 +496,10 @@ For the off-diagonal components, defining $R = 2J$ , we can assemble $U$ and $V$
         V_{m, 2j} = \exp (+c_j t_m) \sin(d_j t_m)
     \end{aligned}
 \end{equation*} 
-The resulting covariance matrix $K_{nm}$ can be assembled using the rules for semiseparable matrices \ref{eq:semiseparable}. 
+The resulting covariance matrix $K_{nm}$ can be assembled using the rules for semiseparable matrices \ref{eq:semiseparable-cases}. 
 
 \paragraph{Cholesky factorisation of semiseparable matrices}
-The goal of Cholesky factorisation \ref{eq:cholesky} remains to find the square root of the matrix. For standard Cholesky factorisation, the diagonal is already baked into $L$. However, for semiseparable matrices the diagonal is not part of $L$ and needs to be taken into account in the Cholesky representation of $K$:
+The goal of Cholesky factorisation \ref{eq:cholesky-factor} remains to find the square root of the matrix. For standard Cholesky factorisation, the diagonal is already baked into $L$. However, for semiseparable matrices the diagonal is not part of $L$ and needs to be taken into account in the Cholesky representation of $K$:
 \begin{equation} \label{eq:cholesky-semiseparable}
     K = L D L^T
 \end{equation}

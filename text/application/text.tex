@@ -63,8 +63,9 @@ We compare two methods of addressing this cubic complexity to enable the use of 
 
 \begin{figure}[H]
     \includegraphics[height=0.5\textwidth]{application/celerite_svgp.png}
-    \caption{Comparison of the residuals produced by GPs using different kernels and approximation methods to Leung's SED model \cite{galaxy-gp-noise}. SVGP was trained using the SE kernel, while celerite was trained using the Matern 3/2 kernel.}
+    \caption{Comparison of the residuals produced by GPs using different kernels and approximation methods to Leung's SED model \cite{galaxy-gp-noise}. SVGP was trained using the SE kernel, while celerite was trained using the Matern 3/2 kernel. We used GPy's SVGP implementation \cite{gpy} and celerite's implementation \cite{foreman-mackay} to fit these models.}
 \end{figure}
+
 Matern 3/2 ultimately performed worse on this task because it produced a GP whose expected function draw oscillated too much around zero in high frequency regions, unlike SE which remained at zero in high frequency regions but rose in the low frequency regions. Thus, Matern 3/2 overfitted to the data while SE captured the low frequency wobbles without overfitting. 
 
 The variance in SE is much larger than the variance in Matern 3/2 and rise with wavelength. 

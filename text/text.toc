@@ -49,16 +49,16 @@
 \contentsline {subsection}{\numberline {3.2}Stationary covariance functions}{19}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Stationarity and isotropicism}{19}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Spectral density}{19}{subsubsection.3.2.2}%
-\contentsline {paragraph}{Spectral density and MS differentiability}{19}{equation.38}%
+\contentsline {paragraph}{Spectral density and MS differentiability}{19}{equation.41}%
 \contentsline {subsubsection}{\numberline {3.2.3}GPs from stationary covariance functions in MS space}{19}{subsubsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.3}Stationary covariance functions}{20}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Squared exponential (SE)}{20}{subsubsection.3.3.1}%
-\contentsline {paragraph}{From feature space to SE}{20}{equation.40}%
+\contentsline {paragraph}{From feature space to SE}{20}{equation.43}%
 \contentsline {subsubsection}{\numberline {3.3.2}Rational quadratic (RQ)}{24}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}$\gamma $-exponential and exponential}{27}{subsubsection.3.3.3}%
 \contentsline {paragraph}{Exponential covariance function}{29}{figure.10}%
 \contentsline {subsubsection}{\numberline {3.3.4}Matern-class}{30}{subsubsection.3.3.4}%
-\contentsline {paragraph}{Matern 3/2}{31}{equation.42}%
+\contentsline {paragraph}{Matern 3/2}{31}{equation.46}%
 \contentsline {paragraph}{Matern 5/2}{32}{figure.16}%
 \contentsline {section}{\numberline {4}Computational Issues}{35}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Cholesky decomposition}{35}{subsection.4.1}%
@@ -66,23 +66,23 @@
 \contentsline {subsection}{\numberline {4.3}Eigenfunction and eigenvalue approximation of covariance matrices}{36}{subsection.4.3}%
 \contentsline {subsubsection}{\numberline {4.3.1}Approximating covariance matrices with Nystrom}{36}{subsubsection.4.3.1}%
 \contentsline {paragraph}{Assembling the full covariance matrix}{37}{subsubsection.4.3.1}%
-\contentsline {paragraph}{PSD issues using naive Nystrom}{37}{equation.47}%
+\contentsline {paragraph}{PSD issues using naive Nystrom}{37}{equation.51}%
 \contentsline {subsection}{\numberline {4.4}Sparse approximations}{37}{subsection.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.1}Prior approximations}{38}{subsubsection.4.4.1}%
-\contentsline {paragraph}{Subset-of-Regression (SoR)}{38}{equation.50}%
-\contentsline {paragraph}{Fully independent training conditional (FITC)}{39}{equation.50}%
+\contentsline {paragraph}{Subset-of-Regression (SoR)}{38}{equation.54}%
+\contentsline {paragraph}{Fully independent training conditional (FITC)}{39}{equation.54}%
 \contentsline {subsubsection}{\numberline {4.4.2}Posterior approximations}{39}{subsubsection.4.4.2}%
 \contentsline {paragraph}{Variational free energy (VFE)}{39}{subsubsection.4.4.2}%
-\contentsline {subparagraph}{Deriving FITC through the VFE framework}{40}{equation.52}%
-\contentsline {paragraph}{Stochastic varational GP (SVGP)}{40}{equation.52}%
+\contentsline {subparagraph}{Deriving FITC through the VFE framework}{40}{equation.56}%
+\contentsline {paragraph}{Stochastic varational GP (SVGP)}{40}{equation.56}%
 \contentsline {subsection}{\numberline {4.5}Celerite kernels}{41}{subsection.4.5}%
 \contentsline {subsubsection}{\numberline {4.5.1}The celerite model}{41}{subsubsection.4.5.1}%
 \contentsline {subsubsection}{\numberline {4.5.2}Building Matern 3/2 from celerite}{41}{subsubsection.4.5.2}%
 \contentsline {subsubsection}{\numberline {4.5.3}Cholesky factorisation and inversion of celerite kernels}{42}{subsubsection.4.5.3}%
 \contentsline {paragraph}{Semiseperable matrices}{42}{subsubsection.4.5.3}%
-\contentsline {paragraph}{Celerite kernels as semiseparable matrices}{42}{equation.56}%
-\contentsline {paragraph}{Cholesky factorisation of semiseparable matrices}{43}{equation.56}%
-\contentsline {paragraph}{Inversion of semiseparable matrices with a Cholesky factorisation}{43}{equation.57}%
+\contentsline {paragraph}{Celerite kernels as semiseparable matrices}{42}{equation.60}%
+\contentsline {paragraph}{Cholesky factorisation of semiseparable matrices}{43}{equation.60}%
+\contentsline {paragraph}{Inversion of semiseparable matrices with a Cholesky factorisation}{43}{equation.61}%
 \contentsline {section}{\numberline {5}Applying Gaussian Processes to Astrophysics}{44}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Introduction}{44}{subsection.5.1}%
 \contentsline {subsubsection}{\numberline {5.1.1}Astronomical background}{44}{subsubsection.5.1.1}%
@@ -93,9 +93,9 @@
 \contentsline {subsection}{\numberline {5.3}Results}{47}{subsection.5.3}%
 \contentsline {subsection}{\numberline {5.4}Discussion}{47}{subsection.5.4}%
 \contentsline {subsubsection}{\numberline {5.4.1}Computational cost}{47}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}Identifiability}{47}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.2}Identifiability}{48}{subsubsection.5.4.2}%
 \contentsline {subsection}{\numberline {5.5}Conclusion}{48}{subsection.5.5}%
 \contentsline {section}{\numberline {6}Conclusion}{49}{section.6}%
 \contentsline {paragraph}{Analysis of covariance functions}{49}{section.6}%
-\contentsline {paragraph}{Computational efficiency}{49}{section.6}%
-\contentsline {paragraph}{Identifiability}{49}{section.6}%
+\contentsline {paragraph}{Computational efficiency versus generality}{49}{section.6}%
+\contentsline {paragraph}{New structured approximations}{49}{section.6}%
